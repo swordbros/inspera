@@ -12,7 +12,7 @@ If you plan on using a database, run this command inside the application directo
 
     git pull origin main
 
-
+Please request auth.json and .env files
 
 
 
