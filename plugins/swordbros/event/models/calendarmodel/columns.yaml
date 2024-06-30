@@ -1,0 +1,62 @@
+tabs:
+    defaultTab:  Genel
+    fields:
+        group_key:
+            label: 'Group key'
+            span: auto
+            type: text
+        event_zone_id:
+            label: 'Event zone id'
+            span: auto
+            type: dropdown
+        event_category_id:
+            label: 'Event category id'
+            span: auto
+            type: dropdown
+        event_type_id:
+            label: 'Event type id'
+            span: auto
+            type: dropdown
+        title:
+            label: 'Event title'
+            span: auto
+            type: text
+        booking_url:
+            label: 'Booking Url'
+            span: auto
+            type: text
+        start:
+            label: 'Event start'
+            span: left
+            type: datepicker
+        end:
+            label: 'Event end'
+            span: right
+            type: datepicker
+        short:
+            label: 'short description'
+            span: auto
+            type: textarea
+        color:
+            label: 'Event color'
+            tab: Description
+            span: left
+            type: colorpicker
+        description:
+            label: 'description'
+            tab: Description
+            span: left
+            type: richeditor
+        images:
+            type: repeater
+            tab: Images
+            form:
+                fields:
+                    image:
+                        label: image
+                        type: mediafinder
+                        thumbOptions: true
+        status:
+            label: Status
+            span: left
+            type: switch

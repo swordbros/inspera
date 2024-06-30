@@ -1,0 +1,28 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    user:
+        label: Login
+        modelClass: Backend\Models\User
+        conditions: user_id in (:filtered)
+        nameFrom: full_name
+    booking_status:
+        label: Booking Status
+        scope: isBookingStatus
+        modelClass: Swordbros\Booking\Models\BookingModel
+        conditions: filterByBookingStatus
+        options: getBookingStatusOptions
+    payment_status:
+        label: Payment Status
+        scope: isBookingPaymentStatuses
+        modelClass: Swordbros\Booking\Models\BookingModel
+        conditions: filterByPaymentMethods
+        options: getPaymentStatusOptions
+    payment_method:
+        label: Payment Method
+        scope: isBookingPaymentMethods
+        modelClass: Swordbros\Booking\Models\BookingModel
+        conditions: filterByPaymentMethods
+        options: getPaymentMethodOptions

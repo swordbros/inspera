@@ -1,0 +1,12 @@
+list: $/swordbros/event/models/calendarmodel/columns.yaml
+modelClass: Swordbros\Event\Models\CalendarModel
+title: Calendar
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'swordbros/event/calendar/update/:id'

@@ -1,0 +1,21 @@
+fields:
+    group_key:
+        label: 'Group key'
+        span: auto
+        type: text
+    event_zone_id:
+        label: 'Event zone id'
+        span: auto
+        type: number
+    event_category_id:
+        label: 'Event category id'
+        span: auto
+        type: number
+    event_type_id:
+        label: 'Event type id'
+        span: auto
+        type: number
+    status:
+        label: Status
+        span: auto
+        type: number

@@ -1,0 +1,44 @@
+columns:
+    thumb:
+        label: id
+        type: image
+    id:
+        label: id
+        type: number
+        invisible: true
+        sortable: true
+        sortableDefault: DESC
+    group_key:
+        label: swordbros.event::lang.plugin.group_key
+        type: text
+        invisible: true
+    title:
+        label: swordbros.event::lang.plugin.title
+        type: text
+    event_zone_id:
+        label: 'swordbros.event::lang.plugin.event_zone'
+        relation: event_zone
+        select: name
+    event_category_id:
+        label: 'swordbros.event::lang.plugin.event_category'
+        relation: event_category
+        select: name
+    event_type_id:
+        label: 'swordbros.event::lang.plugin.event_type'
+        relation: event_type
+        select: name
+    status:
+        label: status
+        type: switch
+    deleted_at:
+        label: deleted_at
+        type: datetime
+        invisible: true
+    created_at:
+        label: created_at
+        type: datetime
+        invisible: true
+    updated_at:
+        label: updated_at
+        type: datetime
+        invisible: true

@@ -1,0 +1,34 @@
+plugin:
+    name: 'swordbros.event::lang.plugin.name'
+    description: 'swordbros.event::lang.plugin.description'
+    author: Swordbros
+    icon: oc-icon-adjust
+    homepage: 'https://swordbros.com/'
+navigation:
+    main-menu-item:
+        label: 'swordbros.event::lang.plugin.title'
+        url: /
+        icon: icon-adjust
+        order: '500'
+        sideMenu:
+            side-menu-item:
+                label: 'swordbros.event::lang.plugin.calendar'
+                url: swordbros/event/calendar
+                icon: icon-calendar
+            side-menu-item2:
+                label: 'swordbros.event::lang.plugin.events'
+                url: swordbros/event/event
+                icon: icon-puzzle-piece
+            side-menu-item3:
+                label: 'swordbros.event::lang.plugin.zones'
+                url: swordbros/event/zone
+                icon: icon-street-view
+            side-menu-item4:
+                label: 'swordbros.event::lang.plugin.types'
+                url: swordbros/event/type
+                icon: icon-tags
+            side-menu-item5:
+                label: 'swordbros.event::lang.plugin.categories'
+                url: swordbros/event/category
+                icon: icon-sitemap
+

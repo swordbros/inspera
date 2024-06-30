@@ -1,0 +1,22 @@
+fields:
+    code:
+        label: Code
+        span: auto
+        type: text
+    name:
+        label: Name
+        span: auto
+        type: text
+    description:
+        label: Description
+        span: auto
+        type: text
+    thumb:
+        label: Thumb
+        type: mediafinder
+        thumbOptions: true
+        maxItems: 1
+    status:
+        label: Status
+        span: left
+        type: switch

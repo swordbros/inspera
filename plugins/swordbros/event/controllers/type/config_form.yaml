@@ -1,0 +1,10 @@
+name: Type
+form: $/swordbros/event/models/typemodel/fields.yaml
+modelClass: Swordbros\Event\Models\TypeModel
+defaultRedirect: swordbros/event/type
+create:
+    redirect: 'swordbros/event/type/update/:id'
+    redirectClose: swordbros/event/type
+update:
+    redirect: swordbros/event/type
+    redirectClose: swordbros/event/type

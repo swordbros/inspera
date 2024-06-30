@@ -1,0 +1,47 @@
+columns:
+    id:
+        label: id
+        type: number
+        invisible: true
+        sortable: true
+        sortableDefault: DESC
+    event_id:
+        label: swordbros.booking::lang.plugin.event
+        relation: event
+        select: title
+    user_id:
+        label: swordbros.booking::lang.plugin.user
+        relation: user
+        select: username
+    first_name:
+        label: swordbros.booking::lang.plugin.first_name
+        type: text
+    last_name:
+        label: swordbros.booking::lang.plugin.last_name
+        type: text
+    booking_status:
+        label: status
+        type: text
+    total:
+        label: Total
+        type: text
+    payment_method:
+        label: Payment Method
+        type: partial
+        path: payment_method
+    payment_status:
+        label: Payment status
+        type: partial
+        path: payment_status
+    deleted_at:
+        label: deleted_at
+        type: datetime
+        invisible: true
+    created_at:
+        label: created_at
+        type: datetime
+        invisible: true
+    updated_at:
+        label: updated_at
+        type: datetime
+        invisible: true

@@ -1,0 +1,30 @@
+plugin:
+    name: 'swordbros.booking::lang.plugin.name'
+    description: 'swordbros.booking::lang.plugin.description'
+    author: Swordbros
+    icon: oc-icon-adjust
+    homepage: 'https://swordbros.com/'
+navigation:
+    main-menu-item:
+        label: 'swordbros.booking::lang.plugin.title'
+        url: /
+        icon: icon-tags
+        order: '600'
+        sideMenu:
+            side-menu-item:
+                label: 'swordbros.booking::lang.plugin.calendar'
+                url: swordbros/booking/calendar
+                icon: icon-calendar
+            side-menu-item2:
+                label: 'swordbros.booking::lang.plugin.requests'
+                url: swordbros/booking/bookingrequest
+                icon: icon-book
+            side-menu-item3:
+                label: 'swordbros.booking::lang.plugin.bookings'
+                url: swordbros/booking/booking
+                icon: icon-puzzle-piece
+            side-menu-item4:
+                label: 'swordbros.booking::lang.plugin.bookingcreate'
+                url: swordbros/booking/booking/create
+                icon: icon-tag
+

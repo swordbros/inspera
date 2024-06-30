@@ -1,0 +1,20 @@
+v1.0.1:
+    - 'Initialize plugin'
+v1.0.2:
+    - 'Updated table swordbros_events'
+    - builder_table_update_swordbros_event_events.php
+v1.0.3:
+    - 'Created table swordbros_event_events'
+    - builder_table_create_swordbros_event_events.php
+v1.0.4:
+    - 'Created table swordbros_event_types'
+    - builder_table_create_swordbros_event_types.php
+v1.0.5:
+    - 'Created table swordbros_event_zones'
+    - builder_table_create_swordbros_event_zones.php
+v1.0.6:
+    - 'Updated table swordbros_event_types'
+    - builder_table_update_swordbros_event_types.php
+v1.0.7:
+    - 'Created table swordbros_event_categories'
+    - builder_table_create_swordbros_event_categories.php
