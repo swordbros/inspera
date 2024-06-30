@@ -10,7 +10,7 @@ If you have composer installed, run this in your terminal to install October CMS
 
 If you plan on using a database, run this command inside the application directory.
 
-    php artisan october:install
+    git pull origin main
 
 
 
