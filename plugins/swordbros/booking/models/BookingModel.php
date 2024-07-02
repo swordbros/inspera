@@ -3,9 +3,9 @@
 use Backend\Models\User;
 use Model;
 use Swordbros\Base\Controllers\Amele;
-use Swordbros\BookingRequest\Models\CategoryModel;
-use Swordbros\BookingRequest\Models\TypeModel;
-use Swordbros\BookingRequest\Models\ZoneModel;
+use Swordbros\Event\Models\EventCategoryModel;
+use Swordbros\Event\Models\EventTypeModel;
+use Swordbros\Event\Models\EventZoneModel;
 use Swordbros\Event\Models\EventModel;
 
 /**
@@ -19,6 +19,7 @@ class BookingModel extends Model
      * @var string table in the database used by the model.
      */
     public $table = 'swordbros_booking_bookings';
+    public $translateClass = BookingTranslateModel::class;
 
     /**
      * @var array rules for validation.

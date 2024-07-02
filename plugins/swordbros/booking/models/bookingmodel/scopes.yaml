@@ -4,24 +4,24 @@
 
 scopes:
     user:
-        label: Login
+        label: swordbros.booking::lang.scops.user
         modelClass: Backend\Models\User
         conditions: user_id in (:filtered)
         nameFrom: full_name
     booking_status:
-        label: Booking Status
+        label: swordbros.booking::lang.scops.booking_status
         scope: isBookingStatus
         modelClass: Swordbros\Booking\Models\BookingModel
         conditions: filterByBookingStatus
         options: getBookingStatusOptions
     payment_status:
-        label: Payment Status
+        label: swordbros.booking::lang.scops.payment_status
         scope: isBookingPaymentStatuses
         modelClass: Swordbros\Booking\Models\BookingModel
         conditions: filterByPaymentMethods
         options: getPaymentStatusOptions
     payment_method:
-        label: Payment Method
+        label: swordbros.booking::lang.scops.payment_method
         scope: isBookingPaymentMethods
         modelClass: Swordbros\Booking\Models\BookingModel
         conditions: filterByPaymentMethods

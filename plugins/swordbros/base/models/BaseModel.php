@@ -2,6 +2,7 @@
 
 use Model;
 use Swordbros\Base\Controllers\Amele;
+use Swordbros\Event\Models\EventTranslateModel;
 
 /**
  * Model
@@ -14,13 +15,19 @@ class BaseModel extends Model
     {
         parent::boot();
         static::fetched(function ($row) {
-            Amele::localize_row($row);
+            if(property_exists($row, 'translateClass')){
+                Amele::localize_row($row);
+            }
         });
         static::updated(function ($row) {
-            Amele::save_localize_row($row);
+            if(property_exists($row, 'translateClass')){
+                Amele::save_localize_row($row);
+            }
         });
         static::created(function ($row) {
-            Amele::save_localize_row($row);
+            if(property_exists($row, 'translateClass')){
+                Amele::save_localize_row($row);
+            }
         });
     }
 }

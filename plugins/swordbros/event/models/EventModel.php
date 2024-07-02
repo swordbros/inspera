@@ -16,6 +16,7 @@ class EventModel extends BaseModel
      * @var string table in the database used by the model.
      */
     public $table = 'swordbros_event_events';
+    public $translateClass = EventTranslateModel::class;
 
     /**
      * @var array rules for validation.
@@ -31,9 +32,9 @@ class EventModel extends BaseModel
     ];
 
     public $belongsTo = [
-        'event_zone' => ZoneModel::class,
-        'event_category' => CategoryModel::class,
-        'event_type' => TypeModel::class,
+        'event_zone' => EventZoneModel::class,
+        'event_category' => EventCategoryModel::class,
+        'event_type' => EventTypeModel::class,
 
     ];
     protected static function boot()
@@ -46,21 +47,21 @@ class EventModel extends BaseModel
     }
     public function getEventCategoryIdOptions(){
         $result = [];
-        foreach (CategoryModel::all() as $item) {
+        foreach (EventCategoryModel::all() as $item) {
             $result[$item->id] = [$item->name, $item->description];
         }
         return $result;
     }
     public function getEventTypeIdOptions(){
         $result = [];
-        foreach (TypeModel::all() as $item) {
+        foreach (EventTypeModel::all() as $item) {
             $result[$item->id] = [$item->name, $item->description];
         }
         return $result;
     }
     public function getEventZoneIdOptions(){
         $result = [];
-        foreach (ZoneModel::all() as $item) {
+        foreach (EventZoneModel::all() as $item) {
             $result[$item->id] = [$item->name, $item->description];
         }
         return $result;

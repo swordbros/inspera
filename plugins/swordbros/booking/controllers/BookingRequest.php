@@ -6,11 +6,12 @@ use Backend\Classes\Controller;
 use Flash;
 use Redirect;
 use Swordbros\Base\Controllers\Amele;
+use Swordbros\Base\Controllers\BaseController;
 use Swordbros\Booking\Models\BookingModel;
 use Swordbros\Booking\models\BookingRequestModel;
 use Swordbros\Event\Models\EventModel;
 
-class BookingRequest extends Controller
+class BookingRequest extends BaseController
 {
     public $implement = [
         \Backend\Behaviors\FormController::class,
@@ -54,6 +55,10 @@ class BookingRequest extends Controller
             } else {
                 $item->status = 1;
                 $item->user_id = (int)$item->user_id;
+                $item->booking_status = \Input::get('BookingRequestModel.booking_status');
+                $item->total = floatval(\Input::get('BookingRequestModel.total'));
+                $item->payment_method = \Input::get('BookingRequestModel.payment_method');
+                $item->payment_status = \Input::get('BookingRequestModel.payment_status');
                 $item->save();
                 Amele::addBookingRequestHistory($recordId, 'Randevu isteği onaylandı');
                 $booking = new BookingModel();
@@ -63,7 +68,10 @@ class BookingRequest extends Controller
                 $booking->last_name = $item->last_name;
                 $booking->email = $item->email;
                 $booking->phone = $item->phone;
-                $booking->booking_status = 'pending';
+                $booking->booking_status = $item->booking_status;
+                $booking->total = $item->total;
+                $booking->payment_method = $item->payment_method;
+                $booking->payment_status = $item->payment_status;
                 $booking->save();
                 Amele::addBookingRequestHistory($recordId, 'Onaylanan Randevu otomatik oluşturuldu. Randevu Id: '.$booking->id);
                 Amele::addBookingHistory($booking->id, 'Onaylanan Randevu otomatik oluşturuldu. Randevu Request Id: '.$recordId);

@@ -20,6 +20,7 @@ class BookingRequestModel extends Model
      * @var string table in the database used by the model.
      */
     public $table = 'swordbros_booking_requests';
+    public $translateClass = BookingTranslateModel::class;
 
     /**
      * @var array rules for validation.
@@ -58,5 +59,28 @@ class BookingRequestModel extends Model
             $result[$item->id] = [$item->name, $item->description];
         }
         return $result;
+    }
+    function getUserIdOptions(){
+        $items = ['0'=>'Select One'];
+        foreach(User::all() as $item){
+            $items[$item->id] = [$item->first_name, $item->liast_name];
+        }
+        return $items;
+    }
+    function getEventIdOptions(){
+        $items = [];
+        foreach(EventModel::all() as $item){
+            $items[$item->id] = [$item->title.' ('.$item->start.')'];
+        }
+        return $items;
+    }
+    function getBookingStatusOptions(){
+        return \Swordbros\Base\Controllers\Amele::getBookingStatusOptions();
+    }
+    function getPaymentMethodOptions(){
+        return \Swordbros\Base\Controllers\Amele::getPaymentMethodOptions();
+    }
+    function getPaymentStatusOptions(){
+        return \Swordbros\Base\Controllers\Amele::getPaymentStatusOptions();
     }
 }

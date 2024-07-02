@@ -1,52 +1,53 @@
 tabs:
-    defaultTab:  Genel
+    defaultTab:  swordbros.booking::lang.fields.main
     fields:
+        event_id:
+            label: swordbros.booking::lang.fields.event
+            type: dropdown
+            emptyOption: 'Select One'
+            span: auto
         user_id:
-            label: swordbros.booking::lang.plugin.user
+            label: swordbros.booking::lang.fields.user
             type: dropdown
             span: auto
             attributes:
                 data-request: 'onUserDropDownChange'
         first_name:
-            label: swordbros.booking::lang.plugin.first_name
+            label: swordbros.booking::lang.fields.first_name
             type: text
             span: auto
         last_name:
-            label: swordbros.booking::lang.plugin.last_name
+            label: swordbros.booking::lang.fields.last_name
             type: text
             span: auto
         email:
-            label: swordbros.booking::lang.plugin.email
+            label: swordbros.booking::lang.fields.email
             type: text
             span: auto
         phone:
-            label: swordbros.booking::lang.plugin.phone
+            label: swordbros.booking::lang.fields.phone
             type: text
             span: auto
-        event_id:
-            label: swordbros.booking::lang.plugin.event
-            type: dropdown
-            emptyOption: 'Select One'
-            span: auto
+
         booking_status:
-            label: Booking Status
+            label: swordbros.booking::lang.fields.booking_status
             span: left
             type: dropdown
         total:
-            label: Total
+            label: swordbros.booking::lang.fields.total
             span: left
             type: number
         payment_method:
-            label: Payment Method
+            label: swordbros.booking::lang.fields.payment_method
             span: auto
             type: dropdown
         payment_status:
-            label: Payment Status
+            label: swordbros.booking::lang.fields.payment_status
             span: auto
             type: dropdown
         history:
-            label: History
+            label: swordbros.booking::lang.fields.history
             type: partial
-            tab: History
+            tab: swordbros.booking::lang.tab.history
             path: $/swordbros/booking/models/bookingmodel/_history.php
             context: [update,preview]

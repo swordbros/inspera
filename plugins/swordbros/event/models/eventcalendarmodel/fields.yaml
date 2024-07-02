@@ -1,0 +1,21 @@
+fields:
+    group_key:
+        label: swordbros.event::lang.fields.group_key
+        span: auto
+        type: text
+    event_zone_id:
+        label: swordbros.event::lang.fields.event_zone_id
+        span: auto
+        type: number
+    event_category_id:
+        label: swordbros.event::lang.fields.event_category_id
+        span: auto
+        type: number
+    event_type_id:
+        label: swordbros.event::lang.fields.event_type_id
+        span: auto
+        type: number
+    status:
+        label: swordbros.event::lang.fields.status
+        span: auto
+        type: number

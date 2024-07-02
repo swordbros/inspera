@@ -1,73 +1,73 @@
 tabs:
-    defaultTab:  Genel
+    defaultTab:  swordbros.event::lang.tab.main
     fields:
         group_key:
-            label: 'Group key'
+            label: swordbros.event::lang.fields.group_key
             span: auto
             type: text
         event_zone_id:
-            label: 'Event zone id'
+            label: swordbros.event::lang.fields.event_zone_id
             span: auto
             type: dropdown
             required: true
         event_category_id:
-            label: 'Event category id'
+            label: swordbros.event::lang.fields.event_category_id
             span: auto
             type: dropdown
             required: true
         event_type_id:
-            label: 'Event type id'
+            label: swordbros.event::lang.fields.event_type_id
             span: auto
             type: dropdown
             required: true
         title:
-            label: 'Event title'
+            label: swordbros.event::lang.fields.title
             span: auto
             type: text
             required: true
         booking_url:
-            label: 'Booking Url'
+            label: swordbros.event::lang.fields.booking_url
             span: auto
             type: text
         start:
-            label: 'Event start'
+            label: swordbros.event::lang.fields.start
             span: left
             type: datepicker
             required: true
         end:
-            label: 'Event end'
+            label: swordbros.event::lang.fields.end
             span: right
             type: datepicker
             required: true
         short:
-            label: 'short description'
+            label: swordbros.event::lang.fields.short
             span: auto
             type: textarea
         color:
-            label: 'Event color'
-            tab: Description
+            label: swordbros.event::lang.fields.color
+            tab: swordbros.event::lang.tab.description
             span: left
             type: colorpicker
         description:
-            label: 'description'
-            tab: Description
+            label: swordbros.event::lang.fields.description
+            tab: swordbros.event::lang.tab.description
             span: left
             type: richeditor
         thumb:
-            label: Thumb
+            label: swordbros.event::lang.fields.thumb
             type: mediafinder
             thumbOptions: true
             maxItems: 1
         images:
             type: repeater
-            tab: Images
+            tab: swordbros.event::lang.tab.images
             form:
                 fields:
                     image:
-                        label: image
+                        label: swordbros.event::lang.fields.image
                         type: mediafinder
                         thumbOptions: true
         status:
-            label: Status
+            label: swordbros.event::lang.fields.status
             span: left
             type: switch

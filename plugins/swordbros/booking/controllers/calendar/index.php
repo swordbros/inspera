@@ -3,16 +3,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">
-                    Yeni Etkinlik
-                </h5>
+                <h5 class="modal-title"><?= e(trans('swordbros.booking::plugin.new_booking')) ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <form data-request="onGetEventTypeForm"  class="row" data-request-success="successHandler()">
                     <div class="col-md-6">
 
-                        <h6>Etkinlik türü Seçiniz</h6>
+                        <h6><?= e(trans('swordbros.booking::plugin.select_event_type')) ?></h6>
                         <ul class="list-unstyled">
                             <?php $checked = 'checked'; ?>
                             <?php foreach($services as $service){ ?>
@@ -32,7 +30,7 @@
                         </ul>
                     </div>
                     <div class="col-md-12">
-                        <button class="btn btn-primary" type="submit">Devam</button>
+                        <button class="btn btn-primary" type="submit"><?= e(trans('swordbros.booking::plugin.next')) ?></button>
 
                     </div>
                     <input type="hidden" name="date" value="" id="date">
@@ -89,7 +87,7 @@
                 myModal.show();*/
             },
             eventClick: function(arg) {
-                window.location.href = arg.event.extendedProps.event_url;
+                window.location.href = arg.event.extendedProps.event_booking_url;
             },
             editable: true,
             dayMaxEvents: true, // allow "more" link when too many events

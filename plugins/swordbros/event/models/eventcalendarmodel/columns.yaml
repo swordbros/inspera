@@ -1,0 +1,62 @@
+tabs:
+    defaultTab:  Genel
+    fields:
+        group_key:
+            label: 'swordbros.event::lang.cols.group_key'
+            span: auto
+            type: text
+        event_zone_id:
+            label: 'swordbros.event::lang.cols.event_zone_id'
+            span: auto
+            type: dropdown
+        event_category_id:
+            label: 'swordbros.event::lang.cols.event_category_id'
+            span: auto
+            type: dropdown
+        event_type_id:
+            label: 'swordbros.event::lang.cols.event_type_id'
+            span: auto
+            type: dropdown
+        title:
+            label: 'swordbros.event::lang.cols.title'
+            span: auto
+            type: text
+        booking_url:
+            label: 'swordbros.event::lang.cols.booking_url'
+            span: auto
+            type: text
+        start:
+            label: 'swordbros.event::lang.cols.start'
+            span: left
+            type: datepicker
+        end:
+            label: 'swordbros.event::lang.cols.end'
+            span: right
+            type: datepicker
+        short:
+            label: 'swordbros.event::lang.cols.short'
+            span: auto
+            type: textarea
+        color:
+            label: 'swordbros.event::lang.cols.color'
+            tab: swordbros.event::lang.tab.description
+            span: left
+            type: colorpicker
+        description:
+            label: 'swordbros.event::lang.cols.description'
+            tab: swordbros.event::lang.tab.description
+            span: left
+            type: richeditor
+        images:
+            type: repeater
+            tab: swordbros.event::lang.tab.images
+            form:
+                fields:
+                    image:
+                        label: 'swordbros.event::lang.cols.image'
+                        type: mediafinder
+                        thumbOptions: true
+        status:
+            label: 'swordbros.event::lang.cols.status'
+            span: left
+            type: switch

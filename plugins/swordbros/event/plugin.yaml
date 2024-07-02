@@ -13,7 +13,7 @@ navigation:
         sideMenu:
             side-menu-item:
                 label: 'swordbros.event::lang.plugin.calendar'
-                url: swordbros/event/calendar
+                url: swordbros/event/eventcalendar
                 icon: icon-calendar
             side-menu-item2:
                 label: 'swordbros.event::lang.plugin.events'
@@ -21,14 +21,14 @@ navigation:
                 icon: icon-puzzle-piece
             side-menu-item3:
                 label: 'swordbros.event::lang.plugin.zones'
-                url: swordbros/event/zone
+                url: swordbros/event/eventzone
                 icon: icon-street-view
             side-menu-item4:
                 label: 'swordbros.event::lang.plugin.types'
-                url: swordbros/event/type
+                url: swordbros/event/eventtype
                 icon: icon-tags
             side-menu-item5:
                 label: 'swordbros.event::lang.plugin.categories'
-                url: swordbros/event/category
+                url: swordbros/event/eventcategory
                 icon: icon-sitemap
 

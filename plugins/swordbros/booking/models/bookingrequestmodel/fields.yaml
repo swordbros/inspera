@@ -2,27 +2,30 @@ tabs:
     defaultTab:  Genel
     fields:
         event_id:
-            label: swordbros.booking::lang.plugin.event
-            type: text
+            label: swordbros.booking::lang.fields.event
+            type: dropdown
+            emptyOption: 'Select One'
             span: auto
         user_id:
-            label: swordbros.booking::lang.plugin.user
-            type: text
+            label: swordbros.booking::lang.fields.user
+            type: dropdown
             span: auto
+            attributes:
+                data-request: 'onUserDropDownChange'
         first_name:
-            label: swordbros.booking::lang.plugin.first_name
+            label: swordbros.booking::lang.fields.first_name
             type: text
             span: auto
         last_name:
-            label: swordbros.booking::lang.plugin.last_name
+            label: swordbros.booking::lang.fields.last_name
             type: text
             span: auto
         email:
-            label: swordbros.booking::lang.plugin.email
+            label: swordbros.booking::lang.fields.email
             type: text
             span: auto
         phone:
-            label: swordbros.booking::lang.plugin.phone
+            label: swordbros.booking::lang.fields.phone
             type: text
             span: auto
         status:
@@ -30,8 +33,24 @@ tabs:
             span: left
             type: switch
             context: [preview, create]
+        booking_status:
+            label: Booking Status
+            span: left
+            type: dropdown
+        total:
+            label: Total
+            span: left
+            type: number
+        payment_method:
+            label: Payment Method
+            span: auto
+            type: dropdown
+        payment_status:
+            label: Payment Status
+            span: auto
+            type: dropdown
         history:
             label: History
             type: partial
-            tab: History
+            tab: swordbros.booking::lang.tab.history
             path: $/swordbros/booking/models/bookingrequestmodel/_history.php

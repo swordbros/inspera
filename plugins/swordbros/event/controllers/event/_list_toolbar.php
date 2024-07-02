@@ -1,10 +1,5 @@
 <div data-control="toolbar">
 
-<!--    <a-->
-<!--        href="--><?php //= Backend::url('swordbros/event/event/create') ?><!--"-->
-<!--        class="btn btn-primary oc-icon-plus">-->
-<!--        --><?php //= e(trans('backend::lang.form.create')) ?>
-<!--    </a>-->
     <?php foreach(\Swordbros\Base\Controllers\Amele::services() as $service){ ?>
         <a
             href="<?= Backend::url('swordbros/event/event/create') ?>?event_type=<?=$service->code?>"

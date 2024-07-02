@@ -46,7 +46,8 @@ class Calendar extends BaseController
                     'end'=>$row->end,
                     'borderColor'=>$row->color,
                     'total'=> $total,
-                    'event_url'=> \Backend::url('swordbros/booking/booking').'?event_id='.$row->id,
+                    'event_view_url'=> \Backend::url('swordbros/event/event/preview',['id'=>$row->id]),
+                    'event_booking_url'=> \Backend::url('swordbros/booking/booking').'?event_id='.$row->id,
                 ];
             }
         }

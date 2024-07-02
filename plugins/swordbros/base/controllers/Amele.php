@@ -1,23 +1,14 @@
 <?php namespace Swordbros\Base\Controllers;
 
-use App;
-use Backend\Classes\Controller;
-use Backend\Controllers\Index\DashboardHandler;
-use BackendMenu;
-use Config;
-use Locale;
-use October\Rain\Support\Facades\Schema;
+
 use Site;
+use Backend\Classes\Controller;
 use Swordbros\Booking\Models\BookingHistoryModel;
 use Swordbros\Booking\Models\BookingRequestHistoryModel;
-use Swordbros\Booking\models\EventCategoryModel;
-use Swordbros\Booking\Models\EventModel;
-use Swordbros\Booking\models\EventTypeModel;
-use Swordbros\Booking\models\EventZoneModel;
-use Swordbros\Booking\Models\Message;
+use Swordbros\Booking\Models\BookingTranslateModel;
 use Swordbros\Event\Models\EventTranslateModel;
-use Swordbros\Event\Models\TypeModel;
-use Swordbros\Event\Models\ZoneModel;
+use Swordbros\Event\Models\EventTypeModel;
+use Swordbros\Event\Models\EventZoneModel;
 
 class Amele extends Controller
 {
@@ -25,27 +16,29 @@ class Amele extends Controller
         echo 'Test Language: '.__('Test Language');
     }
     public static function localize_row($row){
+
         $plugin = $row->table;
         $record_id = $row->id;
         foreach($row->attributes as $translate_key=>$attribute_value){
             $text = "$plugin.$translate_key.$record_id";
-            $translated = self::translate($text);
+            $translated = self::translate($text, $row->translateClass);
             if($translated){
                 $row->$translate_key = $translated;
             }
         }
         return $row;
     }
-    public static function save_localize_row($row){
+    public static function save_localize_row($row, $translateClass){
+        $translateModel = new $translateClass();
         $plugin = $row->table;
         $record_id = $row->id;
         $site_id = Site::getSiteIdFromContext();
         foreach($row->attributes as $translate_key=>$attribute_value){
             if(self::is_translatable($translate_key)){
-                $query = EventTranslateModel::where([['plugin','=', $plugin], ['translate_key','=', $translate_key], ['record_id','=', $record_id], ['site_id','=', $site_id]]);
+                $query = $translateModel::where([['plugin','=', $plugin], ['translate_key','=', $translate_key], ['record_id','=', $record_id], ['site_id','=', $site_id]]);
                 $translate = $query->first();
                 if(empty($translate)){
-                    $translate = new EventTranslateModel();
+                    $translate = new $translateClass();
                     $translate->plugin = $plugin;
                     $translate->translate_key = $translate_key;
                     $translate->record_id = $record_id;
@@ -57,21 +50,6 @@ class Amele extends Controller
         }
     }
     private static function is_translatable($translate_key){
-        /*if(is_object($value)){
-            return false;
-        }
-        if(is_array($value)){
-            return false;
-        }
-        if(is_numeric($value)){
-            return false;
-        }
-        if (strtotime($value)) {
-            return false;
-        }
-        if (\DateTime::createFromFormat('Y-m-d H:i:s', $value) !== false) {
-            return false;
-        }*/
         if(is_string($translate_key)){
             $translatable = ['name', 'title', 'description', 'short'];
             if(in_array($translate_key, $translatable)){
@@ -81,16 +59,14 @@ class Amele extends Controller
         return false;
     }
 
-    public static function _e($key){
-        echo self::translate($key);
-    }
-    public static function translate($key){
+    public static function translate($key, $translateClass){
+        $translateModel = new $translateClass();
         $parts = explode('.', $key);
         $plugin = isset($parts[0])?$parts[0]:'';
         $translate_key   = isset($parts[1])?$parts[1]:'';
         $record_id  = isset($parts[2])?(int)$parts[2]:0;
         $site_id = Site::getSiteIdFromContext();
-        $query = EventTranslateModel::where([['plugin','=', $plugin], ['translate_key','=', $translate_key], ['record_id','=', $record_id], ['site_id','=', $site_id]]);
+        $query = $translateModel::where([['plugin','=', $plugin], ['translate_key','=', $translate_key], ['record_id','=', $record_id], ['site_id','=', $site_id]]);
         $row = $query->first();
         if($row){
             return $row->translate_value;
@@ -100,34 +76,34 @@ class Amele extends Controller
     }
     public static function services(){
         $result = [];
-        foreach (TypeModel::all() as $item) {
+        foreach (EventTypeModel::all() as $item) {
             $result[$item->id] = $item;
         }
         return $result;
     }
     public static function places(){
         $result = [];
-        foreach (ZoneModel::all() as $item) {
+        foreach (EventZoneModel::all() as $item) {
             $result[$item->id] = $item;
         }
         return $result;
     }
 
     public function dummyData(){
-       foreach (Amele::eventTypes() as $code=>$name){
-            $item = new TypeModel();
+       foreach (Amele::demoEventTypes() as $code=>$name){
+            $item = new EventTypeModel();
             $item->name = $name;
             $item->description = $name.' Description';
             $item->save();
         }
-        foreach (Amele::eventZones() as $code=>$name){
-            $item = new ZoneModel();
+        foreach (Amele::demoEventZones() as $code=>$name){
+            $item = new EventZoneModel();
             $item->name = $name;
             $item->description = $name.' Description';
             $item->save();
         }
-        foreach (Amele::eventCategories() as $code=>$name){
-            $item = new CategoryModel();
+        foreach (Amele::demoEventCategories() as $code=>$name){
+            $item = new EventCategoryModel();
             $item->name = $name;
             $item->description = $name.' Description';
             $item->save();
@@ -139,7 +115,7 @@ class Amele extends Controller
         $item->save();
 
     }
-    public static function eventTypes(){
+    public static function demoEventTypes(){
         return [
             'concert' =>  __('Concerts'),
             'theater' => __('Theater'),
@@ -148,14 +124,14 @@ class Amele extends Controller
             'exhibition' => __('Exhibition'),
         ];
     }
-    public static function eventZones(){
+    public static function demoEventZones(){
         return [
             'zone001' =>  __('Küçük Sahne'),
             'zone002' => __('Büyük Sahne'),
             'zone003' =>  __('Atolye'),
         ];
     }
-    public static function eventCategories(){
+    public static function demoEventCategories(){
         return [
             'caz' =>  __('Caz'),
             'drama' => __('Drama'),
@@ -163,45 +139,83 @@ class Amele extends Controller
         ];
     }
     public static function getBookingStatusOptions(){
-        $items = [
-            'pending'=>'Pending',
-            'approved'=>'Approved',
-            'denied'=>'Denied',
-            'canceled'=>'Canceled',
-        ];
+        $items = [];
+        $rows = self::getBookingStatuses();
+        foreach ($rows as $item){
+            $items[$item['code']] = $item['title'];
+        }
         return $items;
     }
-    public static function getPaymentMethodOptions(){
+    public static function getBookingStatuses(){
         $items = [
-            'free'=>'Free',
-            'banktransfer'=>'Bank Transfer',
-            'creditcard'=>'Credit Card',
-            'onzone'=>'Etkinlik Alanında Ödeme',
+            'pending'=>['code'=>'pending', 'color'=>'#86cb43', 'title'=>'Pending', 'icon'=>''],
+            'approved'=>['code'=>'approved', 'color'=>'#e91e63', 'title'=>'Approved', 'icon'=>''],
+            'denied'=>['code'=>'denied', 'color'=>'#ff9800', 'title'=>'Denied', 'icon'=>''],
+            'canceled'=>['code'=>'canceled', 'color'=>'#2196f3', 'title'=>'Canceled', 'icon'=>''],
         ];
+
         return $items;
     }
-    public static function getPaymentMethodOptionName($code){
-        $items = self::getPaymentMethodOptions();
+    public static function getBookingStatus($code){
+        $items = self::getBookingStatuses();
         if(isset($items[$code])){
             return $items[$code];
         }
-        return $code;
+        return [];
+
+    }
+
+    public static function getPaymentMethodOptions(){
+        $items = [];
+        $rows = self::getPaymentMethods();
+        foreach ($rows as $item){
+            $items[$item['code']] = $item['title'];
+        }
+        return $items;
+    }
+
+    public static function getPaymentMethods(){
+
+        $items = [
+            'free'=>['code'=>'free', 'color'=>'#86cb43', 'title'=>'Free', 'icon'=>''],
+            'banktransfer'=>['code'=>'banktransfer', 'color'=>'#e91e63', 'title'=>'Bank Transfer', 'icon'=>''],
+            'creditcard'=>['code'=>'creditcard', 'color'=>'#ff9800', 'title'=>'Credit Card', 'icon'=>''],
+            'onzone'=>['code'=>'onzone', 'color'=>'#2196f3', 'title'=>'Etkinlik Alanında Ödeme', 'icon'=>''],
+        ];
+
+        return $items;
+    }
+    public static function getPaymentMethodOption($code){
+        $items = self::getPaymentMethods();
+        if(isset($items[$code])){
+            return $items[$code];
+        }
+        return [];
 
     }
     public static function getPaymentStatusOptions(){
+        $items = [];
+        $rows = self::getPaymentStatuses();
+        foreach ($rows as $item){
+            $items[$item['code']] = $item['title'];
+        }
+        return $items;
+    }
+
+    public static function getPaymentStatuses(){
         $items = [
-            'pending'=>'Pending',
-            'complated'=>'Complated',
-            'refund'=>'İade',
+            'pending'=>['code'=>'pending', 'color'=>'#2196f3', 'title'=>'Pending', 'icon'=>''],
+            'completed'=>['code'=>'pending', 'color'=>'#e91e63', 'title'=>'Completed', 'icon'=>''],
+            'refund'=>['code'=>'refund', 'color'=>'#86cb43', 'title'=>'İade', 'icon'=>''],
         ];
         return $items;
     }
-    public static function getPaymentStatusOptionsName($code){
-        $items = self::getPaymentStatusOptions();
+    public static function getPaymentStatusOption($code){
+        $items = self::getPaymentStatuses();
         if(isset($items[$code])){
             return $items[$code];
         }
-        return $code;
+        return [];
     }
     public static function addBookingRequestHistory($booking_request_id, $description){
         $item = new BookingRequestHistoryModel();

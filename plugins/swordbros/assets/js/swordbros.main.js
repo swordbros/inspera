@@ -2,10 +2,13 @@ const SordbrosBooking = {
     loaded: false
 }
 $(document).on('ajaxSuccess', function(event, context, data) {
+    console.log(context.handler);
     if (context.handler === 'onUserDropDownChange') {
         $.each(data.fields, function(i, val) {
             if($(i).length){
-
+                if($(i).val()){
+                    return;
+                }
                 if($(i).is('input') ){
                     console.log(i, $(i).attr('type'));
                     if( $(i).attr('type')=='checkbox'){

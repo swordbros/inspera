@@ -1,0 +1,33 @@
+columns:
+    thumb:
+        label: swordbros.event::lang.cols.thumb
+        type: image
+    id:
+        label: swordbros.event::lang.cols.id
+        type: number
+        invisible: true
+    code:
+        label: swordbros.event::lang.cols.code
+        type: text
+        invisible: true
+    name:
+        label: swordbros.event::lang.cols.name
+        type: text
+    description:
+        label: swordbros.event::lang.cols.description
+        type: text
+    status:
+        label: swordbros.event::lang.cols.status
+        type: switch
+    deleted_at:
+        label: swordbros.event::lang.cols.deleted_at
+        type: datetime
+        invisible: true
+    created_at:
+        label: swordbros.event::lang.cols.created_at
+        type: datetime
+        invisible: true
+    updated_at:
+        label: uswordbros.event::lang.cols.pdated_at
+        type: datetime
+        invisible: true
