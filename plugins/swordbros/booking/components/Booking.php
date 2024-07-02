@@ -23,7 +23,7 @@ class Booking extends ComponentBase
     public function onRun()
     {
         $this->page['mediaUrl'] = MediaLibrary::url('/');
-        $this->page['title'] = __('swordbros.booking::lang.plugin.bookings');
+        $this->page['title'] = __('plugin.bookings');
         $this->page['bookings'] = BookingModel::all();
     }
 }

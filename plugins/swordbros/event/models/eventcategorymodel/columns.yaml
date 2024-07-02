@@ -1,33 +1,33 @@
 columns:
     thumb:
-        label: swordbros.event::lang.cols.thumb
+        label: event.cols.thumb
         type: image
     id:
         label: id
-        type: swordbros.event::lang.cols.id
+        type: event.cols.id
         invisible: true
     code:
-        label: swordbros.event::lang.cols.code
+        label: event.cols.code
         type: text
         invisible: true
     name:
-        label: swordbros.event::lang.cols.name
+        label: event.cols.name
         type: text
     description:
-        label: swordbros.event::lang.cols.description
+        label: event.cols.description
         type: text
     status:
-        label: swordbros.event::lang.cols.status
+        label: event.cols.status
         type: switch
     deleted_at:
-        label: swordbros.event::lang.cols.deleted_at
+        label: event.cols.deleted_at
         type: datetime
         invisible: true
     created_at:
-        label: swordbros.event::lang.cols.created_at
+        label: event.cols.created_at
         type: datetime
         invisible: true
     updated_at:
-        label: swordbros.event::lang.cols.updated_at
+        label: event.cols.updated_at
         type: datetime
         invisible: true

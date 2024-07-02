@@ -2,61 +2,61 @@ tabs:
     defaultTab:  Genel
     fields:
         group_key:
-            label: 'swordbros.event::lang.cols.group_key'
+            label: event.cols.group_key
             span: auto
             type: text
         event_zone_id:
-            label: 'swordbros.event::lang.cols.event_zone_id'
+            label: event.cols.event_zone_id
             span: auto
             type: dropdown
         event_category_id:
-            label: 'swordbros.event::lang.cols.event_category_id'
+            label: event.cols.event_category_id
             span: auto
             type: dropdown
         event_type_id:
-            label: 'swordbros.event::lang.cols.event_type_id'
+            label: event.cols.event_type_id
             span: auto
             type: dropdown
         title:
-            label: 'swordbros.event::lang.cols.title'
+            label: event.cols.title
             span: auto
             type: text
         booking_url:
-            label: 'swordbros.event::lang.cols.booking_url'
+            label: event.cols.booking_url
             span: auto
             type: text
         start:
-            label: 'swordbros.event::lang.cols.start'
+            label: event.cols.start
             span: left
             type: datepicker
         end:
-            label: 'swordbros.event::lang.cols.end'
+            label: event.cols.end
             span: right
             type: datepicker
         short:
-            label: 'swordbros.event::lang.cols.short'
+            label: event.cols.short
             span: auto
             type: textarea
         color:
-            label: 'swordbros.event::lang.cols.color'
-            tab: swordbros.event::lang.tab.description
+            label: event.cols.color
+            tab: event.tab.description
             span: left
             type: colorpicker
         description:
-            label: 'swordbros.event::lang.cols.description'
-            tab: swordbros.event::lang.tab.description
+            label: event.cols.description
+            tab: event.tab.description
             span: left
             type: richeditor
         images:
             type: repeater
-            tab: swordbros.event::lang.tab.images
+            tab: event.tab.images
             form:
                 fields:
                     image:
-                        label: 'swordbros.event::lang.cols.image'
+                        label: event.cols.image
                         type: mediafinder
                         thumbOptions: true
         status:
-            label: 'swordbros.event::lang.cols.status'
+            label: event.cols.status
             span: left
             type: switch

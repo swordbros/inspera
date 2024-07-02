@@ -24,7 +24,7 @@ class EventList extends ComponentBase
     public function onRun()
     {
         $this->page['mediaUrl'] = MediaLibrary::url('/');
-        $this->page['title'] = __('swordbros.event::lang.plugin.events');
+        $this->page['title'] = __('event.events');
         $this->page['events'] = EventModel::where(['status'=>1])->get();
     }
 }

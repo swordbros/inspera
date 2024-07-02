@@ -1,53 +1,53 @@
 tabs:
-    defaultTab:  swordbros.booking::lang.fields.main
+    defaultTab:  booking.fields.main
     fields:
         event_id:
-            label: swordbros.booking::lang.fields.event
+            label: booking.fields.event
             type: dropdown
             emptyOption: 'Select One'
             span: auto
         user_id:
-            label: swordbros.booking::lang.fields.user
+            label: booking.fields.user
             type: dropdown
             span: auto
             attributes:
                 data-request: 'onUserDropDownChange'
         first_name:
-            label: swordbros.booking::lang.fields.first_name
+            label: booking.fields.first_name
             type: text
             span: auto
         last_name:
-            label: swordbros.booking::lang.fields.last_name
+            label: booking.fields.last_name
             type: text
             span: auto
         email:
-            label: swordbros.booking::lang.fields.email
+            label: booking.fields.email
             type: text
             span: auto
         phone:
-            label: swordbros.booking::lang.fields.phone
+            label: booking.fields.phone
             type: text
             span: auto
 
         booking_status:
-            label: swordbros.booking::lang.fields.booking_status
+            label: booking.fields.booking_status
             span: left
             type: dropdown
         total:
-            label: swordbros.booking::lang.fields.total
+            label: booking.fields.total
             span: left
             type: number
         payment_method:
-            label: swordbros.booking::lang.fields.payment_method
+            label: booking.fields.payment_method
             span: auto
             type: dropdown
         payment_status:
-            label: swordbros.booking::lang.fields.payment_status
+            label: booking.fields.payment_status
             span: auto
             type: dropdown
         history:
-            label: swordbros.booking::lang.fields.history
+            label: booking.fields.history
             type: partial
-            tab: swordbros.booking::lang.tab.history
+            tab: booking.tab.history
             path: $/swordbros/booking/models/bookingmodel/_history.php
             context: [update,preview]

@@ -1,44 +1,44 @@
 columns:
     thumb:
-        label: swordbros.event::lang.cols.thumb
+        label: event.cols.thumb
         type: image
     id:
-        label: swordbros.event::lang.cols.id
+        label: event.cols.id
         type: number
         invisible: true
         sortable: true
         sortableDefault: DESC
     group_key:
-        label: swordbros.event::lang.cols.group_key
+        label: event.cols.group_key
         type: text
         invisible: true
     title:
-        label: swordbros.event::lang.cols.title
+        label: event.cols.title
         type: text
     event_zone_id:
-        label: swordbros.event::lang.cols.event_zone
+        label: event.cols.event_zone
         relation: event_zone
         select: name
     event_category_id:
-        label: swordbros.event::lang.cols.event_category
+        label: event.cols.event_category
         relation: event_category
         select: name
     event_type_id:
-        label: swordbros.event::lang.cols.event_type
+        label: event.cols.event_type
         relation: event_type
         select: name
     status:
-        label: swordbros.event::lang.cols.status
+        label: event.cols.status
         type: switch
     deleted_at:
-        label: swordbros.event::lang.cols.deleted_at
+        label: event.cols.deleted_at
         type: datetime
         invisible: true
     created_at:
-        label: swordbros.event::lang.cols.created_at
+        label: event.cols.created_at
         type: datetime
         invisible: true
     updated_at:
-        label: swordbros.event::lang.cols.updated_at
+        label: event.cols.updated_at
         type: datetime
         invisible: true

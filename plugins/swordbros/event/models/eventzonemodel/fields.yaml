@@ -1,26 +1,26 @@
 fields:
     code:
-        label: swordbros.event::lang.fields.code
+        label: event.fields.code
         span: auto
         type: text
     name:
-        label: swordbros.event::lang.fields.name
+        label: event.fields.name
         span: auto
         type: text
     description:
-        label: swordbros.event::lang.fields.description
+        label: event.fields.description
         span: auto
         type: text
     color:
-        label: swordbros.event::lang.fields.color
+        label: event.fields.color
         span: left
         type: colorpicker
     thumb:
-        label: swordbros.event::lang.fields.thumb
+        label: event.fields.thumb
         type: mediafinder
         thumbOptions: true
         maxItems: 1
     status:
-        label: swordbros.event::lang.fields.status
+        label: event.fields.status
         span: left
         type: switch

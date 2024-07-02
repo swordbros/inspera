@@ -3,6 +3,7 @@
 use Backend;
 use BackendMenu;
 use Backend\Classes\Controller;
+use Lang;
 use Swordbros\Event\Models\EventModel;
 
 class Event extends Controller
@@ -23,8 +24,11 @@ class Event extends Controller
             $this->formConfig = 'config_form_'.$event_type.'.yaml';
         }
         */
+
         parent::__construct();
         BackendMenu::setContext('Swordbros.Event', 'main-menu-item', 'side-menu-item2');
+        $translated = Lang::get('welcome', ['name' => 'John']);
+
     }
 
     public static function fromComponent(){

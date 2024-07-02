@@ -6,40 +6,40 @@ columns:
         sortable: true
         sortableDefault: DESC
     event_id:
-        label: swordbros.booking::lang.cols.event
+        label: booking.cols.event
         relation: event
         select: title
     user_id:
-        label: swordbros.booking::lang.cols.user
+        label: booking.cols.user
         relation: user
         select: username
     first_name:
-        label: swordbros.booking::lang.cols.first_name
+        label: booking.cols.first_name
         type: text
     last_name:
-        label: swordbros.booking::lang.cols.last_name
+        label: booking.cols.last_name
         type: text
     email:
-        label: swordbros.booking::lang.cols.email
+        label: booking.cols.email
         type: text
     phone:
-        label: swordbros.booking::lang.cols.phone
+        label: booking.cols.phone
         type: text
     note:
-        label: swordbros.booking::lang.cols.note
+        label: booking.cols.note
         type: text
     status:
-        label: swordbros.booking::lang.cols.status
+        label: booking.cols.status
         type: switch
     deleted_at:
-        label: swordbros.booking::lang.cols.deleted_at
+        label: booking.cols.deleted_at
         type: datetime
         invisible: true
     created_at:
-        label: swordbros.booking::lang.cols.created_at
+        label: booking.cols.created_at
         type: datetime
         invisible: true
     updated_at:
-        label: swordbros.booking::lang.cols.updated_at
+        label: booking.cols.updated_at
         type: datetime
         invisible: true
