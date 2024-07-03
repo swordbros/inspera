@@ -6,7 +6,7 @@ plugin:
     homepage: https://swordbros.com/
 navigation:
     main-menu-item:
-        label: booking.plugin.title
+        label: swordbros.booking::lang.plugin.title
         url: /
         icon: icon-tags
         order: '600'

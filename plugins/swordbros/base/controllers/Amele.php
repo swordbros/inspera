@@ -15,24 +15,44 @@ class Amele extends Controller
     public static function test(){
         echo 'Test Language: '.__('Test Language');
     }
+
     public static function localize_row($row){
+        if(!property_exists($row, 'translateClass')){
+            return;
+        }
+        if($row->isTranslated()){
+            return ;
+        }
 
         $plugin = $row->table;
         $record_id = $row->id;
         foreach($row->attributes as $translate_key=>$attribute_value){
             $text = "$plugin.$translate_key.$record_id";
             $translated = self::translate($text, $row->translateClass);
-            if($translated){
+            if($translated!==null){
                 $row->$translate_key = $translated;
             }
         }
+        $row->setTranslated();
         return $row;
     }
-    public static function save_localize_row($row, $translateClass){
+    public static function create_localize_row($row){
+        self::save_localize_row($row);
+    }
+    public static function update_localize_row($row){
+        self::save_localize_row($row);
+    }
+    private static function save_localize_row($row){
+
+        if(!property_exists($row, 'translateClass')){
+            return;
+        }
+        $translateClass =  $row->translateClass;
         $translateModel = new $translateClass();
         $plugin = $row->table;
         $record_id = $row->id;
         $site_id = Site::getSiteIdFromContext();
+
         foreach($row->attributes as $translate_key=>$attribute_value){
             if(self::is_translatable($translate_key)){
                 $query = $translateModel::where([['plugin','=', $plugin], ['translate_key','=', $translate_key], ['record_id','=', $record_id], ['site_id','=', $site_id]]);
@@ -49,6 +69,25 @@ class Amele extends Controller
             }
         }
     }
+    private static function restoreDefaultSiteFields($row){
+        echo  "Restored";
+        return;
+        $translateClass =  $row->translateClass;
+        $translateModel = new $translateClass();
+        dd($translateModel);
+        $plugin = $row->table;
+        $site_id = self::getDefaultSiteId();
+        foreach($row->attributes as $translate_key=>$attribute_value){
+            $query = $translateModel::where([['plugin', '=', $plugin], ['translate_key', '=', $translate_key], ['record_id', '=', $row->id], ['site_id','=', $site_id]]);
+            $translate = $query->first();
+            if($translate){
+                $row->$translate_key = $translate->translate_value;
+            }
+        }
+        $row->save();
+        dd("restored");
+    }
+
     private static function is_translatable($translate_key){
         if(is_string($translate_key)){
             $translatable = ['name', 'title', 'description', 'short'];
@@ -59,19 +98,22 @@ class Amele extends Controller
         return false;
     }
 
-    public static function translate($key, $translateClass){
-        $translateModel = new $translateClass();
-        $parts = explode('.', $key);
-        $plugin = isset($parts[0])?$parts[0]:'';
-        $translate_key   = isset($parts[1])?$parts[1]:'';
-        $record_id  = isset($parts[2])?(int)$parts[2]:0;
-        $site_id = Site::getSiteIdFromContext();
-        $query = $translateModel::where([['plugin','=', $plugin], ['translate_key','=', $translate_key], ['record_id','=', $record_id], ['site_id','=', $site_id]]);
-        $row = $query->first();
-        if($row){
-            return $row->translate_value;
-        }
-        return '';
+   private static function translate($key, $translateClass){
+       $site_id = Site::getSiteIdFromContext();
+       $translateModel = new $translateClass();
+       $parts = explode('.', $key);
+       $plugin = isset($parts[0])?$parts[0]:'';
+       $translate_key   = isset($parts[1])?$parts[1]:'';
+       $record_id  = isset($parts[2])?(int)$parts[2]:0;
+       if(!self::is_translatable($translate_key)){
+           return null;
+       }
+       $query = $translateModel::where([['plugin','=', $plugin], ['translate_key','=', $translate_key], ['record_id','=', $record_id], ['site_id','=', $site_id]]);
+       $row = $query->first();
+       if($row){
+           return $row->translate_value.$site_id;
+       }
+       return '';
 
     }
     public static function services(){
@@ -240,5 +282,17 @@ class Amele extends Controller
             $prefix = '';
         }
         return url(trim($prefix, '/').'/'.ltrim($url, '/'),  $params);
+    }
+
+    public static function getDefaultSiteId(){
+        if(defined('DEFAULT_SITE_ID')){
+            return DEFAULT_SITE_ID;
+        }
+        $defaultSiteId = 0;
+        $defaultSite = Site::where('is_default', true)->first();
+        if ($defaultSite) {
+            $defaultSiteId = $defaultSite->id;
+        }
+        define('DEFAULT_SITE_ID', $defaultSiteId);
     }
 }

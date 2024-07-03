@@ -6,7 +6,7 @@ plugin:
     homepage: 'https://swordbros.com/'
 navigation:
     main-menu-item:
-        label: event.plugin.title
+        label: swordbros.event::lang.plugin.title
         url: /
         icon: icon-adjust
         order: '500'

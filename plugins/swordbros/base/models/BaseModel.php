@@ -10,24 +10,24 @@ use Swordbros\Event\Models\EventTranslateModel;
 class BaseModel extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-
+    protected $translated;
     protected static function boot()
     {
         parent::boot();
         static::fetched(function ($row) {
-            if(property_exists($row, 'translateClass')){
-                Amele::localize_row($row);
-            }
+            Amele::localize_row($row);
         });
         static::updated(function ($row) {
-            if(property_exists($row, 'translateClass')){
-                Amele::save_localize_row($row);
-            }
+            Amele::update_localize_row($row);
         });
         static::created(function ($row) {
-            if(property_exists($row, 'translateClass')){
-                Amele::save_localize_row($row);
-            }
+            Amele::create_localize_row($row);
         });
+    }
+    function setTranslated(){
+        $this->translated = true;
+    }
+    function isTranslated(){
+        return $this->translated;
     }
 }

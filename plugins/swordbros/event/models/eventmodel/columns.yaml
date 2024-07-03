@@ -19,6 +19,10 @@ columns:
         label: event.cols.event_zone
         relation: event_zone
         select: name
+    capacity:
+        label: event.cols.capacity
+        type: partial
+        path: capacity
     event_category_id:
         label: event.cols.event_category
         relation: event_category

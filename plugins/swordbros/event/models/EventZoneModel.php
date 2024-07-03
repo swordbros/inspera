@@ -16,6 +16,7 @@ class EventZoneModel extends BaseModel
      * @var string table in the database used by the model.
      */
     public $table = 'swordbros_event_zones';
+    public $translateClass = EventTranslateModel::class;
 
     /**
      * @var array rules for validation.

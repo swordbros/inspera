@@ -33,12 +33,18 @@ tabs:
             label: event.fields.start
             span: left
             type: datepicker
+            format: d.m.Y
             required: true
         end:
             label: event.fields.end
             span: right
             type: datepicker
+            format: d.m.Y
             required: true
+        capacity:
+            label: event.fields.capacity
+            span: auto
+            type: number
         short:
             label: event.fields.short
             span: auto

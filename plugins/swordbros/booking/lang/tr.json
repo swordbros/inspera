@@ -1,5 +1,3 @@
 {
-  "plugin": {
-    "event.plugin.title": "Event"
-  }
+    "booking.plugin.title": "Randevular"
 }

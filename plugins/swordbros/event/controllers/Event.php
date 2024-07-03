@@ -27,7 +27,7 @@ class Event extends Controller
 
         parent::__construct();
         BackendMenu::setContext('Swordbros.Event', 'main-menu-item', 'side-menu-item2');
-        $translated = Lang::get('welcome', ['name' => 'John']);
+        $this->addCss('/plugins/swordbros/event/assets/css/swordbros.event.css');
 
     }
 
