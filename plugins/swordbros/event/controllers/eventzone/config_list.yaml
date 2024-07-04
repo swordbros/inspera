@@ -1,0 +1,12 @@
+list: $/swordbros/event/models/eventzonemodel/columns.yaml
+modelClass: Swordbros\Event\Models\EventZoneModel
+title: Zone
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'swordbros/event/eventzone/update/:id'

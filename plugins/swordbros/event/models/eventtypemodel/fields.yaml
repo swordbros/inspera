@@ -1,0 +1,26 @@
+fields:
+    code:
+        label: event.fields.code
+        span: auto
+        type: text
+    name:
+        label: event.fields.name
+        span: auto
+        type: text
+    description:
+        label: event.fields.description
+        span: auto
+        type: text
+    color:
+        label: event.fields..color
+        span: left
+        type: colorpicker
+    thumb:
+        label: event.fields.thumb
+        type: mediafinder
+        thumbOptions: true
+        maxItems: 1
+    status:
+        label: event.fields.status
+        span: left
+        type: switch

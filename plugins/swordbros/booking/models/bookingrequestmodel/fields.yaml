@@ -1,0 +1,56 @@
+tabs:
+    defaultTab:  Genel
+    fields:
+        event_id:
+            label: booking.fields.event
+            type: dropdown
+            emptyOption: 'Select One'
+            span: auto
+        user_id:
+            label: booking.fields.user
+            type: dropdown
+            span: auto
+            attributes:
+                data-request: 'onUserDropDownChange'
+        first_name:
+            label: booking.fields.first_name
+            type: text
+            span: auto
+        last_name:
+            label: booking.fields.last_name
+            type: text
+            span: auto
+        email:
+            label: booking.fields.email
+            type: text
+            span: auto
+        phone:
+            label: booking.fields.phone
+            type: text
+            span: auto
+        status:
+            label: booking.fields.status
+            span: left
+            type: switch
+            context: [preview, create]
+        booking_status:
+            label: booking.fields.booking_status
+            span: left
+            type: dropdown
+        total:
+            label: booking.fields.total
+            span: left
+            type: number
+        payment_method:
+            label: booking.fields.payment_method
+            span: auto
+            type: dropdown
+        payment_status:
+            label: booking.fields.payment_status
+            span: auto
+            type: dropdown
+        history:
+            label: booking.fields.history
+            type: partial
+            tab: booking.tab.history
+            path: $/swordbros/booking/models/bookingrequestmodel/_history.php

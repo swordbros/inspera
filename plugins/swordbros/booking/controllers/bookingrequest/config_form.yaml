@@ -1,0 +1,10 @@
+name: BookingRequest
+form: $/swordbros/booking/models/bookingrequestmodel/fields.yaml
+modelClass: Swordbros\Booking\Models\BookingRequestModel
+defaultRedirect: swordbros/booking/bookingrequest
+create:
+    redirect: 'swordbros/booking/booking/update/:id'
+    redirectClose: swordbros/booking/bookingrequest
+update:
+    redirect: swordbros/booking/bookingrequest
+    redirectClose: swordbros/booking/bookingrequest

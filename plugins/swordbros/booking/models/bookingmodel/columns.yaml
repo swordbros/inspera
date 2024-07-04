@@ -1,0 +1,47 @@
+columns:
+    id:
+        label: booking.cols.id
+        type: number
+        invisible: true
+        sortable: true
+        sortableDefault: DESC
+    event_id:
+        label: booking.cols.event
+        relation: event
+        select: title
+    user_id:
+        label: booking.cols.user
+        relation: user
+        select: username
+    first_name:
+        label: booking.cols.first_name
+        type: text
+    last_name:
+        label: booking.cols.last_name
+        type: text
+    booking_status:
+        label: booking.cols.status
+        type: text
+    total:
+        label: booking.cols.total
+        type: text
+    payment_method:
+        label: booking.cols.payment_method
+        type: partial
+        path: payment_method
+    payment_status:
+        label: booking.cols.payment_status
+        type: partial
+        path: payment_status
+    deleted_at:
+        label: booking.cols.deleted_at
+        type: datetime
+        invisible: true
+    created_at:
+        label: booking.cols.created_at
+        type: datetime
+        invisible: true
+    updated_at:
+        label: booking.cols.updated_at
+        type: datetime
+        invisible: true

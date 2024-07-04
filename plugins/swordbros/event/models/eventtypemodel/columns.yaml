@@ -1,0 +1,33 @@
+columns:
+    thumb:
+        label: event.cols.thumb
+        type: image
+    id:
+        label: event.cols.id
+        type: number
+        invisible: true
+    code:
+        label: event.cols.code
+        type: text
+        invisible: true
+    name:
+        label: event.cols.name
+        type: text
+    description:
+        label: event.cols.description
+        type: text
+    status:
+        label: event.cols.status
+        type: switch
+    deleted_at:
+        label: event.cols.deleted_at
+        type: datetime
+        invisible: true
+    created_at:
+        label: event.cols.created_at
+        type: datetime
+        invisible: true
+    updated_at:
+        label: uevent.cols.pdated_at
+        type: datetime
+        invisible: true
