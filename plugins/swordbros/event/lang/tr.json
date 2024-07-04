@@ -1,8 +1,0 @@
-{
-    "swordbros.event::validate.after_or_equal:start": "Tarih Hatası",
-    "event":{
-        "plugin" : {
-            "title": "Etkinlik"
-        }
-    }
-}
