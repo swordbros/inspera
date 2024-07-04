@@ -1,6 +1,6 @@
 <div id="calendar"></div>
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"><?= e(trans('swordbros.event::plugin.new_calender'))?> </h5>
@@ -10,7 +10,7 @@
                 <form data-request="onGetEventTypeForm"  class="row" data-request-success="successHandler()">
                     <div class="col-md-6">
 
-                        <h6>Etkinlik türü Seçiniz</h6>
+                        <h6><?= e(trans('event.plugin.select_a_eventtype')) ?></h6>
                         <ul class="list-unstyled">
                             <?php $checked = 'checked'; ?>
                             <?php foreach($services as $service){ ?>
@@ -20,7 +20,7 @@
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <h6>Etkinlik yeri Seçiniz</h6>
+                        <h6><?= e(trans('event.plugin.select_a_eventzone')) ?></h6>
                         <ul class="list-unstyled">
                             <?php $checked = 'checked'; ?>
                             <?php foreach($places as $place){ ?>
