@@ -47,23 +47,24 @@ tabs:
             type: number
         short:
             label: event.fields.short
-            span: auto
             type: textarea
-        color:
-            label: event.fields.color
-            tab: event.tab.description
-            span: left
-            type: colorpicker
-        description:
-            label: event.fields.description
-            tab: event.tab.description
-            span: left
-            type: richeditor
         thumb:
             label: event.fields.thumb
             type: mediafinder
             thumbOptions: true
             maxItems: 1
+        status:
+            label: event.fields.status
+            span: left
+            type: switch
+        color:
+            label: event.fields.color
+            tab: event.tab.description
+            type: colorpicker
+        description:
+            label: event.fields.description
+            tab: event.tab.description
+            type: richeditor
         images:
             type: repeater
             tab: event.tab.images
@@ -73,7 +74,3 @@ tabs:
                         label: event.fields.image
                         type: mediafinder
                         thumbOptions: true
-        status:
-            label: event.fields.status
-            span: left
-            type: switch
