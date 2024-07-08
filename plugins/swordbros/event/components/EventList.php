@@ -1,6 +1,7 @@
 <?php namespace Swordbros\Event\Components;
 
 use Media\Classes\MediaLibrary;
+use Response;
 use Swordbros\Booking\Models\BookingModel;
 use Swordbros\Base\Controllers\Amele;
 use Swordbros\Event\Models\EventModel;
@@ -26,5 +27,12 @@ class EventList extends ComponentBase
         $this->page['mediaUrl'] = MediaLibrary::url('/');
         $this->page['title'] = __('event.events');
         $this->page['events'] = EventModel::where(['status'=>1])->get();
+    }
+    function onRefreshTime()
+    {
+        $data['time'] = time();
+        return [
+            '#dynamic-content' => $this->renderPartial('event/list-item', $data)
+        ];
     }
 }

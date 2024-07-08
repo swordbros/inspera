@@ -1,3 +1,7 @@
 {
-  "booking.plugin.title": "Bookings"
+    "booking.plugin.bookingcreate": "Add Booking",
+    "booking.plugin.bookings": "Bookings",
+    "booking.plugin.requests": "Booking Requests",
+    "booking.plugin.calendar": "Calendar",
+    "booking.plugin.title": "Bookings"
 }
