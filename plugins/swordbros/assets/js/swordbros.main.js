@@ -2,7 +2,7 @@ const SordbrosBooking = {
     loaded: false
 }
 $(document).on('ajaxSuccess', function(event, context, data) {
-    console.log(context.handler);
+    //console.log(context.handler);
     if (context.handler === 'onUserDropDownChange') {
         $.each(data.fields, function(i, val) {
             if($(i).length){

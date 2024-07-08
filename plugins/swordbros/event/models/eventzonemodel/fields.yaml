@@ -11,6 +11,10 @@ fields:
         label: event.fields.description
         span: auto
         type: text
+    capacity:
+        label: event.fields.capacity
+        span: auto
+        type: number
     color:
         label: event.fields.color
         span: left

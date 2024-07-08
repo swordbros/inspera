@@ -1,0 +1,4 @@
+name: Zone
+form: $/swordbros/event/controllers/event/event_meta_fields.yaml
+modelClass: Swordbros\Base\Models\MetaModel
+

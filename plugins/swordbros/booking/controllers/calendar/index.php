@@ -24,7 +24,7 @@
                         <ul class="list-unstyled">
                             <?php $checked = 'checked'; ?>
                             <?php foreach($places as $place){ ?>
-                                <li><label><input type="radio" name="event_place" <?=$checked?> value="<?=$place->id?>"> <?=$place->name?></label></li>
+                                <li><label><input type="radio" name="event_zone_id" <?=$checked?> value="<?=$place->id?>"> <?=$place->name?></label></li>
                                 <?php $checked = ''; ?>
                             <?php } ?>
                         </ul>
@@ -112,7 +112,7 @@
     function successHandler(data) {
         $(document).ready(function () {
             $('[data-richeditor-textarea]').each(function () {
-                console.log(this);
+                //console.log(this);
                 $(this).richEditor();
             });
 

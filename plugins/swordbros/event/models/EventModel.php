@@ -40,13 +40,20 @@ class EventModel extends BaseModel
         'event_type' => EventTypeModel::class,
 
     ];
+
     protected static function boot()
     {
         parent::boot();
         static::fetched(function ($row) {
             $row->images = json_decode($row->images);
-            //$row->detail_url = url('event', ['id'=>$row->id]) ;
         });
+    }
+    public function getAudienceOptions(){
+        $result = [];
+        foreach (Amele::getAudiences() as $item) {
+            $result[$item['code']] = [trans('swordbros.event::plugin.event.'.$item['code'])];
+        }
+        return $result;
     }
     public function getEventCategoryIdOptions(){
         $result = [];

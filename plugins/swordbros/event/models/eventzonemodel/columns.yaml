@@ -17,6 +17,9 @@ columns:
     description:
         label: event.cols.description
         type: text
+    capacity:
+        label: event.cols.capacity
+        type: number
     status:
         label: event.cols.status
         type: switch

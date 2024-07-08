@@ -111,19 +111,19 @@ class Amele extends Controller
        $query = $translateModel::where([['plugin','=', $plugin], ['translate_key','=', $translate_key], ['record_id','=', $record_id], ['site_id','=', $site_id]]);
        $row = $query->first();
        if($row){
-           return $row->translate_value.$site_id;
+           return $row->translate_value;
        }
        return '';
 
     }
-    public static function services(){
+    public static function eventTypes(){
         $result = [];
         foreach (EventTypeModel::all() as $item) {
             $result[$item->id] = $item;
         }
         return $result;
     }
-    public static function places(){
+    public static function eventZones(){
         $result = [];
         foreach (EventZoneModel::all() as $item) {
             $result[$item->id] = $item;
@@ -180,6 +180,35 @@ class Amele extends Controller
             'action' =>  __('Aksiyon'),
         ];
     }
+
+    public static function getAudienceOptions(){
+        $items = [];
+        $rows = self::getAudiences();
+        foreach ($rows as $item){
+            $items[$item['code']] = trans('swordbros.event::plugin.event.'.$item['code']);
+        }
+        return $items;
+    }
+    public static function getAudiences(){
+        $items = [
+            'male'=>['code'=>'male', 'color'=>'#86cb43', 'title'=>'Male', 'icon'=>''],
+            'female'=>['code'=>'female', 'color'=>'#e91e63', 'title'=>'Female', 'icon'=>''],
+            'children'=>['code'=>'children', 'color'=>'#ff9800', 'title'=>'Children', 'icon'=>''],
+            'adult'=>['code'=>'adult', 'color'=>'#2196f3', 'title'=>'Adult', 'icon'=>''],
+            'family'=>['code'=>'family', 'color'=>'#2196f3', 'title'=>'Family', 'icon'=>''],
+        ];
+        return $items;
+
+    }
+    public static function getAudience($code){
+        $items = self::getAudiences();
+        if(isset($items[$code])){
+            return $items[$code];
+        }
+        return [];
+
+    }
+
     public static function getBookingStatusOptions(){
         $items = [];
         $rows = self::getBookingStatuses();
@@ -294,5 +323,78 @@ class Amele extends Controller
             $defaultSiteId = $defaultSite->id;
         }
         define('DEFAULT_SITE_ID', $defaultSiteId);
+    }
+
+    /*public static function set_swordbros_metas(string $id, string $module, array $values){
+        $table = 'swordbros_'.$module.'_metas';
+        \Db::table($table);
+    }*/
+    public static function get_swordbros_meta(string $id, string $key){
+        $params = self::getMetaModuelAndTable( $key);
+        $site_id = Site::getSiteIdFromContext();
+
+        $DB = \Db::table($params['table']);
+        $meta = $DB->where([
+            ['site_id','=', $site_id],
+            ['owner_id', '=', $id],
+            ['module', '=', $params['module']],
+            ['meta_key', '=', $params['meta_key']]
+        ])->first();
+        dd($meta);
+    }
+    public static function set_swordbros_meta(string $id, string $key, $value){
+        if(empty($id) || empty($key)){
+            return false;
+        }
+        $params = self::getMetaModuelAndTable( $key);
+        $site_id = Site::getSiteIdFromContext();
+        $DB = \Db::table($params['table']);
+        $values = is_array($value)?$value:[$key=>$value];
+        foreach($values as  $meta_key=> $meta_value){
+            $is_json = is_array($meta_value);
+            if($is_json){
+                $meta_value = json_encode($meta_value, JSON_UNESCAPED_UNICODE);
+            }
+            $meta = $DB->where([
+                ['site_id','=', $site_id],
+                ['owner_id', '=', $id],
+                ['module', '=', $params['module']],
+                ['meta_key', '=', $meta_key]
+            ])->first();
+            if($meta){
+                $DB->where(['id'=>$meta->id])->update(['meta_value'=>$meta_value]);
+            } else {
+                $DB->insert(['site_id'=>$site_id, 'owner_id'=>$id, 'module'=>$params['module'], 'meta_key'=>$meta_key, 'meta_value'=>$meta_value]);
+            }
+        }
+        return true;
+    }
+
+    private static function getMetaModuelAndTable(string $meta_key){
+        if(empty($meta_key)){
+            return [
+                'module'=>null,
+                'table'=>null,
+                'meta_key'=>null
+            ];
+        }
+        $parts = explode('.', $meta_key);
+        if(count($parts)){
+            $module = array_shift($parts);
+        } else {
+            $module = '';
+        }
+        $key = implode('.', $parts);
+        if($module){
+            $table = 'swordbros_'.$module.'_metas';
+        } else {
+            $table = 'swordbros_metas';
+        }
+        $key = implode('.', $parts);
+        return [
+            'module'=>$module,
+            'table'=>$table,
+            'meta_key'=>$key
+        ];
     }
 }

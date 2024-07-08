@@ -13,8 +13,8 @@
                         <h6><?= e(trans('event.plugin.select_a_eventtype')) ?></h6>
                         <ul class="list-unstyled">
                             <?php $checked = 'checked'; ?>
-                            <?php foreach($services as $service){ ?>
-                                <li><label><input type="radio" name="event_type" <?=$checked?> value="<?=$service->code?>"> <?=$service->name?></label></li>
+                            <?php foreach($event_types as $service){ ?>
+                                <li><label><input type="radio" name="event_type_id" <?=$checked?> value="<?=$service->id?>"> <?=$service->name?></label></li>
                                 <?php $checked = ''; ?>
                             <?php } ?>
                         </ul>
@@ -23,8 +23,8 @@
                         <h6><?= e(trans('event.plugin.select_a_eventzone')) ?></h6>
                         <ul class="list-unstyled">
                             <?php $checked = 'checked'; ?>
-                            <?php foreach($places as $place){ ?>
-                                <li><label><input type="radio" name="event_place" <?=$checked?> value="<?=$place->id?>"> <?=$place->name?></label></li>
+                            <?php foreach($event_zones as $place){ ?>
+                                <li><label><input type="radio" name="event_zone_id" <?=$checked?> value="<?=$place->id?>"> <?=$place->name?></label></li>
                                 <?php $checked = ''; ?>
                             <?php } ?>
                         </ul>
@@ -111,11 +111,14 @@
     function successHandler(data) {
         $(document).ready(function () {
             $('[data-richeditor-textarea]').each(function () {
-                console.log(this);
-                $(this).richEditor();
+                //console.log(this);
+               // $(this).richEditor();
             });
 
         });
     }
 
+    $('body').on('submit', '[data-request="onGetEventTypeForm"]', function (){
+        $('#listBulkActions').html('<?= e(trans('swordbros.event::plugin.please_loading'))?>');
+    })
 </script>

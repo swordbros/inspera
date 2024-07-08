@@ -29,8 +29,8 @@ class Calendar extends BaseController
         BackendMenu::setContext('Swordbros.Booking', 'main-menu-item', 'side-menu-item');
     }
     public function index(){
-        $this->vars['services'] = Amele::services();
-        $this->vars['places'] = Amele::places();
+        $this->vars['services'] = Amele::eventTypes();
+        $this->vars['places'] = Amele::eventZones();
         $this->vars['events'] = $this->eventsToCalender();
     }
     private function eventsToCalender(){
@@ -46,7 +46,7 @@ class Calendar extends BaseController
                     'end'=>$row->end,
                     'borderColor'=>$row->color,
                     'total'=> $total,
-                    'event_view_url'=> \Backend::url('swordbros/event/event/preview',['id'=>$row->id]),
+                    'event_view_url'=> \Backend::url('swordbros/event/event/update',['id'=>$row->id]),
                     'event_booking_url'=> \Backend::url('swordbros/booking/booking').'?event_id='.$row->id,
                 ];
             }

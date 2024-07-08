@@ -11,7 +11,7 @@ navigation:
         icon: icon-adjust
         order: '500'
         sideMenu:
-            side-menu-item12:
+            side-menu-item1:
                 label: event.plugin.calendar
                 url: swordbros/event/eventcalendar
                 icon: icon-calendar
@@ -19,7 +19,7 @@ navigation:
                 label: event.plugin.events
                 url: swordbros/event/event
                 icon: icon-puzzle-piece
-            side-menu-item13:
+            side-menu-item3:
                 label: event.plugin.zones
                 url: swordbros/event/eventzone
                 icon: icon-street-view

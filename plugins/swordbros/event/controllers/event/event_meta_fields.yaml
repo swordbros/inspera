@@ -1,0 +1,7 @@
+fields:
+    meta_title:
+        label: event.meta.meta_title
+        type: text
+    meta_description:
+        label: event.meta.meta_description
+        type: text

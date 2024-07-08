@@ -30,12 +30,11 @@ class EventCalendar extends BaseController{
         BackendMenu::setContext('Swordbros.Event', 'main-menu-item', 'side-menu-item');
     }
     public function index(){
-        $this->vars['services'] = Amele::services();
-        $this->vars['places'] = Amele::places();
+        $this->vars['event_types'] = Amele::eventTypes();
+        $this->vars['event_zones'] = Amele::eventZones();
         $this->vars['events'] = $this->eventsToCalender();
         $this->formConfig = $this->makeConfig('$/swordbros/event/models/eventmodel/fields.yaml');
         $this->asExtension('FormController')->create();
-
     }
     private function eventsToCalender(){
         $rows = EventModel::all();
@@ -47,12 +46,8 @@ class EventCalendar extends BaseController{
                     'start'=>$row->start,
                     'end'=>$row->end,
                     'borderColor'=>$row->color,
-                    'event_view_url'=> \Backend::url('swordbros/event/event/preview',['id'=>$row->id]),
+                    'event_view_url'=> \Backend::url('swordbros/event/event/update',['id'=>$row->id]),
                     'event_booking_url'=> \Backend::url('swordbros/booking/booking').'?event_id='.$row->id,
-
-                    /*'backgroundColor'=>$row->color,
-                    'borderColor'=>$row->color,
-                    'textColor'=>$row->color,*/
                 ];
             }
         }
@@ -71,7 +66,11 @@ class EventCalendar extends BaseController{
            foreach($EventModel as $key=>$value){
                $event->$key = $value;
            }
-           $event->save();
+           $saveResult = $event->save();
+           if($saveResult){
+               $metaData =  Input::get('MetaModel');
+               Amele::set_swordbros_meta($event->id, 'event', $metaData);
+           }
         }
     }
 }

@@ -1,15 +1,19 @@
 tabs:
     defaultTab:  event.tab.main
     fields:
+        title:
+            label: event.fields.title
+            span: auto
+            type: text
+            required: true
+        booking_url:
+            label: event.fields.booking_url
+            span: auto
+            type: text
         group_key:
             label: event.fields.group_key
             span: auto
             type: text
-        event_zone_id:
-            label: event.fields.event_zone_id
-            span: auto
-            type: dropdown
-            required: true
         event_category_id:
             label: event.fields.event_category_id
             span: auto
@@ -20,15 +24,13 @@ tabs:
             span: auto
             type: dropdown
             required: true
-        title:
-            label: event.fields.title
+            default: default_value
+        event_zone_id:
+            label: event.fields.event_zone_id
             span: auto
-            type: text
+            type: dropdown
             required: true
-        booking_url:
-            label: event.fields.booking_url
-            span: auto
-            type: text
+            default: default_value
         start:
             label: event.fields.start
             span: left
@@ -41,6 +43,10 @@ tabs:
             type: datepicker
             format: d.m.Y
             required: true
+        audience:
+            label: event.fields.audience
+            span: auto
+            type: dropdown
         capacity:
             label: event.fields.capacity
             span: auto
@@ -68,6 +74,17 @@ tabs:
         images:
             type: repeater
             tab: event.tab.images
+            form:
+                fields:
+                    image:
+                        label: event.fields.image
+                        type: mediafinder
+                        thumbOptions: true
+        event_metas:
+            tab: event.tab.meta
+            label: event.fields.metas
+            type: partial
+            path: $/swordbros/event/controllers/event/_metas.php
             form:
                 fields:
                     image:
