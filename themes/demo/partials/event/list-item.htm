@@ -1,0 +1,17 @@
+<div>
+    <div class="row">
+        {% for event in events.items %}
+        <div class="col-md-4">
+            {% if event.thumb %}
+            <img src="{{ mediaUrl }}/{{ event.thumb }}" class="img-thumbnail">
+            {% endif %}
+            {{ event.title}}
+        </div>
+        {% endfor %}
+    </div>
+    {{ dd(events) }}
+    {% for event in events.items %}
+
+    {% endfor %}
+</div>
+

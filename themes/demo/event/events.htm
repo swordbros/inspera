@@ -1,0 +1,20 @@
+url = "/events"
+layout = "default"
+title = "Events"
+
+[eventList]
+==
+{% if events is empty %}
+    {% do abort(404) %}
+{% endif %}
+<div class="contactform">
+        <div class="container">
+            <div class="row">
+            {% for event in events %}
+                <div class="col-md-3">
+{% partial 'event/event-card' %}              
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
