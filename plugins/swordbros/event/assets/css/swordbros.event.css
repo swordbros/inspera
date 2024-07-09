@@ -9,3 +9,12 @@ body{
     background-color: #dc3545;
     color: #eccdd0;
 }
+.event-translate{
+    opacity: 0.1;
+}
+.event-translate:hover{
+    opacity: 1;
+}
+.event-translate.active{
+    opacity: 1;
+}

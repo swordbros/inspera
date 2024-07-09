@@ -3,6 +3,7 @@ handle: Blog\Post
 type: stream
 name: Post
 drafts: true
+multisite: true
 
 customMessages:
     buttonCreate: New Post

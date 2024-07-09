@@ -397,4 +397,21 @@ class Amele extends Controller
             'meta_key'=>$key
         ];
     }
+    public static function getEnableSites(){
+
+        $sites = [];
+        $editSite = Site::getEditSite();
+        if (Site::hasMultiSite()) {
+            foreach (Site::listEnabled() as $site) {
+                $sites[] = [
+                    'id' => $site->id,
+                    'code' => $site->code,
+                    'locale' => $site->hard_locale,
+                    'flagIcon' => $site->flag_icon,
+                    'active'=>$editSite->id==$site->id
+                ];
+            }
+        }
+        return  $sites;
+    }
 }
