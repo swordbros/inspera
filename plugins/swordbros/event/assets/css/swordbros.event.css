@@ -18,3 +18,12 @@ body{
 .event-translate.active{
     opacity: 1;
 }
+.swordbros-event.passive{
+    opacity: .2;
+}
+.swordbros-event.passive:hover{
+    opacity: 1;
+}
+.swordbros-event.passive .fc-event-title{
+
+}

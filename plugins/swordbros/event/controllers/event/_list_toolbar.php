@@ -2,7 +2,7 @@
 
     <?php foreach(\Swordbros\Base\Controllers\Amele::eventTypes() as $service){ ?>
         <a
-            href="<?= Backend::url('swordbros/event/event/create') ?>?event_type_code=<?=$service->code?>"
+            href="<?= Backend::url('swordbros/event/event/create') ?>?event_type_id=<?=$service->id?>"
             class="btn btn-primary oc-icon-plus">
             <?=$service->name?> <?= e(trans('backend::lang.form.create')) ?>
         </a>

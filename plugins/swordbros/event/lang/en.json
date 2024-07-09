@@ -1,4 +1,11 @@
 {
+    "event.cols.status": "Status",
+    "event.cols.event_category": "Category",
+    "event.cols.event_type": "Event Type",
+    "event.cols.capacity": "Capacity",
+    "event.cols.event_zone": "Venue",
+    "event.cols.title": "Name",
+    "event.cols.thumb": "Thumb",
     "event.tab.meta": "Event Meta",
     "event.tab.images": "Images",
     "event.tab.description": "Description",

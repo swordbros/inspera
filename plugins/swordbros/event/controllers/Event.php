@@ -31,12 +31,18 @@ class Event extends Controller
         parent::__construct();
         BackendMenu::setContext('Swordbros.Event', 'main-menu-item', 'side-menu-item2');
         $this->addCss('/plugins/swordbros/event/assets/css/swordbros.event.css');
+        $this->addJs('/plugins/swordbros/event/assets/js/swordbros.event.js');
+    }
+    public function formExtendFields($form)
+    {
+        if ($this->action == 'create') {
+            $form->model->event_type_id = input('event_type_id', 0);
+        }
     }
     public function update($recordId = null, $context = null)
     {
         $metaData = Input::get('MetaModel');
         Amele::set_swordbros_meta($recordId, 'event', $metaData);
-
         $this->asExtension('FormController')->update($recordId, $context);
     }
     public static function emptyForm(){

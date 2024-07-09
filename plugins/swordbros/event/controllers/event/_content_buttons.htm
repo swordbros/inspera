@@ -1,0 +1,74 @@
+<div type="button" id="update-content"> Add Description</div>
+<script>
+        // jQuery fonksiyonu tanımlama
+        oc.richEditorRegisterButton('insertCustomThing', {
+            title: 'Insert Description',
+            icon: '<i class="icon-star"></i>',
+            undo: true,
+            focus: true,
+            refreshOnCallback: true,
+            callback: function () {
+                this.html.insert($('#content').html());
+            }
+        });
+        oc.richEditorButtons.splice(0, 0, 'insertCustomThing');
+
+</script>
+<template id="content">
+    <h1>Quam ob rem tandem, inquit, non satisfacit?</h1>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum autem in quo sapienter dicimus, id a primo rectissime dicitur. Duo Reges: constructio interrete. Quid ergo aliud intellegetur nisi uti ne quae pars naturae neglegatur? Semper enim ex eo, quod maximas partes continet latissimeque funditur, tota res appellatur. An tu me de L. Inde igitur, inquit, ordiendum est. </p>
+
+    <p>Age sane, inquam. At eum nihili facit; <a href="http://loripsum.net/" target="_blank">Est enim effectrix multarum et magnarum voluptatum.</a> Quod non faceret, si in voluptate summum bonum poneret. Si autem id non concedatur, non continuo vita beata tollitur. <code>Itaque his sapiens semper vacabit.</code> <a href="http://loripsum.net/" target="_blank">Habes, inquam, Cato, formam eorum, de quibus loquor, philosophorum.</a> </p>
+
+    <p>Illis videtur, qui illud non dubitant bonum dicere -; Qui-vere falsone, quaerere mittimus-dicitur oculis se privasse; Sed in rebus apertissimis nimium longi sumus. Quamquam haec quidem praeposita recte et reiecta dicere licebit. <i>Maximus dolor, inquit, brevis est.</i> Quid enim tanto opus est instrumento in optimis artibus comparandis? </p>
+
+    <blockquote cite="http://loripsum.net">
+        Nam haec ipsa mihi erunt in promptu, quae modo audivi, nec ante aggrediar, quam te ab istis, quos dicis, instructum videro.
+    </blockquote>
+
+
+    <pre>Sed est forma eius disciplinae, sicut fere ceterarum,
+triplex: una pars est naturae, disserendi altera, vivendi
+tertia.
+
+In motu et in statu corporis nihil inest, quod
+animadvertendum esse ipsa natura iudicet?
+</pre>
+
+
+    <dl>
+        <dt><dfn>Respondeat totidem verbis.</dfn></dt>
+        <dd>Unum nescio, quo modo possit, si luxuriosus sit, finitas cupiditates habere.</dd>
+        <dt><dfn>In schola desinis.</dfn></dt>
+        <dd>Multa sunt dicta ab antiquis de contemnendis ac despiciendis rebus humanis;</dd>
+        <dt><dfn>Easdemne res?</dfn></dt>
+        <dd>Paria sunt igitur.</dd>
+        <dt><dfn>Magna laus.</dfn></dt>
+        <dd>In quo etsi est magnus, tamen nova pleraque et perpauca de moribus.</dd>
+        <dt><dfn>Stoici scilicet.</dfn></dt>
+        <dd>Rhetorice igitur, inquam, nos mavis quam dialectice disputare?</dd>
+        <dt><dfn>Sed hoc sane concedamus.</dfn></dt>
+        <dd>Dat enim id nobis solitudo, quod si qui deus diceret, numquam putarem me in Academia tamquam philosophum disputaturum.</dd>
+    </dl>
+
+
+    <ol>
+        <li>Et ille ridens: Video, inquit, quid agas;</li>
+        <li>Re mihi non aeque satisfacit, et quidem locis pluribus.</li>
+        <li>Qui-vere falsone, quaerere mittimus-dicitur oculis se privasse;</li>
+        <li>Ergo id est convenienter naturae vivere, a natura discedere.</li>
+    </ol>
+
+
+    <ul>
+        <li>Sed erat aequius Triarium aliquid de dissensione nostra iudicare.</li>
+        <li>Quae in controversiam veniunt, de iis, si placet, disseramus.</li>
+        <li>Incommoda autem et commoda-ita enim estmata et dustmata appello-communia esse voluerunt, paria noluerunt.</li>
+        <li>Quorum altera prosunt, nocent altera.</li>
+        <li>Si enim, ut mihi quidem videtur, non explet bona naturae voluptas, iure praetermissa est;</li>
+        <li>Hic ego: Pomponius quidem, inquam, noster iocari videtur, et fortasse suo iure.</li>
+    </ul>
+
+
+</template>

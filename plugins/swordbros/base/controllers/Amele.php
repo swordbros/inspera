@@ -42,7 +42,7 @@ class Amele extends Controller
     public static function update_localize_row($row){
         self::save_localize_row($row);
     }
-    private static function save_localize_row($row){
+    public static function save_localize_row($row){
 
         if(!property_exists($row, 'translateClass')){
             return;

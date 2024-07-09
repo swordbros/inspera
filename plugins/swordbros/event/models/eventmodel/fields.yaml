@@ -71,6 +71,10 @@ tabs:
             label: event.fields.description
             tab: event.tab.description
             type: richeditor
+        content_buttons:
+            tab: event.tab.description
+            type: partial
+            path: $/swordbros/event/controllers/event/_content_buttons.htm
         images:
             type: repeater
             tab: event.tab.images

@@ -39,8 +39,17 @@
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
                     data-load-indicator="<?= e(trans('backend::lang.form.saving')) ?>"
-                    class="btn btn-danger">
+                    class="btn btn-success">
                     <?= e(trans('backend::lang.form.approve')) ?>
+                </button>
+                <button
+                    type="button"
+                    data-request="onDEclineBookingRequest"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="<?= e(trans('backend::lang.form.saving')) ?>"
+                    class="btn btn-danger">
+                    <?= e(trans('backend::lang.form.decline')) ?>
                 </button>
                 <button
                     type="button"

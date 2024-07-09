@@ -17,10 +17,10 @@ class EventCalendar extends BaseController{
     public $formConfig = 'config_form.yaml';
     public $listConfig = 'config_list.yaml';
     public $requiredCss = [
-        '/plugins/swordbros/event/assets/css/swordbros.event.main.css',
+        '/plugins/swordbros/event/assets/css/swordbros.event.css',
     ];
     public $requiredJs = [
-        '/plugins/swordbros/event/assets/js/swordbros.event.main.js',
+        '/plugins/swordbros/event/assets/js/swordbros.event.js',
         '/plugins/swordbros/assets/fullcalendar/index.global.js'
     ];
 
@@ -45,7 +45,11 @@ class EventCalendar extends BaseController{
                     'title'=>$row->title,
                     'start'=>$row->start,
                     'end'=>$row->end,
-                    'borderColor'=>$row->color,
+                    'backgroundColor'=> $row->color?$row->color:'red',
+                    'classNames'=> [$row->status?'swordbros-event active':'swordbros-event passive'],
+                    //'display'=> 'background',
+                    //'textColor'=> $row->status?'#000000':'#FFFFFF',
+                    //'eventBackgroundColor'=>$row->color,
                     'event_view_url'=> \Backend::url('swordbros/event/event/update',['id'=>$row->id]),
                     'event_booking_url'=> \Backend::url('swordbros/booking/booking').'?event_id='.$row->id,
                 ];

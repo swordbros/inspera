@@ -1,7 +1,22 @@
 {
-  "booking.plugin.bookingcreate": "Rezervasyon Ekle",
-  "booking.plugin.bookings": "Rezervasyonlar",
-  "booking.plugin.requests": "Rezervasyon İstekleri",
-  "booking.plugin.calendar": "Takvim",
-  "booking.plugin.title": "Rezervasyonlar"
+    "booking.scops.payment_status": "Ödeme Durumu",
+    "booking.scops.payment_method": "Ödeme Metodu",
+    "booking.scops.booking_status": "Rezervasyon Durumu",
+    "booking.scops.user": "Müşteri",
+    "booking.cols.note": "Açıklama",
+    "booking.cols.phone": "Telefon",
+    "booking.cols.email": "Email",
+    "booking.cols.payment_status": "Ödeme Durumu",
+    "booking.cols.payment_method": "Ödeme Metodu",
+    "booking.cols.total": "Toplam",
+    "booking.cols.status": "Durum",
+    "booking.cols.last_name": "Soyadı",
+    "booking.cols.first_name": "Adı",
+    "booking.cols.user": "Müşteri",
+    "booking.cols.event": "Etkinlik",
+    "booking.plugin.bookingcreate": "Rezervasyon Ekle",
+    "booking.plugin.bookings": "Rezervasyonlar",
+    "booking.plugin.requests": "Rezervasyon İstekleri",
+    "booking.plugin.calendar": "Takvim",
+    "booking.plugin.title": "Rezervasyonlar"
 }

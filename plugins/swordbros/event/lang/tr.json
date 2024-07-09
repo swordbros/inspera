@@ -1,8 +1,15 @@
 {
+    "event.cols.status": "Durumu",
+    "event.cols.event_category": "Kategori",
+    "event.cols.event_type": "Etkinlik Türü",
+    "event.cols.capacity": "Kapasite",
+    "event.cols.event_zone": "Etkinlik Yeri",
+    "event.cols.title": "Adı",
+    "event.cols.thumb": "Resim",
     "event.plugin.categories": "Kategorileri",
     "event.plugin.types": "Etkinlik Türleri",
     "event.plugin.zones": "Etkinlik Alanları",
     "event.plugin.events": "Etkinlikler",
     "event.plugin.calendar": "Etkinlik Takvimi",
-  "event.plugin.title": "Etkinlikler"
+    "event.plugin.title": "Etkinlikler"
 }

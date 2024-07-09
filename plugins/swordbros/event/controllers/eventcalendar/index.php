@@ -108,15 +108,7 @@
 
         calendar.render();
     });
-    function successHandler(data) {
-        $(document).ready(function () {
-            $('[data-richeditor-textarea]').each(function () {
-                //console.log(this);
-               // $(this).richEditor();
-            });
 
-        });
-    }
 
     $('body').on('submit', '[data-request="onGetEventTypeForm"]', function (){
         $('#listBulkActions').html('<?= e(trans('swordbros.event::plugin.please_loading'))?>');
