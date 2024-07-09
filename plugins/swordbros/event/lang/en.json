@@ -1,4 +1,8 @@
 {
+    "event.tab.meta": "Event Meta",
+    "event.tab.images": "Images",
+    "event.tab.description": "Description",
+    "event.tab.main": "Settings",
     "event.plugin.categories": "Categories",
     "event.plugin.types": "Event Types",
     "event.plugin.zones": "Event Zones",
