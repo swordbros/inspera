@@ -198,5 +198,9 @@ Example Response
     "to": 2,
     "total": 7
     }
-
+#### Examples:
+    ```
+    /swordbros/api/search?text=biletix 
+    /swordbros/api/search?text=event_type=1
+    ```
 
