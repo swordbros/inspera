@@ -34,7 +34,7 @@ navigation:
             side-menu-item6:
                 label: event.plugin.eventtags
                 url: swordbros/event/eventtag
-                icon: icon-sitemap
+                icon: icon-tag
             side-menu-item7:
                 label: event.plugin.eventreviews
                 url: swordbros/event/eventreview

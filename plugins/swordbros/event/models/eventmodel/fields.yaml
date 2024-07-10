@@ -54,9 +54,6 @@ tabs:
         short:
             label: event.fields.short
             type: textarea
-        is_featured:
-            label: event.fields.is_featured
-            type: switch
         thumb:
             label: event.fields.thumb
             type: mediafinder
