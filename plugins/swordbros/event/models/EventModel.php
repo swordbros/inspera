@@ -39,7 +39,9 @@ class EventModel extends BaseModel
         'event_category' => EventCategoryModel::class,
         'event_type' => EventTypeModel::class,
     ];
-
+    public $hasMany = [
+        'tags' => 'Swordbros\Event\Models\EventTagModel'
+    ];
     protected static function boot()
     {
         parent::boot();

@@ -1,0 +1,10 @@
+name: Type
+form: $/swordbros/event/models/eventtagmodel/fields.yaml
+modelClass: Swordbros\Event\Models\EventTagModel
+defaultRedirect: swordbros/event/eventtag
+create:
+    redirect: 'swordbros/event/eventtag/update/:id'
+    redirectClose: swordbros/event/eventtag
+update:
+    redirect: swordbros/event/eventtag
+    redirectClose: swordbros/event/eventtag

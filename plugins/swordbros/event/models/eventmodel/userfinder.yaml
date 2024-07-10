@@ -1,0 +1,22 @@
+columns:
+    thumb:
+        label: event.cols.thumb
+        type: image
+    id:
+        label: event.cols.id
+        type: number
+        invisible: true
+        sortable: true
+        sortableDefault: DESC
+    first_name:
+        label: event.cols.first_name
+        type: text
+        searchable: true
+    last_name:
+        label: event.cols.last_name
+        type: text
+        searchable: true
+    email:
+        label: event.cols.email
+        type: text
+        searchable: true

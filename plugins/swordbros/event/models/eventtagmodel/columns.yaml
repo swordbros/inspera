@@ -1,0 +1,18 @@
+columns:
+    id:
+        label: event.cols.id
+        type: number
+        invisible: true
+    thumb:
+        label: event.cols.thumb
+        relation: event
+        select: thumb
+        type: image
+    event_id:
+        label: event.cols.event_zone
+        relation: event
+        select: title
+    tag:
+        label: event.cols.tag
+        type: selectable
+

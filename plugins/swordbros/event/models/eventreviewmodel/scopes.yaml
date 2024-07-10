@@ -1,0 +1,12 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    tag:
+        label: booking.scops.tag
+        scope: isTag
+        modelClass: Swordbros\Event\Models\EventTagModel
+        conditions: filterByTag
+        options: getTagOptions
+
