@@ -21,7 +21,8 @@ columns:
         type: text
     booking_status:
         label: booking.cols.status
-        type: text
+        type: partial
+        path: booking_status
     total:
         label: booking.cols.total
         type: text

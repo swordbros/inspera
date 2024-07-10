@@ -38,7 +38,6 @@ class EventModel extends BaseModel
         'event_zone' => EventZoneModel::class,
         'event_category' => EventCategoryModel::class,
         'event_type' => EventTypeModel::class,
-
     ];
 
     protected static function boot()
@@ -65,6 +64,7 @@ class EventModel extends BaseModel
     public function getEventTypeIdOptions(){
         $result = [];
         foreach (EventTypeModel::all() as $item) {
+            Amele::localize_row($item);
             $result[$item->id] = [$item->name, $item->description];
         }
         return $result;
