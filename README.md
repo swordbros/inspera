@@ -200,5 +200,6 @@ Example Response
     }
 #### Examples:
     /swordbros/api/search?text=biletix 
-    /swordbros/api/search?text=event_type=1
+    /swordbros/api/search?text=biletix&event_type=3
+    /swordbros/api/search?text=biletix&event_type=3&event_zone=3,4
 
