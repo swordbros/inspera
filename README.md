@@ -199,7 +199,11 @@ Example Response
     "total": 7
     }
 #### Examples:
-    /swordbros/api/search?text=biletix 
+    /swordbros/api/search?text=biletix
     /swordbros/api/search?text=biletix&event_type=3
     /swordbros/api/search?text=biletix&event_type=3&event_zone=3,4
 
+## Tagged Events
+usable tags ```feature, recommended, bestseller```
+how to get Tagged events
+```\Swordbros\Base\Controllers\Amele::get_tagged_events('featured')```

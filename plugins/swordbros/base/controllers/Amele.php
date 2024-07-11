@@ -6,6 +6,8 @@ use Backend\Classes\Controller;
 use Swordbros\Booking\Models\BookingHistoryModel;
 use Swordbros\Booking\Models\BookingRequestHistoryModel;
 use Swordbros\Booking\Models\BookingTranslateModel;
+use Swordbros\Event\Models\EventModel;
+use Swordbros\Event\Models\EventTagModel;
 use Swordbros\Event\Models\EventTranslateModel;
 use Swordbros\Event\Models\EventTypeModel;
 use Swordbros\Event\Models\EventZoneModel;
@@ -429,5 +431,18 @@ class Amele extends Controller
         }
         $html .= '</div>';
         return $html;
+    }
+    public static function get_tagged_events($tag){
+        $result = [];
+        $taggedEvents = EventTagModel::where(['tag'=>$tag])->get();
+        if(!$taggedEvents->isEmpty()){
+            foreach($taggedEvents as $taggedEvent){
+                $event = EventModel::find($taggedEvent->event_id);
+                if($event){
+                    $result[] = $event;
+                }
+            }
+        }
+        return $result;
     }
 }

@@ -29,7 +29,7 @@ class EventTagModel extends BaseModel
     public $belongsTo = [
         'event' => 'Swordbros\Event\Models\EventModel'
     ];
-    public function  getTagOptions(){
+    public function getTagOptions(){
         return[
             'featured'=>['Featured', '#cd2345'],
             'bestseller'=>['Best Seller', '#2acd23'],

@@ -2,7 +2,7 @@
     <a
         href="<?= Backend::url('swordbros/event/eventtag/create') ?>"
         class="btn btn-primary oc-icon-plus">
-        <?= e(trans('backend::lang.form.create')) ?>
+        <?= e(trans('backend::lang.form.add')) ?>
     </a>
     <button
         class="btn btn-default oc-icon-trash-o"
