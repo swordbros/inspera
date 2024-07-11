@@ -1,105 +1,64 @@
 <section class="content-section no-bottom-spacing bottom-white" data-background="#fffbf7">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12">
-            <div class="section-title text-center">
-                <figure><img src="images/title-shape.png" alt="Image"></figure>
-                <h2>Art Inspiration of <br>
-                19th Century</h2>
-            </div>
-            <!-- end section-title -->
-            </div>
-            <!-- end col-12 -->
-            <div class="col-lg-4 col-md-6">
-            <div class="text-content" data-scroll data-scroll-speed="-1">
-                <h6>The challenge</h6>
-                <p>In the 1980s, “the UK’s national
-                museums faced political pressure
-                from the <strong>Conservative</strong> government
-                to charge for admission, to make
-                them less dependent on
-                government funding".</p>
-            </div>
-            <!-- end text-content -->
-            </div>
-            <!-- end col-4 -->
-            <div class="col-lg-4 col-md-6">
-            <div class="text-content" data-scroll data-scroll-speed="0.5">
-                <h6>The initiative</h6>
-                <p>In 1997, the new Labour government
-                made a commitment to reinstate
-                free entry for <strong>national</strong> museums in
-                order to have a more diverse range
-                of visitors. “Following a campaign
-                led by the museums themselves, </p>
-            </div>
-            <!-- end text-content -->
-            </div>
-            <!-- end col-4 -->
-            <div class="col-lg-4 col-md-6">
-            <div class="text-content" data-scroll data-scroll-speed="1">
-                <h6>The impact</h6>
-                <p>The national museums which
-                dropped charges all saw <strong>substantial</strong> increases to their
-                visitor numbers, an average of
-                70 percent. In the first year after
-                free admission was introduced
-                visitor figures.</p>
-            </div>
-            <!-- end text-content -->
-            </div>
-            <!-- end col-4 -->
+  <div class="container">
+
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="section-title text-center">
+          <figure><img src="images/title-shape.png" alt="Image"></figure>
+          <{{item.title_level}}>
+            {{ item.title | raw }}
+          </{{item.title_level}}>
         </div>
-        <!-- end row -->
-    </div>
-    <!-- end container -->
-    <div class="clearfix spacing-100"></div>
-    <div class="horizontal-scroll">
-        <div class="scroll-inner" data-scroll data-scroll-direction="horizontal" data-scroll-speed="5">
-            <div class="scroll-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                <div class="col-md-3">
-                    <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image01.jpg" alt="Image"> </figure>
-                </div>
-                <!-- end col-3 -->
-                <div class="col-md-4 offset-md-1">
-                    <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image02.jpg" alt="Image"> </figure>
-                </div>
-                <!-- end col-3 -->
-                <div class="col-md-2 offset-md-1">
-                    <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image03.jpg" alt="Image"> </figure>
-                </div>
-                <!-- end col-3 -->
-                </div>
-                <!-- end row -->
-            </div>
-            <!-- end container-fluid -->
-            </div>
-            <!-- end scroll-wrapper -->
-            <div class="scroll-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                <div class="col-md-3">
-                    <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image01.jpg" alt="Image"> </figure>
-                </div>
-                <!-- end col-3 -->
-                <div class="col-md-4 offset-md-1">
-                    <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image02.jpg" alt="Image"> </figure>
-                </div>
-                <!-- end col-3 -->
-                <div class="col-md-2 offset-md-1">
-                    <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image03.jpg" alt="Image"> </figure>
-                </div>
-                <!-- end col-3 -->
-                </div>
-                <!-- end row -->
-            </div>
-            <!-- container-fluid -->
-            </div>
-            <!-- end scroll-wrapper -->
+      </div>
+      {% for item in box.inspirations %}
+        <div class="col-lg-4 col-md-6">
+          <div class="text-content" data-scroll data-scroll-speed="-1">
+            <h6>{{ item.title }}</h6>
+            {{ item.text }}
+          </div>
         </div>
-        <!-- end scroll-inner -->
+      {% endfor %}
     </div>
-    <!-- end horizontal-scroll -->
+        
+  </div>
+  <div class="clearfix spacing-100"></div>
+  <div class="horizontal-scroll">
+    <div class="scroll-inner" data-scroll data-scroll-direction="horizontal" data-scroll-speed="5">
+        <div class="scroll-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-3">
+                  <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image01.jpg" alt="Image"> </figure>
+              </div>
+              <div class="col-md-4 offset-md-1">
+                  <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image02.jpg" alt="Image"> </figure>
+              </div>
+              <div class="col-md-2 offset-md-1">
+                  <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image03.jpg" alt="Image"> </figure>
+              </div>
+            </div>
+        </div>
+        </div>
+        <div class="scroll-wrapper">
+          <div class="container-fluid">
+            <div class="row">
+            <div class="col-md-3">
+                <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image01.jpg" alt="Image"> </figure>
+            </div>
+            <!-- end col-3 -->
+            <div class="col-md-4 offset-md-1">
+                <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image02.jpg" alt="Image"> </figure>
+            </div>
+            <!-- end col-3 -->
+            <div class="col-md-2 offset-md-1">
+                <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image03.jpg" alt="Image"> </figure>
+            </div>
+            <!-- end col-3 -->
+            </div>
+            <!-- end row -->
+          </div>
+        </div>
+        <!-- end scroll-wrapper -->
+    </div>
+  </div>
 </section>

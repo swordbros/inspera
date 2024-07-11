@@ -1,24 +1,24 @@
-{% if button.button_text %}
+{% if button_text %}
   <a
     class="
-      uk-button
-      uk-button-{{ button.button_type }}
-      {{ button.button_size != 'medium' ? 'uk-button-' ~ button.button_size }}
-      {#{ box.button_position ? 'bx--button--position' ~ box.button_position }#}
-      {{ button.classes }}
+      custom-button
+      btn-{{ button_type }}
+      {{ button_size != 'medium' ? 'btn-' ~ button_size }}
     "
-    href="{{ button.button_link }}"
-    target="{{ button.button_target }}"
-    {{ button.button_attributes }}
+    href="{{ button_link }}"
+    {% if button_is_external %}
+      target="_blank"
+    {% endif %}
+    {{ button_attributes }}
   >
-    {#% if button.icon %}
-      <span class="bx--icon">
-        <i class="fas {{ button.button_icon }}"></i>
+    {% if button_icon %}
+      <span class="">
+        <i class="fa {{ button_icon }}"></i>
       </span>
-    {% endif %#}
+    {% endif %}
 
-    <span class="uk-button__text">
-      {{ button.button_text | raw }}
+    <span class="">
+      {{ button_text | raw }}
     </span>
 
   </a>

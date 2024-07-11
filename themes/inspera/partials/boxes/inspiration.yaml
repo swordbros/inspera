@@ -17,7 +17,7 @@ form:
       title-mixin:
         type: mixin
 
-      inspiration:
+      inspirations:
         type: repeater
         promt: box.art_inspiration.inspiration.prompt 
         label: box.art_inspiration.inspiration.label 
@@ -25,12 +25,15 @@ form:
           fields:
             title-mixin:
               type: mixin
-            item_text:
-              label: box.art_inspiration.inspiration.item_text.label  
+
+            text:
+              label: box.art_inspiration.inspiration.item_text.label
+
             pic:
               type: mediafinder
               mode: image
-              label: box.art_inspiration.inspiration.pic.label  
+              label: box.art_inspiration.inspiration.pic.label
+              
             pic_title: 
               label: box.art_inspiration.inspiration.pic_title.label 
 

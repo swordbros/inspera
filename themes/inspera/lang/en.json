@@ -201,6 +201,7 @@
   "box.section.fields.section_background.options.primary": "Primary background, light font",
   "box.section.fields.section_background.options.secondary": "Secondary background, light font",
   "box.text.name": "Text",
+  "box.blog.name": "Blog",
   "box.text.defaultTab": "Content",
   "box.text.fields.text.label": "Text",
   "box.title.name": "Titel",
@@ -234,6 +235,7 @@
   "box.intro.name.slides.text.label": "Description",
   "box.intro.name.slides.pic.label": "Picture",
   "box.intro.name.slides.pic_mobile.label": "Picture for mobile screens",
-  "box.intro.name.slides.pic_title.label": "Alt title for CEO"
+  "box.intro.name.slides.pic_title.label": "Alt title for CEO",
+  "box.mixin_button.button_attributes.label": "Button attributes"
 
 }

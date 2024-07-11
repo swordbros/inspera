@@ -16,6 +16,9 @@ form:
       title-mixin:
         type: mixin
       
+      button-mixin:
+        type: mixin
+      
       background-mixin:
         type: mixin
       

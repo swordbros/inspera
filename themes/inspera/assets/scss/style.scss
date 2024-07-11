@@ -114,6 +114,10 @@ theme.
   font-family: "Cinzel", serif;
 }
 
+@mixin font-titles-small {
+  font-family: "Unica One", sans-serif;
+}
+
 $color-dark: #080808;
 $color-main: #0d5eff;
 $color-white: #ffffff;
@@ -1593,7 +1597,7 @@ button[type="submit"] {
         h5 {
           width: 100%;
           display: block;
-          @include font-second;
+          @include font-titles-small;
           font-size: 22px;
           margin-bottom: 15px;
           font-weight: 600;
@@ -1652,7 +1656,7 @@ button[type="submit"] {
       width: 100%;
       display: block;
       font-size: 30px;
-      @include font-second;
+      @include  font-titles-small;
     }
     .custom-link {
       color: #999;
@@ -2013,7 +2017,7 @@ button[type="submit"] {
   h4 {
     width: 100%;
     display: block;
-    @include font-second;
+    @include  font-titles-small;
     font-size: 30px;
     margin-bottom: 20px;
     a {
@@ -2140,7 +2144,7 @@ button[type="submit"] {
     h4 {
       width: 100%;
       display: block;
-      @include font-second;
+      @include  font-titles-small;
       font-size: 30px;
       margin-bottom: 20px;
       a {
@@ -2212,7 +2216,7 @@ button[type="submit"] {
     width: 100%;
     display: block;
     margin-bottom: 20px;
-    @include font-second;
+    @include  font-titles-small;
     font-size: 26px;
     font-weight: 600;
   }
@@ -2428,7 +2432,7 @@ button[type="submit"] {
       width: 100%;
       display: block;
       font-size: 34px;
-      @include font-second;
+      @include  font-titles-small;
       margin-bottom: 0;
     }
     p {
@@ -2629,7 +2633,7 @@ button[type="submit"] {
       display: block;
       font-size: 54px;
       font-weight: 400;
-      @include font-second;
+      @include  font-titles-small;
       margin-bottom: 30px;
       margin-top: 10px;
     }
@@ -2734,7 +2738,7 @@ button[type="submit"] {
     width: 100%;
     display: block;
     margin-bottom: 15px;
-    @include font-second;
+    @include  font-titles-small;
     font-size: 24px;
     font-weight: 600;
   }
@@ -3008,7 +3012,7 @@ button[type="submit"] {
     font-weight: 400;
     font-size: 22px;
     margin-bottom: 20px;
-    @include font-second;
+    @include  font-titles-small;
     position: relative;
     padding-bottom: 15px;
     &:after {

@@ -4,7 +4,6 @@ mixin:
     label: box.title.title_level.label
     type: dropdown
     default: h2
-    span: right
     options:
       h1: H1
       h2: H2

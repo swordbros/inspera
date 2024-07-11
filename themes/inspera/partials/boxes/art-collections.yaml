@@ -28,7 +28,6 @@ form:
 
             title-mixin:
               type: mixin
-         
 
             links:
               type: repeater
@@ -36,11 +35,13 @@ form:
               label: box.art_collections.collections.links.label 
               form: 
                 fields:
-                  item_title:
+                  reference:
                     label: box.art_collections.collections.links.item_title.label
+                    type: pagefinder
+                    singleMode: true
         
-        anchor-mixin:
-          type: mixin
+      anchor-mixin:
+        type: mixin
 
 
             

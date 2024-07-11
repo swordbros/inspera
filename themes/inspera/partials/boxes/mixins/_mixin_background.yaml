@@ -54,15 +54,7 @@ mixin:
 
   background_fix:
     label: box.mixin_background.background_fix.label
-    type: switch
-  
-  # inner_content_overlay:
-  #   label: box.mixin_background.inner_content_overlay.label
-  #   type: dropdown
-  #   emptyOption: None
-  #   options:
-  #     default: box.mixin_background.inner_content_overlay.options.default
-  #     primary: box.mixin_background.inner_content_overlay.options.primary      
+    type: switch   
 
   background_overlay:
     label: box.mixin_background.background_overlay.label

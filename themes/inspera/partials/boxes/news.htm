@@ -1,17 +1,19 @@
 <section class="content-section">
-    <div class="container">
-        <div class="titles">
-            <h6>Art Collection</h6>
-            <h2>History of <br>
-                Barnes</h2>
-        </div>
-        <div class="row g-0 align-items-center">           
-            <div class="col-lg-6">
-                CARD based on event listing card
-            </div>
-            <!-- end col-6 -->
-        </div>
-        <!-- end row -->
+  <div class="container">
+    <div class="titles">
+        <h6>
+          {{ item.eyebrow_title|raw }}
+        </h6>
+        <{{item.title_level}}>
+          {{ item.title | raw }}
+        </{{item.title_level}}>
     </div>
-    <!-- end container -->
+    <div class="row g-0 align-items-center">
+      {% for post in posts %}        
+        <div class="col-lg-6">
+            CARD based on event listing card
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 </section>

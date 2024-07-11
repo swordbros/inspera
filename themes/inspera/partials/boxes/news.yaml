@@ -1,17 +1,25 @@
 name: box.blog.name
 handle: news
-labelFrom: title
+labelFrom: box_title
 section: box.accordion.defaultTab
 components:
-  collection:
-    uniqueAlias: true
-
+  posts:
+    component: collection
+    properties:
+      handle: Blog\Post
 
 form:
   tabs:
     defaultTab: box.accordion.defaultTab
     fields:
- 
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.blog.name
+      
+      title-mixin:
+        type: mixin
+
       anchor-mixin:
         type: mixin
 
