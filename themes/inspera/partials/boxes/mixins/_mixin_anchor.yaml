@@ -1,0 +1,7 @@
+handle: anchor-mixin
+mixin:
+  anchor_id:
+    label: box.mixin_anchor.label
+    comment: box.mixin_anchor.comment
+    span: auto
+    tab: box.mixin_anchor.tab 

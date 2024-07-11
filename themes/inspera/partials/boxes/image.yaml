@@ -1,0 +1,29 @@
+name: box.image.name
+handle: image
+labelFrom: box_title
+section: box.section.base_components
+spacing:
+  - general
+validation:
+  rules:
+    picture:
+      - required
+      
+form:
+  tabs:
+    defaultTab: box.image.defaultTab
+    fields:
+
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.image.name
+
+      image-mixin:
+        type: mixin
+
+      anchor-mixin:
+        type: mixin
+      
+      classes-mixin:
+        type: mixin

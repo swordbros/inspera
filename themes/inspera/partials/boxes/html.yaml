@@ -1,0 +1,28 @@
+name: box.html.name
+handle: html
+label: HTML
+section: box.section.base_components
+spacing:
+  - general
+form:
+  tabs:
+    defaultTab: box.html.defaultTab
+    fields:
+      
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.html.name
+        
+      code:
+        label: box.html.fields.code.label
+        type: codeeditor
+        size: huge
+        language: html
+
+      responsive_embed:
+        label: box.html.fields.responsive_embed.label 
+        type: switch
+
+      anchor-mixin:
+        type: mixin

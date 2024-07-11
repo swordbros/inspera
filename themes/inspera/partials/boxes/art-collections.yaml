@@ -1,0 +1,56 @@
+name: box.art_collections.name
+handle: collections
+labelFrom: title
+section: Content
+translatable:
+- pic_title
+- links.*.item_content_title
+
+form:
+  tabs:
+    defaultTab: Content
+    fields:
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.art_collections.name
+      
+      collections:
+        type: repeater
+        prompt: Collections item
+        label: Collection
+        form:
+          fields:
+            pic:
+              type: mediafinder
+              mode: image
+              label:  Picture
+            pic_title: 
+              label: Alt title for CEO
+
+            title-mixin:
+              type: mixin
+            # title:
+            #   label: Event title
+            # pretitle:
+            #   label: Event date
+
+            links:
+              type: repeater
+              promt: Item
+              label: Collection content item
+              form: 
+                fields:
+                  item_content_title:
+                    label: Collection content title
+        
+        anchor-mixin:
+          type: mixin
+
+
+            
+
+
+     
+
+    

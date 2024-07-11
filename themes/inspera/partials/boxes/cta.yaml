@@ -1,0 +1,26 @@
+name: CTA
+handle: cta
+labelFrom: box_title
+section: Content
+# translatable:
+
+form:
+  tabs:
+    defaultTab: Content
+    fields:
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.image.name
+      
+      title-mixin:
+        type: mixin
+      
+      background-mixin:
+        type: mixin
+      
+      anchor-mixin:
+        type: mixin
+      
+      classes-mixin:
+        type: mixin

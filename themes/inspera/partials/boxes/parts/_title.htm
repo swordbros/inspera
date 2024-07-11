@@ -1,0 +1,41 @@
+{# use this but with template - bootstrap5 styles #}
+{% if box.is_enabled %}
+  <div
+    class="
+      title__group      
+      {{ box.classes }}
+    "
+    {{ box.anchor_id ? 'id='~box.anchor_id }}
+  >
+    {% if box.eyebrow_title %}
+      <div 
+        class="
+          title__eyebrow
+          title__eyebrow--{{ box.title_level }}
+        "
+      >
+        {{ box.eyebrow_title }}
+      </div>
+    {% endif %}
+
+    <{{ box.title_level }}
+      class="
+        title__{{ box.title_level }}
+        {{ box.horizontal_alignment ? 'uk-text-' ~ box.horizontal_alignment }}
+      "
+    >
+      {{ box.title }}
+    </{{ box.title_level }}>
+
+    {% if box.sub_title %}
+      <div
+        class="
+          title__subtitle
+          title__subtitle--{{ box.title_level }}
+        "
+      >
+        {{ box.sub_title | raw }}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

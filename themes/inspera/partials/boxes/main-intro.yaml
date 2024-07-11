@@ -1,0 +1,42 @@
+name: Intro block of main page
+handle: intro
+labelFrom: title
+section: Content
+# translatable:
+
+form:
+  tabs:
+    defaultTab: Content
+    fields:
+
+      # use mixins
+      
+      slides:
+        type: repeater
+        prompt: Add slide
+        label: Slide
+        form:
+          fields:
+            title:
+              label: Title
+            text:
+              label: Description
+              type: richeditor
+            pic:
+              type: mediafinder
+              mode: image
+              label: Picture
+            pic_mobile:
+              type: mediafinder
+              mode: image
+              label: Picture for mobile
+            pic_title: 
+              label: Alt title
+
+
+            
+
+
+     
+
+    

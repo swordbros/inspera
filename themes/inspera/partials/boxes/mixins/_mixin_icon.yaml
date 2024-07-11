@@ -1,0 +1,21 @@
+handle: icon-mixin
+mixin:
+
+  icon:
+    label: Icon
+    type: text
+    size: small
+    span: left
+
+  icon_size:
+    label: Icon Size
+    type: dropdown
+    size: small
+    span: right
+    default: md
+    options:
+      xs: xs
+      sm: sm
+      md: md
+      lg: lg
+      xl: xl

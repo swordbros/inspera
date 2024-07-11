@@ -1,0 +1,15 @@
+{% if box.is_enabled and box.code %}
+	<div 
+    class="
+      {% if not context.isEditor %}
+        {{ box.spacingClasses }}
+      {% endif %}
+      {% if box.responsive_embed %}
+        responsive-iframe
+      {% endif %}
+    " 
+    {{ box.anchor_id ? 'id='~box.anchor_id }}
+  >
+	  {{ box.code | raw }}
+	</div>
+{% endif %}

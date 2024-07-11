@@ -1,0 +1,6 @@
+handle: classes-mixin
+mixin:
+
+  classes:
+    label: "box.mixin_classes.label"
+    comment: "box.mixin_classes.comment"

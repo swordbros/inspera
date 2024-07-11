@@ -1,0 +1,48 @@
+handle: image-mixin
+mixin:
+
+  picture:
+    label: box.mixin_image.picture.label
+    type: mediafinder
+    mode: image
+
+  # content_alignment-mixin:
+  #   type: mixin
+  #   tab: box.content_alignment.tab
+
+  picture_size:
+    label: box.mixin_image.picture_size.label
+    type: balloon-selector
+    default: md
+    options:
+      sm: box.mixin_image.picture_size.options.sm
+      md: box.mixin_image.picture_size.options.md
+      lg: box.mixin_image.picture_size.options.lg
+      full: box.mixin_image.picture_size.options.full
+      custom: box.mixin_image.picture_size.options.custom
+  
+  picture_width:
+    label: box.mixin_image.picture_width.label
+    type: number
+    trigger:
+      action: show
+      field: picture_size
+      condition: value[custom]
+
+  picture_link:
+    label: box.mixin_image.picture_link.label
+    type: text
+
+  caption:
+    label: box.mixin_image.caption.label
+    type: richeditor
+    size: small
+
+  caption_alignment:
+    label: box.mixin_image.caption_alignment.label
+    type: balloon-selector
+    default: left
+    options:
+      left: box.mixin_image.caption_alignment.options.left
+      center: box.mixin_image.caption_alignment.options.center
+      right: box.mixin_image.caption_alignment.options.right

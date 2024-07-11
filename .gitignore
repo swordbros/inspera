@@ -25,3 +25,4 @@ nbproject
 .phpstorm.meta.php
 
 # Project
+/vendor

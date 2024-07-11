@@ -1,0 +1,103 @@
+handle: background-mixin
+mixin:
+  background_color:
+    label: box.mixin_background.background_color.label
+    type: dropdown
+    emptyOption: box.mixin_background.background_color.emptyOption
+    options:
+      default: box.mixin_background.background_color.options.default
+      muted: box.mixin_background.background_color.options.muted
+      primary: box.mixin_background.background_color.options.primary
+      secondary: box.mixin_background.background_color.options.secondary
+
+  background_image:
+    label: box.mixin_background.background_image.label
+    type: mediafinder
+    mode: image
+
+  background_horizontal_position:
+    label: box.mixin_background.background_horizontal_position.label
+    type: balloon-selector
+    span: auto
+    options: 
+      left: box.mixin_background.background_horizontal_position.options.left
+      center: box.mixin_background.background_horizontal_position.options.center
+      right: box.mixin_background.background_horizontal_position.options.right
+
+  background_vertical_position:
+    label: box.mixin_background.background_vertical_position.label
+    type: balloon-selector
+    span: auto
+    options: 
+      top: box.mixin_background.background_vertical_position.options.top
+      center: box.mixin_background.background_vertical_position.options.center
+      bottom: box.mixin_background.background_vertical_position.options.bottom
+
+  background_size:
+    label: box.mixin_background.background_size.label
+    type: balloon-selector
+    span: auto
+    default: cover
+    options: 
+      cover: box.mixin_background.background_size.options.cover
+      contain: box.mixin_background.background_size.options.contain
+      auto: box.mixin_background.background_size.options.auto
+
+  background_repeat:
+    label: box.mixin_background.background_repeat.label
+    type: balloon-selector
+    span: auto
+    default: no-repeat
+    options: 
+      'no-repeat': box.mixin_background.background_repeat.options.no_repeat
+      repeat: box.mixin_background.background_repeat.options.repeat
+
+  background_fix:
+    label: box.mixin_background.background_fix.label
+    type: switch
+  
+  # inner_content_overlay:
+  #   label: box.mixin_background.inner_content_overlay.label
+  #   type: dropdown
+  #   emptyOption: None
+  #   options:
+  #     default: box.mixin_background.inner_content_overlay.options.default
+  #     primary: box.mixin_background.inner_content_overlay.options.primary      
+
+  background_overlay:
+    label: box.mixin_background.background_overlay.label
+    type: dropdown
+    emptyOption: box.mixin_background.inner_content_overlay.emptyOption
+    options:
+      dark: box.mixin_background.background_overlay.options.dark
+      light: box.mixin_background.background_overlay.options.light
+      custom: box.mixin_background.background_overlay.options.custom
+
+  custom_overlay:
+    label: box.mixin_background.custom_overlay.label
+    type: nestedform
+    trigger:
+      action: show
+      field: background_overlay
+      condition: value[custom]
+    form:
+      fields:
+        start_color:
+          type: colorpicker
+          availableColors: ['#84c2c3']
+          span: auto
+        end_color:
+          type: colorpicker
+          availableColors: ['#4aa697']
+          span: auto
+          comment: box.mixin_background.fields.end_color.comment
+        direction:
+          type: dropdown
+          options:
+            horizontal: box.mixin_background.fields.direction.options.horizontal
+            vertical: box.mixin_background.fields.direction.options.vertical
+
+  background_overlay_opacity:
+    label: box.mixin_background.background_overlay_opacity.label
+    type: number
+    placeholder: 5

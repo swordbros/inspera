@@ -1,0 +1,62 @@
+{% if box.picture %}
+
+{% set width = 600 %}
+{% if box.picture_size == 'sm' %}
+  {% set width = 100 %}
+{% elseif box.picture_size == 'md' %}
+  {% set width = 250 %}
+{% elseif box.picture_size == 'lg' %}
+  {% set width = 600 %}
+{% elseif box.picture_size == 'custom' %}
+  {% set width = box.picture_width %}
+{% endif %}
+
+  <figure
+    class="
+      image-group
+      {% if box.column_horizontal_alignment or box.column_vertical_alignment %}
+        {% partial 'boxes/parts/_content-flex-align.htm' %}
+      {% endif %}
+      {% if not context.isEditor %}
+        {{ box.spacingClasses }}
+      {% endif %}
+    "
+  >
+    {% if box.picture_link %}
+      <a
+        class="image-group__link"
+        href="{{ box.picture_link }}"
+      >
+      {% put closeLink %}</a>{% endput %}
+    {% endif %}
+
+      <img
+        class="
+          image-group__picture
+        "
+        {% if box.picture_size == 'full' %}
+          src="{{ box.picture | media }}"
+        {% else %}
+          src="{{ box.picture | media | resize(width * 2) }}"
+        {% endif %}
+        {% if box.picture_width %}
+          width="{{ width }}"
+        {% endif %}
+        alt="{#{ (box.caption ? box.caption : '') | html_clean }#}"
+      >
+
+    {% placeholder closeLink %}
+
+    {% if box.caption %}
+      <figcaption
+        class="
+          image-group__caption
+          {{ box.caption_alignment != 'left' ? 'uk-text-' ~ box.caption_alignment }}
+        "
+      >
+        {{ box.caption | raw }}
+      </figcaption>
+    {% endif %}
+
+  </figure>
+{% endif %}

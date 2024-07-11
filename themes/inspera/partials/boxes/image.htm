@@ -1,0 +1,12 @@
+{% if box.is_enabled %}
+  <div
+    class="
+      {% if not context.isEditor %}
+        {{ box.spacingClasses }}
+      {% endif %}
+    "
+    {{ box.anchor_id ? 'id='~box.anchor_id }}
+  >
+    {% partial 'boxes/parts/_image.htm' %}
+  </div>
+{% endif %}

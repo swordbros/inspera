@@ -1,0 +1,42 @@
+handle: title-mixin
+mixin:
+  title_level:
+    label: box.title.title_level.label
+    type: dropdown
+    default: h2
+    span: right
+    options:
+      h1: H1
+      h2: H2
+      h3: H3
+      h4: H4
+      h5: H5
+      h6: H6
+
+  horizontal_alignment:
+    tab: box.title.horizontal_alignment.tab
+    label: box.title.horizontal_alignment.label
+    type: dropdown
+    default: ''
+    options:
+      '': box.title.horizontal_alignment.options.unset
+      left: box.title.horizontal_alignment.options.left
+      center: box.title.horizontal_alignment.options.center
+      right: box.title.horizontal_alignment.options.right
+
+  eyebrow_title:
+    label: box.title.eyebrow_title.label
+    type: richeditor
+    size: small
+    toolbarButtons: align
+
+  title:
+    label: box.title.name
+    type: text
+    size: small
+
+  sub_title:
+    label: box.title.sub_title.label
+    type: richeditor
+    size: small
+    toolbarButtons: align

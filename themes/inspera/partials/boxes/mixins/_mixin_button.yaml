@@ -1,0 +1,62 @@
+handle: button-mixin
+mixin:
+
+  button_text:
+    label: "box.mixin_button.button_text.label"
+    type: text
+    span: left
+
+  button_link:
+    label: "box.mixin_button.button_link.label"
+    type: text
+
+  # icon:
+  #   label: Icon
+  #   type: text
+  #   span: left
+
+  # icon_position:
+  #   label: Icon Position
+  #   type: dropdown
+  #   span: right
+  #   default: left
+  #   options:
+  #     default: Default (left)
+  #     left: Left
+  #     right: Right
+
+  button_type:
+    label: "box.mixin_button.button_type.label"
+    type: dropdown
+    span: left
+    default: primary
+    options:
+      default: "box.mixin_button.button_type.options.default"
+      primary: "box.mixin_button.button_type.options.primary"
+      secondary: "box.mixin_button.button_type.options.secondary"
+      danger: "box.mixin_button.button_type.options.danger"
+      text: "box.mixin_button.button_type.options.text"
+      link: "box.mixin_button.button_type.options.link"
+
+  button_size:
+    label: "box.mixin_button.button_size.label"
+    type: dropdown
+    span: right
+    default: default
+    options:
+      medium: "box.mixin_button.button_size.options.medium"
+      large: "box.mixin_button.button_size.options.large"
+      small: "box.mixin_button.button_size.options.small"
+  
+  button_width:
+    label: "box.mixin_button.button_width.label"
+    type: dropdown
+    span: left
+    emptyOption: "box.mixin_button.button_width.emptyOption"
+    options: 
+      wide: "box.mixin_button.button_width.wide"
+  
+  button_is_external:
+    label: "box.mixin_button.button_is_external.label"
+    type: switch
+    span: right

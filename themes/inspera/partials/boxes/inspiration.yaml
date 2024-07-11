@@ -1,0 +1,43 @@
+name: Art inspiration
+handle: inspiration
+labelFrom: title
+section: Content
+translatable:
+- title
+- item_title
+
+form:
+  tabs:
+    defaultTab: Content
+    fields:
+
+      block_id:
+        label: Id of the block if needed
+
+      title:
+        label: Block title
+      
+      inspiration:
+        type: repeater
+        promt: Item
+        label: Inspiration item
+        form:
+          fields:
+            item_title:
+              label: Inspiration title
+            item_text:
+              label: Inspiration description
+            pic:
+              type: mediafinder
+              mode: image
+              label:  Picture
+            pic_title: 
+              label: Alt title for CEO
+
+
+            
+
+
+     
+
+    

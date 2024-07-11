@@ -1,0 +1,24 @@
+name: Blog
+handle: news
+labelFrom: title
+section: Content
+translatable:
+- title
+
+
+form:
+  tabs:
+    defaultTab: Content
+    fields:
+
+      # use mixins
+      
+      # component brings events list, use component on yaml config
+
+
+            
+
+
+     
+
+    

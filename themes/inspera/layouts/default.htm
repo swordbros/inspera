@@ -9,42 +9,41 @@ description = "Default layout"
         <meta name="title" content="{{ this.page.meta_title }}">
         {% partial 'components/head-meta' %}
         {% partial 'components/head-styles' %}
-        {% partial 'components/head-scripts' %}
     </head>
     <body class="{{ 'page-'~this.page.id }}">
 
-    {#<div class="preloader" id="preloader">
+        {#<div class="preloader" id="preloader">
+            <svg viewBox="0 0 1920 1080" preserveAspectRatio="none" version="1.1">
+                <path d="M0,0 C305.333333,0 625.333333,0 960,0 C1294.66667,0 1614.66667,0 1920,0 L1920,1080 C1614.66667,1080 1294.66667,1080 960,1080 C625.333333,1080 305.333333,1080 0,1080 L0,0 Z"></path>
+            </svg>
+            <div class="inner">
+                <canvas class="progress-bar" id="progress-bar" width="200" height="200"></canvas>
+                <figure><img src="images/preloader.png" alt="Image"></figure>
+                <small>Loading</small> </div>
+            <!-- end inner -->
+        </div>#}
+
+        {#}
+        <div class="page-transition">
         <svg viewBox="0 0 1920 1080" preserveAspectRatio="none" version="1.1">
-            <path d="M0,0 C305.333333,0 625.333333,0 960,0 C1294.66667,0 1614.66667,0 1920,0 L1920,1080 C1614.66667,1080 1294.66667,1080 960,1080 C625.333333,1080 305.333333,1080 0,1080 L0,0 Z"></path>
+            <path d="M0,0 C305.333333,0 625.333333,0 960,0 C1294.66667,0 1614.66667,0 1920,0 L1920,1080 C1614.66667,980 1294.66667,930 960,930 C625.333333,930 305.333333,980 0,1080 L0,0 Z"></path>
         </svg>
-        <div class="inner">
-            <canvas class="progress-bar" id="progress-bar" width="200" height="200"></canvas>
-            <figure><img src="images/preloader.png" alt="Image"></figure>
-            <small>Loading</small> </div>
-        <!-- end inner -->
-    </div>#}
-
-    {#}
-    <div class="page-transition">
-    <svg viewBox="0 0 1920 1080" preserveAspectRatio="none" version="1.1">
-        <path d="M0,0 C305.333333,0 625.333333,0 960,0 C1294.66667,0 1614.66667,0 1920,0 L1920,1080 C1614.66667,980 1294.66667,930 960,930 C625.333333,930 305.333333,980 0,1080 L0,0 Z"></path>
-    </svg>
-    </div>
-    <!-- end page-transition -->
-    #}
-        <div class="smooth-scroll">
-
-            
         </div>
-
-        <header id="layout-header">
-            {% partial 'components/header' %}
-        </header>
+        <!-- end page-transition -->
+        #}
 
         {#% partial 'components/flash-messages' %#}
 
-        {% page %}
+        <div class="smooth-scroll">
+            <div class="section-wrapper" data-scroll-section>
+                {% partial 'components/header' %}
+
+                {% page %}
+            </div>
+        </div>
 
         {% partial 'components/footer' %}
+
+        {% partial 'components/scripts' %}
     </body>
 </html>
