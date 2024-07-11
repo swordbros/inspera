@@ -2,9 +2,9 @@ name: box.upcoming_events.name
 handle: events
 labelFrom: title
 section: box.accordion.defaultTab
-components:
-  eventList:
-    uniqueAlias: true
+# components:
+#   eventList:
+#     uniqueAlias: true
 
 form:
   tabs:

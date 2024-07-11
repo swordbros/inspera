@@ -1,40 +1,70 @@
+[section aboutFooterMenu]
+handle = "Site\Menus"
+identifier = "slug"
+value = "about-footer"
+
+[section socialsFooterMenu]
+handle = "Site\Menus"
+identifier = "slug"
+value = "socials-footer"
+==
+{% set aboutMenuItems = aboutFooterMenu.items | filter(i => not i.is_hidden) %}
+{% set socialsMenuItems = socialsFooterMenu.items | filter(i => not i.is_hidden) %}
+
 <footer class="footer">
   <div class="container">
     <div class="row">
+
+      {% if aboutMenuItems is not empty  %}
         <div class="col-lg-4 col-md-6">
           <h6 class="widget-title">
             {{ 'About Museum' |_ }}
           </h6>
           <ul class="footer-menu">
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Contact us</a></li>
-            <li><a href="#">National work</a></li>
-            <li><a href="#">International work</a></li>
+            {% for item in aboutMenuItems %}
+              <li>
+                <a href="{{ item.reference|link }}">
+                  {{ item.title }}
+                </a>
+              </li>
+            {% endfor %}
           </ul>
         </div>
+      {% endif %}
+      
+      {% if socialsMenuItems is not empty  %}
         <div class="col-lg-4 col-md-6">
           <h6 class="widget-title">
             {{ 'Connect Us' |_ }}
           </h6>
           <ul class="social-media">
-            <li><a href="#"><i class="fab fa-facebook-f"></i> /wandau-uk</a></li>
-            <li><a href="#"><i class="fab fa-twitter"></i> /wandau-museum</a></li>
-            <li><a href="#"><i class="fab fa-youtube"></i> /wandau-tv</a></li>
+            {% for item in socialsMenuItems %}
+              <li>
+                <a href="{{ item.reference|link }}">
+                  <i class="fab fa-{{ item.code }}"></i>
+                  {{ item.title }}
+                </a>
+              </li>
+            {% endfor %}
           </ul>
         </div>
-        <div class="col-lg-4">
-          <h6 class="widget-title">
-            {{ 'Visit Us Now' |_ }}
-          </h6>
-          <address class="address">
-            Ortakentyahşi, Kemer Sk. 16/148420 Bodrum/Muğla
-          </address>
-        </div>
+      {% endif %}
+
+      <div class="col-lg-4">
+        <h6 class="widget-title">
+          {{ 'Visit Us Now' |_ }}
+        </h6>
+        <address class="address">
+          Ortakentyahşi, Kemer Sk. 16/148420 Bodrum/Muğla
+        </address>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="container">
-      <span class="copyright">© {{ 'now'|date('Y') }} /inspera | Art & History Museum</span>
+      <span class="copyright">
+        © {{ 'now'|date('Y') }} /inspera | Art & History Museum
+      </span>
     </div>
   </div>
 </footer>
