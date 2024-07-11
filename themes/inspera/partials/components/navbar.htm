@@ -1,33 +1,84 @@
+[sitePicker]
+
+[section mainMenu]
+handle = "Site\Menus"
+identifier = "slug"
+value = "top-menu"
+==
+{% set menuItems = mainMenu.items.toNested | filter(i => not i.is_hidden) %}
+
 <nav class="navbar">
-    <div class="logo"> <a href="index.html"> <img src="images/logo.png" alt="Image"> </a> </div>
-    <!-- end logo -->
-    <div class="custom-menu">
+
+  <div class="logo">
+    <a href="{{ app_url }}">
+      <img src="{{ app_logo }}" alt="{{ app_name }}">
+    </a>
+  </div>
+
+  <div class="custom-menu">
+
     <ul>
-        <li><a href="#">Eng</a></li>
-        <li><a href="#">Rus</a></li>
+      {% for site in sitePicker.sites %}
+        <li>
+          <a href="{{ site.url }}" class="{{ this.site.code == site.code ? 'active' }}">
+            {{ site.name }}
+          </a>
+        </li>
+      {% endfor %}
     </ul>
-    </div>
-    <!-- end custom-menu -->
-    <div class="site-menu">
+
+  </div>
+
+  <div class="site-menu">
     <ul>
-        <li><a href="visit.html" data-scroll-to>Visit</a></li>
-        <li><a href="exhibitions.html" data-scroll-to>Exhibitions</a></li>
-        <li><a href="collections.html" data-scroll-to>Collections</a></li>
-        <li><a href="about.html" data-scroll-to>About</a></li>
-        <li><a href="contact.html" data-scroll-to>Contact</a></li>
+      {% for item in menuItems %}
+      {#{d(item)}#}
+        <li>
+          <a href="{{ item.reference | link }}">
+            {{ item.title }}
+          </a>
+
+          {% if item.children.count %}
+            <ul class="dropdown-menu">
+              {% for child in item.children %}
+                <li>
+                  <a
+                  class="
+                    dropdown-item 
+                    {{ link(child.reference).isActive ? 'active' }}                  
+                  "
+                  href="{{ child.reference|link }}"
+                  {{ child.is_external ? 'target="_blank" '}}
+                  >
+                    {{ child.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+        </li>
+      {% endfor %}   
     </ul>
-    </div>
-    <!-- end site-menu -->
-    <div class="search-button"> <i class="far fa-search"></i> </div>
-    <!-- end search-button -->
-    <div class="hamburger-menu">
+
+  </div>
+
+  <div class="search-button">
+    <i class="far fa-search"></i>
+  </div>
+
+  <div class="hamburger-menu">
     <svg class="hamburger" width="30" height="30" viewBox="0 0 30 30">
-        <path class="line line-top" d="M0,9h30"/>
-        <path class="line line-center" d="M0,15h30"/>
-        <path class="line line-bottom" d="M0,21h30"/>
+      <path class="line line-top" d="M0,9h30"/>
+      <path class="line line-center" d="M0,15h30"/>
+      <path class="line line-bottom" d="M0,21h30"/>
     </svg>
-    </div>
-    <!-- end hamburger-menu -->
-    <div class="navbar-button"> <a href="membership.html">GET A TICKET</a> </div>
-    <!-- end navbar-button -->
+  </div>
+
+  <div class="navbar-button">
+    <a href="membership.html">
+      {{ 'Get a ticket'|_ }}
+    </a>
+  </div>
+
 </nav>

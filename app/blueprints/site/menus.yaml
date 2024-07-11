@@ -4,6 +4,7 @@ type: entry
 name: Menu
 drafts: false
 pagefinder: false
+multisite: true
 
 customMessages:
     buttonCreate: New Menu
