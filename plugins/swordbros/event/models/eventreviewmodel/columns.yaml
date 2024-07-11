@@ -16,7 +16,8 @@ columns:
         type: text
     stars:
         label: event.cols.stars
-        type: text
+        type: partial
+        path: stars
     status:
         label: event.cols.status
         type: switch

@@ -4,6 +4,7 @@ use Model;
 use October\Rain\Database\Relations\HasOne;
 use Swordbros\Base\models\BaseModel;
 use Swordbros\Base\Controllers\Amele;
+use Swordbros\Event\Controllers\EventReview;
 
 /**
  * Model
@@ -26,4 +27,22 @@ class EventReviewModel extends BaseModel
     ];
     public $rules = [
     ];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updated(function ($row) {
+            self::setEventRating($row);
+        });
+        static::created(function ($row) {
+            self::setEventRating($row);
+        });
+    }
+    private static function setEventRating($row){
+        $event = EventModel::find($row->event_id);
+        if($event){
+            $event->rating = EventReviewModel::where(['event_id'=>$row->event_id, 'status'=>1])->avg('stars');
+            $event->save();
+        }
+    }
 }

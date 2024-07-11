@@ -23,6 +23,10 @@ columns:
         label: event.cols.capacity
         type: partial
         path: capacity
+    rating:
+        label: event.cols.rating
+        type: partial
+        path: rating
     event_category_id:
         label: event.cols.event_category
         relation: event_category
