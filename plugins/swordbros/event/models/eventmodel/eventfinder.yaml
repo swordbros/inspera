@@ -1,0 +1,14 @@
+columns:
+    thumb:
+        label: event.cols.thumb
+        type: image
+    id:
+        label: event.cols.id
+        type: number
+        invisible: true
+        sortable: true
+        sortableDefault: DESC
+    title:
+        label: event.cols.title
+        type: text
+        searchable: true

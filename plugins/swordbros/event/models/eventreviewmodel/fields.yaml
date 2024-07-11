@@ -1,0 +1,40 @@
+fields:
+    event:
+        label: event.fields.event_id
+        span: auto
+        commentAbove: 'Select the author for this blog post'
+        type: recordfinder
+        maxItems: 1
+        source: \Swordbros\Event\Models\EventModel
+        list: $/swordbros/event/models/eventmodel/eventfinder.yaml
+        nameFrom: title
+        required: true
+    user:
+        label: event.fields.user_id
+        span: auto
+        commentAbove: 'Select the author for this blog post'
+        type: recordfinder
+        maxItems: 1
+        source: \RainLab\User\Models\User
+        list: $/swordbros/event/models/eventmodel/userfinder.yaml
+        nameFrom: username
+        required: true
+    review:
+        label: event.fields.review
+        type: textarea
+        required: true
+    stars:
+        label: event.fields.stars
+        type: dropdown
+        required: true
+        options:
+            5: '⭐⭐⭐⭐⭐ (5)'
+            4: '⭐⭐⭐⭐ (4)'
+            3: '⭐⭐⭐ (3)'
+            2: '⭐⭐ (2)'
+            1: '⭐ (1)'
+    status:
+        label: event.fields.status
+        type: switch
+
+

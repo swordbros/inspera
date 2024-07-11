@@ -31,7 +31,6 @@ class EventModel extends BaseModel
         'event_type_id' => ['required'],
         'start' => ['required'],
         'end' => ['required'],
-
     ];
 
     public $belongsTo = [
@@ -39,7 +38,6 @@ class EventModel extends BaseModel
         'event_category' => EventCategoryModel::class,
         'event_type' => EventTypeModel::class,
     ];
-
     protected static function boot()
     {
         parent::boot();

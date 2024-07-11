@@ -1,0 +1,10 @@
+name: Type
+form: $/swordbros/event/models/eventreviewmodel/fields.yaml
+modelClass: Swordbros\Event\Models\EventReviewModel
+defaultRedirect: swordbros/event/eventreview
+create:
+    redirect: 'swordbros/event/eventreview/update/:id'
+    redirectClose: swordbros/event/eventreview
+update:
+    redirect: swordbros/event/eventreview
+    redirectClose: swordbros/event/eventreview

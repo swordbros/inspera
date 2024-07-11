@@ -31,4 +31,12 @@ navigation:
                 label: event.plugin.categories
                 url: swordbros/event/eventcategory
                 icon: icon-sitemap
+            side-menu-item6:
+                label: event.plugin.eventtags
+                url: swordbros/event/eventtag
+                icon: icon-tag
+            side-menu-item7:
+                label: event.plugin.eventreviews
+                url: swordbros/event/eventreview
+                icon: icon-comments
 

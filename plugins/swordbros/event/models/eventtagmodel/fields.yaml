@@ -1,0 +1,20 @@
+fields:
+    event:
+        label: event.fields.event_id
+        span: auto
+        commentAbove: 'Select the author for this blog post'
+        type: recordfinder
+        maxItems: 1
+        source: \Swordbros\Event\Models\EventModel
+        list: $/swordbros/event/models/eventmodel/recordfinder.yaml
+        nameFrom: title
+        required: true
+    tag:
+        label: event.fields.select_tag
+        type: dropdown
+        required: true
+    sort_order:
+        label: event.fields.sort_order
+        type: number
+
+

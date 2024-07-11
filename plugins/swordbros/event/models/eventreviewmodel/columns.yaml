@@ -1,0 +1,25 @@
+columns:
+    id:
+        label: event.cols.id
+        type: number
+        invisible: true
+    event_id:
+        label: event.cols.event
+        relation: event
+        select: title
+    user_id:
+        label: event.cols.user
+        relation: user
+        select: username
+    review:
+        label: event.cols.review
+        type: text
+    stars:
+        label: event.cols.stars
+        type: partial
+        path: stars
+    status:
+        label: event.cols.status
+        type: switch
+
+
