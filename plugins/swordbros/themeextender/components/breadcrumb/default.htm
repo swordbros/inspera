@@ -1,0 +1,9 @@
+<ul class="uk-breadcrumb">
+    {% for url, item in breadcrumb_items %}
+    <li>
+        {% if url %}<a href="{{url}}">{% else %}<span>{% endif %}
+        {{item}}
+        {% if url %}</a>{% else %}</span>{% endif %}
+    </li>
+    {% endfor %}
+</ul>
