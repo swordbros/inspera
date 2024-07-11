@@ -1,2 +1,10 @@
 v1.0.1:
     - 'Initialize plugin'
+    - 2024_07_11_190112_create_swordbros_booking_translate_table.php
+    - 2024_07_11_190113_create_swordbros_booking_bookings_table.php
+    - 2024_07_11_190116_create_swordbros_booking_statuses_table.php
+    - 2024_07_11_190117_create_swordbros_booking_request_histories_table.php
+    - 2024_07_11_190119_create_swordbros_booking_histories_table.php
+    - 2024_07_11_190120_create_swordbros_booking_requests_table.php
+    - 2024_07_11_190121_create_swordbros_booking_payment_statuses_table.php
+    - 2024_07_11_190124_create_swordbros_booking_payment_methods_table.php
