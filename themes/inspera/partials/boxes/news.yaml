@@ -1,19 +1,19 @@
-name: Blog
+name: box.blog.name
 handle: news
 labelFrom: title
-section: Content
-translatable:
-- title
+section: box.accordion.defaultTab
+components:
+  collection:
+    uniqueAlias: true
 
 
 form:
   tabs:
-    defaultTab: Content
+    defaultTab: box.accordion.defaultTab
     fields:
-
-      # use mixins
-      
-      # component brings events list, use component on yaml config
+ 
+      anchor-mixin:
+        type: mixin
 
 
             

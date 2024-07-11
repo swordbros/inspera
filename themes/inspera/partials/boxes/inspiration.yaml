@@ -1,38 +1,41 @@
-name: Art inspiration
+name: box.art_inspiration.name
 handle: inspiration
 labelFrom: title
-section: Content
-translatable:
-- title
-- item_title
+section: box.accordion.defaultTab
+
 
 form:
   tabs:
-    defaultTab: Content
+    defaultTab: box.accordion.defaultTab
     fields:
 
-      block_id:
-        label: Id of the block if needed
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.art_inspiration.name
 
-      title:
-        label: Block title
-      
+      title-mixin:
+        type: mixin
+
       inspiration:
         type: repeater
-        promt: Item
-        label: Inspiration item
+        promt: box.art_inspiration.inspiration.prompt 
+        label: box.art_inspiration.inspiration.label 
         form:
           fields:
-            item_title:
-              label: Inspiration title
+            title-mixin:
+              type: mixin
             item_text:
-              label: Inspiration description
+              label: box.art_inspiration.inspiration.item_text.label  
             pic:
               type: mediafinder
               mode: image
-              label:  Picture
+              label: box.art_inspiration.inspiration.pic.label  
             pic_title: 
-              label: Alt title for CEO
+              label: box.art_inspiration.inspiration.pic_title.label 
+
+      anchor-mixin:
+          type: mixin
 
 
             
