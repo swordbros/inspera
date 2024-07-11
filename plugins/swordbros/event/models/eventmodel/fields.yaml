@@ -57,8 +57,8 @@ tabs:
         thumb:
             label: event.fields.thumb
             type: mediafinder
-            thumbOptions: true
             maxItems: 1
+            mode: image
         status:
             label: event.fields.status
             span: left
@@ -83,7 +83,7 @@ tabs:
                     image:
                         label: event.fields.image
                         type: mediafinder
-                        thumbOptions: true
+                        mode: image
         event_metas:
             tab: event.tab.meta
             label: event.fields.metas
@@ -95,3 +95,13 @@ tabs:
                         label: event.fields.image
                         type: mediafinder
                         thumbOptions: true
+        event_reviews:
+            tab: event.tab.reviews
+            label: event.fields.metas
+            type: partial
+            path: $/swordbros/event/controllers/event/_reviews.php
+            table:
+                columns:
+                    id:
+                        label: event.fields.id
+                        type: text
