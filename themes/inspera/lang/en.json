@@ -213,5 +213,27 @@
   "box.title.horizontal_alignment.options.right": "Right",
   "box.title.eyebrow_title.label": "Pre-title (eyebrow)",
   "box.title.sub_title.label": "Subtitle",
-  "box.art_collections.name": "Art collections"
+  "box.art_collections.name": "Art collections",
+  "box.art_collections.collections.label": "collections item",
+  "box.art_collections.collections.prompt": "Item",
+  "box.art_collections.collections.pic.label": "Picture",
+  "box.art_collections.collections.pic_title.label": "Alt title for CEO",
+  "box.art_collections.collections.links.prompt": "Item",
+  "box.art_collections.collections.links.label": "Collection content item",
+  "box.art_collections.collections.links.item_title.label": "Collection content title",
+  "box.upcoming_events.name": "Upcoming events",
+  "box.art_inspiration.name": "Art inspiration",
+  "box.art_inspiration.inspiration.prompt": "Item",
+  "box.art_inspiration.inspiration.label": "Art inspiration item",
+  "box.art_inspiration.inspiration.item_text": "Art inspiration description",
+  "box.art_inspiration.inspiration.pic.label": "Picture", 
+  "box.art_inspiration.inspiration.pic_title.label": "Alt title for CEO",
+  "box.intro.name": "Intro block of main page",
+  "box.intro.name.slides.prompt": "Add slide",
+  "box.intro.name.slides.label": "Intro block slider",
+  "box.intro.name.slides.text.label": "Description",
+  "box.intro.name.slides.pic.label": "Picture",
+  "box.intro.name.slides.pic_mobile.label": "Picture for mobile screens",
+  "box.intro.name.slides.pic_title.label": "Alt title for CEO"
+
 }

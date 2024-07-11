@@ -1,18 +1,20 @@
-name: Upcoming events
+name: box.upcoming_events.name
 handle: events
 labelFrom: title
-section: Content
-# translatable:
+section: box.accordion.defaultTab
+components:
+  eventList:
+    uniqueAlias: true
 
 form:
   tabs:
-    defaultTab: Content
+    defaultTab: box.accordion.defaultTab
     fields:
 
       box_title:
         label: box.box_title.label
         comment: box.box_title.comment
-        default: box.image.name
+        default: box.upcoming_events.name
       
       title-mixin:
         type: mixin
@@ -20,23 +22,9 @@ form:
       anchor-mixin:
         type: mixin
 
-      # component brings events list, use component on yaml config
-      # upcoming_events:
-      #   type: repeater
-      #   promt: Item
-      #   label: Upcoming events item
-      #   form:
-      #     fields:
-      #       item_title:
-      #         label: Event title
-      #       item_date:
-      #         label: Event date
-      #       pic:
-      #         type: mediafinder
-      #         mode: image
-      #         label:  Picture
-      #       pic_title: 
-      #         label: Alt title for CEO
+
+
+    
 
 
             

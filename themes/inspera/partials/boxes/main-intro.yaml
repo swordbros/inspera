@@ -1,37 +1,37 @@
-name: Intro block of main page
+name: box.intro.name
 handle: intro
 labelFrom: title
-section: Content
-# translatable:
+section: box.accordion.defaultTab
 
 form:
   tabs:
-    defaultTab: Content
+    defaultTab: box.accordion.defaultTab
     fields:
-
-      # use mixins
       
       slides:
         type: repeater
-        prompt: Add slide
-        label: Slide
+        prompt: box.intro.name.slides.prompt 
+        label: box.intro.name.slides.label 
         form:
           fields:
-            title:
-              label: Title
+            title-mixin:
+              type: mixin
             text:
-              label: Description
+              label: box.intro.name.slides.text.label 
               type: richeditor
             pic:
               type: mediafinder
               mode: image
-              label: Picture
+              label: box.intro.name.slides.pic.label 
             pic_mobile:
               type: mediafinder
               mode: image
-              label: Picture for mobile
+              label: box.intro.name.slides.pic_mobile.label 
             pic_title: 
-              label: Alt title
+              label: box.intro.name.slides.pic_title.label
+
+      anchor-mixin:
+        type: mixin
 
 
             
