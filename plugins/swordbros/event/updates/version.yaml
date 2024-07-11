@@ -1,2 +1,12 @@
 v1.0.1:
     - 'Initialize plugin'
+    - 2024_07_11_190114_create_swordbros_event_events_table.php
+    - 2024_07_11_190115_create_swordbros_event_search_table.php
+    - 2024_07_11_190118_create_swordbros_event_tags_table.php
+    - 2024_07_11_190122_create_swordbros_event_metas_table.php
+    - 2024_07_11_190123_create_swordbros_event_reviews_table.php
+    - 2024_07_11_190125_create_swordbros_event_audiences_table.php
+    - 2024_07_11_190126_create_swordbros_event_categories_table.php
+    - 2024_07_11_190127_create_swordbros_event_types_table.php
+    - 2024_07_11_190128_create_swordbros_event_zones_table.php
+
