@@ -40,7 +40,7 @@ value = "top-menu"
 
           {% if item.children.count %}
             <ul class="dropdown-menu">
-              {% for child in item.children %}
+              {% for child in item.children | filter(i => not i.is_hidden) %}
                 <li>
                   <a
                   class="
