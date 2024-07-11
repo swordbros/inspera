@@ -10,6 +10,8 @@
     "event.tab.images": "Images",
     "event.tab.description": "Description",
     "event.tab.main": "Settings",
+    "event.plugin.event_to_enabled": "Review Enabled",
+    "event.plugin.event_to_disabled": "Review Disabled",
     "event.plugin.eventreviews": "Reviews",
     "event.plugin.eventtags": "Tagged Events",
     "event.plugin.categories": "Categories",

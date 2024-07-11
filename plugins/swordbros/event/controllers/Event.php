@@ -8,6 +8,7 @@ use Input;
 use Lang;
 use Swordbros\Base\Controllers\Amele;
 use Swordbros\Event\Models\EventModel;
+use Swordbros\Event\Models\EventReviewModel;
 use Swordbros\Event\Models\EventZoneModel;
 
 class Event extends Controller
@@ -64,4 +65,28 @@ class Event extends Controller
         return $event->makePartial('blank_form');
     }
 
+    public function onEventReviewStatusChange(){
+
+        $status = Input::get('status', false);
+        if($status===false){
+            \Flash::error('tamamdır');
+        } else {
+            $review = EventReviewModel::find(Input::get('review_id', 0));
+            if($review){
+                if($status=="1"){
+                    $review->status = 1;
+                    $review->save();
+                    \Flash::success(trans('swordbros.event::plugin.event_to_enabled'));
+                    return ['#status-icons-'.$review->id=>'<button type="button" class="oc-icon-ban btn-icon" data-request-data="{status:0,review_id:'.$review->id.'}" data-request="onEventReviewStatusChange"></button>'];
+
+
+                } else if($status==="0"){
+                    $review->status = 0;
+                    \Flash::warning(trans('swordbros.event::plugin.event_to_disabled'));
+                    $review->save();
+                    return ['#status-icons-'.$review->id=>'<button type="button" class="oc-icon-check btn-icon" data-request-data="{status:1,review_id:'.$review->id.'}" data-request="onEventReviewStatusChange"></button>'];
+                }
+            }
+        }
+    }
 }

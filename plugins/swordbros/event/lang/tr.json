@@ -6,6 +6,8 @@
     "event.cols.event_zone": "Etkinlik Yeri",
     "event.cols.title": "Adı",
     "event.cols.thumb": "Resim",
+    "event.plugin.event_to_enabled": "Yorum Kapatıldı",
+    "event.plugin.event_to_disabled": "Yorum Onaylandı",
     "event.plugin.eventreviews": "Yorumlar",
     "event.plugin.categories": "Kategorileri",
     "event.plugin.types": "Etkinlik Türleri",
