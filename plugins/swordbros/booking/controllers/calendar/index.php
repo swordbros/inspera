@@ -63,7 +63,7 @@
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
-            initialDate: '2024-06-12',
+            initialDate: '<?=date('Y-m-d H:i:s')?>',
             navLinks: true, // can click day/week names to navigate views
             selectable: true,
             selectMirror: true,

@@ -19,5 +19,9 @@ class EventReview extends Controller
         parent::__construct();
         BackendMenu::setContext('Swordbros.Event', 'main-menu-item', 'side-menu-item7');
     }
-
+    public static function eventReviewTable(){
+        $eventReview = new EventReview();
+        $eventReview->asExtension('ListController')->index();
+        return $eventReview->listRender();
+    }
 }
