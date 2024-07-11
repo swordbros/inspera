@@ -1,0 +1,49 @@
+page: home
+boxes:
+    -
+        unique_id: bf2df8e7
+        is_enabled: 1
+        partial: intro
+        references_box_id: null
+        data:
+            slides: null
+    -
+        unique_id: 0d22af21
+        is_enabled: 1
+        partial: events
+        references_box_id: null
+        data:
+            box_title: Image
+            title_level: h2
+            horizontal_alignment: ''
+            eyebrow_title: ''
+            title: ''
+            sub_title: ''
+            anchor_id: ''
+    -
+        unique_id: 77fe2692
+        is_enabled: 1
+        partial: cta
+        references_box_id: null
+        data:
+            box_title: Image
+            title_level: h2
+            horizontal_alignment: ''
+            eyebrow_title: ''
+            title: ''
+            sub_title: ''
+            background_color: ''
+            background_image: ''
+            background_horizontal_position: ''
+            background_vertical_position: ''
+            background_size: cover
+            background_repeat: no-repeat
+            background_fix: '0'
+            background_overlay: ''
+            custom_overlay:
+                start_color: null
+                end_color: null
+                direction: horizontal
+            background_overlay_opacity: null
+            anchor_id: ''
+            classes: ''

@@ -1,0 +1,71 @@
+boxes_version: 3.6.17
+type: full
+pages:
+    -
+        name: Home
+        slug: home
+        url: /
+        layout: default
+        meta_title: ''
+        meta_description: ''
+        site_id: 1
+        site_root_id: 1
+        is_hidden: false
+        custom_config: {  }
+    -
+        name: Art
+        slug: art
+        url: /art
+        layout: default
+        meta_title: ''
+        meta_description: ''
+        site_id: 1
+        site_root_id: 2
+        is_hidden: false
+        custom_config:
+            logo_color: white
+            hide_in_main_nav: '0'
+            show_breadcrumb: '1'
+        children:
+            -
+                name: 'Art Space'
+                slug: art-space
+                url: /art-space
+                layout: default
+                meta_title: ''
+                meta_description: ''
+                site_id: 1
+                site_root_id: 3
+                is_hidden: false
+                custom_config:
+                    logo_color: white
+                    hide_in_main_nav: '0'
+                    show_breadcrumb: '1'
+            -
+                name: 'Art Academy'
+                slug: art-academy
+                url: /art-academy
+                layout: default
+                meta_title: ''
+                meta_description: ''
+                site_id: 1
+                site_root_id: 4
+                is_hidden: false
+                custom_config:
+                    logo_color: white
+                    hide_in_main_nav: '0'
+                    show_breadcrumb: '1'
+    -
+        name: 'For Inspiration'
+        slug: for-inspiration
+        url: /for-inspiration
+        layout: default
+        meta_title: ''
+        meta_description: ''
+        site_id: 1
+        site_root_id: 5
+        is_hidden: false
+        custom_config:
+            logo_color: white
+            hide_in_main_nav: '0'
+            show_breadcrumb: '1'
