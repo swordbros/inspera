@@ -1,6 +1,6 @@
 name: box.upcoming_events.name
 handle: events
-labelFrom: title
+labelFrom: box_title
 section: box.accordion.defaultTab
 # components:
 #   eventList:

@@ -1,25 +1,25 @@
-{% if button_text %}
+{% if box.button_text %}
   <a
     class="
       custom-button
-      btn-{{ button_type }}
-      {{ button_size != 'medium' ? 'btn-' ~ button_size }}
+      -{{ box.button_type }}
+      {#{ box.button_size != 'medium' ? 'btn-' ~ box.button_size }#}
     "
-    href="{{ button_link }}"
-    {% if button_is_external %}
+    href="{{ box.button_link }}"
+    {% if box.button_is_external %}
       target="_blank"
     {% endif %}
-    {{ button_attributes }}
+    {{ box.button_attributes }}
   >
-    {% if button_icon %}
+    {#% if box.button_icon %}
       <span class="">
-        <i class="fa {{ button_icon }}"></i>
+        <i class="fa {{ box.button_icon }}"></i>
       </span>
-    {% endif %}
+    {% endif %#}
 
-    <span class="">
-      {{ button_text | raw }}
-    </span>
+    {#<span class="">#}
+      {{ box.button_text | raw }}
+    {#</span>#}
 
   </a>
 {% endif %}

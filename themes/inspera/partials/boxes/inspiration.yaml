@@ -1,6 +1,6 @@
 name: box.art_inspiration.name
 handle: inspiration
-labelFrom: title
+labelFrom: box_title
 section: box.accordion.defaultTab
 
 
@@ -19,23 +19,25 @@ form:
 
       inspirations:
         type: repeater
-        promt: box.art_inspiration.inspiration.prompt 
-        label: box.art_inspiration.inspiration.label 
+        prompt: box.art_inspiration.inspirations.prompt 
+        label: box.art_inspiration.inspirations.label
+        maxItems: 3
         form:
           fields:
             title-mixin:
               type: mixin
 
             text:
-              label: box.art_inspiration.inspiration.item_text.label
+              label: box.art_inspiration.inspirations.text.label
+              type: richeditor
 
             pic:
               type: mediafinder
               mode: image
-              label: box.art_inspiration.inspiration.pic.label
-              
+              label: box.art_inspiration.inspirations.pic.label
+
             pic_title: 
-              label: box.art_inspiration.inspiration.pic_title.label 
+              label: box.art_inspiration.inspirations.pic_title.label 
 
       anchor-mixin:
           type: mixin

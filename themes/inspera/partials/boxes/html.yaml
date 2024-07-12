@@ -1,6 +1,6 @@
 name: box.html.name
 handle: html
-label: HTML
+label: box_title
 section: box.section.base_components
 spacing:
   - general

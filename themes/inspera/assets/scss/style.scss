@@ -120,7 +120,18 @@ theme.
 
 $color-dark: #080808;
 $color-main: #0d5eff;
+$color-secondary: #DDFA80;;
 $color-white: #ffffff;
+$color-muted: #F4F3F2;
+
+// $primary:       $blue;
+// $secondary:     $gray-600;
+// $success:       $green;
+// $info:          $cyan;
+// $warning:       $yellow;
+// $danger:        $red;
+// $light:         $gray-100;
+// $dark:          $gray-900;
 
 * {
   outline: none !important;
@@ -337,6 +348,10 @@ button[type="submit"] {
 }
 .spacing-50 {
   height: 50px;
+}
+
+.bg-light {
+  background-color: $color-muted;
 }
 
 /* ACCORDION */
@@ -1467,18 +1482,18 @@ button[type="submit"] {
 .col-12.text-center .custom-button {
   margin-top: 50px;
 }
+
 .custom-button {
   height: 70px;
   line-height: 70px;
-  display: inline-block;
-  background: $color-main;
-  padding: 0 40px;
-  color: $color-white;
+  display: inline-block;  
+  padding: 0 40px;  
   font-size: 14px;
   font-weight: 700;
   position: relative;
   text-transform: uppercase;
   @include transition;
+
   &:before {
     content: "";
     width: 100%;
@@ -1498,6 +1513,16 @@ button[type="submit"] {
       left: 6px;
       border-color: $color-dark;
     }
+  }
+
+  &.-primary {
+    background: $color-main;
+    color: $color-white;
+  }
+
+  &.-secondary {
+    background: $color-secondary;
+    color: $color-dark;
   }
 }
 
@@ -2244,6 +2269,27 @@ button[type="submit"] {
 }
 
 /* ART SLIDER */
+.collection-row-even, .collection-row-odd {
+  .col-lg-6:nth-of-type(odd) {
+    padding: 2rem 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .collection-row-even {
+    .col-lg-6:nth-of-type(odd) {
+      order: 2;
+      padding: 2rem 0 0 #{100% / 24};
+    }
+  }
+
+  .collection-row-odd {
+    .col-lg-6:nth-of-type(odd) {
+      padding: 2rem 0 0;
+    }
+  }
+}
+
 .art-slider {
   width: 100%;
   float: left;
@@ -2546,6 +2592,8 @@ button[type="submit"] {
     }
   }
 }
+
+@import "background";
 
 /* NOTE BOX */
 .note-box {
@@ -3082,10 +3130,10 @@ button[type="submit"] {
     border-top: double 10px #f7f7f7;
     margin-top: 60px;
     font-size: 14px;
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-    }
+    // .container {
+    //   display: flex;
+    //   flex-wrap: wrap;
+    // }
     .copyright {
       display: inline-block;
     }
@@ -3354,6 +3402,16 @@ button[type="submit"] {
   }
   .footer .footer-menu {
     margin-bottom: 50px;
+  }
+}
+
+/* INSPIRATION */
+.inspiration-card {
+  .image-box {
+    margin-bottom: 1rem;
+  }
+  h6 {
+    font-family: 'Cinzel', serif;
   }
 }
 

@@ -1,15 +1,18 @@
 <section class="content-section">
-  <div class="video-bg">
-    <video src="videos/video.mp4" loop autoplay playsinline muted></video>
-  </div>
+
+  {% if box.background_image or box.background_color or box.background_video %}
+    {% partial 'boxes/parts/_background.htm' %}
+  {% endif %}
+
   <div class="container">
     <div class="cta-box" data-scroll data-scroll-speed="-1">
+      
       <h6>
-        {{ item.eyebrow_title|raw }}
+        {{ box.eyebrow_title | raw }}
       </h6>
-      <{{item.title_level}}>
-        {{ item.title | raw }}
-      </{{item.title_level}}>
+      <{{ box.title_level }}>
+        {{ box.title | raw }}
+      </{{ box.title_level }}>
 
       {% partial 'boxes/parts/_button.htm' %}
 

@@ -1,64 +1,28 @@
-<section class="content-section no-bottom-spacing bottom-white" data-background="#fffbf7">
+<section class="content-section" {#data-background="#fffbf7"  no-bottom-spacing bottom-white #}>
   <div class="container">
 
     <div class="row justify-content-center">
       <div class="col-12">
         <div class="section-title text-center">
-          <figure><img src="images/title-shape.png" alt="Image"></figure>
-          <{{item.title_level}}>
-            {{ item.title | raw }}
-          </{{item.title_level}}>
+          <{{ box.title_level }}>
+            {{ box.title | raw }}
+          </{{ box.title_level }}>
         </div>
       </div>
+
       {% for item in box.inspirations %}
         <div class="col-lg-4 col-md-6">
-          <div class="text-content" data-scroll data-scroll-speed="-1">
-            <h6>{{ item.title }}</h6>
-            {{ item.text }}
+          <div class="text-content inspiration-card" data-scroll data-scroll-speed="-1">
+            <figure class="image-box" data-scroll data-scroll-speed="0">
+              {# TODO temp opacity - animations disabled #}
+              <img src="{{ item.pic | media | resize(510, 'auto') }}" alt="{{ item.pic_title }}" style="opacity: 1">
+            </figure>
+            <h6>{{ item.title | raw }}</h6>
+            {{ item.text | raw }}
           </div>
         </div>
       {% endfor %}
     </div>
         
-  </div>
-  <div class="clearfix spacing-100"></div>
-  <div class="horizontal-scroll">
-    <div class="scroll-inner" data-scroll data-scroll-direction="horizontal" data-scroll-speed="5">
-        <div class="scroll-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-3">
-                  <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image01.jpg" alt="Image"> </figure>
-              </div>
-              <div class="col-md-4 offset-md-1">
-                  <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image02.jpg" alt="Image"> </figure>
-              </div>
-              <div class="col-md-2 offset-md-1">
-                  <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image03.jpg" alt="Image"> </figure>
-              </div>
-            </div>
-        </div>
-        </div>
-        <div class="scroll-wrapper">
-          <div class="container-fluid">
-            <div class="row">
-            <div class="col-md-3">
-                <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image01.jpg" alt="Image"> </figure>
-            </div>
-            <!-- end col-3 -->
-            <div class="col-md-4 offset-md-1">
-                <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image02.jpg" alt="Image"> </figure>
-            </div>
-            <!-- end col-3 -->
-            <div class="col-md-2 offset-md-1">
-                <figure class="image-box" data-scroll data-scroll-speed="0"> <img src="images/image03.jpg" alt="Image"> </figure>
-            </div>
-            <!-- end col-3 -->
-            </div>
-            <!-- end row -->
-          </div>
-        </div>
-        <!-- end scroll-wrapper -->
-    </div>
   </div>
 </section>

@@ -1,0 +1,34 @@
+// $lightOverlayStart: rgba($global-background, .5);
+// $lightOverlayEnd: rgba($global-background, .7);
+$lightOverlay: #fff;
+$darkOverlay: #080808;
+
+.background-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.filter-bg-overlay {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: block;  
+
+  + .container, + div {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+.filter-bg-overlay-light {
+  @extend .filter-bg-overlay;
+  background-color: $lightOverlay;
+  // background: linear-gradient(90deg, $lightOverlayStart 0%, $lightOverlayEnd 100%);
+}
+
+.filter-bg-overlay-dark {
+  @extend .filter-bg-overlay;
+  background-color: $darkOverlay;
+  // background: linear-gradient(90deg, $darkOverlayStart 0%, $darkOverlayEnd 100%);
+}

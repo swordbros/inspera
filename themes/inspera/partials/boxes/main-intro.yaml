@@ -7,7 +7,11 @@ form:
   tabs:
     defaultTab: box.accordion.defaultTab
     fields:
-      
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.art_inspiration.name
+        
       slides:
         type: repeater
         prompt: box.intro.name.slides.prompt 

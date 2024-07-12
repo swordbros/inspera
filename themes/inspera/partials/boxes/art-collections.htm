@@ -1,27 +1,29 @@
-{# modify odd-even left-right on desktop #}
-<section class="content-section">
+<section class="content-section" {{ box.anchor_id ? 'id='~box.anchor_id }}>
   <div class="container">
+
     {% for item in box.collections %}
-      <div class="row g-0 align-items-center">
+      <div class="row g-0 align-items-center {{ loop.index is odd ? 'collection-row-odd' : 'collection-row-even' }}">
         <div class="col-lg-6">
           <div class="art-slider">
             <div class="titles">
               <h6>
                 {{ item.eyebrow_title|raw }}
               </h6>
-              <{{item.title_level}}>
+              <{{ item.title_level }}>
                 {{ item.title | raw }}
-              </{{item.title_level}}>
+              </{{ item.title_level }}>
             </div>
             <!-- end titles -->
             <div class="swiper-container art-slider-content">
               <div class="swiper-wrapper">
                 {% for link in item.links %}
+                  {% set resolvedLink = link(link.reference) %}
+
                   <div class="swiper-slide">
                     <span>{{ loop.index }}</span>
                     <h3>
-                      <a href="{{ link.reference|link }}">
-                        {{ link.reference|content }}
+                      <a href="{{ resolvedLink.url }}">
+                        {{ resolvedLink.title }}
                       </a>
                     </h3>
                   </div>
@@ -35,11 +37,12 @@
 
         <div class="col-lg-6">
           <div class="art-slider" data-scroll data-scroll-speed="1">
-            <div class="swiper-container art-slider-images">
+            {# TO DO remove opacity when enable animations #}
+            <div class="swiper-container art-slider-images" style="opacity: 1">
               <div class="swiper-wrapper">
                 {# not 100% sure if there will be a slider #}
                 <div class="swiper-slide">
-                  <img src="{{ item.pic|media }}" alt="{{ item.pic_title }}">
+                  <img src="{{ item.pic | media | resize(662, 450, {mode: 'crop'}) }}" alt="{{ item.pic_title }}">
                 </div>
               </div>
             </div>
@@ -47,5 +50,6 @@
         </div>
       </div>
     {% endfor %}
+
   </div>
 </section>

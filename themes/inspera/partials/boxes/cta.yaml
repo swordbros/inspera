@@ -1,17 +1,17 @@
 name: CTA
 handle: cta
 labelFrom: box_title
-section: Content
+section: box.defaultTab.content
 # translatable:
 
 form:
   tabs:
-    defaultTab: Content
+    defaultTab: box.defaultTab.content
     fields:
       box_title:
         label: box.box_title.label
         comment: box.box_title.comment
-        default: box.image.name
+        default: CTA
       
       title-mixin:
         type: mixin
@@ -21,6 +21,7 @@ form:
       
       background-mixin:
         type: mixin
+        tab: box.mixin_background.tab
       
       anchor-mixin:
         type: mixin

@@ -1,6 +1,6 @@
 name: box.art_collections.name
 handle: collections
-labelFrom: title
+labelFrom: box_title
 section: box.accordion.defaultTab
 
 

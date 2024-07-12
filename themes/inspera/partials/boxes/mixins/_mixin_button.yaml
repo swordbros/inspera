@@ -1,28 +1,15 @@
 handle: button-mixin
 mixin:
+  _button:
+    type: section
 
   button_text:
     label: box.mixin_button.button_text.label
     type: text
-    span: left
 
   button_link:
     label: box.mixin_button.button_link.label
     type: text
-
-  button_icon:
-    label: Icon
-    type: text
-    span: left
-
-  button_icon_position:
-    label: Icon Position
-    type: dropdown
-    span: right
-    default: left
-    options:
-      left: Default (left)
-      right: Right
 
   button_type:
     label: box.mixin_button.button_type.label
@@ -58,8 +45,22 @@ mixin:
   button_is_external:
     label: box.mixin_button.button_is_external.label
     type: switch
-    span: left
+    span: right
 
   button_attributes:
     label: box.mixin_button.button_attributes.label
     type: text
+  
+  # button_icon:
+  #   label: Icon
+  #   type: text
+  #   span: left
+
+  # button_icon_position:
+  #   label: Icon Position
+  #   type: dropdown
+  #   span: right
+  #   default: left
+  #   options:
+  #     left: Default (left)
+  #     right: Right

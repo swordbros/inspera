@@ -1,0 +1,48 @@
+{% if box.background_video %}
+
+  <div class="video-bg">
+    <video src="{{ box.background_video | media }}" loop autoplay playsinline muted></video>
+  </div>
+
+{% else %}
+
+  <div
+    class="background-image"
+    style="
+      {% if box.background_image %}
+        background: url(' {{ box.background_image | media }} ') {{ box.background_horizontal_position }} {{ box.background_vertical_position }} / {{ box.background_size }} {{ box.background_repeat }} {{ box.background_fix ? 'fixed' }};
+      {% endif %}
+      {% if box.box_height and box.px_height %}
+        height: {{ box.px_height }}px;
+      {% endif %}
+    "
+    {{ box.anchor_id ? 'id="'~box.anchor_id~'"' }}
+  >
+  </div>
+
+  {% if box.background_overlay %}
+    <div
+      class="
+        {% if box.background_overlay == 'custom' %}
+          filter-bg-overlay
+        {% else %}
+          filter-bg-overlay-{{ box.background_overlay }}
+        {% endif %}
+      " 
+      style="
+        {% if box.background_overlay == 'custom' %}
+
+          {% set overlay = box.custom_overlay %}
+
+          {% if overlay.end_color %}
+            background: linear-gradient({% if overlay.direction == 'horizontal' %}90deg{% else %}0deg{% endif %}, {{ overlay.start_color }} 0%, {{ overlay.end_color }} 100%);
+          {% elseif box.custom_overlay.start_color %}
+            background-color: {{ overlay.start_color }};
+          {% endif %}
+        {% endif %}
+        opacity: {{ box.background_overlay_opacity ? box.background_overlay_opacity / 100 : '.5' }}
+      "
+    ></div>
+  {% endif %}
+
+{% endif %}

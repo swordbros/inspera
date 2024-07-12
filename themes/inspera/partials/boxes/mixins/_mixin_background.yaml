@@ -14,6 +14,10 @@ mixin:
     label: box.mixin_background.background_image.label
     type: mediafinder
     mode: image
+  
+  background_video:
+    label: box.mixin_background.background_video.label
+    type: mediafinder
 
   background_horizontal_position:
     label: box.mixin_background.background_horizontal_position.label

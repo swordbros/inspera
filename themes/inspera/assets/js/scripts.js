@@ -198,63 +198,63 @@
 
 
   // SLIDER
-  // var artsliderimages = new Swiper('.art-slider-images', {
-  //   spaceBetween: 0,
-  //   autoplay: {
-  //     delay: 9500,
-  //     disableOnInteraction: false,
-  //   },
-  //   loop: true,
-  //   loopedSlides: 4,
-  //   thumbs: {
-  //     swiper: artslidercontent
-  //   },
-  //   breakpoints: {
-  //     1024: {
-  //       loopedSlides: 3,
-  //     },
-  //     768: {
-  //       loopedSlides: 2,
-  //     },
-  //     640: {
-  //       loopedSlides: 1
-  //     },
-  //     320: {
-  //       loopedSlides: 1
-  //     }
-  //   }
-  // });
+  var artsliderimages = new Swiper('.art-slider-images', {
+    spaceBetween: 0,
+    autoplay: {
+      delay: 9500,
+      disableOnInteraction: false,
+    },
+    // loop: true,
+    // loopedSlides: 4,
+    thumbs: {
+      swiper: artslidercontent
+    },
+    breakpoints: {
+      1024: {
+        loopedSlides: 3,
+      },
+      768: {
+        loopedSlides: 2,
+      },
+      640: {
+        loopedSlides: 1
+      },
+      320: {
+        loopedSlides: 1
+      }
+    }
+  });
 
 
   // SLIDER THUMBS
-  // var artslidercontent = new Swiper('.art-slider-content', {
-  //   spaceBetween: 30,
-  //   direction: 'vertical',
-  //   slidesPerView: 4,
-  //   loop: true,
-  //   loopedSlides: 4,
-  //   breakpoints: {
-  //     1024: {
-  //       slidesPerView: 3
-  //     },
-  //     768: {
-  //       slidesPerView: 2
-  //     },
-  //     640: {
-  //       slidesPerView: 1
-  //     },
-  //     320: {
-  //       slidesPerView: 1
-  //     }
-  //   }
-  // });
+  var artslidercontent = new Swiper('.art-slider-content', {
+    spaceBetween: 30,
+    direction: 'vertical',
+    slidesPerView: 4,
+    // loop: true,
+    // loopedSlides: 4,
+    breakpoints: {
+      1024: {
+        slidesPerView: 3
+      },
+      768: {
+        slidesPerView: 2
+      },
+      640: {
+        slidesPerView: 1
+      },
+      320: {
+        slidesPerView: 1
+      }
+    }
+  });
 
-  // if ($(".art-slider-images")[0]) {
-  //   artsliderimages.controller.control = artslidercontent;
-  //   artslidercontent.controller.control = artsliderimages;
-  // } else {
+  if ($(".art-slider-images")[0]) {
+    artsliderimages.controller.control = artslidercontent;
+    artslidercontent.controller.control = artsliderimages;
+  } else {
 
-  // }
+  }
 
 
   // PRELOADER

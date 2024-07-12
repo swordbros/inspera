@@ -11,7 +11,7 @@ value = "socials-footer"
 {% set aboutMenuItems = aboutFooterMenu.items | filter(i => not i.is_hidden) %}
 {% set socialsMenuItems = socialsFooterMenu.items | filter(i => not i.is_hidden) %}
 
-<footer class="footer">
+<footer class="footer bg-light">
   <div class="container">
     <div class="row">
 
@@ -61,7 +61,7 @@ value = "socials-footer"
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="container">
+    <div class="container text-center">
       <span class="copyright">
         © {{ 'now'|date('Y') }} /inspera | Art & History Museum
       </span>
