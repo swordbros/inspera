@@ -26,24 +26,107 @@ boxes:
         partial: cta
         references_box_id: null
         data:
-            box_title: Image
+            box_title: CTA
+            eyebrow_title: 'Upcoming Exhibitions<br> 22 Oct 2024'
+            title: 'Pop Up<br> Karma Sergi'
             title_level: h2
-            horizontal_alignment: ''
-            eyebrow_title: ''
-            title: ''
-            sub_title: ''
+            button_text: 'More Info'
+            button_link: '#'
+            button_type: secondary
+            button_size: large
+            button_width: ''
+            button_is_external: '0'
+            button_attributes: ''
             background_color: ''
-            background_image: ''
-            background_horizontal_position: ''
-            background_vertical_position: ''
+            background_image: /cta/mainstage01.jpg
+            background_video: ''
+            background_horizontal_position: center
+            background_vertical_position: center
             background_size: cover
             background_repeat: no-repeat
             background_fix: '0'
-            background_overlay: ''
+            background_overlay: dark
             custom_overlay:
                 start_color: null
                 end_color: null
                 direction: horizontal
-            background_overlay_opacity: null
+            background_overlay_opacity: 80
             anchor_id: ''
             classes: ''
+    -
+        unique_id: 55cbed73
+        is_enabled: 1
+        partial: collections
+        references_box_id: null
+        data:
+            box_title: 'Art collections'
+            collections:
+                -
+                    pic: /collections/open-stage01.jpg
+                    pic_title: test
+                    eyebrow_title: '<p>Art Collection</p>'
+                    title: Entertainment
+                    title_level: h2
+                    links:
+                        -
+                            reference: 'october://offline-boxes-pages@link/art-space?title=+-+Art+Space'
+                        -
+                            reference: 'october://offline-boxes-pages@link/art-academy?title=+-+Art+Academy'
+                -
+                    pic: /collections/voyn-bistro.jpg
+                    pic_title: ''
+                    eyebrow_title: 'Art Collection'
+                    title: 'Explore Our Art Space and Academy'
+                    title_level: h2
+                    links:
+                        -
+                            reference: 'october://offline-boxes-pages@link/art?title=Art'
+                        -
+                            reference: 'october://offline-boxes-pages@link/for-inspiration?title=For+Inspiration'
+            anchor_id: art-collections
+    -
+        unique_id: 0186d051
+        is_enabled: 1
+        partial: news
+        references_box_id: null
+        data:
+            box_title: ''
+            title_level: h2
+            horizontal_alignment: center
+            eyebrow_title: ''
+            title: 'BLOG News'
+            sub_title: ''
+            anchor_id: ''
+    -
+        unique_id: 41f551b7
+        is_enabled: 1
+        partial: inspiration
+        references_box_id: null
+        data:
+            box_title: 'Art inspiration'
+            eyebrow_title: ''
+            title: 'Art Inspiration of<br> 19th Century'
+            title_level: h2
+            inspirations:
+                -
+                    eyebrow_title: ''
+                    title: 'The challenge'
+                    title_level: h3
+                    text: '<p>In the 1980s, “the UK’s national museums faced political pressure from the Conservative government to charge for admission, to make them less dependent on government funding".</p>'
+                    pic: /collections/voyn-bistro-05.jpg
+                    pic_title: ''
+                -
+                    eyebrow_title: ''
+                    title: 'The initiative'
+                    title_level: h3
+                    text: '<p>In 1997, the new Labour<br>government made a<br>commitment to reinstate free<br>entry for national museums in<br>order to have a more diverse<br>range of visitors. “Following a<br>campaign led by the<br>museums themselves,</p>'
+                    pic: /collections/voyn-bistro-06.jpg
+                    pic_title: ''
+                -
+                    eyebrow_title: ''
+                    title: 'The impact'
+                    title_level: h2
+                    text: '<p>The national museums which<br>dropped charges all saw<br>substantial increases to their<br>visitor numbers, an average of<br>70 percent. In the first year<br>after free admission was<br>introduced visitor figures.</p>'
+                    pic: /collections/outside05.jpg
+                    pic_title: ''
+            anchor_id: ''
