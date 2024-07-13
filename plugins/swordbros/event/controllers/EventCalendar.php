@@ -2,6 +2,7 @@
 
 
 use BackendMenu;
+use Illuminate\Validation\Rules\In;
 use Input;
 use Swordbros\Base\Controllers\Amele;
 use Swordbros\Base\Controllers\BaseController;
@@ -32,12 +33,27 @@ class EventCalendar extends BaseController{
     public function index(){
         $this->vars['event_types'] = Amele::eventTypes();
         $this->vars['event_zones'] = Amele::eventZones();
-        $this->vars['events'] = $this->eventsToCalender();
+        $this->vars['events'] = '[]';//$this->eventsToCalender();
+        $this->vars['getfilteredevents_url'] = \Backend::url('swordbros/event/eventcalendar/getfilteredevents');
         $this->formConfig = $this->makeConfig('$/swordbros/event/models/eventmodel/fields.yaml');
         $this->asExtension('FormController')->create();
     }
-    private function eventsToCalender(){
-        $rows = EventModel::all();
+    public function getFilteredEvents(){
+        $filter['start'] = Input::get('start', false);
+        $filter['end'] = Input::get('end', false);
+        return \Response::json($this->eventsToCalender($filter)) ;
+    }
+
+    private function eventsToCalender($filter=[]){
+        $query = EventModel::query();
+        if(isset($filter['start']) && $filter['start']){
+            $query->where([['start', '>=', $filter['start']]]);
+        }
+        if(isset($filter['end']) && $filter['end']){
+            $query->where([['end', '<=', $filter['end']]]);
+        }
+
+        $rows = $query->get();
         $events = [];
         if(!$rows->isEmpty()){
             foreach ($rows as $row){
@@ -47,15 +63,12 @@ class EventCalendar extends BaseController{
                     'end'=>$row->end,
                     'backgroundColor'=> $row->color?$row->color:'red',
                     'classNames'=> [$row->status?'swordbros-event active':'swordbros-event passive'],
-                    //'display'=> 'background',
-                    //'textColor'=> $row->status?'#000000':'#FFFFFF',
-                    //'eventBackgroundColor'=>$row->color,
                     'event_view_url'=> \Backend::url('swordbros/event/event/update',['id'=>$row->id]),
                     'event_booking_url'=> \Backend::url('swordbros/booking/booking').'?event_id='.$row->id,
                 ];
             }
         }
-        return json_encode($events, JSON_UNESCAPED_UNICODE);
+        return $events;
     }
     public function onGetEventTypeForm()
     {

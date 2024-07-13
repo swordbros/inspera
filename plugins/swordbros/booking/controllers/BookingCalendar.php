@@ -1,6 +1,7 @@
 <?php namespace Swordbros\Booking\Controllers;
 
 use BackendMenu;
+use Input;
 use Swordbros\Base\Controllers\BaseController;
 use Swordbros\Booking\models\BookingModel;
 use Swordbros\Base\Controllers\Amele;
@@ -8,7 +9,7 @@ use Swordbros\Event\Controllers\Event;
 use Swordbros\Event\Models\EventModel;
 
 
-class Calendar extends BaseController
+class BookingCalendar extends BaseController
 {
     public $implement = [
         \Backend\Behaviors\ListController::class
@@ -31,10 +32,25 @@ class Calendar extends BaseController
     public function index(){
         $this->vars['services'] = Amele::eventTypes();
         $this->vars['places'] = Amele::eventZones();
-        $this->vars['events'] = $this->eventsToCalender();
+        $this->vars['events'] = '[]';
+        $this->vars['getfilteredevents_url'] = \Backend::url('swordbros/booking/bookingcalendar/getfilteredevents');
     }
-    private function eventsToCalender(){
-        $rows = EventModel::all();
+    public function getFilteredEvents(){
+        $filter['start'] = Input::get('start', false);
+        $filter['end'] = Input::get('end', false);
+        return \Response::json($this->eventsToCalender($filter)) ;
+
+    }
+    private function eventsToCalender($filter=[]){
+        $query = EventModel::query();
+        if(isset($filter['start']) && $filter['start']){
+            $query->where([['start', '>=', $filter['start']]]);
+        }
+        if(isset($filter['end']) && $filter['end']){
+            $query->where([['end', '<=', $filter['end']]]);
+        }
+
+        $rows = $query->get();
         $events = [];
         if(!$rows->isEmpty()){
             foreach ($rows as $row){
@@ -52,7 +68,7 @@ class Calendar extends BaseController
                 ];
             }
         }
-        return json_encode($events, JSON_UNESCAPED_UNICODE);
+        return $events;
     }
 
     public function onGetEventTypeForm()
