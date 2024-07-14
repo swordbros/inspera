@@ -6,7 +6,7 @@ if(!$reviews->isEmpty()){ ?>
             <table class="table data">
                 <?php foreach ($reviews as $review){?>
                     <tr>
-                        <td><?=$review->user->username ?></td>
+                        <td><?php if(isset($review->user)){ echo $review->user->username; } ?></td>
                         <td><?= \Swordbros\Base\Controllers\Amele::stars($review->stars)?></td>
                         <td class="text-start"><?= e(__($review->review)) ?></td>
                         <td id="status-icons-<?= $review->id ?>" class="text-end">

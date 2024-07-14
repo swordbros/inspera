@@ -91,21 +91,27 @@
             editable: true,
             dayMaxEvents: true, // allow "more" link when too many events
             events: <?=$events?>,
-            eventDidMount: function(info) {
-
+            events: function(fetchInfo, successAjaxCallback, failureAjaxCallback) {
+                $.ajax({
+                    url: '<?=$getfilteredevents_url?>',
+                    dataType: 'json',
+                    data: {
+                        start: fetchInfo.startStr,
+                        end: fetchInfo.endStr
+                    },
+                    success: function(data) {
+                        console.log("takvim", data);
+                        successAjaxCallback(data);
+                    },
+                    error: function() {
+                        failureAjaxCallback();
+                    }
+                });
             },
-            /*eventContent: function(arg) {
-                let event = arg.event;
-                let description = event.extendedProps.description;
-                let color = event.extendedProps.color;
-
-                return {
-                    html: `<div class="fc-event-title" style="color:${event.borderColor}">${event.title}</div>`
-
-                }
-            }*/
+            datesSet: function(dateInfo) {
+                calendar.refetchEvents();
+            }
         });
-
         calendar.render();
     });
 
