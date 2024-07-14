@@ -1,19 +1,54 @@
 <section class="content-section">
   <div class="container">
-    <div class="titles">
-        <h6>
-          {{ item.eyebrow_title|raw }}
-        </h6>
-        <{{item.title_level}}>
-          {{ item.title | raw }}
-        </{{item.title_level}}>
+
+    <div class="row">
+      <div class="col-auto">
+        <div class="section-title">
+          <{{ box.title_level }}>
+            {{ box.title | raw }}
+          </{{ box.title_level }}>
+        </div>
+      </div>
+      <div class="col-auto">
+        <a href="#" class="circle-button">
+          {{ 'BLOG News' |_ }}
+        </a>
+      </div>
     </div>
+
     <div class="row g-0 align-items-center">
-      {% for post in posts %}        
+      {% for post in posts %}
+        {% set url = 'blog/post'|page({ slug: post.slug, id: post.id }) %}
+
         <div class="col-lg-6">
-            CARD based on event listing card
+          <div class="news-box" data-scroll data-scroll-speed="-1">
+            <figure>
+              <a href="{{ url }}">
+                {# TODO remove opacity 1 for animations #}
+                <img src="{{ post.gallery_media | media }}" alt="{{ post.title }}" class="img" style="opacity: 1">
+              </a>
+            </figure>
+
+            <div class="content-box">
+              <p>
+                <span class="date-label">
+                  {{ post.published_at_date|date('j M Y') }}
+                </span>
+              </p> 
+              <h3>
+                <a href="{{ url }}">
+                  {{ post.title }}
+                </a>
+              </h3>
+              <p>{{ post.featured_text | raw }}</p>
+              <a href="{{ url }}" class="text-decoration-underline">
+                {{ 'Continue reading' |_ }}
+              </a>
+            </div>
+          </div>
         </div>
       {% endfor %}
     </div>
+
   </div>
 </section>

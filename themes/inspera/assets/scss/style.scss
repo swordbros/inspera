@@ -2085,10 +2085,12 @@ button[type="submit"] {
 .col-lg-4:nth-child(3n + 3) .exhibition-box {
   padding-left: 30px;
 }
+
 .exhibition-box {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+
   &.is-inview .img {
     opacity: 1;
     transform: scale(1);
@@ -2201,6 +2203,94 @@ button[type="submit"] {
       margin: 0;
     }
   }
+}
+
+/* NEWS BOX */
+.col-lg-6:nth-child(2n + 1) .exhibition-box {
+  padding-right: 30px;
+}
+
+.col-lg-6:nth-child(2n + 2) .exhibition-box {
+  padding-left: 30px;
+}
+
+.news-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  &.is-inview .img {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  figure {
+    width: 100%;
+    display: block;
+    margin-bottom: 35px;
+    position: relative;
+    overflow: hidden;
+
+    * {
+      @include transition;
+    }
+
+    .img {
+      width: 100%;
+      opacity: 0;
+      transform: scale(1.2);
+      @include transition-cubic;
+    }
+  }
+
+  .content-box {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 20px;
+
+    h3 {
+      width: 100%;
+      display: block;
+      @include  font-titles-small;
+      font-size: 30px;
+      margin-bottom: 20px;
+
+      a {
+        display: inline;
+        background-image: -moz-linear-gradient(
+          rgba(0, 0, 0, 0) calc(99% - 2px),
+          $color-dark 2px
+        );
+        background-image: -webkit-linear-gradient(
+          rgba(0, 0, 0, 0) calc(99% - 2px),
+          $color-dark 2px
+        );
+        background-image: linear-gradient(
+          rgba(0, 0, 0, 0) calc(99% - 2px),
+          $color-dark 2px
+        );
+        background-repeat: no-repeat;
+        background-size: 0% 100%;
+        transition: background-size 0.5s;
+        &:hover {
+          background-size: 100% 100%;
+          text-decoration: none;
+        }
+      }
+    }
+
+    p {
+      width: 100%;
+      display: block;
+    }
+  }
+}
+
+.date-label {
+  background-color: $color-secondary;
+  padding: 4px 6px;
+  font-size: 13px;
 }
 
 /* TEXT BOX */
@@ -3190,6 +3280,12 @@ button[type="submit"] {
   .exhibition-box {
     padding: 0 !important;
   }
+  .news-box .content-box h4 {
+    font-size: 25px;
+  }
+  .news-box {
+    padding: 0 !important;
+  }
   .collection-box {
     padding: 0 !important;
   }
@@ -3330,6 +3426,16 @@ button[type="submit"] {
     padding-left: 0;
     margin: 50px 0;
   }
+  .col-lg-6:nth-child(1) .news-box {
+    padding-right: 0;
+  }
+  .col-lg-6:nth-child(2) .news-box {
+    padding: 0;
+  }
+  .col-lg-6:nth-child(3) .news-box {
+    padding-left: 0;
+    margin: 50px 0;
+  }
   .col-lg-3 .circle-button {
     display: none;
   }
@@ -3340,6 +3446,9 @@ button[type="submit"] {
     font-size: 52px;
   }
   .exhibition-box {
+    margin-top: 60px;
+  }
+  .news-box {
     margin-top: 60px;
   }
   .side-image.right-half {
@@ -3579,10 +3688,16 @@ button[type="submit"] {
   .exhibition-box {
     margin-top: 60px;
   }
+  .news-box {
+    margin-top: 60px;
+  }
   .col-12.text-center .custom-button {
     margin-top: 0;
   }
   .col-lg-4:nth-child(1) .exhibition-box {
+    margin-top: 0;
+  }
+  .col-lg-6:nth-child(1) .news-box {
     margin-top: 0;
   }
   .col-lg-4:nth-child(3) .text-box {
