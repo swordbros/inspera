@@ -1,22 +1,20 @@
 <section class="content-section">
   <div class="container">
 
-    <div class="row">
+    <div class="row align-items-center section-title">
       <div class="col-auto">
-        <div class="section-title">
-          <{{ box.title_level }}>
-            {{ box.title | raw }}
-          </{{ box.title_level }}>
-        </div>
+        <{{ box.title_level }}>
+          {{ box.title | raw }}
+        </{{ box.title_level }}>
       </div>
       <div class="col-auto">
         <a href="#" class="circle-button">
-          {{ 'BLOG News' |_ }}
+          {{ 'See all<br> News' |_ }}
         </a>
       </div>
     </div>
 
-    <div class="row g-0 align-items-center">
+    <div class="row align-center">
       {% for post in posts %}
         {% set url = 'blog/post'|page({ slug: post.slug, id: post.id }) %}
 
@@ -25,7 +23,7 @@
             <figure>
               <a href="{{ url }}">
                 {# TODO remove opacity 1 for animations #}
-                <img src="{{ post.gallery_media | media }}" alt="{{ post.title }}" class="img" style="opacity: 1">
+                <img src="{{ post.banner.path }}" alt="{{ post.title }}" class="img" style="opacity: 1">
               </a>
             </figure>
 
@@ -40,7 +38,9 @@
                   {{ post.title }}
                 </a>
               </h3>
-              <p>{{ post.featured_text | raw }}</p>
+              {% if post.featured_text %}
+                <p>{{ post.featured_text | raw }}</p>
+              {% endif %}
               <a href="{{ url }}" class="text-decoration-underline">
                 {{ 'Continue reading' |_ }}
               </a>

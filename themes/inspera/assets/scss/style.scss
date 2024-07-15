@@ -2206,12 +2206,14 @@ button[type="submit"] {
 }
 
 /* NEWS BOX */
-.col-lg-6:nth-child(2n + 1) .exhibition-box {
-  padding-right: 30px;
-}
-
-.col-lg-6:nth-child(2n + 2) .exhibition-box {
-  padding-left: 30px;
+@media (min-width: 992px) {
+  .col-lg-6:nth-child(2n + 1) .news-box {
+    padding-right: 30px;
+  }
+  
+  .col-lg-6:nth-child(2n + 2) .news-box {
+    padding-left: 30px;
+  }
 }
 
 .news-box {
