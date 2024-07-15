@@ -9,7 +9,7 @@ navigation:
         label: event.plugin.title
         url: /
         icon: icon-adjust
-        order: '500'
+        order: '401'
         sideMenu:
             side-menu-item1:
                 label: event.plugin.calendar

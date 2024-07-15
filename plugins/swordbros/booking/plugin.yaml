@@ -6,10 +6,10 @@ plugin:
     homepage: https://swordbros.com/
 navigation:
     main-menu-item:
-        label: swordbros.booking::lang.plugin.title
+        label: booking.plugin.title
         url: /
         icon: icon-tags
-        order: '600'
+        order: '402'
         sideMenu:
             side-menu-item:
                 label: booking.plugin.calendar
