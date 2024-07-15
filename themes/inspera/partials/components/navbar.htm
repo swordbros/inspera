@@ -5,7 +5,9 @@ handle = "Site\Menus"
 identifier = "slug"
 value = "top-menu"
 ==
-{% set menuItems = mainMenu.items.toNested | filter(i => not i.is_hidden) %}
+{% if mainMenu.items.count %}
+  {% set menuItems = mainMenu.items.toNested | filter(i => not i.is_hidden) %}
+{% endif %}
 
 <nav class="navbar">
 
@@ -28,7 +30,7 @@ value = "top-menu"
     </ul>
 
   </div>
-
+ {% if menuItems is not empty  %}
   <div class="site-menu">
     <ul>
       {% for item in menuItems %}
@@ -62,7 +64,7 @@ value = "top-menu"
     </ul>
 
   </div>
-
+  {% endif %}
   <div class="search-button">
     <i class="far fa-search"></i>
   </div>

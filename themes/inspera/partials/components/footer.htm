@@ -8,10 +8,15 @@ handle = "Site\Menus"
 identifier = "slug"
 value = "socials-footer"
 ==
-{% set aboutMenuItems = aboutFooterMenu.items | filter(i => not i.is_hidden) %}
-{% set socialsMenuItems = socialsFooterMenu.items | filter(i => not i.is_hidden) %}
+{% if aboutFooterMenu.items.count %}
+  {% set aboutMenuItems = aboutFooterMenu.items | filter(i => not i.is_hidden) %}
+{% endif %}
+{%  if socialsFooterMenu.items %}
+  {% set socialsMenuItems = socialsFooterMenu.items | filter(i => not i.is_hidden) %}
+{% endif %}
 
 <footer class="footer bg-light">
+  {% partial 'components/subscribe' %}
   <div class="container">
     <div class="row">
 
