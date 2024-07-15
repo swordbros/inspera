@@ -31,6 +31,7 @@ class EventTagModel extends BaseModel
     ];
     public function getTagOptions(){
         return[
+            'hero'=>['Show on Hero', '#ff5e00'],
             'featured'=>['Featured', '#cd2345'],
             'bestseller'=>['Best Seller', '#2acd23'],
             'recommended'=>['Recommended', '#2325cd'],
