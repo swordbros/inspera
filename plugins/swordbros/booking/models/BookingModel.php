@@ -1,7 +1,8 @@
 <?php namespace Swordbros\Booking\Models;
 
-use Backend\Models\User;
+
 use Model;
+use RainLab\User\Models\User;
 use Swordbros\Base\Controllers\Amele;
 use Swordbros\Event\Models\EventCategoryModel;
 use Swordbros\Event\Models\EventTypeModel;

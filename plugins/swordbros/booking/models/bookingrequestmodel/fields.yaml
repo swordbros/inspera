@@ -1,15 +1,27 @@
 tabs:
     defaultTab:  Genel
     fields:
-        event_id:
+        event:
             label: booking.fields.event
-            type: dropdown
             emptyOption: 'Select One'
             span: auto
-        user_id:
-            label: booking.fields.user
-            type: dropdown
+            commentAbove: 'Select the event for this booking'
+            type: recordfinder
+            maxItems: 1
+            source: \Swordbros\Event\Models\EventModel
+            list: $/swordbros/event/models/eventmodel/eventfinder.yaml
+            nameFrom: title
+            required: true
+        user:
+            label: event.fields.user_id
             span: auto
+            commentAbove: 'Select the customer for this booking'
+            type: recordfinder
+            maxItems: 1
+            source: \RainLab\User\Models\User
+            list: $/swordbros/event/models/eventmodel/userfinder.yaml
+            nameFrom: username
+            required: true
             attributes:
                 data-request: 'onUserDropDownChange'
         first_name:

@@ -1,7 +1,8 @@
 <?php namespace Swordbros\Booking\models;
 
-use Backend\Models\User;
+
 use Model;
+use RainLab\User\Models\User;
 use Swordbros\Base\Controllers\Amele;
 use Swordbros\BookingRequest\Models\CategoryModel;
 use Swordbros\BookingRequest\Models\TypeModel;

@@ -13,7 +13,7 @@ return new class extends Migration
         Schema::create('swordbros_booking_bookings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('event_id');
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable()->default(null);
             $table->string('first_name', 255)->nullable()->default(null);
             $table->string('last_name', 255)->nullable()->default(null);
             $table->string('username', 255)->nullable()->default(null);
