@@ -39,4 +39,8 @@ navigation:
                 label: event.plugin.eventreviews
                 url: swordbros/event/eventreview
                 icon: icon-comments
+            side-menu-item8:
+                label: event.plugin.eventsetting
+                url: swordbros/event/eventsetting
+                icon: icon-cogs
 

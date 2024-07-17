@@ -47,43 +47,37 @@ class BookingRequest extends BaseController
         $event->asExtension('FormController')->initForm($model);
         return $event->makePartial('blank_form');
     }
+    public function onDeclineBookingRequest($recordId = null){
+        if($recordId){
+            $item = BookingRequestModel::find($recordId);
+            if($item->status){
+                Flash::warning('Allready approved');
+            } else{
+                $item->decline();
+                Flash::warning('Booking Request Decline');
+            }
+        }
+    }
     public function onApproveBookingRequest($recordId = null){
         if($recordId){
             $item = BookingRequestModel::find($recordId);
             if($item->status){
                 Flash::warning('Allready approved');
             } else {
-                $item->status = 1;
-                $item->user_id = (int)$item->user_id;
-                $item->booking_status = \Input::get('BookingRequestModel.booking_status');
-                $item->total = floatval(\Input::get('BookingRequestModel.total'));
-                $item->payment_method = \Input::get('BookingRequestModel.payment_method');
-                $item->payment_status = \Input::get('BookingRequestModel.payment_status');
-                $item->save();
-                Amele::addBookingRequestHistory($recordId, 'Randevu isteği onaylandı');
-                $booking = new BookingModel();
-                $booking->event_id = $item->event_id;
-                $booking->user_id = $item->user_id;
-                $booking->first_name = $item->first_name;
-                $booking->last_name = $item->last_name;
-                $booking->email = $item->email;
-                $booking->phone = $item->phone;
-                $booking->booking_status = $item->booking_status;
-                $booking->total = $item->total;
-                $booking->payment_method = $item->payment_method;
-                $booking->payment_status = $item->payment_status;
-                $booking->save();
-                Amele::addBookingRequestHistory($recordId, 'Onaylanan Randevu otomatik oluşturuldu. Randevu Id: '.$booking->id);
-                Amele::addBookingHistory($booking->id, 'Onaylanan Randevu otomatik oluşturuldu. Randevu Request Id: '.$recordId);
-                Flash::success('Approved, Saved');
+                $booking = $item->approve(
+                    \Input::get('BookingRequestModel.booking_status'),
+                    \Input::get('BookingRequestModel.payment_method'),
+                    \Input::get('BookingRequestModel.payment_method'),
+                    floatval(\Input::get('BookingRequestModel.total'))
+                );
                 if($booking->id){
                     return Redirect::to(Backend::url('swordbros/booking/booking/update', ['id'=>$booking->id]));
                 }
-
+                Flash::success('Approved, Saved');
             }
-            Flash::success('Approved, Saved');
             $this->record = $item;
+        } else {
+            Flash::error('error');
         }
     }
-
 }

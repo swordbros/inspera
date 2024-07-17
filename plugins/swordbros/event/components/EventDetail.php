@@ -24,12 +24,12 @@ class EventDetail extends ComponentBase
             'description' => 'Show a Swordbros Event.'
         ];
     }
-    public function registerMailTemplates()
+    /*public function registerMailTemplates()
     {
         return [
             'booking_request_new' => 'swordbros.event::mail.booking_request_new',
         ];
-    }
+    }*/
     public function onRun()
     {
         $this->page['mediaUrl'] = MediaLibrary::url('/');
@@ -51,16 +51,31 @@ class EventDetail extends ComponentBase
             $bokingRequestModel = new BookingRequestModel();
             $bokingRequestModel->fill($booking_request);
             $bokingRequestModel->status = 0;
+            $bokingRequestModel->otp = md5(\Str::random(64));
             $bokingRequestModel->save();
             $data = $bokingRequestModel->toArray();
             $data['subject'] = 'Subject';
             $data['content'] = 'Content';
 
             $site_id = Site::getSiteIdFromContext();
-            Mail::send('swordbros:booking_request_new-'.$site_id, $data, function ($message) use($data) {
-                $message->to($data['email'], $data['first_name']);
+            $data['send_email'] = $data['email'];
+            Mail::send('swordbros.booking_request_new-'.$site_id, $data, function ($message) use($data) {
+                $message->to($data['send_email'], $data['first_name']);
             });
-            Amele::addBookingRequestHistory($bokingRequestModel->id, 'Rezervasyon isteği oluşturuldu ve '.$data['email'].' adresine email Gönderildi');
+            $data['requestApprove'] = route('request-approve', ['otp'=>$bokingRequestModel->otp]);
+            $data['requestDecline'] =route('request-decline', ['otp'=>$bokingRequestModel->otp]);
+            $emails = Amele::getAlertEmails();
+            foreach($emails as $email){
+                $email = preg_replace('/[^a-zA-Z0-9._%+-@]/', '', $email);
+                if(filter_var($email, FILTER_VALIDATE_EMAIL) !== false){
+                    $data['send_email'] = $email;
+                    Mail::send('swordbros.booking_request_new-'.$site_id, $data, function ($message) use($data) {
+                        $message->to($data['send_email'], $data['first_name']);
+                    });
+                }
+            }
+
+            Amele::addBookingRequestHistory($bokingRequestModel->id, 'Rezervasyon isteği oluşturuldu ve <code>'.implode(', ', $emails).'</code> adresine email Gönderildi');
             Flash::success('Booking Created!');
             return Redirect::to(url('/booking/thankyou', ['id'=>$bokingRequestModel->id]));
 

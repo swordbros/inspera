@@ -13,6 +13,7 @@ return new class extends Migration
         Schema::create('swordbros_booking_histories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('booking_id');
+            $table->string('user', 255)->nullable()->default(null);
             $table->string('description', 255);
             $table->timestamp('deleted_at')->nullable()->default(null);
             $table->timestamp('created_at')->useCurrent();

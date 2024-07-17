@@ -40,7 +40,7 @@ class BookingModel extends Model
         parent::boot();
 
         static::updated(function ($row) {
-            Amele::addBookingHistory($row->id, 'Randevu Güncellendi');
+            Amele::addBookingHistory($row->id, 'Rezervasyon Güncellendi');
         });
         static::created(function ($row) {
             Amele::save_localize_row($row);

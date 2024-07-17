@@ -10,15 +10,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('swordbros_booking_request_histories', function (Blueprint $table) {
+        Schema::create('swordbros_event_settings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('booking_request_id');
-            $table->string('user', 255)->nullable()->default(null);
-            $table->string('description', 255);
+            $table->string('code', 255);
             $table->timestamp('deleted_at')->nullable()->default(null);
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('created_at')->nullable()->default(null);
             $table->timestamp('updated_at')->nullable()->default(null);
         });
+
     }
 
     /**
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('swordbros_booking_request_histories');
+        Schema::dropIfExists('swordbros_event_settings');
     }
 };

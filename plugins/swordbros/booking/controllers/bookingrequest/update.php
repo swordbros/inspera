@@ -44,7 +44,7 @@
                 </button>
                 <button
                     type="button"
-                    data-request="onDEclineBookingRequest"
+                    data-request="onDeclineBookingRequest"
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
                     data-load-indicator="<?= e(trans('backend::lang.form.saving')) ?>"

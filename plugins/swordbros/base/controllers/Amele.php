@@ -1,12 +1,14 @@
 <?php namespace Swordbros\Base\Controllers;
 
 
+use BackendAuth;
 use Site;
 use Backend\Classes\Controller;
 use Swordbros\Booking\Models\BookingHistoryModel;
 use Swordbros\Booking\Models\BookingRequestHistoryModel;
 use Swordbros\Booking\Models\BookingTranslateModel;
 use Swordbros\Event\Models\EventModel;
+use Swordbros\Event\Models\EventSettingModel;
 use Swordbros\Event\Models\EventTagModel;
 use Swordbros\Event\Models\EventTranslateModel;
 use Swordbros\Event\Models\EventTypeModel;
@@ -291,14 +293,18 @@ class Amele extends Controller
         return [];
     }
     public static function addBookingRequestHistory($booking_request_id, $description){
+        $user = BackendAuth::getUser();
         $item = new BookingRequestHistoryModel();
         $item->booking_request_id = $booking_request_id;
+        $item->user = $user ? $user->login : null;
         $item->description = $description;
         $item->save();
     }
     public static function addBookingHistory($booking_id, $description){
+        $user = BackendAuth::getUser();
         $item = new BookingHistoryModel();
         $item->booking_id = $booking_id;
+        $item->user = $user ? $user->login : null;
         $item->description = $description;
         $item->save();
     }
@@ -444,5 +450,12 @@ class Amele extends Controller
             }
         }
         return $result;
+    }
+    static function getAlertEmails(){
+        $eventSetting = EventSettingModel::first();
+        if($eventSetting){
+            return explode(';', $eventSetting->alert_emails );
+        }
+        return[];
     }
 }

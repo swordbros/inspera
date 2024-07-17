@@ -1,4 +1,4 @@
 <?php
 Route::get('swordbros/api/search', function() {
-    return \Swordbros\Booking\Controllers\Api::search();
+    return \Swordbros\Event\Controllers\Api::search();
 });

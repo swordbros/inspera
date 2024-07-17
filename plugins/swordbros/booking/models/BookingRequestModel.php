@@ -2,7 +2,7 @@
 
 use Backend\Models\User;
 use Model;
-use Swordbros\BookingRequest\Controllers\Amele;
+use Swordbros\Base\Controllers\Amele;
 use Swordbros\BookingRequest\Models\CategoryModel;
 use Swordbros\BookingRequest\Models\TypeModel;
 use Swordbros\BookingRequest\Models\ZoneModel;
@@ -82,5 +82,57 @@ class BookingRequestModel extends Model
     }
     function getPaymentStatusOptions(){
         return \Swordbros\Base\Controllers\Amele::getPaymentStatusOptions();
+    }
+    function decline(){
+        if($this->booking_id){
+            Amele::addBookingRequestHistory($this->id, 'Onaylanan Rezervasyon isteği reddedilemez');
+        }
+        if($this->status==1){
+            $this->status = 0;
+            $this->save();
+            Amele::addBookingRequestHistory($this->id, 'Rezervasyon isteği reddedildi');
+        }
+
+    }
+    function approve($booking_status, $payment_method, $payment_status, $total){
+        if($this->booking_id){
+            $booking = BookingModel::find($this->booking_id);
+            Amele::addBookingRequestHistory($this->id, 'Rezervasyon isteği zaten onaylanmış');
+            return false;
+        }
+        $this->status = 1;
+        $this->user_id = (int)$this->user_id;
+        if($total){
+            $this->total = $total;
+        }
+        if($booking_status){
+            $this->booking_status = $booking_status;
+        } else {
+            $this->booking_status = 'approved';
+        }
+        if($payment_method){
+            $this->payment_method = $payment_method;
+        }
+        if($payment_status){
+            $this->payment_status = $payment_status;
+        }
+        $booking = new BookingModel();
+        $booking->event_id = $this->event_id;
+        $booking->user_id = $this->user_id;
+        $booking->first_name = $this->first_name;
+        $booking->last_name = $this->last_name;
+        $booking->email = $this->email;
+        $booking->phone = $this->phone;
+        $booking->booking_status = $this->booking_status;
+        $booking->total = $this->total;
+        $booking->payment_method = $this->payment_method;
+        $booking->payment_status = $this->payment_status;
+        $booking->save();
+        $this->booking_id = $booking->id;
+        $this->save();
+        Amele::addBookingRequestHistory($this->id, 'Rezervasyon isteği onaylandı');
+        Amele::addBookingRequestHistory($this->id, 'Onaylanan isteğe göre otomatik rezervasyon oluşturuldu. Rezervasyon Id: '.$booking->id);
+        Amele::addBookingHistory($booking->id, 'Onaylanan isteğe göre otomatik rezervasyon oluşturuldu. Rezervasyon Request Id: '.$this->id);
+        return $booking;
     }
 }

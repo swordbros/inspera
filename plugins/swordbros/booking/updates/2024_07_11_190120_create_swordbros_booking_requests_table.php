@@ -13,6 +13,7 @@ return new class extends Migration
         Schema::create('swordbros_booking_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('event_id');
+            $table->integer('booking_id')->nullable()->default(null);
             $table->integer('user_id')->nullable()->default(null);
             $table->string('first_name', 255)->nullable()->default(null);
             $table->string('last_name', 255)->nullable()->default(null);
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->string('payment_method', 32)->nullable()->default(null);
             $table->string('payment_status', 32)->nullable()->default(null);
             $table->integer('status');
+            $table->string('otp', 64)->nullable()->default(null);
             $table->timestamp('deleted_at')->nullable()->default(null);
             $table->timestamp('created_at')->nullable()->default(null);
             $table->timestamp('updated_at')->nullable()->default(null);

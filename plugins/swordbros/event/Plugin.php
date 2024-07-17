@@ -39,8 +39,7 @@ class Plugin extends PluginBase
     public function registerMailTemplates()
     {
         $site_id = Site::getSiteIdFromContext();
-        $templates['swordbros:booking_request_new-'.$site_id] = 'swordbros.event::mail.booking_request_new';
-
+        $templates['swordbros.booking_request_new-'.$site_id] = 'swordbros.event::mail.booking_request_new';
         return $templates;
     }
     public function registerMarkupTags()

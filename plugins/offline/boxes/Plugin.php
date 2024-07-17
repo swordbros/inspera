@@ -32,7 +32,7 @@ use OFFLINE\Boxes\Models\BoxesSetting;
 use OFFLINE\Boxes\Models\Content;
 use OFFLINE\Boxes\Models\Page;
 use System\Classes\PluginBase;
-use Url;
+##use Url;
 
 /**
  * Plugin Information File
@@ -76,7 +76,7 @@ class Plugin extends PluginBase
         $this->registerConsoleCommand('boxes.export', Console\ExportBoxesCommand::class);
         $this->registerConsoleCommand('boxes.import', Console\ImportBoxesCommand::class);
         $this->registerConsoleCommand('boxes.mirror', Console\MirrorBoxesSiteCommand::class);
-        
+
         $this->registerConsoleCommand('boxes.heal', Console\HealBoxesTreeCommand::class);
 
         Event::listen('editor.extension.register', fn () => Classes\Editor\EditorExtension::class);
@@ -236,7 +236,7 @@ class Plugin extends PluginBase
             BoxFinder::class => 'boxfinder',
         ];
     }
-    
+
     /**
      * registerContentFields
      */
@@ -246,7 +246,7 @@ class Plugin extends PluginBase
             ContentFields\BoxesEditorContentField::class => 'boxes',
         ];
     }
-    
+
     /**
      * Registers backend navigation items for this plugin.
      *

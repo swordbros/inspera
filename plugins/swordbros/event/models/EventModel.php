@@ -94,7 +94,7 @@ class EventModel extends BaseModel
         if(!$this->hasCapasity()){
             $eventBookingCount = $this->getEventBookingCount();
             $this->rules['capacity'] = ['numeric', 'min:'.$eventBookingCount];
-            $this->customMessages['capacity.min'] = 'Geçerli randevu sayısından daha az kapasite tanımladınız. Kapasite Minimum '.$eventBookingCount.' olmalıdır';
+            $this->customMessages['capacity.min'] = 'Geçerli rezervasyon sayısından daha az kapasite tanımladınız. Kapasite Minimum '.$eventBookingCount.' olmalıdır';
         }
     }
     public function zoneIsAvailable(){
