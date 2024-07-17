@@ -187,7 +187,7 @@ class Amele extends Controller
         $items = [];
         $rows = self::getAudiences();
         foreach ($rows as $item){
-            $items[$item['code']] = trans('swordbros.event::plugin.event.'.$item['code']);
+            $items[$item['code']] = trans('event.audience.'.$item['code']);
         }
         return $items;
     }

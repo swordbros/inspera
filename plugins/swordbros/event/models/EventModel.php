@@ -48,7 +48,7 @@ class EventModel extends BaseModel
     public function getAudienceOptions(){
         $result = [];
         foreach (Amele::getAudiences() as $item) {
-            $result[$item['code']] = [trans('swordbros.event::plugin.event.'.$item['code'])];
+            $result[$item['code']] = [trans('event.audience.'.$item['code'])];
         }
         return $result;
     }
