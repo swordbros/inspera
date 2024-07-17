@@ -24,6 +24,7 @@ fields:
         type: mediafinder
         thumbOptions: true
         maxItems: 1
+        mode: image
     status:
         label: event.fields.status
         span: left

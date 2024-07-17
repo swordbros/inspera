@@ -2,6 +2,7 @@ columns:
     thumb:
         label: event.cols.thumb
         type: image
+        mode: image
     id:
         label: event.cols.id
         type: number
