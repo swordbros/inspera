@@ -1,13 +1,12 @@
 <div data-control="toolbar">
 
-    <?php foreach(\Swordbros\Base\Controllers\Amele::eventTypes() as $service){ ?>
-        <a
-            href="<?= Backend::url('swordbros/event/event/create') ?>?event_type_id=<?=$service->id?>"
-            class="btn btn-primary oc-icon-plus">
-            <?=$service->name?> <?= e(trans('backend::lang.form.create')) ?>
-        </a>
 
-    <?php } ?>
+    <a
+        href="<?= Backend::url('swordbros/event/event/create') ?>"
+        class="btn btn-primary oc-icon-plus">
+        <?= e(trans('backend::lang.form.create')) ?>
+    </a>
+
     <button
         class="btn btn-default oc-icon-trash-o"
         data-request="onDelete"

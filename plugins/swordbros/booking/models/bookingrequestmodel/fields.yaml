@@ -33,14 +33,15 @@ tabs:
             span: left
             type: switch
             context: [preview, create]
-        booking_status:
-            label: booking.fields.booking_status
-            span: left
-            type: dropdown
         total:
             label: booking.fields.total
             span: left
             type: number
+            required: true
+        booking_status:
+            label: booking.fields.booking_status
+            span: left
+            type: dropdown
         payment_method:
             label: booking.fields.payment_method
             span: auto
