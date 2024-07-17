@@ -6,7 +6,7 @@ fields:
         type: recordfinder
         maxItems: 1
         source: \Swordbros\Event\Models\EventModel
-        list: $/swordbros/event/models/eventmodel/recordfinder.yaml
+        list: $/swordbros/event/models/eventmodel/eventfinder.yaml
         nameFrom: title
         required: true
     tag:

@@ -1,17 +1,16 @@
-<div type="button" id="update-content"> Add Description</div>
 <script>
-        // jQuery fonksiyonu tanımlama
-        oc.richEditorRegisterButton('insertCustomThing', {
-            title: 'Insert Description',
-            icon: '<i class="icon-star"></i>',
-            undo: true,
-            focus: true,
-            refreshOnCallback: true,
-            callback: function () {
-                this.html.insert($('#content').html());
-            }
-        });
-        oc.richEditorButtons.splice(0, 0, 'insertCustomThing');
+
+    oc.richEditorRegisterButton('insertEventContent', {
+        title: '<?= e(trans("event.plugin.insert_default_description")) ?>',
+        icon: '<i class="icon-star"></i>',
+        undo: true,
+        focus: true,
+        refreshOnCallback: true,
+        callback: function () {
+            this.html.insert($('#content').html());
+        }
+    });
+    oc.richEditorButtons.splice(0, 0, 'insertEventContent');
 
 </script>
 <template id="content">
@@ -72,3 +71,4 @@ animadvertendum esse ipsa natura iudicet?
 
 
 </template>
+

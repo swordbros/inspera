@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form data-request="onGetEventTypeForm"  class="row" data-request-success="successHandler()">
+                <form data-request="onGetEventTypeForm"  class="row">
                     <div class="col-md-6">
 
                         <h6><?= e(trans('swordbros.booking::plugin.select_event_type')) ?></h6>
