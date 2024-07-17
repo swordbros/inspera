@@ -58,5 +58,9 @@ class Plugin extends PluginBase
     public function registerSettings()
     {
     }
-
+    public function registerPageSnippets(){
+        return [
+            \Swordbros\Event\Snippets\CinemaDescription::class => 'eventDescription',
+        ];
+    }
 }

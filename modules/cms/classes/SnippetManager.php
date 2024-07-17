@@ -268,6 +268,7 @@ class SnippetManager
 
             foreach ($snippets as $componentClass => $componentCode) {
                 $snippet = new Snippet;
+
                 $snippet->initFromComponentInfo($componentClass, $componentCode);
                 $result[] = $snippet;
             }

@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><?= e(trans('swordbros.event::plugin.new_calender'))?> </h5>
+                <h5 class="modal-title"><?= e(trans('event.plugin.new_calender'))?> </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -30,7 +30,7 @@
                         </ul>
                     </div>
                     <div class="col-md-12">
-                        <button class="btn btn-primary" type="submit"><?= e(trans('swordbros.event::plugin.continue'))?></button>
+                        <button class="btn btn-primary" type="submit"><?= e(trans('event.plugin.continue'))?></button>
                     </div>
                     <input type="hidden" name="date" value="" id="date">
                 </form>
