@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="newsletter-box">
+        <div class="form">
+          <div class="titles">
+            <h6>
+              {{ 'Subscribe Newsletter'|_ }}
+            </h6>
+            <h2>
+              {{ 'Sign up to get the latest news'|_}}
+            </h2>
+          </div>
+          {% component 'genericForm' %}
+          <small>
+            Will be used in accordance with our 
+              <a href="#">
+                Privacy Policy
+              </a>
+          </small> 
+        </div>
+        <figure class="newsletter-image" data-scroll data-scroll-speed="0.7">
+          <img src="{{ 'assets/images/newsletter-image.png' | theme }}" alt="Image">
+        </figure>
+      </div>
+    </div>
+  </div>
+</div>

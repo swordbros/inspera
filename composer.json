@@ -12,7 +12,8 @@
         "rainlab/user-plugin": "^3.1",
         "rainlab/builder-plugin": "^2.0",
         "rainlab/translate-plugin": "^2.2",
-        "offline/oc-boxes-plugin": "^3.6"
+        "offline/oc-boxes-plugin": "^3.6",
+        "blakejones/magicforms-plugin": "^1.6"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5|^9.0"
