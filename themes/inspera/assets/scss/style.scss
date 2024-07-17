@@ -2435,6 +2435,21 @@ button[type="submit"] {
     transform: scale(1.2);
     @include transition-cubic;
   }
+
+  .page-thumb {
+    position: relative;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+  .page-thumb:first-child img {
+      position: relative;
+  }
 }
 
 /* ART SLIDER CONTENT */
@@ -2445,14 +2460,15 @@ button[type="submit"] {
   flex-wrap: wrap;
   position: relative;
   overflow: hidden;
-  .swiper-slide {
+  flex-direction: column;
+  justify-content: center;
+  .art-slider-item {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    opacity: 0.3;
-    &.swiper-slide-active {
-      opacity: 1;
-    }
+    padding: 50px 0;
+
+   
     span {
       width: 70px;
       border-bottom: 3px solid $color-dark;
