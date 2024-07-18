@@ -12,7 +12,7 @@ return new class extends Migration
     {
         Schema::create('swordbros_event_audiences', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code', 32);
+            $table->string('code', 32)->nullable()->default(null);
             $table->string('name', 255);
             $table->string('description', 255)->nullable()->default(null);
             $table->string('thumb', 255)->nullable()->default(null);

@@ -20,6 +20,14 @@ class BaseModel extends Model
         static::updated(function ($row) {
             Amele::update_localize_row($row);
         });
+        static::creating(function ($row) {
+            if(isset($row->code) && isset($row->name)){
+                if(empty($row->code)){
+                    $row->code = Str($row->name)->slug();
+                }
+            }
+            dd($row);
+        });
         static::created(function ($row) {
             Amele::create_localize_row($row);
         });
