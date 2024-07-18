@@ -14,12 +14,12 @@
               </{{ item.title_level }}>
             </div>
             <!-- end titles -->
-            <div class="swiper-container art-slider-content">
-              <div class="swiper-wrapper">
+            <div class="art-slider-content">
+              
                 {% for link in item.links %}
                   {% set resolvedLink = link(link.reference) %}
 
-                  <div class="swiper-slide">
+                  <div class="art-slider-item">
                     <span>{{ loop.index }}</span>
                     <h3>
                       <a href="{{ resolvedLink.url }}">
@@ -28,8 +28,7 @@
                     </h3>
                   </div>
                 {% endfor %}   
-              </div>
-              <!-- end swiper-wrapper -->
+            
             </div>
             <!-- end art-slider-content -->
           </div>
@@ -37,16 +36,11 @@
 
         <div class="col-lg-6">
           <div class="art-slider" data-scroll data-scroll-speed="1">
-            {# TODO remove opacity when enable animations #}
-            <div class="swiper-container art-slider-images" style="opacity: 1">
-              <div class="swiper-wrapper">
-                {# not 100% sure if there will be a slider #}
-                <div class="swiper-slide">
-                  <img src="{{ item.pic | media | resize(662, 450, {mode: 'crop'}) }}" alt="{{ item.pic_title }}">
+            {% for page in item.links %}
+                <div class="page-thumb">
+                  <img src="{{ page.pic | media | resize(662, 662, {mode: 'crop'}) }}" alt="{{ page.pic_title }}">
                 </div>
-              </div>
-            </div>
-          </div>
+            {% endfor %}
         </div>
       </div>
     {% endfor %}

@@ -110,12 +110,27 @@ theme.
   -webkit-transition-timing-function: cubic-bezier(0.86, 0, 0.09, 1);
 }
 
+// @mixin font-second {
+//   font-family: "Cinzel", serif;
+// }
+
+// @mixin font-titles-fancy {
+//   font-family: "Unica One", sans-serif;
+// }
+// @mixin font-text {
+//   font-family: "DM Sans", sans-serif;
+// }
+
 @mixin font-second {
-  font-family: "Cinzel", serif;
+  font-family: "Bebas Neue", sans-serif;
 }
 
-@mixin font-titles-small {
-  font-family: "Unica One", sans-serif;
+@mixin font-titles-fancy {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+@mixin font-text {
+  font-family: "Poppins", sans-serif;
 }
 
 $color-dark: #080808;
@@ -139,7 +154,7 @@ $color-muted: #F4F3F2;
 body {
   margin: 0;
   padding: 0;
-  font-family: "DM Sans", sans-serif;
+  @include font-text;
   font-size: 17px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -351,7 +366,7 @@ button[type="submit"] {
 }
 
 .bg-light {
-  background-color: $color-muted;
+  background-color: $color-muted !important;
 }
 
 /* ACCORDION */
@@ -1622,7 +1637,7 @@ button[type="submit"] {
         h5 {
           width: 100%;
           display: block;
-          @include font-titles-small;
+          @include font-titles-fancy;
           font-size: 22px;
           margin-bottom: 15px;
           font-weight: 600;
@@ -1681,7 +1696,7 @@ button[type="submit"] {
       width: 100%;
       display: block;
       font-size: 30px;
-      @include  font-titles-small;
+      @include  font-titles-fancy;
     }
     .custom-link {
       color: #999;
@@ -2042,7 +2057,7 @@ button[type="submit"] {
   h4 {
     width: 100%;
     display: block;
-    @include  font-titles-small;
+    @include  font-titles-fancy;
     font-size: 30px;
     margin-bottom: 20px;
     a {
@@ -2171,7 +2186,7 @@ button[type="submit"] {
     h4 {
       width: 100%;
       display: block;
-      @include  font-titles-small;
+      @include  font-titles-fancy;
       font-size: 30px;
       margin-bottom: 20px;
       a {
@@ -2254,7 +2269,7 @@ button[type="submit"] {
     h3 {
       width: 100%;
       display: block;
-      @include  font-titles-small;
+      @include  font-titles-fancy;
       font-size: 30px;
       margin-bottom: 20px;
 
@@ -2333,7 +2348,7 @@ button[type="submit"] {
     width: 100%;
     display: block;
     margin-bottom: 20px;
-    @include  font-titles-small;
+    @include  font-titles-fancy;
     font-size: 26px;
     font-weight: 600;
   }
@@ -2420,6 +2435,21 @@ button[type="submit"] {
     transform: scale(1.2);
     @include transition-cubic;
   }
+
+  .page-thumb {
+    position: relative;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+  .page-thumb:first-child img {
+      position: relative;
+  }
 }
 
 /* ART SLIDER CONTENT */
@@ -2430,14 +2460,15 @@ button[type="submit"] {
   flex-wrap: wrap;
   position: relative;
   overflow: hidden;
-  .swiper-slide {
+  flex-direction: column;
+  justify-content: center;
+  .art-slider-item {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    opacity: 0.3;
-    &.swiper-slide-active {
-      opacity: 1;
-    }
+    padding: 50px 0;
+
+   
     span {
       width: 70px;
       border-bottom: 3px solid $color-dark;
@@ -2570,7 +2601,7 @@ button[type="submit"] {
       width: 100%;
       display: block;
       font-size: 34px;
-      @include  font-titles-small;
+      @include  font-titles-fancy;
       margin-bottom: 0;
     }
     p {
@@ -2773,7 +2804,7 @@ button[type="submit"] {
       display: block;
       font-size: 54px;
       font-weight: 400;
-      @include  font-titles-small;
+      @include  font-titles-fancy;
       margin-bottom: 30px;
       margin-top: 10px;
     }
@@ -2794,8 +2825,9 @@ button[type="submit"] {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  background: $color-main;
+  background: $color-muted;
   padding: 50px 0;
+  border-bottom: 1px solid #616161;
   .form {
     width: 65%;
     display: flex;
@@ -2840,6 +2872,7 @@ button[type="submit"] {
       justify-content: space-around;
       background: #fff;
       padding: 10px;
+      border: 1px solid #757575;
     }
     input[type="email"] {
       width: 70%;
@@ -2862,6 +2895,13 @@ button[type="submit"] {
       width: 100%;
     }
   }
+  .subscribe-form {
+    width: 100%;
+
+    .subscribe-button {
+      color: #fff;
+    }
+  }
 }
 
 /* CONTACT BOX */
@@ -2878,7 +2918,7 @@ button[type="submit"] {
     width: 100%;
     display: block;
     margin-bottom: 15px;
-    @include  font-titles-small;
+    @include  font-titles-fancy;
     font-size: 24px;
     font-weight: 600;
   }
@@ -3152,7 +3192,8 @@ button[type="submit"] {
     font-weight: 400;
     font-size: 22px;
     margin-bottom: 20px;
-    @include  font-titles-small;
+    padding-top: 50px;
+    @include  font-titles-fancy;
     position: relative;
     padding-bottom: 15px;
     &:after {

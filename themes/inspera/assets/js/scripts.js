@@ -226,28 +226,28 @@
   });
 
 
-  // SLIDER THUMBS
-  var artslidercontent = new Swiper('.art-slider-content', {
-    spaceBetween: 30,
-    direction: 'vertical',
-    slidesPerView: 4,
-    // loop: true,
-    // loopedSlides: 4,
-    breakpoints: {
-      1024: {
-        slidesPerView: 3
-      },
-      768: {
-        slidesPerView: 2
-      },
-      640: {
-        slidesPerView: 1
-      },
-      320: {
-        slidesPerView: 1
-      }
-    }
-  });
+  // // SLIDER THUMBS
+  // var artslidercontent = new Swiper('.art-slider-content', {
+  //   spaceBetween: 30,
+  //   direction: 'vertical',
+  //   slidesPerView: 4,
+  //   // loop: true,
+  //   // loopedSlides: 4,
+  //   breakpoints: {
+  //     1024: {
+  //       slidesPerView: 3
+  //     },
+  //     768: {
+  //       slidesPerView: 2
+  //     },
+  //     640: {
+  //       slidesPerView: 1
+  //     },
+  //     320: {
+  //       slidesPerView: 1
+  //     }
+  //   }
+  // });
 
   if ($(".art-slider-images")[0]) {
     artsliderimages.controller.control = artslidercontent;

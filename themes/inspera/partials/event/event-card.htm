@@ -1,13 +1,5 @@
-<div class="exhibition-box is-inview" data-scroll="" data-scroll-speed="-1" style="transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -18.05, 0, 1);">
-    <figure> <a href="{{ event_url(event) }}"><img src="{{ mediaUrl  }}/{{ event.thumb }}" alt="Image" class="img"></a>
-        <div class="info">
-            <figure class="i"><img src="/themes/inspera/assets/images/icon-info.png" alt="Image"></figure>
-            <span>50% off exhibitions</span> </div>
-        <!-- end info -->
-    </figure>
-    <div class="content-box">
-        <h4><a href="{{ event_url(event) }}">{{ event.title }}</a></h4>
-        <p>{{ carbon(event.start).formatLocalized('%d.%m.%Y') }}</p>
-    </div>
-    <!-- end content-box -->
-</div>
+<a href="{{ event_url(event) }}">
+    <img class="img-fluid" src="{{ mediaUrl  }}/{{ event.thumb }}">
+    <h4>{{ event.title }}</h4>
+    <p>{{ event.short }}</p>
+</a>
