@@ -1,4 +1,7 @@
 fields:
+    change_language:
+        type: partial
+        path: $/swordbros/setting/models/swordbrossettingmodel/_change_language.php
     name:
         label: event.fields.name
         span: auto
