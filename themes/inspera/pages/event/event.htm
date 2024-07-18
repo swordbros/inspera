@@ -25,7 +25,7 @@ title = "Event Detail"
               <td>: {{ carbon(event.end).formatLocalized('%d.%m.%Y') }} </td>
             </tr>
             <tr>
-              <td>{{ 'Event Category'|_ </td>
+              <td>{{ 'Event Category'|_ }}</td>
               <td>: {{ event.event_category.name }}</td>
             </tr>
             <tr>
@@ -34,7 +34,7 @@ title = "Event Detail"
             </tr>
           </table>
         </div>
-        <!-- end side-content -->
+     
         <div class="side-icon-list">
           <ul>
             <li>
@@ -45,13 +45,10 @@ title = "Event Detail"
                 <h5>Opening times</h5>
                 <p>From 27 August <br> Thursday – Sunday: 11.00-19.00 </p>
               </div>
-              <!-- end content -->
             </li>
           </ul>
         </div>
-        <!-- end side-icon-list -->
       </div>
-      <!-- end col-6 -->
       <div class="col-lg-6">
         <div class="right-half" data-scroll data-scroll-speed="1">
 		    <div class="swiper eventSwiper2">
@@ -123,15 +120,10 @@ title = "Event Detail"
 			    </div>
 		  	</div>
         </div>
-        <!-- end side-image -->
       </div>
-      <!--end col-6 -->
     </div>
-    <!-- end row -->
   </div>
-  <!-- end container -->
 </section>
-<!-- end content-section -->
 <section class="content-section event-details">
   <div class="container">
     <div class="row">
@@ -144,15 +136,23 @@ title = "Event Detail"
           <div><strong>Kapı Açılış:</strong> 20.30</div>
           <div><strong>Konser Başlangıç:</strong> 21.30</div>
         </div>
-        <!-- end text-box -->
       </div>
-      <!--end col-12 -->
     </div>
-    <!-- end row -->
+    <div class="card-divider"></div>
+    <div class="card-body card-lg">
+        {% if event.booking_url %}
+        <a class="btn btn-primary btn-pill" href="{{ event.booking_url }}"> Book Now </a>
+        {% else %}
+        {% partial 'event/booking-form' %}
+        {% endif %}
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-body card-lg">
+        {% partial 'event/comment-list' %}
+    </div>
   </div>
-  <!-- end container -->
 </section>
-<!-- end content-section -->
+
 
 
 {% put scripts %}
@@ -163,12 +163,6 @@ title = "Event Detail"
       slidesPerView: 4,
       freeMode: true,
       watchSlidesProgress: true,
-      // direction: getDirection(),
-      // on: {
-      //   resize: function () {
-      //     swiper.changeDirection(getDirection());
-      //   },
-      // },
     });
     var swiper2 = new Swiper(".eventSwiper2", {
       loop: true,
@@ -177,21 +171,8 @@ title = "Event Detail"
       thumbs: {
         swiper: swiper,
       },
-
-      // on: {
-      //   resize: function () {
-      //     swiper.changeDirection(getDirection());
-      //   },
-      // },
     });
 
-
-    function getDirection() {
-      var windowWidth = window.innerWidth;
-      var direction = window.innerWidth <= 1600 ? 'horizontal' : 'vertical';
-
-      return direction;
-    }
 </script>
 {% endput %}
 
