@@ -7,16 +7,18 @@ title = "Events"
 {% if events is empty %}
     {% do abort(404) %}
 {% endif %}
-<section class="content-section">
-<div class="contactform">
+<section class="content-section" data-background="#fffbf7" style="background: rgb(255, 251, 247);">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             {% for event in events %}
-            <div class="col-md-3">
-                {% partial 'event/event-card' %}
+                <div class="col-lg-4 col-md-6">
+                    {% partial 'event/event-card' %}
+                <!-- end exhibition-box -->
             </div>
             {% endfor %}
         </div>
+        <!-- end row -->
     </div>
-</div>
+    <!-- end container -->
 </section>
+

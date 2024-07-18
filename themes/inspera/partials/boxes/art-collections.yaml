@@ -19,6 +19,13 @@ form:
         label: box.art_collections.collections.label 
         form:
           fields:
+            pic:
+              type: mediafinder
+              mode: image
+              label:  box.art_collections.collections.pic.label
+            pic_title: 
+              label: box.art_collections.collections.pic_title.label 
+
             title-mixin:
               type: mixin
 
@@ -32,12 +39,6 @@ form:
                     label: box.art_collections.collections.links.item_title.label
                     type: pagefinder
                     singleMode: true
-                  pic:
-                    type: mediafinder
-                    mode: image
-                    label:  box.art_collections.collections.pic.label
-                  pic_title: 
-                    label: box.art_collections.collections.pic_title.label 
         
       anchor-mixin:
         type: mixin
