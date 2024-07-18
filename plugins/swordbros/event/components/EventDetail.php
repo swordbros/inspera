@@ -74,11 +74,9 @@ class EventDetail extends ComponentBase
                     });
                 }
             }
-
             Amele::addBookingRequestHistory($bokingRequestModel->id, 'Rezervasyon isteği oluşturuldu ve <code>'.implode(', ', $emails).'</code> adresine email Gönderildi');
-            Flash::success('Booking Created!');
+            //Flash::success('Booking Created!');
             return Redirect::to(url('/booking/thankyou', ['id'=>$bokingRequestModel->id]));
-
         } else{
             Flash::warning('booking_request not posted');
         }

@@ -28,15 +28,16 @@ columns:
     note:
         label: booking.cols.note
         type: text
+        invisible: true
+    created_at:
+        label: booking.cols.created_at
+        type: datetime
+        format: "d.m.Y H:i"
     status:
         label: booking.cols.status
         type: switch
     deleted_at:
         label: booking.cols.deleted_at
-        type: datetime
-        invisible: true
-    created_at:
-        label: booking.cols.created_at
         type: datetime
         invisible: true
     updated_at:
