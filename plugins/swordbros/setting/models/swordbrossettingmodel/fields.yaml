@@ -1,0 +1,78 @@
+# ===================================
+#  Field Definitions
+# ===================================
+fields:
+    change_language:
+        type: partial
+        path: $/swordbros/setting/models/swordbrossettingmodel/_change_language.php
+    hint:
+        type: hint
+        mode: tip
+        label: bu alandaki ayarlar booking sistemi için geçerlidir.
+tabs:
+    fields:
+        address:
+            tab: event.tab.business_settings
+            label: swordbross.settings.address
+            type: text
+            comment: Store Address
+        email:
+            tab: event.tab.business_settings
+            label: swordbross.settings.email
+            type: text
+            comment: Store email
+        telephone:
+            tab: event.tab.business_settings
+            label: swordbross.settings.telephone
+            type: text
+            comment: Store telephone
+        whatsapp:
+            tab: event.tab.business_settings
+            label: swordbross.settings.whatsapp
+            type: text
+            comment: Store whatsapp
+        opening_time:
+            tab: event.tab.business_settings
+            label: swordbross.settings.opening_time
+            type: text
+            comment: Store opening_time
+        closing_time:
+            tab: event.tab.business_settings
+            label: swordbross.settings.closing_time
+            type: text
+            comment: Store closing_time
+        map_url:
+            tab: event.tab.business_settings
+            label: swordbross.settings.map_url
+            type: text
+            comment:  Store Google Map Url
+        alert_emails:
+            tab: event.tab.email_settings
+            label: swordbross.settings.alert_emails
+            type: email
+            comment:  You can separate emails with ";"
+        social_x:
+            tab: event.tab.social
+            label: swordbross.settings.social_x
+            type: text
+            comment: X url
+        social_likedin:
+            tab: event.tab.social
+            label: swordbross.settings.social_likedin
+            type: text
+            comment: Linkedin url
+        social_instagram:
+            tab: event.tab.social
+            label: swordbross.settings.social_instagram
+            type: text
+            comment: Instagram url
+        social_facebook:
+            tab: event.tab.social
+            label: swordbross.settings.social_facebook
+            type: text
+            comment: Facebook url
+        social_youtube:
+            tab: event.tab.social
+            label: swordbross.settings.social_youtube
+            type: text
+            comment: Youtube url

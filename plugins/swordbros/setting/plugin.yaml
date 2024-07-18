@@ -1,0 +1,7 @@
+plugin:
+    name: event.plugin.name
+    description: event.plugin.description
+    author: Swordbros
+    icon: oc-icon-adjust
+    homepage: 'https://swordbros.com/'
+

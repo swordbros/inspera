@@ -34,6 +34,7 @@
     "event.tab.images": "Images",
     "event.tab.description": "Description",
     "event.tab.main": "Settings",
+    "event.plugin.storesetting": "Store Settings",
     "event.plugin.eventsetting": "Event Settings",
     "event.plugin.save_settings": "Edit Settings",
     "event.plugin.continue": "Continue",
