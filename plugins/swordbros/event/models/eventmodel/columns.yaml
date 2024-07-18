@@ -36,6 +36,10 @@ columns:
         label: event.cols.event_type
         relation: event_type
         select: name
+    start:
+        label: event.cols.start
+        type: date
+        format: d.m.Y
     status:
         label: event.cols.status
         type: switch
