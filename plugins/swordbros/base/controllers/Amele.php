@@ -8,11 +8,11 @@ use Swordbros\Booking\Models\BookingHistoryModel;
 use Swordbros\Booking\Models\BookingRequestHistoryModel;
 use Swordbros\Booking\Models\BookingTranslateModel;
 use Swordbros\Event\Models\EventModel;
-use Swordbros\Event\Models\EventSettingModel;
 use Swordbros\Event\Models\EventTagModel;
 use Swordbros\Event\Models\EventTranslateModel;
 use Swordbros\Event\Models\EventTypeModel;
 use Swordbros\Event\Models\EventZoneModel;
+use Swordbros\Setting\Models\SwordbrosSettingModel;
 
 class Amele extends Controller
 {
@@ -452,9 +452,9 @@ class Amele extends Controller
         return $result;
     }
     static function getAlertEmails(){
-        $eventSetting = EventSettingModel::first();
-        if($eventSetting){
-            return explode(';', $eventSetting->alert_emails );
+        $alert_emails = SwordbrosSettingModel::get('alert_emails', '');
+        if($alert_emails){
+            return explode(';', $alert_emails );
         }
         return[];
     }
