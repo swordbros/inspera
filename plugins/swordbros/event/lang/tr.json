@@ -33,7 +33,7 @@
     "event.tab.images": "Resimler",
     "event.tab.description": "Açıklama",
     "event.tab.main": "Ayarlar",
-    "nevent.plugin.eventsetting": "Ayarlar",
+    "event.plugin.eventsetting": "Ayarlar",
     "event.plugin.continue": "Devam Et",
     "event.plugin.save_settings": "Ayarları Düzenle",
     "event.plugin.new_calender": "Add New Event",
