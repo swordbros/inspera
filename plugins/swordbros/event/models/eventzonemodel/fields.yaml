@@ -1,8 +1,4 @@
 fields:
-    code:
-        label: event.fields.code
-        span: auto
-        type: text
     name:
         label: event.fields.name
         span: auto
