@@ -21,12 +21,9 @@ class BaseModel extends Model
             Amele::update_localize_row($row);
         });
         static::creating(function ($row) {
-            if(isset($row->code) && isset($row->name)){
-                if(empty($row->code)){
-                    $row->code = Str($row->name)->slug();
-                }
+            if(isset($row->attributes['name'])){
+                $row->attributes['code'] = Str($row->name)->slug()->value();
             }
-            dd($row);
         });
         static::created(function ($row) {
             Amele::create_localize_row($row);
