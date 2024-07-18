@@ -34,7 +34,7 @@
     "event.tab.images": "Images",
     "event.tab.description": "Description",
     "event.tab.main": "Settings",
-    "nevent.plugin.eventsetting": "Event Settings",
+    "event.plugin.eventsetting": "Event Settings",
     "event.plugin.save_settings": "Edit Settings",
     "event.plugin.continue": "Continue",
     "event.plugin.new_calender": "Add New Event",
