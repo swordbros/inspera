@@ -8,7 +8,9 @@
             data-request="onSave"
             data-hotkey="ctrl+s, cmd+s"
             data-load-indicator="<?= e(trans('backend::lang.form.saving')) ?>"
-            class="btn btn-primary">
+            class="btn btn-primary"
+            data-request-success="onPopupSuccess(data)"
+        >
             <?= e(trans('backend::lang.form.create')) ?>
         </button>
     </div>

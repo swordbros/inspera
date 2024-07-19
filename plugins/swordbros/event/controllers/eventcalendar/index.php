@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form data-request="onGetEventTypeForm"  class="row">
+                <form data-request="onGetEventTypeForm"  class="row" >
                     <div class="col-md-6">
 
                         <h6><?= e(trans('event.plugin.select_a_eventtype')) ?></h6>
@@ -51,11 +51,14 @@
     }
 </style>
 <script>
-
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+        keyboard: false
+    });
+    var calendar = null;
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
+        calendar = new FullCalendar.Calendar(calendarEl, {
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
@@ -78,9 +81,6 @@
                 calendar.unselect();*/
 
                 $('#date').val(arg.startStr);
-                var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
-                    keyboard: false
-                });
                 $('#listBulkActions').html('');
                 myModal.show();
             },
@@ -90,7 +90,7 @@
 
             editable: true,
             dayMaxEvents: true, // allow "more" link when too many events
-            events: <?=$events?>,
+            /*events: <?=$events?>,*/
             events: function(fetchInfo, successAjaxCallback, failureAjaxCallback) {
                 $.ajax({
                     url: '<?=$getfilteredevents_url?>',
@@ -118,5 +118,9 @@
 
     $('body').on('submit', '[data-request="onGetEventTypeForm"]', function (){
         $('#listBulkActions').html('<?= e(trans('swordbros.event::plugin.please_loading'))?>');
-    })
+    });
+    function onPopupSuccess(data, textStatus, jqXHR) {
+        myModal.hide();
+        calendar.refetchEvents();
+    }
 </script>

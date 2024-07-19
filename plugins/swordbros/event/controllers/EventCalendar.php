@@ -73,7 +73,6 @@ class EventCalendar extends BaseController{
     public function onGetEventTypeForm()
     {
         $content = Event::emptyForm();
-
         return ['#listBulkActions' => $content];
     }
     public function onSave(){
