@@ -22,6 +22,7 @@
     "event.fields.description": "Açıklama",
     "event.fields.color": "Renk",
     "event.fields.metas": "Özel Alanlar",
+    "event.cols.rating": "Rating",
     "event.cols.status": "Durumu",
     "event.cols.event_category": "Kategori",
     "event.cols.event_type": "Etkinlik Türü",

@@ -22,6 +22,7 @@
     "event.fields.description": "Description",
     "event.fields.color": "Color",
     "event.fields.metas": "Custom Fields",
+    "event.cols.rating": "Rayting",
     "event.cols.status": "Status",
     "event.cols.event_category": "Category",
     "event.cols.event_type": "Event Type",

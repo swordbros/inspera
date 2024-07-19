@@ -37,6 +37,7 @@ class Event extends Controller
     public function formExtendFields($form)
     {
         if ($this->action == 'create') {
+            $form->model->capacity = input('capacity', 0);
             $form->model->event_type_id = input('event_type_id', 0);
         }
     }
