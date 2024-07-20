@@ -52,9 +52,15 @@ class EventModel extends BaseModel
         }
         return $result;
     }
-    public function getEventCategoryIdOptions(){
+    public function getEventCategoryIdOptions($value, $formData){
         $result = [];
-        foreach (EventCategoryModel::all() as $item) {
+        $event_type_id = isset($formData['event_type_id'])?$formData['event_type_id']:false;
+        if($event_type_id){
+            $eventCategories = EventCategoryModel::where(['event_type_id'=>$event_type_id])->get();
+        } else {
+            $eventCategories = [];
+        }
+        foreach ($eventCategories as $item) {
             $result[$item->id] = [$item->name, $item->description];
         }
         return $result;

@@ -46,6 +46,11 @@ tabs:
             label: swordbross.settings.map_url
             type: text
             comment:  Store Google Map Url
+        copyright:
+            tab: event.tab.business_settings
+            label: swordbross.settings.copyright
+            type: text
+            comment:  Store copyright
         alert_emails:
             tab: event.tab.email_settings
             label: swordbross.settings.alert_emails

@@ -2,10 +2,17 @@ fields:
     change_language:
         type: partial
         path: $/swordbros/setting/models/swordbrossettingmodel/_change_language.php
+    event_type_id:
+        label: event.fields.event_type
+        span: auto
+        type: dropdown
+        emptyOption: ---
+        required: true
     name:
         label: event.fields.name
         span: auto
         type: text
+        required: true
     description:
         label: event.fields.description
         span: auto

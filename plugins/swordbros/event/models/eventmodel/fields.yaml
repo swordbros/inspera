@@ -18,17 +18,19 @@ tabs:
             label: event.fields.group_key
             span: auto
             type: text
-        event_category_id:
-            label: event.fields.event_category_id
-            span: auto
-            type: dropdown
-            required: true
         event_type_id:
             label: event.fields.event_type_id
             span: auto
             type: dropdown
             required: true
             default: default_value
+            emptyOption: ---
+        event_category_id:
+            label: event.fields.event_category_id
+            span: auto
+            type: dropdown
+            required: true
+            dependsOn: event_type_id
         event_zone_id:
             label: event.fields.event_zone_id
             span: auto

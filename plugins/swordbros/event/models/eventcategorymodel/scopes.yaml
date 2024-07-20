@@ -1,0 +1,11 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    event_type_id:
+        label: booking.scops.event_type
+        scope: isEventTypeIds
+        modelClass: Swordbros\Event\Models\EventCategoryModel
+        conditions: filterByEventTypeId
+        options: getEventTypeIds

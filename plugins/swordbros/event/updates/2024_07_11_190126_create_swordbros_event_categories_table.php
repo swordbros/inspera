@@ -12,6 +12,7 @@ return new class extends Migration
     {
         Schema::create('swordbros_event_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('event_type_id')->nullable()->default(0);
             $table->string('code', 32)->nullable()->default(null);
             $table->string('name', 255);
             $table->string('description', 255)->nullable()->default(null);

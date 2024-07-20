@@ -1,4 +1,5 @@
 list: $/swordbros/event/models/eventcategorymodel/columns.yaml
+filter: $/swordbros/event/models/eventcategorymodel/scopes.yaml
 modelClass: Swordbros\Event\Models\EventCategoryModel
 title: Category
 noRecordsMessage: 'backend::lang.list.no_records'
@@ -10,3 +11,4 @@ toolbar:
     search:
         prompt: 'backend::lang.list.search_prompt'
 recordUrl: 'swordbros/event/eventcategory/update/:id'
+

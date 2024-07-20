@@ -1,6 +1,7 @@
 <?php namespace Swordbros\Event\Models;
 
 use Model;
+use RainLab\User\Models\User;
 use Swordbros\Base\Models\BaseModel;
 use Swordbros\Base\Controllers\Amele;
 
@@ -21,11 +22,31 @@ class EventCategoryModel extends BaseModel
     /**
      * @var array rules for validation.
      */
-    public $rules = [
+    public $rules = [];
+    public $belongsTo = [
+        'event_type' => EventTypeModel::class,
     ];
+
     protected static function boot()
     {
         parent::boot();
+    }
 
+    public static function getEventTypeIdOptions(){
+        $result = [];
+        foreach (EventTypeModel::all() as $item) {
+            Amele::localize_row($item);
+            $result[$item->id] = [$item->name, $item->description];
+        }
+        return $result;
+    }
+    public function getEventTypeIds(){
+        return self::getEventTypeIdOptions();
+    }
+    public function scopeisEventTypeIds($query, $value)
+    {
+        if ($value) {
+            $query->where('event_type_id', $value);
+        }
     }
 }

@@ -11,6 +11,11 @@ columns:
         label: event.cols.code
         type: text
         invisible: true
+    event_type_id:
+        label: event.cols.event_type
+        relation: event_type
+        select: name
+        type: text
     name:
         label: event.cols.name
         type: text
