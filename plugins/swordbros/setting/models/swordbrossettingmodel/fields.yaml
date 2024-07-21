@@ -81,3 +81,8 @@ tabs:
             label: swordbross.settings.social_youtube
             type: text
             comment: Youtube url
+        event_description:
+            tab: event.tab.event_description
+            label: swordbross.settings.event_description
+            type: codeeditor
+            comment: Event Description
