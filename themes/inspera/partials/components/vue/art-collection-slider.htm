@@ -1,0 +1,40 @@
+<div class="col-lg-6">
+  <div class="art-slider">
+    <div class="titles">
+      <h6 v-text="item.eyebrow_title"></h6>
+      <div v-html="item.title"></div>
+    </div>
+    <div class="art-slider-content">      
+      <div 
+        @mouseover="showPicture(i)" 
+        v-for="(row, i) in item.links"
+        class="art-slider-item" 
+        :key="i"
+      >
+        <span v-text="i + 1"></span>
+        <h3>
+          <a :href="row.url" v-text="row.title"></a>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-lg-6">
+  <div 
+    class="art-slider"
+    data-scroll
+    data-scroll-speed="1"
+  >
+    <div 
+      class="page-thumb"
+      :class="activeImage===i && '-active'"
+      :key="i"
+      v-for="(row, i) in item.links"
+    >
+      <img
+        :src="row.picture.path"
+        :alt="row.picture.title"
+      >
+    </div>
+  </div>
+</div>

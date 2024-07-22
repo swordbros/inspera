@@ -135,7 +135,8 @@ theme.
 
 $color-dark: #080808;
 $color-main: #0d5eff;
-$color-secondary: #DDFA80;;
+$color-primary: $color-main;
+$color-secondary: #DDFA80;
 $color-white: #ffffff;
 $color-muted: #F4F3F2;
 
@@ -2437,18 +2438,24 @@ button[type="submit"] {
   }
 
   .page-thumb {
-    position: relative;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0;
 
     img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      display: block;
     }
   }
-  .page-thumb:first-child img {
-      position: relative;
+
+  .page-thumb:first-child {
+    position: relative;
+  }
+
+  .page-thumb.-active {
+    z-index: 1;
+    opacity: 1;
+    transition: ease-in-out 0.75s;
   }
 }
 
@@ -2462,29 +2469,35 @@ button[type="submit"] {
   overflow: hidden;
   flex-direction: column;
   justify-content: center;
-  .art-slider-item {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 50px 0;
+}
 
-   
-    span {
-      width: 70px;
-      border-bottom: 3px solid $color-dark;
-      margin-right: 40px;
-      float: left;
-      @include font-second;
-      transform: rotate(-90deg);
-      font-weight: 700;
-    }
-    h3 {
-      display: block;
-      @include font-second;
-      font-weight: 700;
-      margin: 0;
-    }
+.art-slider-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 50px 0;
+  
+  span {
+    width: 70px;
+    border-bottom: 3px solid $color-dark;
+    margin-right: 40px;
+    float: left;
+    @include font-second;
+    transform: rotate(-90deg);
+    font-weight: 700;
   }
+
+  h3 {
+    display: block;
+    @include font-second;
+    font-weight: 700;
+    margin: 0;
+  }
+}
+
+.art-slider-item:hover span {
+  color: $color-primary;
+  border-color: $color-primary;
 }
 
 /* ART SLIDER IMAGES */

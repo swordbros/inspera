@@ -1,49 +1,87 @@
+==
+<?php
+  function onStart()
+  {
+    $box = $this->controller->vars['box'] ?? null;
+    $data = $box->data;
+    $collections = $data['collections'];
+    if (!$box) return;
+    foreach ($collections as &$collection) {
+      $collection['title'] = "<{$collection['title_level']}>{$collection['title']}</{$collection['title_level']}>";
+      if (!isset($collection['links'])) continue;
+
+      $links = [];
+
+      foreach ($collection['links'] as $link) {
+        $resolver = \Cms\Classes\PageManager::resolve($link['reference'] ?? '');
+        if (!isset($link['pic'])) {
+          throw new Exception('Fill in the collection pages images in Boxes plugin!');
+        }
+        $path = \Storage::disk('media')->path($link['pic']);
+        $image = \System\Classes\ResizeImages::resize($path, 662, 800, ['mode' => 'crop']);
+
+        $links[] = [
+          'title' => str_replace('- ', '', $resolver->title),
+          'url' => $resolver->url,
+          'picture' => [
+            'path' => $image,
+            'title' => $link['pic_title']
+          ]
+        ];
+      }
+      $collection['links'] = $links;     
+    }
+    
+    $this['collections'] = $collections;
+  }
+?>
+==
 <section class="content-section" {{ box.anchor_id ? 'id='~box.anchor_id }}>
   <div class="container">
-
-    {% for item in box.collections %}
-      <div class="row g-0 align-items-center {{ loop.index is odd ? 'collection-row-odd' : 'collection-row-even' }}">
-        <div class="col-lg-6">
-          <div class="art-slider">
-            <div class="titles">
-              <h6>
-                {{ item.eyebrow_title|raw }}
-              </h6>
-              <{{ item.title_level }}>
-                {{ item.title | raw }}
-              </{{ item.title_level }}>
-            </div>
-            <!-- end titles -->
-            <div class="art-slider-content">
-              
-                {% for link in item.links %}
-                  {% set resolvedLink = link(link.reference) %}
-
-                  <div class="art-slider-item">
-                    <span>{{ loop.index }}</span>
-                    <h3>
-                      <a href="{{ resolvedLink.url }}">
-                        {{ resolvedLink.title }}
-                      </a>
-                    </h3>
-                  </div>
-                {% endfor %}   
-            
-            </div>
-            <!-- end art-slider-content -->
-          </div>
-        </div>
-
-        <div class="col-lg-6">
-          <div class="art-slider" data-scroll data-scroll-speed="1">
-            {% for page in item.links %}
-                <div class="page-thumb">
-                  <img src="{{ page.pic | media | resize(662, 662, {mode: 'crop'}) }}" alt="{{ page.pic_title }}">
-                </div>
-            {% endfor %}
-        </div>
+    {% for item in collections %}
+      <div 
+        class="
+        row g-0 align-items-center
+        {{ loop.index is odd ? 'collection-row-odd' : 'collection-row-even' }}
+        art-slider-{{ context.loop.index }}
+        "
+        data-item="{{ item|json_encode|e('html_attr') }}"
+      >
       </div>
     {% endfor %}
 
   </div>
 </section>
+
+{% put scripts %}
+  <script id="slider-template" type="text/x-template">
+    {% partial 'components/vue/art-collection-slider' %}
+  </script>
+  <script>
+    const SliderComponent = {
+      template: '#slider-template',
+      data() {
+        return {
+          item: {},
+          activeImage: 0
+        }
+      },
+      mounted() {
+        this.item = JSON.parse(this.$el.parentElement.dataset.item);
+      },
+      methods: {
+        showPicture(index) {
+          this.activeImage = index
+        }
+      },
+    };
+
+    function mountSliderComponent(selector) {
+      document.querySelectorAll(selector).forEach((element) => {
+        Vue.createApp(SliderComponent).mount(element);
+      });
+    }
+
+    mountSliderComponent('.art-slider-{{ context.loop.index }}');
+  </script>
+{% endput %}

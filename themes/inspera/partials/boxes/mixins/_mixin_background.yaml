@@ -55,10 +55,10 @@ mixin:
     options: 
       'no-repeat': box.mixin_background.background_repeat.options.no_repeat
       repeat: box.mixin_background.background_repeat.options.repeat
-
-  background_fix:
-    label: box.mixin_background.background_fix.label
-    type: switch   
+  # not implemented yet
+  # background_fix:
+  #   label: box.mixin_background.background_fix.label
+  #   type: switch   
 
   background_overlay:
     label: box.mixin_background.background_overlay.label

@@ -198,32 +198,32 @@
 
 
   // SLIDER
-  var artsliderimages = new Swiper('.art-slider-images', {
-    spaceBetween: 0,
-    autoplay: {
-      delay: 9500,
-      disableOnInteraction: false,
-    },
-    // loop: true,
-    // loopedSlides: 4,
-    thumbs: {
-      swiper: artslidercontent
-    },
-    breakpoints: {
-      1024: {
-        loopedSlides: 3,
-      },
-      768: {
-        loopedSlides: 2,
-      },
-      640: {
-        loopedSlides: 1
-      },
-      320: {
-        loopedSlides: 1
-      }
-    }
-  });
+  // var artsliderimages = new Swiper('.art-slider-images', {
+  //   spaceBetween: 0,
+  //   autoplay: {
+  //     delay: 9500,
+  //     disableOnInteraction: false,
+  //   },
+  //   // loop: true,
+  //   // loopedSlides: 4,
+  //   thumbs: {
+  //     swiper: artslidercontent
+  //   },
+  //   breakpoints: {
+  //     1024: {
+  //       loopedSlides: 3,
+  //     },
+  //     768: {
+  //       loopedSlides: 2,
+  //     },
+  //     640: {
+  //       loopedSlides: 1
+  //     },
+  //     320: {
+  //       loopedSlides: 1
+  //     }
+  //   }
+  // });
 
 
   // // SLIDER THUMBS
