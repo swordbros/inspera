@@ -458,4 +458,8 @@ class Amele extends Controller
         }
         return[];
     }
+    static function humanDate($date = NULL, $format = 'd.m.Y') {
+        if ($date === NULL) $date = date('Y-m-d');
+        return date($format, strtotime($date));
+    }
 }

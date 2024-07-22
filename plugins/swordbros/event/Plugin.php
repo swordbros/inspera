@@ -32,6 +32,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
+            \Swordbros\Event\Components\EventSearch::class => 'eventSearch',
             \Swordbros\Event\Components\EventList::class => 'eventList',
             \Swordbros\Event\Components\EventDetail::class => 'eventDetail',
         ];

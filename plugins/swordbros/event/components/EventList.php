@@ -30,14 +30,14 @@ class EventList extends ComponentBase
         $this->page['title'] = __('event.events');
         $this->page['events'] = EventModel::where(['status'=>1])->get();
     }
-    function onLoadAjaxPartial()
+    /**function onLoadAjaxPartial()
     {
         $data['page'] = \Input::get('page', 1);
         $data['time'] = time();
         return [
             '#dynamic-content' => $this->renderPartial('event/list-item', $data)
         ];
-    }
+    }*/
     function onLoadJsonItems(){
         $page = input('page', 1);
         return  EventModel::where(['status'=>1])->paginate(2, $page);

@@ -1,8 +1,10 @@
 <?php namespace Swordbros\Event\Models;
 
 use Model;
+use October\Rain\Database\Factories\HasFactory;
 use Swordbros\Base\models\BaseModel;
 use Swordbros\Base\Controllers\Amele;
+use Swordbros\Event\Controllers\EventCategory;
 
 /**
  * Model
@@ -10,6 +12,7 @@ use Swordbros\Base\Controllers\Amele;
 class EventTypeModel extends BaseModel
 {
     use \October\Rain\Database\Traits\Validation;
+    use HasFactory;
 
 
     /**
@@ -17,12 +20,14 @@ class EventTypeModel extends BaseModel
      */
     public $table = 'swordbros_event_types';
     public $translateClass = EventTranslateModel::class;
-
     /**
      * @var array rules for validation.
      */
     public $rules = [
     ];
 
-
+    public function categories()
+    {
+        return EventCategoryModel::where(['event_type_id'=>$this->id])->get();
+    }
 }
