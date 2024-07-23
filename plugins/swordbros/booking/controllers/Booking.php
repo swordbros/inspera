@@ -7,6 +7,8 @@ use Backend\Widgets\Form;
 use BackendMenu;
 use Backend\Classes\Controller;
 use Input;
+use Mail;
+use Swordbros\Base\Controllers\Amele;
 use Swordbros\Base\Controllers\BaseController;
 use Swordbros\Booking\Models\BookingModel;
 use Swordbros\Event\Models\EventModel;
@@ -24,12 +26,6 @@ class Booking extends BaseController
     public $form = null;
     public function __construct()
     {
-        /**
-        $event_type = \Input::get('event_type');
-        if($event_type){
-            $this->formConfig = 'config_form_'.$event_type.'.yaml';
-        }
-        */
         if(Backend\Classes\BackendController::$action=='email'){
             $this->formConfig = 'config_form_email.yaml';
         }
@@ -43,7 +39,28 @@ class Booking extends BaseController
             }
         }
     }
+    public function onSendEmail($bookingId){
+        $data['bookingModel'] = Input::get('BookingModel', []);
+        if(empty($data['bookingModel'])){
+            \Flash::error('Email is empty');
+            return;
+        }
+        if(filter_var( $data['bookingModel']['email'], FILTER_VALIDATE_EMAIL) !== false){
+            $booking = BookingModel::find($bookingId);
+            $data['email_body'] = $data['bookingModel']['email_body'];
+            $data['send_email'] = $booking->email;
+            $data['booking'] = $booking->toArray();
+            Mail::send('swordbros.booking_notify', $data, function ($message) use($data) {
+                $message->to($data['send_email'], $data['booking']['first_name']);
+                $message->subject($data['bookingModel']['email_title']);
+            });
+            Amele::addBookingHistory($data['booking']['id'], 'Email gönderildi: '.$data['bookingModel']['email_title']);
+            \Flash::success('Email sended');
+        } else{
+            \Flash::error('Email is incorrect: '.$data['bookingModel']['email']);
+        }
 
+    }
     public function listExtendQuery($query){
         $eventId = input('event_id');
         if ($eventId) {
@@ -52,7 +69,6 @@ class Booking extends BaseController
     }
     public function email($recordId = null, $context = null)
     {
-
         $this->asExtension('FormController')->update($recordId, 'update');
     }
 
