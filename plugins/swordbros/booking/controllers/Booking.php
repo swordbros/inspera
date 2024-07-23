@@ -50,7 +50,10 @@ class Booking extends BaseController
             $data['email_body'] = $data['bookingModel']['email_body'];
             $data['send_email'] = $data['bookingModel']['email'];
             $data['booking'] = $booking->toArray();
-            Mail::sendTo([$data['send_email'] =>$data['bookingModel']['email_title']], 'swordbros.booking_notify', $data);
+            Mail::send('swordbros.booking_notify', $data, function ($message) use($data) {
+                $message->to($data['send_email'], $data['booking']['first_name']);
+                $message->subject($data['bookingModel']['email_title']);
+            });
             Amele::addBookingHistory($data['booking']['id'], 'Email gönderildi: '.$data['bookingModel']['email_title']);
             \Flash::success('Email sended');
         } else{
