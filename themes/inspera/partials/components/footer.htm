@@ -2,17 +2,9 @@
 handle = "Site\Menus"
 identifier = "slug"
 value = "about-footer"
-
-[section socialsFooterMenu]
-handle = "Site\Menus"
-identifier = "slug"
-value = "socials-footer"
 ==
 {% if aboutFooterMenu.items.count %}
   {% set aboutMenuItems = aboutFooterMenu.items | filter(i => not i.is_hidden) %}
-{% endif %}
-{%  if socialsFooterMenu.items %}
-  {% set socialsMenuItems = socialsFooterMenu.items | filter(i => not i.is_hidden) %}
 {% endif %}
 
 <footer class="footer bg-light">
@@ -37,30 +29,61 @@ value = "socials-footer"
         </div>
       {% endif %}
       
-      {% if socialsMenuItems is not empty  %}
-        <div class="col-lg-4 col-md-6">
-          <h6 class="widget-title">
-            {{ 'Connect Us' |_ }}
-          </h6>
-          <ul class="social-media">
-            {% for item in socialsMenuItems %}
-              <li>
-                <a href="{{ item.reference|link }}">
-                  <i class="fab fa-{{ item.code }}"></i>
-                  {{ item.title }}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% endif %}
+      <div class="col-lg-4 col-md-6">
+        <h6 class="widget-title">
+          {{ 'Connect Us' |_ }}
+        </h6>
+        <ul class="social-media">
+         {# whatsapp? #}
+          {% if swordbrosSettings.social_x %}
+            <li>
+              <a href="{{ swordbrosSettings.social_x }}">
+                <i class="fab fa-twitter-x"></i>
+                / insperabodrum
+              </a>
+            </li>
+          {% endif %}
+          {% if swordbrosSettings.social_likedin %}
+            <li>
+              <a href="{{ swordbrosSettings.social_likedin }}">
+                <i class="fab fa-linkedin"></i>
+                / insperabodrum
+              </a>
+            </li>
+          {% endif %}
+          {% if swordbrosSettings.social_instagram %}
+            <li>
+              <a href="{{ swordbrosSettings.social_instagram }}">
+                <i class="fab fa-instagram"></i>
+                / insperabodrum
+              </a>
+            </li>
+          {% endif %}
+          {% if swordbrosSettings.social_facebook %}
+            <li>
+              <a href="{{ swordbrosSettings.social_facebook }}">
+                <i class="fab fa-facebook-f"></i>
+                / insperabodrum
+              </a>
+            </li>
+          {% endif %}
+          {% if swordbrosSettings.social_youtube %}
+            <li>
+              <a href="{{ swordbrosSettings.social_youtube }}">
+                <i class="fab fa-youtube"></i>
+                / insperabodrum
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
 
       <div class="col-lg-4">
         <h6 class="widget-title">
           {{ 'Visit Us Now' |_ }}
         </h6>
         <address class="address">
-          Ortakentyahşi, Kemer Sk. 16/148420 Bodrum/Muğla
+          {{ swordbrosSettings.address }}
         </address>
       </div>
     </div>
@@ -68,7 +91,7 @@ value = "socials-footer"
   <div class="footer-bottom">
     <div class="container text-center">
       <span class="copyright">
-        © {{ 'now'|date('Y') }} /inspera | Art & History Museum
+        © {{ 'now'|date('Y') }} /inspera | {{ 'Art & History Museum'|_}}
       </span>
     </div>
   </div>
