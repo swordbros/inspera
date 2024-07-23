@@ -159,6 +159,9 @@
     elements.forEach(element => {
         DateNavigtor._init(element);
     });
+    function reFilter(){
+        oc.request('#form-event-search', 'onClikDateNavigatorDay');
+    }
     function clickDay(start, end){
         uncheckDateGroups();
         Go(start, end);

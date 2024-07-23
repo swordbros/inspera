@@ -15,7 +15,7 @@
         <h5>Fiter Venue</h5>
         <ul class="list-unstyled filter-item filter-zone">
             {% for eventZone in eventZones %}
-            <li><label><input class="for-filter" type="checkbox" name="zone[]" value="{{ eventZone.id }}">{{ eventZone.name }}
+            <li><label><input class="for-filter" type="checkbox" name="zone[]" value="{{ eventZone.id }}" onclick="reFilter()">{{ eventZone.name }}
             </label></li>
             {% endfor%}
         </ul>
@@ -27,7 +27,7 @@
             <li>{{ eventType.name }}
                 <ul class="list-unstyled">
                     {% for eventCategory in eventType.categories() %}
-                    <li><label><input class="for-filter" type="checkbox" name="category[]" value="{{ eventCategory.id }}">{{ eventCategory.name }}</label></li>
+                    <li><label><input class="for-filter" type="checkbox" name="category[]" value="{{ eventCategory.id }}" onclick="reFilter()">{{ eventCategory.name }}</label></li>
                     {% endfor%}
                 </ul>
             </li>
@@ -38,7 +38,7 @@
         <h5>Fiter Audiences</h5>
         <ul class="list-unstyled filter-item filter-zone">
             {% for audience in audiences %}
-            <li><label><input class="for-filter" type="checkbox" checked name="audience[]" value="{{ audience.code }}">{{ audience.title }}
+            <li><label><input class="for-filter" type="checkbox" name="audience[]" value="{{ audience.code }}" onclick="reFilter()">{{ audience.title }}
             </label></li>
             {% endfor%}
         </ul>
