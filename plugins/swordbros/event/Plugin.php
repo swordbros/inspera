@@ -1,9 +1,12 @@
-<?php namespace Swordbros\Event;
+<?php
 
+namespace Swordbros\Event;
 
+use Event;
 use Site;
 use Swordbros\Base\Controllers\Amele;
 use Swordbros\Base\TwigExtensions\BaseTwigExtension;
+use Swordbros\Setting\Models\SwordbrosSettingModel;
 use System\Classes\PluginBase;
 
 /**
@@ -16,7 +19,6 @@ class Plugin extends PluginBase
      */
     public function register()
     {
-
     }
 
     /**
@@ -24,6 +26,10 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
+        Event::listen('cms.page.beforeDisplay', function ($controller, $url, $page) {
+            $settings = SwordbrosSettingModel::instance();
+            $controller->vars['swordbrosSettings'] = $settings;
+        });
     }
 
     /**
@@ -39,7 +45,7 @@ class Plugin extends PluginBase
     public function registerMailTemplates()
     {
         $site_id = Site::getSiteIdFromContext();
-        $templates['swordbros.booking_request_new-'.$site_id] = 'swordbros.event::mail.booking_request_new';
+        $templates['swordbros.booking_request_new-' . $site_id] = 'swordbros.event::mail.booking_request_new';
         return $templates;
     }
     public function registerMarkupTags()
@@ -57,7 +63,8 @@ class Plugin extends PluginBase
     public function registerSettings()
     {
     }
-    public function registerPageSnippets(){
+    public function registerPageSnippets()
+    {
         return [
             \Swordbros\Event\Snippets\CinemaDescription::class => 'eventDescription',
         ];
