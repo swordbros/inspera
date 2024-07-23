@@ -1,0 +1,23 @@
+<div class="col-md-6">
+  <div class="exhibition-box" data-scroll data-scroll-speed="-1">
+    <figure>
+      <a href="{{ event.url }}">
+        <img src="{{ event.thumb | media }}" alt="{{ event.title }}" class="img" style="opacity: 1">{# TODO #}
+      </a>
+      {#<div class="info">
+        <figure class="i"><img src="images/icon-info.png" alt="Image"></figure>
+        <span>50% off exhibitions</span>
+      </div>#}
+    </figure>
+    <div class="content-box">
+      <h3 class="h5">
+        <a href="{{ event.url }}">
+          {{ event.title }}
+        </a>
+      </h3>
+      <p>
+        {{ event.short | raw }}
+      </p>
+    </div>
+  </div>
+</div>

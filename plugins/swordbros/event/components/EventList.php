@@ -1,4 +1,6 @@
-<?php namespace Swordbros\Event\Components;
+<?php
+
+namespace Swordbros\Event\Components;
 
 use Media\Classes\MediaLibrary;
 use Response;
@@ -28,7 +30,7 @@ class EventList extends ComponentBase
     {
         $this->page['mediaUrl'] = MediaLibrary::url('/');
         $this->page['title'] = __('event.events');
-        $this->page['events'] = EventModel::where(['status'=>1])->get();
+        $this->page['events'] = $this->events = EventModel::where(['status' => 1])->get();
     }
     /**function onLoadAjaxPartial()
     {
@@ -38,9 +40,10 @@ class EventList extends ComponentBase
             '#dynamic-content' => $this->renderPartial('event/list-item', $data)
         ];
     }*/
-    function onLoadJsonItems(){
+    function onLoadJsonItems()
+    {
         $page = input('page', 1);
-        return  EventModel::where(['status'=>1])->paginate(2, $page);
 
+        return EventModel::where(['status' => 1])->paginate(2, $page);
     }
 }
