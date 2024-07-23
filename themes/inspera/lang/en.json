@@ -238,6 +238,6 @@
   "box.intro.name.slides.pic.label": "Picture",
   "box.intro.name.slides.pic_mobile.label": "Picture for mobile screens",
   "box.intro.name.slides.pic_title.label": "Alt title for CEO",
-  "box.mixin_button.button_attributes.label": "Button attributes"
-
+  "box.mixin_button.button_attributes.label": "Button attributes",
+  "box.upcoming_events.count": "Number of items to show"
 }

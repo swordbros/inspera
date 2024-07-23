@@ -1768,12 +1768,11 @@ button[type="submit"] {
     overflow: hidden;
     padding-bottom: 5px;
     text-align: center;
-    h5 {
+
+    h3 {
       width: 100%;
-      display: block;
-      font-size: 30px;
-      @include  font-titles-fancy;
     }
+
     .custom-link {
       color: #999;
       font-weight: 700;
@@ -2046,10 +2045,10 @@ button[type="submit"] {
     margin-top: -30px;
     padding-top: 30px;
     padding-right: 30px;
+
     h3 {
       width: 100%;
       display: block;
-      font-size: 28px;
       @include font-second;
       margin-bottom: 10px;
     }
@@ -2259,11 +2258,9 @@ button[type="submit"] {
     display: flex;
     flex-wrap: wrap;
     text-align: center;
-    h4 {
+
+    h3 {
       width: 100%;
-      display: block;
-      @include  font-titles-fancy;
-      font-size: 30px;
       margin-bottom: 20px;
       a {
         display: inline;

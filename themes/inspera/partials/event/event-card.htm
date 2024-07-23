@@ -1,5 +1,5 @@
 <a href="{{ event_url(event) }}">
-    <img class="img-fluid" src="{{ mediaUrl  }}/{{ event.thumb }}">
-    <h4>{{ event.title }}</h4>
-    <p>{{ event.short }}</p>
+    <img class="img-fluid" alt="" src="{{ event.thumb | media }}">
+    <h3 class="h5">{{ event.title }}</h3>
+    <p>{{ event.short | raw }}</p>
 </a>
