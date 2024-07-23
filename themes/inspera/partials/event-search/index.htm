@@ -42,7 +42,7 @@
 </style>
 {% framework extras %}
 
-<div class="date-navigator"></div>
+<div class="date-navigator"><a class="day prev" href="/demo-listing?date={{ datePrev }}" data-request-data="{&quot;day&quot;:&quot;2024-06-01&quot;}">&lt; Prev</a><div class="today">{{ month }}.{{ year }}</div><a class="day next" href="/demo-listing?date={{ dateNext }}">Next &gt;</a></div>
 <div class="date-days">
     <ul class="list-unstyled">
         {% for day in days %}
@@ -54,107 +54,7 @@
 </div>
 <div id="search-result" class="day result row"></div>
 <script>
-    const DateNavigtor = {
-        parent:null,
-        result_warpper: '#search-result',
-        year: '{{ year}}',
-        month: '{{ month }}',
-        _init: function (element){
-            this.parent = element;
-            this._innerHtml();
-        },
-        _innerHtml: function(){
-            const prevMont = this._prevMonth();
-            const nextMont = this._nextMonth();
-            var newDiv = document.createElement('a');
-            newDiv.className = 'day prev';
-            newDiv.textContent = '< Prev';
-            newDiv.setAttribute('href', '/demo-listing?date=' + prevMont.year.toString() + '-' + prevMont.month.toString());
-            newDiv.setAttribute('data-request-data', JSON.stringify({ day: '2024-06-01' }));
 
-            newDiv.addEventListener('click', () => {
-                let filter = DateNavigtor._getFilter();
-                DateNavigtor.searchEvents(filter);
-            });
-
-            this.parent.appendChild(newDiv);
-            var newDiv = document.createElement('div');
-            newDiv.className = 'today';
-            newDiv.textContent =  this.month.toString() + '.' + this.year.toString();
-            this.parent.appendChild(newDiv);
-
-            var newDiv = document.createElement('a');
-            newDiv.className = 'day next';
-            newDiv.textContent = 'Next >';
-            newDiv.setAttribute('href', '/demo-listing?date=' + nextMont.year.toString() + '-' + nextMont.month.toString());
-
-            newDiv.addEventListener('click', () => {
-                let filter = DateNavigtor._getFilter();
-                DateNavigtor.searchEvents(filter);
-            });
-            this.parent.appendChild(newDiv);
-
-        },
-        /*searchEvents: async  function (filter){
-            const url = '{{ route("api.event-search") }}?' + filter; // Uzak URL'yi buraya yazın
-
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                const data = await response.json();
-                document.getElementById('search-result').textContent = JSON.stringify(data, null, 2);
-            } catch (error) {
-                document.getElementById('search-result').textContent = 'Fetch error: ' + error.message;
-            }
-        },*/
-        _getFilter: function(){
-            const form = document.getElementById('form-event-search');
-            const formData = new FormData(form);
-            const params = new URLSearchParams();
-            for (const [key, value] of formData) {
-                params.append(key, value);
-            }
-            return params.toString();
-        },
-        _nextMonth: function (){
-            const today = new Date(this.year*1, this.month*1);
-            let year = today.getFullYear();
-            let month = today.getMonth();
-            const firstDayOfNextMonth = new Date(year, month + 1, 1);
-
-            year = firstDayOfNextMonth.getFullYear() ;
-            month = firstDayOfNextMonth.getMonth() ;
-            if(month==0){
-                month = 12;
-                year = year-1;
-            }
-            return {
-                'year': year,
-                'month': month
-            }
-        },
-        _prevMonth: function (){
-            const today = new Date(this.year*1, this.month*1);
-
-            let year = today.getFullYear();
-            let month = today.getMonth();
-            const firstDayOfPreviousMonth = new Date(year, month-1, 1);
-
-            year = firstDayOfPreviousMonth.getFullYear() ;
-            month = firstDayOfPreviousMonth.getMonth() ;
-            if(month==0){
-                month = 12;
-                year = year-1;
-            }
-
-            return {
-                'year': year,
-                'month': month
-            }
-        }
-    };
     const elements = document.querySelectorAll('.date-navigator');
     elements.forEach(element => {
         DateNavigtor._init(element);
