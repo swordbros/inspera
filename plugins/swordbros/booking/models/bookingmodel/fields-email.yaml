@@ -1,0 +1,11 @@
+fields:
+    email:
+        label: event.email.email
+        type: text
+        required: true
+    email_title:
+        label: event.email.email_title
+        type: text
+    email_body:
+        label: event.email.email_body
+        type: richeditor

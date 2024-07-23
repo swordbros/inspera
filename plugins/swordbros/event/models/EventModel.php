@@ -104,6 +104,9 @@ class EventModel extends BaseModel
         }
     }
     public function zoneIsAvailable(){
+        if(empty($this->start) || empty($this->end)){
+            return true;
+        }
         $eventModel = Db::table('swordbros_event_events');
         $eventModel->where([
             ['id','!=',$this->id],

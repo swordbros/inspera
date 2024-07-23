@@ -1,0 +1,10 @@
+name: Booking
+form: $/swordbros/booking/models/bookingmodel/fields-email.yaml
+modelClass: Swordbros\Booking\Models\BookingModel
+defaultRedirect: swordbros/booking/zone
+create:
+    redirect: 'swordbros/booking/booking/update/:id'
+    redirectClose: swordbros/booking/booking
+update:
+    redirect: swordbros/booking/booking
+    redirectClose: swordbros/booking/booking
