@@ -2,11 +2,11 @@
     <div class="filter-box box-date">
         <h5>Fiter Date</h5>
         <ul class="list-unstyled filter-item filter-date">
-            <li><input name="date-group" checked class="for-filter" type="radio" value="today" onclick="clickDateGroup('{{todayStart}}', '{{ todayEnd }}')">Today</li>
-            <li><input name="date-group" class="for-filter" type="radio" value="tomorrow" onclick="clickDateGroup('{{tomorrowStart}}', '{{ tomorrowEnd }}')">Tomorrow</li>
-            <li><input name="date-group" class="for-filter" type="radio" value="thisweek" onclick="clickDateGroup('{{weekStart}}', '{{ weekEnd }}')">This Week</li>
-            <li><input name="date-group" class="for-filter" type="radio" value="thisweekend" onclick="clickDateGroup('{{weekendStart}}', '{{ weekendEnd }}')">This Weekend</li>
-            <li><input name="date-group" class="for-filter" type="radio" value="thismonth" onclick="clickDateGroup('{{monthStart}}', '{{ monthEnd }}')">This Month</li>
+            <li><input name="date-group" checked class="for-filter" type="radio" value="today" onclick="clickDateGroup(this, '{{todayStart}}', '{{ todayEnd }}')">Today</li>
+            <li><input name="date-group" class="for-filter" type="radio" value="tomorrow" onclick="clickDateGroup(this, '{{tomorrowStart}}', '{{ tomorrowEnd }}')">Tomorrow</li>
+            <li><input name="date-group" class="for-filter" type="radio" value="thisweek" onclick="clickDateGroup(this, '{{weekStart}}', '{{ weekEnd }}')">This Week</li>
+            <li><input name="date-group" class="for-filter" type="radio" value="thisweekend" onclick="clickDateGroup(this, '{{weekendStart}}', '{{ weekendEnd }}')">This Weekend</li>
+            <li><input name="date-group" class="for-filter" type="radio" value="thismonth" onclick="clickDateGroup(this, '{{monthStart}}', '{{ monthEnd }}')">This Month</li>
             <input id="selectedStart" class="for-filter" name="start" type="hidden" value="">
             <input id="selectedEnd" class="for-filter" name="end" type="hidden" value="">
         </ul>
