@@ -110,8 +110,10 @@ class EventModel extends BaseModel
             $this->customMessages['capacity.min'] = 'Geçerli rezervasyon sayısından daha az kapasite tanımladınız. Kapasite Minimum ' . $eventBookingCount . ' olmalıdır';
         }
     }
-    public function zoneIsAvailable()
-    {
+    public function zoneIsAvailable(){
+        if(empty($this->start) || empty($this->end)){
+            return true;
+        }
         $eventModel = Db::table('swordbros_event_events');
         $eventModel->where([
             ['id', '!=', $this->id],
