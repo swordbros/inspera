@@ -1,0 +1,89 @@
+<style>
+    .date-navigator{
+        display: flex;
+        text-align: center;
+    }
+    .date-navigator .day{
+        margin: auto;
+    }
+    .date-navigator .day.prev{
+
+    }
+    .date-navigator .day.today{
+
+    }
+    .date-navigator .day.next{
+
+    }
+    .date-days{
+
+    }
+    .date-days ul{
+        display: flex;
+    }
+    .date-days ul li {
+        width: 100%;
+    }
+    .date-days ul li.has-event {
+
+    }
+    .date-days ul li.no-event {
+        opacity: 0.1;
+    }
+    .date-days ul li button {
+        padding: 0;
+        margin: 0;
+        width: 26px;
+        border: 1px solid #cdcdcd;
+    }
+    .date-days ul li button.active {
+        border-radius: 50%;
+    }
+    .date-days ul li.day-weekend button{
+        color: #ff0000;
+    }
+</style>
+{% framework extras %}
+
+<div class="date-navigator"><a class="day prev" href="/demo-listing?date={{ datePrev }}" data-request-data="{&quot;day&quot;:&quot;2024-06-01&quot;}">&lt; Prev</a><div class="today">{{ month }}.{{ year }}</div><a class="day next" href="/demo-listing?date={{ dateNext }}">Next &gt;</a></div>
+<div class="date-days">
+    <ul class="list-unstyled">
+        {% for day in days %}
+        <li class="{{ day.class }} {% if( day.hasEvent ) %} has-event {% else %} no-event {% endif %}">
+            <button class="button-day" onclick="clickDay(this, '{{ day.start}}', '{{ day.end}}')">{{ day.dayNumber }}</button>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<div id="search-result" class="day result row"></div>
+<script>
+
+    function reFilter(){
+        oc.request('#form-event-search', 'onClikDateNavigatorDay');
+    }
+    function clickDay(elemet, start, end){
+        markSelectedDay(elemet);
+        uncheckDateGroups();
+        Go(start, end);
+    }
+    function Go(start, end) {
+        const selectedStart = document.getElementById('selectedStart');
+        selectedStart.value = start;
+        const selectedEnd = document.getElementById('selectedEnd');
+        selectedEnd.value = end;
+        oc.request('#form-event-search', 'onClikDateNavigatorDay')
+    }
+    function uncheckDateGroups() {
+        var radioButtons = document.getElementsByName('date-group');
+        for (var i = 0; i < radioButtons.length; i++) {
+            radioButtons[i].checked = false;
+        }
+    }
+    function markSelectedDay(element){
+        var buttons = document.querySelectorAll('.button-day');
+        buttons.forEach(el => el.classList.remove('active'));
+        if(element){
+            element.classList.add('active');
+        }
+    }
+</script>

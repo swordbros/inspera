@@ -1,0 +1,19 @@
+<div class="col-md-6 col">
+    <h6 class="text-center">{{ event_type.name }}</h6>
+    <div class="row p-1 m-1">
+        <div class="col-md-3" style="background-color: {{ color }}">
+            <div>{{ humanStart }}</div>
+            <div>{{ humanYear }}</div>
+            <div>{{ humanHour }}</div>
+            {% if booking_url %}
+            <button type="button" class="btn btn-danger align-bottom">Book Now</button>
+            {% endif %}
+        </div>
+        <div class="col-md-9">
+            <img class="image" src="{{ thumb_image }}">
+            <h5>{{ title }}</h5>
+            <small>{{ event_category.name }}</small><br>
+            <small>{{ event_zone.name }}</small>
+        </div>
+    </div>
+</div>

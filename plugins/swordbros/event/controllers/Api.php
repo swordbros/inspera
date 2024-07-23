@@ -1,16 +1,15 @@
 <?php namespace Swordbros\Event\Controllers;
 
-use BackendMenu;
+
+use Cms\Classes\ComponentBase;
+use Cms\Classes\Controller as CmsController;
 use Response;
-use Swordbros\Base\Controllers\BaseController;
-use Swordbros\Booking\models\BookingModel;
-use Swordbros\Base\Controllers\Amele;
-use Swordbros\Event\Controllers\Event;
 use Swordbros\Event\Models\EventModel;
 
 
-class Api extends BaseController
+class Api extends ComponentBase
 {
+
     public static function search(){
         $params = self::searchParanters();
         $query = \Db::table('swordbros_event_search')
@@ -79,4 +78,5 @@ class Api extends BaseController
             'page'=>\Input::get('page', 1),
         ];
     }
+
 }

@@ -1,0 +1,51 @@
+<form id="form-event-search" data-request="onClikDateNavigatorDay">
+    <div class="filter-box box-date">
+        <h5>Fiter Date</h5>
+        <ul class="list-unstyled filter-item filter-date">
+            <li><input name="date-group" checked class="for-filter" type="radio" value="today" onclick="Go('{{todayStart}}', '{{ todayEnd }}')">Today</li>
+            <li><input name="date-group" class="for-filter" type="radio" value="tomorrow" onclick="Go('{{tomorrowStart}}', '{{ tomorrowEnd }}')">Tomorrow</li>
+            <li><input name="date-group" class="for-filter" type="radio" value="thisweek" onclick="Go('{{weekStart}}', '{{ weekEnd }}')">This Week</li>
+            <li><input name="date-group" class="for-filter" type="radio" value="thisweekend" onclick="Go('{{weekendStart}}', '{{ weekendEnd }}')">This Weekend</li>
+            <li><input name="date-group" class="for-filter" type="radio" value="thismonth" onclick="Go('{{monthStart}}', '{{ monthEnd }}')">This Month</li>
+            <input id="selectedStart" class="for-filter" name="start" type="hidden" value="">
+            <input id="selectedEnd" class="for-filter" name="end" type="hidden" value="">
+        </ul>
+    </div>
+    <div class="filter-box box-zone">
+        <h5>Fiter Venue</h5>
+        <ul class="list-unstyled filter-item filter-zone">
+            {% for eventZone in eventZones %}
+            <li><label><input class="for-filter" type="checkbox" name="zone[]" value="{{ eventZone.id }}" onclick="reFilter()">{{ eventZone.name }}
+            </label></li>
+            {% endfor%}
+        </ul>
+    </div>
+    <div class="filter-box box-category">
+        <h5>Fiter Category</h5>
+        <ul class="filter-item filter-category">
+            {% for eventType in eventTypes %}
+            <li>{{ eventType.name }}
+                <ul class="list-unstyled">
+                    {% for eventCategory in eventType.categories() %}
+                    <li><label><input class="for-filter" type="checkbox" name="category[]" value="{{ eventCategory.id }}" onclick="reFilter()">{{ eventCategory.name }}</label></li>
+                    {% endfor%}
+                </ul>
+            </li>
+            {% endfor%}
+        </ul>
+    </div>
+    <div class="filter-box box-audiences">
+        <h5>Fiter Audiences</h5>
+        <ul class="list-unstyled filter-item filter-zone">
+            {% for audience in audiences %}
+            <li><label><input class="for-filter" type="checkbox" name="audience[]" value="{{ audience.code }}" onclick="reFilter()">{{ audience.title }}
+            </label></li>
+            {% endfor%}
+        </ul>
+    </div>
+
+</form>
+<script>
+
+    Go('{{start}}', '{{ end }}');
+</script>
