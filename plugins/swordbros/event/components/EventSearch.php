@@ -118,6 +118,10 @@ class EventSearch extends ComponentBase
         $data['monthStart'] = $today->format('Y-m-01 00:00:00');
         $data['monthEnd'] = $today->format('Y-m-t 23:59:09');
 
+        $currentMonthFirstDay = Carbon::create($year, $month, 1);
+        $data['datePrev'] = date('Y-m', strtotime('-1 month', strtotime($currentMonthFirstDay)));
+        $data['dateNext'] = date('Y-m', strtotime('+1 month', strtotime($currentMonthFirstDay)));
+        
         $this->page['searchIndex'] = $this->renderPartial('event-search/index', $data);
         $this->page['searchFilters'] = $this->renderPartial('event-search/filters', $data);
     }
