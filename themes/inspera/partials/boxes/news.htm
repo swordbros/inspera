@@ -18,7 +18,7 @@
       {% for post in posts %}
         {% set url = 'blog/post'|page({ slug: post.slug, id: post.id }) %}
 
-        <div class="col-lg-6">
+        <div class="col-lg-6 mb-4">
           <div class="news-box" data-scroll data-scroll-speed="-1">
             <figure>
               <a href="{{ url }}">
@@ -33,7 +33,7 @@
                   {{ post.published_at_date|date('j M Y') }}
                 </span>
               </p> 
-              <h3>
+              <h3 class="h5">
                 <a href="{{ url }}">
                   {{ post.title }}
                 </a>
@@ -41,9 +41,11 @@
               {% if post.featured_text %}
                 <p>{{ post.featured_text | raw }}</p>
               {% endif %}
-              <a href="{{ url }}" class="text-decoration-underline">
-                {{ 'Continue reading' |_ }}
-              </a>
+              <p>
+                <a href="{{ url }}" class="text-decoration-underline">
+                  {{ 'Continue reading' |_ }}
+                </a>
+              </p>
             </div>
           </div>
         </div>

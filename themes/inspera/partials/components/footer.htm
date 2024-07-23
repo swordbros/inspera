@@ -8,7 +8,9 @@ value = "about-footer"
 {% endif %}
 
 <footer class="footer bg-light">
+
   {% partial 'components/subscribe' %}
+
   <div class="container">
     <div class="row">
 
@@ -84,6 +86,8 @@ value = "about-footer"
         </h6>
         <address class="address">
           {{ swordbrosSettings.address }}
+          <i class="fas fa-info-circle"></i>
+          <a href="tel:{{ swordbrosSettings.telephone }}">{{ swordbrosSettings.telephone }}</a>
         </address>
       </div>
     </div>

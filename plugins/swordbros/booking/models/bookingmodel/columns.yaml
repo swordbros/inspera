@@ -34,6 +34,10 @@ columns:
         label: booking.cols.payment_status
         type: partial
         path: payment_status
+    actions:
+        label: ''
+        type: partial
+        path: actions
     deleted_at:
         label: booking.cols.deleted_at
         type: datetime

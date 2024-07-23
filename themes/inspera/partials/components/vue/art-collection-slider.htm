@@ -1,7 +1,7 @@
 <div class="col-lg-6">
   <div class="art-slider">
     <div class="titles">
-      <h6 v-text="item.eyebrow_title"></h6>
+      <div class="eyebrow" v-text="item.eyebrow_title"></div>
       <div v-html="item.title"></div>
     </div>
     <div class="art-slider-content">      
@@ -12,7 +12,7 @@
         :key="i"
       >
         <span v-text="i + 1"></span>
-        <h3>
+        <h3 class="h5">
           <a :href="row.url" v-text="row.title"></a>
         </h3>
       </div>
