@@ -2,11 +2,11 @@
     <div class="filter-box box-date">
         <h5>Fiter Date</h5>
         <ul class="list-unstyled filter-item filter-date">
-            <li><input name="date-group" checked class="for-filter" type="radio" value="today" onclick="Go('{{todayStart}}', '{{ todayEnd }}')">Bugün</li>
-            <li><input name="date-group" class="for-filter" type="radio" value="tomorrow" onclick="Go('{{tomorrowStart}}', '{{ tomorrowEnd }}')">Yarın</li>
-            <li><input name="date-group" class="for-filter" type="radio" value="thisweek" onclick="Go('{{weekStart}}', '{{ weekEnd }}')">Bu Hafta</li>
-            <li><input name="date-group" class="for-filter" type="radio" value="thisweekend" onclick="Go('{{weekendStart}}', '{{ weekendEnd }}')">Bu Hafta Sonu</li>
-            <li><input name="date-group" class="for-filter" type="radio" value="thismonth" onclick="Go('{{monthStart}}', '{{ monthEnd }}')">Bu Ay</li>
+            <li><input name="date-group" checked class="for-filter" type="radio" value="today" onclick="Go('{{todayStart}}', '{{ todayEnd }}')">Today</li>
+            <li><input name="date-group" class="for-filter" type="radio" value="tomorrow" onclick="Go('{{tomorrowStart}}', '{{ tomorrowEnd }}')">Tomorrow</li>
+            <li><input name="date-group" class="for-filter" type="radio" value="thisweek" onclick="Go('{{weekStart}}', '{{ weekEnd }}')">This Week</li>
+            <li><input name="date-group" class="for-filter" type="radio" value="thisweekend" onclick="Go('{{weekendStart}}', '{{ weekendEnd }}')">This Weekend</li>
+            <li><input name="date-group" class="for-filter" type="radio" value="thismonth" onclick="Go('{{monthStart}}', '{{ monthEnd }}')">This Month</li>
             <input id="selectedStart" class="for-filter" name="start" type="hidden" value="">
             <input id="selectedEnd" class="for-filter" name="end" type="hidden" value="">
         </ul>

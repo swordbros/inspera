@@ -36,6 +36,9 @@
         width: 26px;
         border: 1px solid #cdcdcd;
     }
+    .date-days ul li button.active {
+        border-radius: 50%;
+    }
     .date-days ul li.day-weekend button{
         color: #ff0000;
     }
@@ -47,7 +50,7 @@
     <ul class="list-unstyled">
         {% for day in days %}
         <li class="{{ day.class }} {% if( day.hasEvent ) %} has-event {% else %} no-event {% endif %}">
-            <button onclick="clickDay('{{ day.start}}', '{{ day.end}}')">{{ day.dayNumber }}</button>
+            <button class="button-day" onclick="clickDay(this, '{{ day.start}}', '{{ day.end}}')">{{ day.dayNumber }}</button>
         </li>
         {% endfor %}
     </ul>
@@ -55,14 +58,11 @@
 <div id="search-result" class="day result row"></div>
 <script>
 
-    const elements = document.querySelectorAll('.date-navigator');
-    elements.forEach(element => {
-        DateNavigtor._init(element);
-    });
     function reFilter(){
         oc.request('#form-event-search', 'onClikDateNavigatorDay');
     }
-    function clickDay(start, end){
+    function clickDay(elemet, start, end){
+        markSelectedDay(elemet);
         uncheckDateGroups();
         Go(start, end);
     }
@@ -77,6 +77,13 @@
         var radioButtons = document.getElementsByName('date-group');
         for (var i = 0; i < radioButtons.length; i++) {
             radioButtons[i].checked = false;
+        }
+    }
+    function markSelectedDay(element){
+        var buttons = document.querySelectorAll('.button-day');
+        buttons.forEach(el => el.classList.remove('active'));
+        if(element){
+            element.classList.add('active');
         }
     }
 </script>
