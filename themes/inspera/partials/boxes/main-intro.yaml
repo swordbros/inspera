@@ -20,19 +20,22 @@ form:
           fields:
             title-mixin:
               type: mixin
+            background-mixin:
+              type: mixin
+              tab: box.mixin_background.tab
             text:
               label: box.intro.name.slides.text.label 
               type: richeditor
-            pic:
-              type: mediafinder
-              mode: image
-              label: box.intro.name.slides.pic.label 
-            pic_mobile:
-              type: mediafinder
-              mode: image
-              label: box.intro.name.slides.pic_mobile.label 
-            pic_title: 
-              label: box.intro.name.slides.pic_title.label
+            # pic:
+            #   type: mediafinder
+            #   mode: image
+            #   label: box.intro.name.slides.pic.label 
+            # pic_mobile:
+            #   type: mediafinder
+            #   mode: image
+            #   label: box.intro.name.slides.pic_mobile.label 
+            # pic_title: 
+            #   label: box.intro.name.slides.pic_title.label
 
       anchor-mixin:
         type: mixin

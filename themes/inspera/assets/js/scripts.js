@@ -123,57 +123,57 @@
   // });
 
 
-  // SLIDER
-  // var sliderimages = new Swiper('.slider-images', {
-  //   spaceBetween: 0,
-  //   direction: 'vertical',
-  //   autoplay: {
-  //     delay: 9500,
-  //     disableOnInteraction: false,
-  //   },
-  //   navigation: {
-  //     nextEl: '.button-next',
-  //     prevEl: '.button-prev',
-  //   },
-  //   touchRatio: 0,
+  //SLIDER
+  var sliderimages = new Swiper('.slider-images', {
+    spaceBetween: 0,
+    direction: 'vertical',
+    autoplay: {
+      delay: 9500,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: '.button-next',
+      prevEl: '.button-prev',
+    },
+    touchRatio: 0,
 
-  //   pagination: {
-  //     el: '.swiper-fraction',
-  //     type: 'fraction',
-  //   },
-
-
-  //   loop: true,
-  //   loopedSlides: 1,
-  //   thumbs: {
-  //     swiper: slidertexts
-  //   }
-  // });
+    pagination: {
+      el: '.swiper-fraction',
+      type: 'fraction',
+    },
 
 
-  // SLIDER THUMBS
-  // var slidertexts = new Swiper('.slider-texts', {
-  //   spaceBetween: 10,
-  //   centeredSlides: true,
-  //   slidesPerView: 1,
-  //   touchRatio: 0,
-  //   slideToClickedSlide: false,
-  //   loop: true,
-  //   loopedSlides: 1,
+    loop: true,
+    loopedSlides: 1,
+    thumbs: {
+      swiper: slidertexts
+    }
+  });
 
-  //   pagination: {
-  //     el: '.swiper-pagination',
-  //     type: 'progressbar',
-  //   },
 
-  // });
+  //SLIDER THUMBS
+  var slidertexts = new Swiper('.slider-texts', {
+    spaceBetween: 10,
+    centeredSlides: true,
+    slidesPerView: 1,
+    touchRatio: 0,
+    slideToClickedSlide: false,
+    loop: true,
+    loopedSlides: 1,
 
-  // if ($(".slider-images")[0]) {
-  //   sliderimages.controller.control = slidertexts;
-  //   slidertexts.controller.control = sliderimages;
-  // } else {
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'progressbar',
+    },
 
-  // }
+  });
+
+  if ($(".slider-images")[0]) {
+    sliderimages.controller.control = slidertexts;
+    slidertexts.controller.control = sliderimages;
+  } else {
+
+  }
 
 
   // KINETIC TEXTS
