@@ -49,10 +49,12 @@
 
 <script>
 import EventCard from './EventCard.vue';
+import EventsFilter from './EventsFilter.vue';
 
 export default {
   components: {
-    EventCard
+    EventCard,
+    EventsFilter
   },
   data() {
     return {
@@ -70,7 +72,8 @@ export default {
       error: null,
       monthIndex: null,
       year: null,
-      monthDays: []
+      monthDays: [],
+      isFilterShown: false
     };
   },
   methods: {

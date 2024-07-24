@@ -139,11 +139,14 @@ $color-primary: $color-main;
 $color-secondary: #DDFA80;
 $color-white: #ffffff;
 $color-muted: #F4F3F2;
+$gray: #cecece;
 
 $success: $color-secondary;
 $info: $color-main;
 // $warning:       $yellow;
 $danger: red;
+
+$color-borders: $gray;
 
 /* SIZES */
 $font-size: 17px;
@@ -287,42 +290,50 @@ input[type="text"] {
   max-width: 100%;
   height: 70px;
   padding: 0 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
+
+  &:focus {
+    border-color: $color-main;
+  }
 }
 input[type="email"] {
   width: 420px;
   max-width: 100%;
   height: 70px;
   padding: 0 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
+
+  &:focus {
+    border-color: $color-main;
+  }
 }
 input[type="search"] {
   width: 420px;
   max-width: 100%;
   height: 70px;
   padding: 0 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
 }
 input[type="password"] {
   width: 420px;
   max-width: 100%;
   height: 70px;
   padding: 0 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
 }
 input[type="number"] {
   width: 420px;
   max-width: 100%;
   height: 70px;
   padding: 0 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
 }
 input[type="date"] {
   width: 420px;
   max-width: 100%;
   height: 70px;
   padding: 0 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
 }
 input[type="radio"] {
   width: 18px;
@@ -355,14 +366,17 @@ textarea {
   max-width: 100%;
   height: 140px;
   padding: 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
+  &:focus {
+    border-color: $color-main;
+  }
 }
 select {
   width: 420px;
   max-width: 100%;
   height: 70px;
   padding: 0 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
 }
 select {
   -webkit-appearance: none;
@@ -3106,24 +3120,39 @@ $date-col-width: 90px;
     }
     .inner {
       width: 80%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
+      position: relative;
+    }
+    input[type="text"] {
+      padding: 10px 35% 10px 30px;
+      border-color: #757575;
       background: #fff;
-      padding: 10px;
-      border: 1px solid #757575;
+      width: 100%;
+      height: 90px;
+
+      &:focus {
+        border-color: #0d5eff;
+      }
     }
-    input[type="email"] {
-      width: 70%;
-      flex: auto;
-      border: none;
-      padding: 0;
-      padding-left: 20px;
+
+    .inner.has-error input[type=text] {
+      border-color: $danger;
     }
+
     input[type="submit"] {
-      width: 30%;
+      position: absolute;
+      inset: 10px 10px 10px 70%;
       background: $color-main;
       padding: 0;
+      text-transform: uppercase;
+    }
+
+    input[disabled] {
+      background-color: #757575;
+    }
+
+    [data-validate-for] {
+      color: $danger;
+      font-size: $font-size-small;
     }
   }
   .newsletter-image {
@@ -3141,6 +3170,11 @@ $date-col-width: 90px;
       color: #fff;
     }
   }
+}
+
+/* MODAL FOOTER */
+.modal-footer {
+  border: 0;
 }
 
 /* CONTACT BOX */
