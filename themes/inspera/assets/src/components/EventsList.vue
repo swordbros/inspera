@@ -107,10 +107,30 @@ export default {
     },
     setMonthYear() {
       // console.log('params month ' + this.params.month)
-      const monthParams = this.params.month.split('-')
-      // TODO validate it, set current if not valid
-      this.year = parseInt(monthParams.pop())
-      this.monthIndex = parseInt(monthParams.pop()) - 1
+      if (this.params.month && this.isValidMonth(this.params.month)) {
+        const [year, month] = dateString.split('-').map(Number)
+        this.year = year
+        this.monthIndex = month - 1 // month index start is 0
+      } else {
+        var today = new Date();
+        this.year = today.getFullYear()
+        this.monthIndex = today.getMonth()
+      }
+    },
+    isValidMonth(dateString) {
+      // Regular expression to match YYYY-MM format
+      const regex = /^\d{4}-(0[1-9]|1[0-2])$/;
+
+      if (!regex.test(dateString)) {
+        return false;
+      }
+
+      const [year, month] = dateString.split('-').map(Number);
+      if (year < 2023 || year > 3000) {
+        return false;
+      }
+
+      return true;
     },
     formatMonth(year, month) {
       return '${year}-${month}'
