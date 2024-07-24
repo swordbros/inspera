@@ -3,9 +3,16 @@
 
     <?= Form::open(['class' => 'layout']) ?>
 
-    <div class="layout-row">
+    <div class="row">
         <div class="col-6"><?= $this->formRender() ?></div>
-        <div class="col-6"></div>
+        <div class="col-6">
+            <h5>Booking Info</h5>
+            <lu>
+                <?php foreach ($formModel->attributes as $attribute=>$value) {?>
+<li><?= $attribute ?>: <strong><?= $value ?></strong></li>
+                <?php }?>
+            </lu>
+        </div>
     </div>
 
     <div class="form-buttons">

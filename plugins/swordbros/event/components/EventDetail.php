@@ -62,6 +62,7 @@ class EventDetail extends ComponentBase
             Mail::send('swordbros.booking_request_new-'.$site_id, $data, function ($message) use($data) {
                 $message->to($data['send_email'], $data['first_name']);
             });
+
             $data['requestApprove'] = route('request-approve', ['otp'=>$bokingRequestModel->otp]);
             $data['requestDecline'] =route('request-decline', ['otp'=>$bokingRequestModel->otp]);
             $emails = Amele::getAlertEmails();
