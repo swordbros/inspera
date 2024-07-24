@@ -2,7 +2,7 @@
   <div class="exhibition-box" data-scroll data-scroll-speed="-1">
     <figure>
       <a href="{{ event.url }}">
-        <img src="{{ event.thumb | media }}" alt="{{ event.title }}" class="img" style="opacity: 1">{# TODO #}
+        <img src="{{ event.thumb | media | resize(510, 382, {'mode': 'crop'}) }}" alt="{{ event.title }}" class="img" style="opacity: 1">{# TODO #}
       </a>
       {#<div class="info">
         <figure class="i"><img src="images/icon-info.png" alt="Image"></figure>
