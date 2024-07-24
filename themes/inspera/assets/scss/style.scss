@@ -242,6 +242,33 @@ h6, .h6 {
   @include font-h6;
 }
 
+/* fancy underline for clickable headings */
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  a {
+    display: inline;
+    background-image: -moz-linear-gradient(
+      rgba(0, 0, 0, 0) calc(99% - 2px),
+      $color-dark 2px
+    );
+    background-image: -webkit-linear-gradient(
+      rgba(0, 0, 0, 0) calc(99% - 2px),
+      $color-dark 2px
+    );
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0) calc(99% - 2px),
+      $color-dark 2px
+    );
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    transition: background-size 0.5s;
+
+    &:hover {
+      background-size: 100% 100%;
+      text-decoration: none;
+    }
+  }
+}
+
 .text-small {
   font-size: $font-size-small;
 }
@@ -2351,6 +2378,7 @@ $date-col-width: 90px;
     opacity: 1;
     transform: scale(1);
   }
+
   figure {
     width: 100%;
     display: block;
@@ -2428,6 +2456,7 @@ $date-col-width: 90px;
     h3 {
       width: 100%;
       margin-bottom: 20px;
+
       a {
         display: inline;
         background-image: -moz-linear-gradient(
