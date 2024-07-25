@@ -13059,6 +13059,7 @@ __webpack_require__.r(__webpack_exports__);
         $.request('onGetEvents', {
           data: {
             params: self.params,
+            // test push
             shouldChangeMonth: this.shouldChangeMonth ? true : false
           },
           success: function (data) {

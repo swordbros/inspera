@@ -106,7 +106,7 @@ export default {
         const self = this
         $.request('onGetEvents', {
           data: {
-            params: self.params,
+            params: self.params, // test push
             shouldChangeMonth: this.shouldChangeMonth ? true : false
           },
           success: function(data) {
