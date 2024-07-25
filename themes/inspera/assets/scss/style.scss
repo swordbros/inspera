@@ -1825,6 +1825,8 @@ $date-col-width: 90px;
   position: relative;
   background-size: cover !important;
   background-position: center !important;
+  overflow: hidden;
+  
   .container {
     position: relative;
     z-index: 1;
