@@ -3,14 +3,24 @@
   <div class="swiper-container slider-images">
     <div class="swiper-wrapper">
       {% for item in box.slides %}
-        <div class="swiper-slide">
-            {% partial 'boxes/parts/_background.htm' box=item %}
+        {% if item.fonts_color == 'light' %}
+          <style>
+            .swiper-slide-{{ loop.index }} {
+              --slider-text-color: #ffffff;
+            }
+          </style>
+        {% endif %}
+
+        <div class="swiper-slide swiper-slide-{{ loop.index }}">
+          {% partial 'boxes/parts/_background.htm' box=item %}
             <div class="slider-texts">
               <div class="container-fluid">
+
                 {% partial 'boxes/parts/_title.htm' box=item %}
+
                 {{ item.text | raw }}
             </div>
-            </div>
+          </div>
         </div>
             
         {#<div class="mobile-slide">

@@ -18,7 +18,7 @@
           throw new Exception('Fill in the collection pages images in Boxes plugin!');
         }
         $path = \Storage::disk('media')->path($link['pic']);
-        $image = \System\Classes\ResizeImages::resize($path, 662, 800, ['mode' => 'crop']);
+        $image = \System\Classes\ResizeImages::resize($path, 662, 662, ['mode' => 'crop']);
 
         $links[] = [
           'title' => str_replace('- ', '', $resolver->title),
@@ -44,6 +44,7 @@
         row g-0 align-items-center
         {{ loop.index is odd ? 'collection-row-odd' : 'collection-row-even' }}
         art-slider-{{ context.loop.index }}
+        art-slider
         "
         data-item="{{ item|json_encode|e('html_attr') }}"
       >

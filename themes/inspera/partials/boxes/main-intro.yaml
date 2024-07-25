@@ -26,16 +26,13 @@ form:
             text:
               label: box.intro.name.slides.text.label 
               type: richeditor
-            # pic:
-            #   type: mediafinder
-            #   mode: image
-            #   label: box.intro.name.slides.pic.label 
-            # pic_mobile:
-            #   type: mediafinder
-            #   mode: image
-            #   label: box.intro.name.slides.pic_mobile.label 
-            # pic_title: 
-            #   label: box.intro.name.slides.pic_title.label
+            fonts_color:
+              type: balloon-selector
+              label: box.intro.name.slides.fonts_color
+              default: dark
+              options:
+                dark: Dark
+                light: Light
 
       anchor-mixin:
         type: mixin

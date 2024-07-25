@@ -114,11 +114,11 @@ mixin:
       fields:
         start_color:
           type: colorpicker
-          availableColors: ['#84c2c3']
+          availableColors: ['#F4F3F2']
           span: auto
         end_color:
           type: colorpicker
-          availableColors: ['#4aa697']
+          availableColors: ['#DDFA80']
           span: auto
           comment: box.mixin_background.fields.end_color.comment
         direction:
