@@ -36,16 +36,12 @@ class Plugin extends PluginBase
         Event::subscribe(ExtendBoxesScaffoldingClasses::class);
         Event::subscribe(AddEssentialsVars::class);
 
-        /**
-         * Adds custom classes only to editor in backend
-         */
-        // \Event::listen(
-        //     \OFFLINE\Boxes\Classes\Events::EDITOR_RENDER,
-        //     function (\OFFLINE\Boxes\Components\BoxesPageEditor $editor) {
-        //         $editor->addCss('/themes/thetheme/assets/styles/box-editor.css');
-        //     }
-        // );
-
+        Event::listen(
+            \OFFLINE\Boxes\Classes\Events::EDITOR_RENDER,
+            function (\OFFLINE\Boxes\Components\BoxesPageEditor $editor) {
+                $editor->addCss('/themes/inspera/assets/css/box-editor.css');
+            }
+        );
     }
 
     public function registerComponents()

@@ -18,6 +18,9 @@ form:
         label: box.intro.name.slides.label 
         form:
           fields:
+            is_hidden:
+              type: checkbox
+              label: Hide
             title-mixin:
               type: mixin
             background-mixin:
@@ -27,12 +30,21 @@ form:
               label: box.intro.name.slides.text.label 
               type: richeditor
             fonts_color:
+              span: auto
               type: balloon-selector
               label: box.intro.name.slides.fonts_color
               default: dark
               options:
                 dark: Dark
                 light: Light
+            title_position:
+              span: auto
+              type: balloon-selector
+              label: box.intro.name.slides.title_position
+              default: left
+              options:
+                left: Left
+                right: Right
 
       anchor-mixin:
         type: mixin

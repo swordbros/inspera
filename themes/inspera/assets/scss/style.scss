@@ -1565,7 +1565,7 @@ $date-col-width: 90px;
     z-index: 2;    
     align-items: center;
     display: flex;
-    max-width: 700px;    
+        
 
     // .svg-morph {
     //   position: absolute;
@@ -1583,6 +1583,22 @@ $date-col-width: 90px;
     //     animation-play-state: running;
     //   }
     // }
+      &.-right {
+        justify-content: end;
+
+        p, .title__group {
+          text-align: right;
+        }
+
+        p:before {
+          left: auto;
+          right: 0;
+        }
+      }
+
+      .container-fluid.text-content {
+        max-width: 700px;
+      }
 
       h1 {
         font-size: 100px;
@@ -1653,21 +1669,23 @@ $date-col-width: 90px;
     position: relative;
     z-index: 3;
 
+    $slider-nav-size: 60px;
+
     .button-prev {
-      width: 64px;
-      height: 64px;
+      width: $slider-nav-size;
+      height: $slider-nav-size;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 30px;
+      font-size: 28px;
       background: $color-main;
-      color: var(--slider-text-color);
+      color: #fff;
       margin-left: auto;
       margin-right: 8px;
       position: relative;
       z-index: 3;
       cursor: pointer;
-      transform: translateY(-22px);
+      transform: translateY(-21px);
       border-radius: 50%;
       @include transition;
 
@@ -1676,19 +1694,20 @@ $date-col-width: 90px;
         color: $color-main;
       }
     }
+
     .button-next {
-      width: 64px;
-      height: 64px;
+      width: $slider-nav-size;
+      height: $slider-nav-size;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 30px;
+      font-size: 28px;
       background: $color-main;
-      color: var(--slider-text-color);
+      color: #fff;
       position: relative;
       z-index: 3;
       cursor: pointer;
-      transform: translateY(-22px);
+      transform: translateY(-21px);
       border-radius: 50%;
       @include transition;
 
