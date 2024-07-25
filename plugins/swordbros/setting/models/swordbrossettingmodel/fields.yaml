@@ -56,6 +56,11 @@ tabs:
             label: swordbross.settings.alert_emails
             type: email
             comment:  You can separate emails with ";"
+        create_user_booking_request:
+            tab: event.tab.business_settings
+            label: swordbross.settings.create_user_booking_request
+            type: switch
+            comment: Create a user for appointment requests?
         social_x:
             tab: event.tab.social
             label: swordbross.settings.social_x
