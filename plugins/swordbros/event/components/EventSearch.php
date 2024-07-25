@@ -169,7 +169,7 @@ class EventSearch extends ComponentBase
                     ['status', '=', 1],
                     ['start', '<=', $date->format('Y-m-d 23:59:09')],
                     ['end', '>=', $date->format('Y-m-d 00:00:00')]
-                    ])->exists(),
+                ])->exists(),
             ];
         }
 
@@ -244,10 +244,12 @@ class EventSearch extends ComponentBase
 
         $result['events'] = $this->events
             ->map(function (EventModel $event) {
+                $path = Storage::disk('media')->path($event->thumb);
+                $image = \System\Classes\ResizeImages::resize($path, 546, 402, ['mode' => 'crop']);
                 return [
                     'title' => $event->title,
                     'url' => $event->url,
-                    'thumb' => 'https://place-hold.it/546x400', // MediaLibrary::url($event->thumb), // resize
+                    'thumb' => $image, //MediaLibrary::url($event->thumb), // resize 'https://place-hold.it/546x400'
                     'start' => $event->start,
                     'end' => $event->end,
                     'color' => $event->color,
@@ -281,8 +283,8 @@ class EventSearch extends ComponentBase
                 'title' => trans('event.plugin.event_zone'),
                 'items' => $this->getFilter('event_zone'),
             ],
-            'categories' =>[
-                'title'=> trans('event.plugin.event_category'),
+            'categories' => [
+                'title' => trans('event.plugin.event_category'),
                 'items' => $this->getFilter('event_category'),
             ]
         ];
