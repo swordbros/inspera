@@ -63,12 +63,12 @@
           :key="groupName"
           class="filter-group"
         >
-          <h3 class="h5" v-if="group.options.length > 1">
+          <h3 class="h5" v-if="group.hasOwnProperty('options') && group.options.length > 1">
             {{ group.title }}
           </h3>
           <div
             v-for="option in group.options"
-            v-if="group.options.length > 1"
+            v-if="group.hasOwnProperty('options') && group.options.length > 1"
             :key="option.value"
             class="filter-option"
           >
