@@ -23,7 +23,7 @@
             <figure>
               <a href="{{ url }}">
                 {# TODO remove opacity 1 for animations #}
-                <img src="{{ post.banner.path }}" alt="{{ post.title }}" class="img" style="opacity: 1">
+                <img src="{{ post.banner.path | resize(510, 382, {'mode': 'crop'}) }}" alt="{{ post.title }}" class="img" style="opacity: 1">
               </a>
             </figure>
 
@@ -42,7 +42,7 @@
                 <p>{{ post.featured_text | raw }}</p>
               {% endif %}
               <p>
-                <a href="{{ url }}" class="text-decoration-underline">
+                <a href="{{ url }}" class="custom-link">
                   {{ 'Continue reading' |_ }}
                 </a>
               </p>

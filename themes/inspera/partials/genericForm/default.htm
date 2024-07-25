@@ -1,11 +1,59 @@
-<form data-request="{{ __SELF__ }}::onFormSubmit" class="subscribe-form">
-    <div class="inner">
-    {{ form_token() }}
+<form 
+  data-request="{{ __SELF__ }}::onFormSubmit"
+  data-request-validate
+  class="subscribe-form"
+>
+  {{ form_token() }}
 
-        <!-- <div id="{{ __SELF__ }}_forms_flash"></div> -->
-
-        <input type="email" placeholder="Enter your e-mail address">
-        <input type="submit" value="SIGN UP" class="subscribe-button">
-    </div>
+  <div class="inner">
+    <input name="email" id="subscribe-email" type="text" placeholder="{{ 'Enter your e-mail address' |_ }}">
+    <span data-validate-for="email"></span>
+    <input
+      id="subscribe-submit"
+      type="submit"
+      value="{{ 'Sign up'|_ }}"
+      class="subscribe-button"
+      disabled
+      data-attach-loading
+    >
+  </div>
 </form>
+<div class="modal" tabindex="-1" id="newsletter-thankyou">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ 'Thank you!' |_ }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="{{ __SELF__ }}_forms_flash">
+      </div>
+      <div class="modal-footer">
+        <a class="custom-button -primary" data-bs-dismiss="modal">
+          {{ 'Close' |_ }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% put scripts %}
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const input = document.getElementById('subscribe-email');
+      const submitButton = document.getElementById('subscribe-submit');
+
+      input.addEventListener('input', () => {
+        submitButton.disabled = input.value.trim() === '';
+      });
+    });
+
+    $(window).on('ajaxInvalidField', function(event, fieldElement, fieldName, errorMsg, isFirst) {
+      $(fieldElement).closest('.inner').addClass('has-error');
+    });
+
+    $(document).on('ajaxPromise', '[data-request]', function() {
+      $(this).closest('form').find('.inner.has-error').removeClass('has-error');
+    });
+  </script>
+{% endput %}
 

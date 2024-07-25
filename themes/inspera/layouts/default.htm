@@ -1,12 +1,17 @@
 description = "Default layout"
 
 [genericForm]
+group = "newsletter"
+rules[email] = "required|email"
 messages_success = "Your  newsletter subscribe was successfully submitted"
 messages_errors = "There were errors with your submission"
 mail_enabled = 1
 mail_subject = "new subscribe to newsletter"
-reset_form = 1
-inline_errors = "disabled"
+reset_form = 0
+inline_errors = "display"
+js_on_success = "new bootstrap.Modal(document.getElementById('newsletter-thankyou')).show();"
+js_on_error = "new bootstrap.Modal(document.getElementById('newsletter-thankyou')).show();"
+allowed_fields[] = "email"
 sanitize_data = "disabled"
 anonymize_ip = "disabled"
 recaptcha_theme = "light"

@@ -139,19 +139,23 @@ $color-primary: $color-main;
 $color-secondary: #DDFA80;
 $color-white: #ffffff;
 $color-muted: #F4F3F2;
+$gray: #cecece;
 
 $success: $color-secondary;
 $info: $color-main;
 // $warning:       $yellow;
-// $danger:        $red;
+$danger: red;
+
+$color-borders: $gray;
 
 /* SIZES */
 $font-size: 17px;
 $font-size-huge: 25px;
+$font-size-small: 14px;
 $font-size-h1: 92px;
 $font-size-h2: 70px;
 $font-size-h3: 52px;
-$font-size-h4: 40px;
+$font-size-h4: 38px;
 $font-size-h5: 28px;
 $font-size-h6: $font-size;
 
@@ -238,6 +242,37 @@ h6, .h6 {
   @include font-h6;
 }
 
+/* fancy underline for clickable headings */
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  a {
+    display: inline;
+    background-image: -moz-linear-gradient(
+      rgba(0, 0, 0, 0) calc(99% - 2px),
+      $color-dark 2px
+    );
+    background-image: -webkit-linear-gradient(
+      rgba(0, 0, 0, 0) calc(99% - 2px),
+      $color-dark 2px
+    );
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0) calc(99% - 2px),
+      $color-dark 2px
+    );
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    transition: background-size 0.5s;
+
+    &:hover {
+      background-size: 100% 100%;
+      text-decoration: none;
+    }
+  }
+}
+
+.text-small {
+  font-size: $font-size-small;
+}
+
 /* LOCOMOTIVE */
 .no-transform {
   transform: none !important;
@@ -282,42 +317,50 @@ input[type="text"] {
   max-width: 100%;
   height: 70px;
   padding: 0 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
+
+  &:focus {
+    border-color: $color-main;
+  }
 }
 input[type="email"] {
   width: 420px;
   max-width: 100%;
   height: 70px;
   padding: 0 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
+
+  &:focus {
+    border-color: $color-main;
+  }
 }
 input[type="search"] {
   width: 420px;
   max-width: 100%;
   height: 70px;
   padding: 0 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
 }
 input[type="password"] {
   width: 420px;
   max-width: 100%;
   height: 70px;
   padding: 0 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
 }
 input[type="number"] {
   width: 420px;
   max-width: 100%;
   height: 70px;
   padding: 0 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
 }
 input[type="date"] {
   width: 420px;
   max-width: 100%;
   height: 70px;
   padding: 0 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
 }
 input[type="radio"] {
   width: 18px;
@@ -350,14 +393,17 @@ textarea {
   max-width: 100%;
   height: 140px;
   padding: 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
+  &:focus {
+    border-color: $color-main;
+  }
 }
 select {
   width: 420px;
   max-width: 100%;
   height: 70px;
   padding: 0 30px;
-  border: 1px solid #cecece;
+  border: 1px solid $gray;
 }
 select {
   -webkit-appearance: none;
@@ -770,24 +816,66 @@ button[type="submit"] {
 
 /* SIDE WIDGET */
 .side-widget {
-  width: 540px;
-  max-width: 80vw;
-  height: 100vh;
-  min-height: 500px;
-  display: flex;
-  flex-wrap: wrap;
-  position: fixed;
-  left: -100%;
-  top: 0;
+  max-width: 80vw;  
+  position: fixed;  
   z-index: 10;
-  padding: 30px 50px;
-  padding-right: 110px;
   color: #fff;
   @include transition-cubic;
   overflow: auto;
-  &.active {
-    left: 0;
+
+  &.-nav {
+    left: -100%;
+    padding: 30px 110px 30px 50px;
+    width: 540px;
+    display: flex;
+    flex-wrap: wrap;
+    top: 0;
+    height: 100vh;
+    min-height: 500px;
+
+    &.active {
+      left: 0;
+    }
+
+    .animated-overlay path {
+      animation-name: side-widget-out;
+    }
+
+    &.active .animated-overlay path {
+      animation-name: side-widget-in;
+    }
   }
+
+  &.-filter {
+    right: -100%;
+    padding: 30px 30px 30px 80px;
+    width: 440px;
+    top: 20vh;
+    height: 80vh;
+    min-height: 500px;
+
+    h2, h3 {
+      color: white;
+    }
+
+    &.active {
+      right: 0;
+    }
+
+    .animated-overlay {
+      transform: scaleX(-1);
+
+      path {
+        animation-name: side-widget-out;
+      }
+    }
+
+    &.active .animated-overlay path {
+      animation-name: side-widget-in;
+    }
+  }
+
+  
   &.active .logo {
     opacity: 1;
     transform: translateX(0);
@@ -800,45 +888,42 @@ button[type="submit"] {
     opacity: 1;
     transform: translateX(0);
   }
-  &.active svg path {
-    -webkit-animation-name: side-widget-in;
-    -moz-animation-name: side-widget-in;
-    -ms-animation-name: side-widget-in;
-    -o-animation-name: side-widget-in;
-    animation-name: side-widget-in;
 
+  &.active .animated-overlay path {
     @include animation-timing;
-
-    -webkit-animation-duration: 0.8s;
-    -moz-animation-duration: 0.8s;
-    -ms-animation-duration: 0.8s;
-    -o-animation-duration: 0.8s;
     animation-duration: 0.8s;
-
-    -webkit-animation-fill-mode: forwards;
-    -moz-animation-fill-mode: forwards;
-    -ms-animation-fill-mode: forwards;
-    -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
   }
-  svg {
+
+  .filter-inner {
+    color: white;
+    width: 100%;    
+    position: relative;
+    opacity: 0;
+    @include transition;
+    transform: translateX(-100px);
+  }
+
+  &.active .filter-inner {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .animated-overlay {
     width: 100%;
     height: 100%;
     position: absolute;
     right: 0;
     top: 0;
     fill: $color-dark;
-    path {
-      -webkit-animation-name: side-widget-out;
-      -moz-animation-name: side-widget-out;
-      -ms-animation-name: side-widget-out;
-      -o-animation-name: side-widget-out;
-      animation-name: side-widget-out;
+
+    path {      
       @include animation-timing;
       animation-duration: 0.8s;
       animation-fill-mode: forwards;
     }
   }
+
   .logo {
     width: 100%;
     display: block;
@@ -851,6 +936,7 @@ button[type="submit"] {
       height: 62px;
     }
   }
+
   .inner {
     width: 100%;
     display: flex;
@@ -859,6 +945,7 @@ button[type="submit"] {
     opacity: 0;
     @include transition;
     transform: translateX(-100px);
+
     .widget {
       width: 100%;
       display: block;
@@ -866,12 +953,14 @@ button[type="submit"] {
       &:last-child {
         margin-bottom: 0;
       }
+
       p:last-child {
         margin-bottom: 0;
         font-weight: 400;
         opacity: 0.8;
       }
     }
+
     .widget-title {
       width: 100%;
       display: block;
@@ -919,9 +1008,11 @@ button[type="submit"] {
       display: block;
       margin-bottom: auto;
       margin-top: 10px;
+
       ul {
         width: 100%;
         margin: 0;
+
         li {
           width: 100%;
           @include font-second;
@@ -939,6 +1030,241 @@ button[type="submit"] {
       }
     }
   }
+}
+
+.close-filter-button {
+  writing-mode: vertical-lr;
+  transform: rotate(-180deg);
+  position: absolute;
+  cursor: pointer; 
+  color: white;
+  z-index: 10;
+  right: 0;
+    top: 0;
+    padding: 16px 8px;
+
+  svg {
+    width: 26px;
+    height: 26px;
+    margin-top: 14px;
+  }
+
+  span, svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.filter-button {
+  margin-left: auto;
+  display: block;
+  width: 50px;
+
+  &:hover {
+    color: #0d5eff;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.filter-group {
+  margin-bottom: 1rem;;
+}
+
+.filter-tags {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+
+  li {
+    padding: 2px 8px;
+    color: #fff;
+    background-color: $color-dark;
+    cursor: pointer;
+
+    svg {
+      margin-left: 10px;
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      stroke: #fff;
+    }
+  }
+}
+
+/* MONTHS NAV */
+.date-days {
+  margin-bottom: 3rem;
+}
+.date-days ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $font-size;
+
+  li {
+    padding: 2px 10px;
+  }
+
+  .is-weekend {
+    a, span {
+      color: $danger;
+    }
+  }
+
+  .is-today {
+    font-size: $font-size-huge;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .is-tomorrow {
+    font-size: 22px;
+    color: #000;
+  }
+
+  .day-button {
+    cursor: pointer;
+  }
+
+  .day-disabled {
+    opacity: 0.2;
+  }
+}
+
+.date-navigator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+
+  .today {
+    margin: 0 1rem;
+  }
+}
+
+$month-nav-size: 46px;
+$arrow-size: 8px;
+@mixin month-nav-before {
+  content: '';
+  border-top: $arrow-size solid transparent;
+  border-bottom: $arrow-size solid transparent;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.month-nav {
+  display: inline-block;
+  width: $month-nav-size;
+  height: $month-nav-size;
+  border-radius: 50%;
+  border: 1px solid $color-dark;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  top: -3px;
+
+  &.-left {
+    &::before {
+      @include month-nav-before;
+      border-right: $arrow-size solid $color-dark;
+    }
+    &:hover {
+      border-color: $color-main;
+    }
+    &:hover::before {
+      border-right-color: $color-main;
+    }
+  }
+
+  &.-right {
+    &::before {
+      @include month-nav-before;
+      border-left: $arrow-size solid $color-dark;
+    }
+    &:hover {
+      border-color: $color-main;
+    }
+    &:hover::before, &:hover {
+      border-left-color: $color-main;
+    }
+  }
+}
+
+/* EVENT CARD - LISTING */
+$date-col-width: 90px;
+.event-card {
+  max-width: 580px;
+  display: grid;
+  grid-template-columns: $date-col-width 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "typeArea typeArea"
+    "dateArea contentArea";
+  column-gap: 0;
+  row-gap: 0;
+}
+
+.event-card-type {
+  grid-area: typeArea;
+  padding-left: $date-col-width;
+  border-bottom: 1px solid;
+  font-size: $font-size-small;
+}
+
+.event-card-date {
+  grid-area: dateArea;
+  padding-top: 8px;
+
+  i {
+    font-size: $font-size-small;
+    margin-right: 5px;
+  }
+
+  i, span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.event-card-info {
+  grid-area: contentArea;
+}
+
+.event-card-venue {
+  font-size: $font-size-small;
+}
+
+.event-card-thumb {
+  margin-bottom: 15px;
+}
+
+.event-card-category {
+  padding: 0 8px;
+  display: inline-block;
+  background-color: $color-secondary;
+}
+
+.event-card-day {
+  position: relative;
+  line-height: .9;
+  padding-right: 5px;
+  font-size: 36px;
+
+  // &::before {
+  //   content: '- ';
+  //   position: absolute;
+  //   left: -15px;
+  // }
 }
 
 /* NAVBAR */
@@ -2191,6 +2517,7 @@ button[type="submit"] {
     opacity: 1;
     transform: scale(1);
   }
+
   figure {
     width: 100%;
     display: block;
@@ -2268,6 +2595,7 @@ button[type="submit"] {
     h3 {
       width: 100%;
       margin-bottom: 20px;
+
       a {
         display: inline;
         background-image: -moz-linear-gradient(
@@ -2960,24 +3288,39 @@ button[type="submit"] {
     }
     .inner {
       width: 80%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
+      position: relative;
+    }
+    input[type="text"] {
+      padding: 10px 35% 10px 30px;
+      border-color: #757575;
       background: #fff;
-      padding: 10px;
-      border: 1px solid #757575;
+      width: 100%;
+      height: 90px;
+
+      &:focus {
+        border-color: #0d5eff;
+      }
     }
-    input[type="email"] {
-      width: 70%;
-      flex: auto;
-      border: none;
-      padding: 0;
-      padding-left: 20px;
+
+    .inner.has-error input[type=text] {
+      border-color: $danger;
     }
+
     input[type="submit"] {
-      width: 30%;
+      position: absolute;
+      inset: 10px 10px 10px 70%;
       background: $color-main;
       padding: 0;
+      text-transform: uppercase;
+    }
+
+    input[disabled] {
+      background-color: #757575;
+    }
+
+    [data-validate-for] {
+      color: $danger;
+      font-size: $font-size-small;
     }
   }
   .newsletter-image {
@@ -2995,6 +3338,11 @@ button[type="submit"] {
       color: #fff;
     }
   }
+}
+
+/* MODAL FOOTER */
+.modal-footer {
+  border: 0;
 }
 
 /* CONTACT BOX */

@@ -1,6 +1,8 @@
-<?php namespace Swordbros\Event\Components;
+<?php
 
+namespace Swordbros\Event\Components;
 
+use Input;
 use Carbon\Carbon;
 use Cms\Classes\Controller as CmsController;
 use DateTime;
@@ -12,6 +14,8 @@ use Swordbros\Event\Models\EventModel;
 use Swordbros\Event\Models\EventTypeModel;
 use Swordbros\Event\Models\EventZoneModel;
 use Cms\Classes\ComponentBase;
+use NotFoundException;
+use Storage;
 
 /**
  * BackendLink component
@@ -19,7 +23,9 @@ use Cms\Classes\ComponentBase;
 class EventSearch extends ComponentBase
 {
     public $events = [];
+    public $filters = [];
     public $vars = [];
+
     public function componentDetails()
     {
         return [
@@ -27,15 +33,17 @@ class EventSearch extends ComponentBase
             'description' => 'Search Swordbros Events.'
         ];
     }
-    public function onClikDateNavigatorDay(){
-       $html = '';
+
+    public function onClikDateNavigatorDay()
+    {
+        $html = '';
         $paginate = $this->eventSearchPagination();
-        foreach ($paginate->items() as $key=>$item){
+        foreach ($paginate->items() as $key => $item) {
             $event = $item->toArray();
             $event['humanStart'] = Amele::humanDate($event['start'], 'd.m');
             $event['humanYear'] = Amele::humanDate($event['start'], 'Y');
             $event['humanHour'] = Amele::humanDate($event['start'], 'H:i');
-            $event['color'] = $event['event_type']? $event['event_type']['color']:'';
+            $event['color'] = $event['event_type'] ? $event['event_type']['color'] : '';
             $event['thumb_image'] = MediaLibrary::url($event['thumb']);
 
             $html .= $this->renderPartial('event-search/item', $event);
@@ -44,17 +52,19 @@ class EventSearch extends ComponentBase
             '#search-result' => $html
         ];
     }
+
     public function onRun()
     {
         $this->page['mediaUrl'] = MediaLibrary::url('/');
         $this->page['title'] = __('event.events');
-        $data['eventTypes']= EventTypeModel::all();
+        $data['eventTypes'] = EventTypeModel::all();
 
-        $data['eventZones']= EventZoneModel::all();
-        $data['audiences']= Amele::getAudiences();
+        $data['eventZones'] = EventZoneModel::all();
+        $data['audiences'] = Amele::getAudiences();
+
         $data['days'] = [];
         $date = \Input::get('date');
-        if(empty($date)){
+        if (empty($date)) {
             $year = date('Y');
             $month = date('m');
         } else {
@@ -68,18 +78,18 @@ class EventSearch extends ComponentBase
         $lastDayOfMonth = $firstDayOfMonth->copy()->endOfMonth();
         $data['end'] =  $lastDayOfMonth->format('Y-m-d H:i:s');
         for ($date = $firstDayOfMonth->copy(); $date->lte($lastDayOfMonth); $date->addDay()) {
-            $data['days'][]=[
-                'date'=>$date->format('Y-m'),
-                'start'=>$date->format('Y-m-d 00:00:00'),
-                'end'=>$date->format('Y-m-d 23:59:09'),
-                'monthName'=> __('event.plugin.month-'.$date->format('d')),
-                'yearNumber'=>$date->format('Y'),
-                'monthNumber'=>$date->format('m'),
-                'dayNumber'=>$date->format('d'),
-                'weekend'=>$date->isWeekend(),
-                'class'=>$date->isWeekend()?'day-weekend':'',
-                'hasEvent'=> EventModel::where([
-                    ['status','=', 1],
+            $data['days'][] = [
+                'date' => $date->format('Y-m'),
+                'start' => $date->format('Y-m-d 00:00:00'),
+                'end' => $date->format('Y-m-d 23:59:09'),
+                'monthName' => __('event.plugin.month-' . $date->format('d')),
+                'yearNumber' => $date->format('Y'),
+                'monthNumber' => $date->format('m'),
+                'dayNumber' => $date->format('d'),
+                'weekend' => $date->isWeekend(),
+                'class' => $date->isWeekend() ? 'day-weekend' : '',
+                'hasEvent' => EventModel::where([
+                    ['status', '=', 1],
                     ['start', '>=', $date->format('Y-m-d 00:00:00')],
                     ['end', '<=', $date->format('Y-m-d 23:59:09')]
                 ])->count()
@@ -121,56 +131,93 @@ class EventSearch extends ComponentBase
         $currentMonthFirstDay = Carbon::create($year, $month, 1);
         $data['datePrev'] = date('Y-m', strtotime('-1 month', strtotime($currentMonthFirstDay)));
         $data['dateNext'] = date('Y-m', strtotime('+1 month', strtotime($currentMonthFirstDay)));
-        
+
         $this->page['searchIndex'] = $this->renderPartial('event-search/index', $data);
         $this->page['searchFilters'] = $this->renderPartial('event-search/filters', $data);
     }
 
-    function onLoadJsonItems(){
+    function onLoadJsonItems()
+    {
         $page = input('page', 1);
-        return  EventModel::where(['status'=>1])->paginate(2, $page);
-
+        return EventModel::where(['status' => 1])->paginate(2, $page);
     }
-    private function eventSearchPagination(){
+
+    private function getMonthDays(): array
+    {
+        $params = Input::get('params');
+
+        $data = [];
+        $date = $params['month'];
+
+        if (empty($date)) {
+            $year = date('Y');
+            $month = date('m');
+        } else {
+            [$year, $month] = explode('-', $date);
+        }
+
+        $firstDayOfMonth = Carbon::create($year, $month, 1);
+        $lastDayOfMonth = $firstDayOfMonth->copy()->endOfMonth();
+        for ($date = $firstDayOfMonth->copy(); $date->lte($lastDayOfMonth); $date->addDay()) {
+            $data['days'][] = [
+                'number' => $date->format('j'),
+                'isWeekend' => $date->isWeekend(),
+                'isToday' => $date->isToday(),
+                'isTomorrow' => $date->isTomorrow(),
+                'hasEvent' => (bool) EventModel::where([
+                    ['status', '=', 1],
+                    ['start', '>=', $date->format('Y-m-d 00:00:00')],
+                    ['end', '<=', $date->format('Y-m-d 23:59:09')]
+                ])->count()
+            ];
+        }
+
+        return $data['days'];
+    }
+
+    private function eventSearchPagination()
+    {
         $params = self::searchParameters();
         $query = \Db::table('swordbros_event_search')
-            ->select(['id','start'])
+            ->select(['id', 'start'])
             ->distinct('id')
             ->where([['status', '=', 1]]);
 
-        if($params['event_type_ids']){
+        if ($params['event_type_ids']) {
             $query->whereIn('event_type_id', $params['event_type_ids']);
         }
-        if($params['event_zone_ids']){
+        if ($params['event_zone_ids']) {
             $query->whereIn('event_zone_id', $params['event_zone_ids']);
         }
-        if($params['event_category_ids']){
+        if ($params['event_category_ids']) {
             $query->whereIn('event_category_id', $params['event_category_ids']);
         }
-        if($params['audiences']){
+        if ($params['audiences']) {
             $query->whereIn('audience', $params['audiences']);
         }
-        if($params['start']){
-            $query->where([['start','>=', $params['start']]]);
+        if ($params['start']) {
+            $query->where([['start', '>=', $params['start']]]);
         }
-        if($params['end']){
-            $query->where([['end','<=', $params['end']]]);
+        if ($params['end']) {
+            $query->where([['end', '<=', $params['end']]]);
         }
         $query->orderByDesc('start');
         $paginate = $query->paginate(100, $params['page']);
 
-        if($paginate->items()){
-            foreach ($paginate->items() as $key=>$item){
+        if ($paginate->items()) {
+            foreach ($paginate->items() as $key => $item) {
                 $event = EventModel::find($item->id);
                 $event->attributes['event_zone'] = $event->event_zone;
                 $event->attributes['event_type'] = $event->event_type;
                 $event->attributes['event_category'] = $event->event_category;
-                $paginate->offsetSet($key, $event) ;
+                $paginate->offsetSet($key, $event);
             }
         }
         return ($paginate);
     }
-    private static function searchParameters(){
+
+    private static function searchParameters()
+    {
         $dateType = \Input::get('dateType', false);
         $zone_ids = \Input::get('zone', false);
         $category_ids = \Input::get('category', false);
@@ -178,13 +225,89 @@ class EventSearch extends ComponentBase
         $start = \Input::get('start', false);
         $end = \Input::get('end', false);
         return [
-            'start'=>$start,
-            'end'=>$end,
-            'event_type_ids'=>false,
-            'event_zone_ids'=>$zone_ids,
-            'event_category_ids'=>$category_ids,
-            'audiences'=>$audience_ids,
-            'page'=>\Input::get('page', 1),
+            'start' => $start,
+            'end' => $end,
+            'event_type_ids' => false,
+            'event_zone_ids' => $zone_ids,
+            'event_category_ids' => $category_ids,
+            'audiences' => $audience_ids,
+            'page' => \Input::get('page', 1),
         ];
+    }
+
+    /**
+     * Single entry point for listing updates
+     */
+    public function onGetEvents()
+    {
+        $this->events = $this->getEvents();
+
+        $result['events'] = $this->events
+            ->map(function (EventModel $event) {
+                return [
+                    'title' => $event->title,
+                    'url' => $event->url,
+                    'thumb' => 'https://place-hold.it/546x400', // MediaLibrary::url($event->thumb), // resize
+                    'start' => $event->start,
+                    'end' => $event->end,
+                    'color' => $event->color,
+                    'venue' => $event->event_zone->name,
+                    'type' => $event->event_type->name,
+                    'category' => $event->event_category->name,
+                ];
+            });
+
+        if (Input::get('shouldChangeMonth')) {
+            $result['filters'] = $this->getFilters();
+            $result['daysData'] = $this->getMonthDays();
+        }
+
+        return $result;
+    }
+
+    private function getFilters()
+    {
+        $this->filters = [
+            'types' => $this->getFilter('event_type'),
+            'venues' => $this->getFilter('event_zone'),
+            'categories' => $this->getFilter('event_category'),
+        ];
+
+        return $this->filters;
+    }
+
+    private function getFilter(string $relationName): array
+    {
+        return [
+            'title' => $relationName,
+            'options' => array_values(
+                $this->events
+                    ->map(function (EventModel $e) use ($relationName) {
+                        return [
+                            'value' => $e->$relationName->id,
+                            'label' => $e->$relationName->name
+                        ];
+                    })
+                    ->unique('value')
+                    ->toArray()
+            )
+        ];
+    }
+
+    private function getEvents()
+    {
+        $params = Input::get('params');
+
+        if (!isset($params['month'])) {
+            // TODO maybe not throw but use current month (frontend side?)
+            throw new NotFoundException("Month is a required parameter");
+        }
+
+        return EventModel::published()
+            // ->select(...)
+            ->with('event_zone', 'event_category', 'event_type')
+            ->filtered($params)
+            ->orderBy('start')
+            ->get();
     }
 }

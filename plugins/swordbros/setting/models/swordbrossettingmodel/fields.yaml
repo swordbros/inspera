@@ -86,3 +86,7 @@ tabs:
             label: swordbross.settings.event_description
             type: codeeditor
             comment: Event Description
+        newsletter_thankyou:
+            tab: Modals
+            label: Thank you for subscription text
+            type: textarea

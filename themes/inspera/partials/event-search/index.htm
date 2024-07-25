@@ -44,7 +44,8 @@
     }
 </style>
 {% framework extras %}
-<div class="date-navigator"><a class="day prev" href="/demo-listing?date={{ datePrev }}" data-request-data="{&quot;day&quot;:&quot;2024-06-01&quot;}">&lt; Prev</a><div class="today">{{ month }}.{{ year }}</div><a class="day next" href="/demo-listing?date={{ dateNext }}">Next &gt;</a></div>
+<div class="date-navigator">
+    <a class="day prev" href="/demo-listing?date={{ datePrev }}" data-request-data="{&quot;day&quot;:&quot;2024-06-01&quot;}">&lt; Prev</a><div class="today">{{ month }}.{{ year }}</div><a class="day next" href="/demo-listing?date={{ dateNext }}">Next &gt;</a></div>
 <div class="date-days">
     <ul class="list-unstyled">
         {% for day in days %}

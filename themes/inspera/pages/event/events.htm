@@ -2,21 +2,20 @@ url = "/events"
 layout = "default"
 title = "Events"
 
-[eventList]
+[eventSearch]
 ==
-{% if events is empty %}
-    {% do abort(404) %}
-{% endif %}
+{#% if events is empty %}
+    {{ 'There are no events matching your request'|_ }}
+{% endif %#}
+
 <section class="content-section">
-<div class="contactform">
+  <div class="contactform">
     <div class="container">
-        <div class="row">
-            {% for event in events %}
-            <div class="col-md-3">
-                {% partial 'event/event-card' %}
-            </div>
-            {% endfor %}
-        </div>
+      <div id="events-list"></div>
     </div>
-</div>
+  </div>
 </section>
+
+{% put scripts %}
+  <script src="{{ 'assets/js/events.js' |theme }}"></script>
+{% endput %}
