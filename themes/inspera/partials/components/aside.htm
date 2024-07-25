@@ -1,41 +1,75 @@
 <aside class="side-widget -nav">
-    <svg class="animated-overlay" viewBox="0 0 600 1080" preserveAspectRatio="none" version="1.1">
-        <path d="M540,1080H0V0h540c0,179.85,0,359.7,0,539.54C540,719.7,540,899.85,540,1080z"></path>
-    </svg>
-    <figure class="logo"> <img src="images/logo-light.png" alt="Image"> </figure>
-    <!-- end logo -->
-    <div class="inner">
+  <svg class="animated-overlay" viewBox="0 0 600 1080" preserveAspectRatio="none" version="1.1">
+    <path d="M540,1080H0V0h540c0,179.85,0,359.7,0,539.54C540,719.7,540,899.85,540,1080z"></path>
+  </svg>
+
+  <figure class="logo">
+    <img src="{{ app_logo }}" alt="{{ app_name }}">
+  </figure>
+  <div class="inner">
     <div class="widget">
-        <figure><img src="images/image07.jpg" alt="Image"></figure>
-        <p>It speedily me addition <strong>weddings vicinity</strong> in pleasure. Happiness commanded an conveying breakfast in. Regard her say warmly elinor. Him these are visit front end for <u>seven walls</u>. Money eat scale now ask law learn.</p>
+        <figure>
+          <img src="{{ swordbrosSettings.welcome_image ? swordbrosSettings.welcome_image | media : 'assets/images/image07.jpg'|theme }}" alt="Image">
+        </figure>
+        {{ swordbrosSettings.panel_intro | raw }}
     </div>
-    <!-- end widget -->
+    
     <div class="widget">
-        <h6 class="widget-title">Opening Hours</h6>
-        <p>Tuesday ‒ Friday: 09:00 ‒ 17:00<br>
-        Friday ‒ Monday: 10:00 ‒ 20:00</p>
+        <h6 class="widget-title">
+          {{ 'Opening Hours'|_ }}
+        </h6>
+        <p>
+          {% for item in swordbrosSettings.working_hours %}
+            {{ item.week_days }}: {{ item.time }}
+            {{ not loop.last ? '<br>'|raw }}
+          {% endfor %}
+        </p>
     </div>
-    <!-- end widget -->
+  </div>
+  <div class="display-mobile">
+    <div class="custom-menu">
+      <ul>
+        {% for site in sitePicker.sites %}
+          <li>
+            <a href="{{ site.url }}">
+              {{ site.name }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
-    <!-- end inner -->
-    <div class="display-mobile">
-        <div class="custom-menu">
-    <ul>
-        <li><a href="#">Eng</a></li>
-        <li><a href="#">Rus</a></li>
-    </ul>
-    </div>
-    <!-- end custom-menu -->
-    <div class="site-menu">
+
+    {% if menuItems is not empty  %}
+      <div class="site-menu">
         <ul>
-            <li><a href="visit.html" data-scroll-to>Visit</a></li>
-            <li><a href="exhibitions.html" data-scroll-to>Exhibitions</a></li>
-            <li><a href="collections.html" data-scroll-to>Collections</a></li>
-            <li><a href="about.html" data-scroll-to>About</a></li>
-            <li><a href="contact.html" data-scroll-to>Contact</a></li>
+          {% for item in menuItems %}
+            <li>
+              <a href="{{ item.reference | link }}">
+                {{ item.title }}
+              </a>
+
+              {% if item.children.count %}
+                <ul class="menu-level-2">
+                  {% for child in item.children | filter(i => not i.is_hidden) %}
+                    <li>
+                      <a
+                      class="
+                        dropdown-item 
+                        {{ link(child.reference).isActive ? 'active' }}                  
+                      "
+                      href="{{ child.reference|link }}"
+                      {{ child.is_external ? 'target="_blank" '}}
+                      >
+                        {{ child.title }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}   
         </ul>
-    </div>
-    <!-- end site-menu -->
-    </div>
-    <!-- end display-mobile -->
+      </div>
+    {% endif %}    
+  </div>
 </aside>

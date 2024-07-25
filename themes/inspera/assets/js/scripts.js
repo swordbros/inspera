@@ -26,7 +26,7 @@
     /* HAMBURGER */
     $('.hamburger').on('click', function () {
       $(".hamburger").toggleClass("active")
-      $(".side-widget").toggleClass("active")
+      $(".side-widget.-nav").toggleClass("active")
       $(".section-wrapper").toggleClass("no-transform")
     })
 
