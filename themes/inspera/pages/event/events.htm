@@ -17,5 +17,5 @@ title = "Events"
 </section>
 
 {% put scripts %}
-  <script src="{{ 'assets/js/events.js' |theme }}"></script>
+  <script src="{{ 'assets/js/events.js' |theme }}?{{ 'now'|date('U') }}"></script>
 {% endput %}
