@@ -1,28 +1,50 @@
 handle: background-mixin
 mixin:
-  background_color:
-    label: box.mixin_background.background_color.label
-    type: dropdown
-    emptyOption: box.mixin_background.background_color.emptyOption
-    options:
-      default: box.mixin_background.background_color.options.default
-      muted: box.mixin_background.background_color.options.muted
-      primary: box.mixin_background.background_color.options.primary
-      secondary: box.mixin_background.background_color.options.secondary
+  background_type:
+    label: box.mixin_background.background.label
+    type: balloon-selector
+    default: image
+    options: 
+      image: box.mixin_background.background_image
+      video_file: box.mixin_background.background_video_file
+      video_vimeo: box.mixin_background.background_video_vimeo
 
   background_image:
     label: box.mixin_background.background_image.label
     type: mediafinder
     mode: image
+    trigger:
+      action: show
+      field: background_type
+      condition: value[image]
   
   background_video:
     label: box.mixin_background.background_video.label
     type: mediafinder
+    trigger:
+      action: show
+      field: background_type
+      condition: value[video_file]
+
+  background_vimeo:
+    label: box.mixin_background.background_video_vimeo.label
+    type: codeeditor
+    size: huge
+    language: html
+    trigger:
+      action: show
+      field: background_type
+      condition: value[video_vimeo]
+
 
   background_horizontal_position:
     label: box.mixin_background.background_horizontal_position.label
     type: balloon-selector
     span: auto
+    trigger:
+      action: show
+      field: background_type
+      condition: value[image]
     options: 
       left: box.mixin_background.background_horizontal_position.options.left
       center: box.mixin_background.background_horizontal_position.options.center
@@ -32,6 +54,10 @@ mixin:
     label: box.mixin_background.background_vertical_position.label
     type: balloon-selector
     span: auto
+    trigger:
+      action: show
+      field: background_type
+      condition: value[image]
     options: 
       top: box.mixin_background.background_vertical_position.options.top
       center: box.mixin_background.background_vertical_position.options.center
@@ -42,6 +68,10 @@ mixin:
     type: balloon-selector
     span: auto
     default: cover
+    trigger:
+      action: show
+      field: background_type
+      condition: value[image]
     options: 
       cover: box.mixin_background.background_size.options.cover
       contain: box.mixin_background.background_size.options.contain
@@ -52,6 +82,10 @@ mixin:
     type: balloon-selector
     span: auto
     default: no-repeat
+    trigger:
+      action: show
+      field: background_type
+      condition: value[image]
     options: 
       'no-repeat': box.mixin_background.background_repeat.options.no_repeat
       repeat: box.mixin_background.background_repeat.options.repeat

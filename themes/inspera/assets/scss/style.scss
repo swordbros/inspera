@@ -1133,7 +1133,7 @@ button[type="submit"] {
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: end;
   position: relative;
   overflow: hidden;
   .container-fluid {
@@ -1214,10 +1214,12 @@ button[type="submit"] {
   }
 
   .slider-texts {
-    width: 100%;
+    position: absolute;
+    inset:0;
+    z-index: 2;
+    color: #fff;
+    align-items: center;
     display: flex;
-    flex-wrap: wrap;
-    padding-top: 32px;
     .svg-morph {
       position: absolute;
       top: calc(50% - 200px);
@@ -1234,10 +1236,7 @@ button[type="submit"] {
         animation-play-state: running;
       }
     }
-    .swiper-slide {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
+
       h1 {
         font-size: 126px;
         font-weight: 400;
@@ -1253,7 +1252,6 @@ button[type="submit"] {
         border-left: 3px solid $color-dark;
         margin-left: 10px;
       }
-    }
   }
   .swiper-fraction {
     width: 200px;
@@ -1488,6 +1486,14 @@ button[type="submit"] {
     position: absolute;
     left: 0;
     top: 0;
+  }
+  iframe {
+    min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    // z-index: 1000;
   }
 }
 
@@ -3377,7 +3383,7 @@ button[type="submit"] {
   .search-box .container .search-events ul li {
     padding: 0 2%;
   }
-  .slider .slider-texts .swiper-slide h1 {
+  .slider .slider-texts h1 {
     font-size: 92px;
   }
   .navbar .site-menu ul li {
@@ -3515,10 +3521,10 @@ button[type="submit"] {
   .navbar .navbar-button {
     display: inline-block;
   }
-  .slider .slider-texts .swiper-slide h1 {
+  .slider .slider-texts h1 {
     font-size: 72px;
   }
-  .slider .slider-texts .swiper-slide p {
+  .slider .slider-texts p {
     opacity: 1;
   }
   .slider .slider-images .swiper-slide .mobile-slide {
@@ -3700,18 +3706,18 @@ button[type="submit"] {
     margin: 0 15px;
     padding: 0;
   }
-  .slider .slider-texts .swiper-slide h1 {
+  .slider .slider-texts h1 {
     font-size: 42px;
   }
-  .slider .slider-texts .swiper-slide h1 br {
+  .slider .slider-texts h1 br {
     display: none;
   }
-  .slider .slider-texts .swiper-slide p {
+  .slider .slider-texts p {
     margin-left: 0;
     padding-left: 20px;
     font-size: 17px;
   }
-  .slider .slider-texts .swiper-slide p br {
+  .slider .slider-texts p br {
     display: none;
   }
   .slider .slider-nav.container-fluid {
@@ -4459,4 +4465,8 @@ button[type="submit"] {
       "M540,1080H0V0h540c31.96,142.05,60.09,325.94,60,541C599.91,755.16,571.87,938.34,540,1080z"
     );
   }
+}
+
+.page-Home .navbar {
+  background-color: #fff;
 }

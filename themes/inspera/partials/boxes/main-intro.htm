@@ -5,6 +5,12 @@
       {% for item in box.slides %}
         <div class="swiper-slide">
             {% partial 'boxes/parts/_background.htm' box=item %}
+            <div class="slider-texts">
+              <div class="container-fluid">
+                {% partial 'boxes/parts/_title.htm' box=item %}
+                {{ item.text | raw }}
+            </div>
+            </div>
         </div>
             
         {#<div class="mobile-slide">
@@ -13,21 +19,7 @@
       {% endfor %}
     </div>
   </div>
-  <div class="swiper-container slider-texts">
-    {#<svg width="580" height="400" class="svg-morph">
-      <path id="svg_morph" d="m261,30.4375c0,0 114,6 151,75c37,69 37,174 6,206.5625c-31,32.5625 -138,11.4375 -196,-19.5625c-58,-31 -86,-62 -90,-134.4375c12,-136.5625 92,-126.5625 129,-127.5625z" />
-    </svg>#}
-    <div class="swiper-wrapper">
-      {% for item in box.slides %}
-      <div class="swiper-slide">
-        <div class="container-fluid">
-            {% partial 'boxes/parts/_title.htm' box=item %}
-            <p>{{ item.text | raw }}</p>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
+ 
   <!-- play now button -->
   {#<div class="play-now"> <a href="videos/video.mp4" data-fancybox data-width="640" data-height="360"  class="play-btn"></a>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="300px" height="300px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve">

@@ -4,6 +4,12 @@
     <video src="{{ box.background_video | media }}" loop autoplay playsinline muted></video>
   </div>
 
+{% elseif box.background_vimeo %}
+
+  <div class="video-bg">
+    {{ box.background_vimeo | raw}}
+  </div>
+
 {% else %}
 
   <div
