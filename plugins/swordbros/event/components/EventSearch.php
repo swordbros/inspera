@@ -164,17 +164,34 @@ class EventSearch extends ComponentBase
                 'isWeekend' => $date->isWeekend(),
                 'isToday' => $date->isToday(),
                 'isTomorrow' => $date->isTomorrow(),
-                'hasEvent' => (bool) EventModel::where([
-                    ['status', '=', 1],
-                    ['start', '>=', $date->format('Y-m-d 00:00:00')],
-                    ['end', '<=', $date->format('Y-m-d 23:59:09')]
-                ])->count()
+                'hasEvent' => $this->dayHasEvent($date)
             ];
         }
 
         return $data['days'];
     }
-
+    private function dayHasEvent($date){
+        $start = $date->format('Y-m-d 00:00:00');
+        $end = $date->format('Y-m-d 23:59:09');
+        $where1 = [
+            ['status', '=', 1],
+            ['start', '<=', $start],
+            ['end', '>=', $start]
+        ];
+        $where2 = [
+            ['status', '=', 1],
+            ['start', '<=', $end],
+            ['end', '>=', $end]
+        ];
+        $where3 = [
+            ['status', '=', 1],
+            ['start', '>=', $start],
+            ['end', '<=', $end]
+        ];
+        $query = DB::table('swordbros_event_events')->Where($where1)->orWhere($where2)->orWhere($where3);
+        $result = $query->exists();
+        return $result;
+    }
     private function eventSearchPagination()
     {
         $params = self::searchParameters();
