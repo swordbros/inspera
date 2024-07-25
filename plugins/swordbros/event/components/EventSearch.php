@@ -270,23 +270,9 @@ class EventSearch extends ComponentBase
     private function getFilters()
     {
         $this->filters = [
-            /*
-                'types' => $this->getFilter('event_type'),
-                'venues' => $this->getFilter('event_zone'),
-                'categories' => $this->getFilter('event_category'),
-             */
-            'types' => [
-                'title' => trans('event.plugin.event_type'),
-                'items' => $this->getFilter('event_type'),
-            ],
-            'venues' => [
-                'title' => trans('event.plugin.event_zone'),
-                'items' => $this->getFilter('event_zone'),
-            ],
-            'categories' => [
-                'title' => trans('event.plugin.event_category'),
-                'items' => $this->getFilter('event_category'),
-            ]
+            'types' => $this->getFilter('event_type'),
+            'venues' => $this->getFilter('event_zone'),
+            'categories' => $this->getFilter('event_category')
         ];
         return $this->filters;
     }
@@ -294,7 +280,7 @@ class EventSearch extends ComponentBase
     private function getFilter(string $relationName): array
     {
         return [
-            'title' => $relationName,
+            'title' => trans("event.plugin.{$relationName}"),
             'options' => array_values(
                 $this->events
                     ->map(function (EventModel $e) use ($relationName) {
