@@ -30,6 +30,15 @@
       $(".section-wrapper").toggleClass("no-transform")
     })
 
+    /* DROPDOWN MENU HOVER */
+    $('.dropdown').hover(function() {
+      $(this).addClass('show');
+      $(this).find('.dropdown-menu').addClass('show');
+    }, function() {
+      $(this).removeClass('show');
+      $(this).find('.dropdown-menu').removeClass('show');
+    });
+
     /* SEARCH */
     $('.search-button').on('click', function () {
       $(".search-box").toggleClass("active")

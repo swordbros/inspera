@@ -814,6 +814,10 @@ button[type="submit"] {
   }
 }
 
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
 /* SIDE WIDGET */
 .side-widget {
   max-width: 80vw;  
@@ -1025,6 +1029,7 @@ button[type="submit"] {
         li {
           width: 100%;
           font-size: $font-size-huge;
+          
 
           a {
             display: inline-block;
@@ -1308,6 +1313,7 @@ $date-col-width: 90px;
       color: #fff;
     }
   }
+
   .logo {
     display: inline-block;
     a {
@@ -1318,6 +1324,7 @@ $date-col-width: 90px;
       }
     }
   }
+
   .custom-menu {
     display: inline-block;
     margin: 0 auto;
@@ -1331,6 +1338,8 @@ $date-col-width: 90px;
         margin: 0 5px;
         padding: 0;
         list-style: none;
+        
+
         a {
           display: inline-block;
           position: relative;
@@ -1372,54 +1381,62 @@ $date-col-width: 90px;
       }
     }
   }
+
   .site-menu {
     display: inline-block;
-    ul {
+    > ul {
       width: 100%;
       display: block;
       margin: 0;
       padding: 0;
-      li {
+
+      > li {
         display: inline-block;
         margin: 0 15px;
-        padding: 0;
+        padding: 0 0 2px;
         list-style: none;
-        a {
+        position: relative;
+
+        > a {
           display: inline-block;
           position: relative;
+
           &:hover {
-            text-decoration: none;
-          }
-          &:before {
-            content: "";
-            display: block;
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            height: 4px;
-            width: 0;
-            transition: width 0s ease, background 0.25s ease;
-          }
-          &:after {
-            content: "";
-            display: block;
-            position: absolute;
-            right: 0;
-            bottom: -4px;
-            height: 4px;
-            width: 0;
-            background: $color-main;
-            transition: width 0.25s ease;
-          }
-          &:hover:before {
-            width: 50%;
-            background: $color-main;
-            transition: width 0.25s ease;
-          }
-          &:hover:after {
-            width: 100%;
-            background: transparent;
-            transition: all 0s ease;
+              text-decoration: none;
+            }
+
+          &:not(.dropdown-link) {
+            &:before {
+              content: "";
+              display: block;
+              position: absolute;
+              left: 0;
+              bottom: -4px;
+              height: 4px;
+              width: 0;
+              transition: width 0s ease, background 0.25s ease;
+            }
+            &:after {
+              content: "";
+              display: block;
+              position: absolute;
+              right: 0;
+              bottom: -4px;
+              height: 4px;
+              width: 0;
+              background: $color-main;
+              transition: width 0.25s ease;
+            }
+            &:hover:before {
+              width: 50%;
+              background: $color-main;
+              transition: width 0.25s ease;
+            }
+            &:hover:after {
+              width: 100%;
+              background: transparent;
+              transition: all 0s ease;
+            }
           }
         }
       }
@@ -1441,6 +1458,7 @@ $date-col-width: 90px;
     display: inline-block;
     cursor: pointer;
   }
+
   .navbar-button {
     margin-left: 30px;
     
@@ -1450,7 +1468,7 @@ $date-col-width: 90px;
       display: inline-block;
       padding: 0 40px;
       background: $color-main;
-	  text-transform: uppercase;
+	    text-transform: uppercase;
       color: $color-white;
       font-size: 14px;
       font-weight: 700;
@@ -1461,6 +1479,51 @@ $date-col-width: 90px;
         color: #fff;
       }
     }
+  }
+}
+
+.dropdown-menu {
+  border-radius: 0;
+  border: 0;
+  background-color: #fff;
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: -4px;
+    height: 4px;
+    width: 0;
+    transition: width 0s ease, background 1s ease;
+  }
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: -4px;
+    height: 4px;
+    width: 0;
+    background: $color-main;
+    transition: width 1s ease;
+  }
+
+  .site-menu>ul>li:hover &:before {
+    width: 50%;
+    background: $color-main;
+    transition: width 1s ease;
+  }
+  .site-menu>ul>li:hover &:after {
+    width: 100%;
+    background: transparent;
+    transition: all 0s ease;
+  }
+
+  .dropdown-item:hover {
+    background-color: transparent;
+    color: $color-main;
+    text-decoration: none;
   }
 }
 
@@ -1826,7 +1889,7 @@ $date-col-width: 90px;
   background-size: cover !important;
   background-position: center !important;
   overflow: hidden;
-  
+
   .container {
     position: relative;
     z-index: 1;

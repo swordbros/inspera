@@ -24,9 +24,11 @@
       <ul>
         {% for item in menuItems %}
 
-          <li>
-            <a href="{{ item.reference | link }}">
-              {{ item.title }}
+          <li class="nav-item {{ item.children.count ? 'dropdown' }}">
+            <a href="{{ item.reference | link }}" class="{{ item.children.count ? 'dropdown-link' }}">
+              <span class="{{ item.children.count ? 'dropdown-toggle' }}">
+                {{ item.title }}
+              </span>
             </a>
 
             {% if item.children.count %}
