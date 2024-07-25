@@ -41,11 +41,11 @@
               {% if post.featured_text %}
                 <p>{{ post.featured_text | raw }}</p>
               {% endif %}
-              <p>
-                <a href="{{ url }}" class="custom-link">
-                  {{ 'Continue reading' |_ }}
-                </a>
-              </p>
+              
+              <a href="{{ url }}" class="custom-link">
+                {{ 'Continue reading' |_ }}
+              </a>
+              <br>
             </div>
           </div>
         </div>
