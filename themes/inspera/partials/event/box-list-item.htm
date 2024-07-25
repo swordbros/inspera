@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="col-md-6 mb-4">
   <div class="exhibition-box" data-scroll data-scroll-speed="-1">
     <figure>
       <a href="{{ event.url }}">
@@ -18,11 +18,10 @@
       <p>
         {{ event.short | raw }}
       </p>
-      <p>
-        <a href="{{ event.url }}" class="custom-link">
-          {{ 'Continue reading' |_ }}
-        </a>
-      </p>
+      <a href="{{ event.url }}" class="custom-link">
+        {{ 'Continue reading' |_ }}
+      </a>
+      <br>
     </div>
   </div>
 </div>
