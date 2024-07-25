@@ -1,0 +1,24 @@
+name: box.text.name
+handle: text
+labelFrom: box_title
+section: box.section.base_components
+
+form:
+  tabs:
+    defaultTab: box.accordion.defaultTab
+    fields:
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.text.name
+      
+      title-mixin:
+        type: mixin
+
+      anchor-mixin:
+        type: mixin
+
+      block_text:
+        label: box.text.text.label
+        type: richeditor
+       
