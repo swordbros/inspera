@@ -3,6 +3,7 @@
 namespace Swordbros\Event\Models;
 
 use ApplicationException;
+use Carbon\Carbon;
 use Db;
 use Model;
 use Swordbros\Base\models\BaseModel;
@@ -110,8 +111,9 @@ class EventModel extends BaseModel
             $this->customMessages['capacity.min'] = 'Geçerli rezervasyon sayısından daha az kapasite tanımladınız. Kapasite Minimum ' . $eventBookingCount . ' olmalıdır';
         }
     }
-    public function zoneIsAvailable(){
-        if(empty($this->start) || empty($this->end)){
+    public function zoneIsAvailable()
+    {
+        if (empty($this->start) || empty($this->end)) {
             return true;
         }
         $eventModel = Db::table('swordbros_event_events');
@@ -141,5 +143,59 @@ class EventModel extends BaseModel
     public function getUrlAttribute(): string
     {
         return Amele::event_url($this);
+    }
+
+    public function scopePublished($query)
+    {
+        $query->whereStatus(1);
+    }
+
+    public function scopeByMonth($query, string $date)
+    {
+        if (empty($date)) {
+            $year = date('Y');
+            $month = date('m');
+        } else {
+            [$year, $month] = explode('-', $date);
+        }
+        $firstDayOfMonth = Carbon::create($year, $month, 1);
+        $lastDayOfMonth = $firstDayOfMonth->copy()->endOfMonth();
+        $query->whereDate('start', '>=', $firstDayOfMonth->format('Y-m-d'))
+            ->whereDate('end', '<=', $lastDayOfMonth->format('Y-m-d'));
+    }
+
+    public function scopeFiltered($query, array $params)
+    {
+        if ($this->isParamSet($params, 'date') && $this->isParamSet($params, 'dateEnd')) {
+            $query->whereDate('start', '<=', $params['dateEnd'])
+                ->whereDate('end', '>=', $params['date']);
+        } elseif ($this->isParamSet($params, 'date')) {
+            $query->whereDate('start', '=', $params['date']);
+        } elseif ($this->isParamSet($params, 'month')) {
+            $query->byMonth($params['month']);
+        }
+
+        $query->where(function ($q) use ($params) {
+            if (isset($params['types'])) {
+                $q->whereIn('event_type_id', $params['types']);
+            }
+            if (isset($params['venues'])) {
+                $q->whereIn('event_zone_id', $params['venues']);
+            }
+            if (isset($params['categories'])) {
+                $q->whereIn('event_category_id', $params['categories']);
+            }
+            if (isset($params['audiences'])) {
+                $q->whereIn('audience', $params['audiences']);
+            }
+        });
+    }
+
+    private function isParamSet(array $params, string $name): bool
+    {
+        if (isset($params[$name]) && !empty($params[$name])) {
+            return true;
+        }
+        return false;
     }
 }

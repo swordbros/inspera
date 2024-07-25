@@ -4,9 +4,12 @@
       {{ type }}
     </div>
     <div class="event-card-date">
-      <time :datetime="date" class="h4">
-        {{ dayOfMonth }}
-      </time><br>
+      <time :datetime="startDay" class="h4 event-card-day">
+        {{ startDay }}
+      </time><span class="h4 event-card-day" v-if="null != endDay">  -</span>
+      <time :datetime="endDay" class="h4 event-card-day" v-if="endDay">
+        {{ endDay }}
+      </time>
       <span class="event-card-year">
         <i class="fa fa-calendar-alt"></i>
         <span>{{ year }}</span>
@@ -55,6 +58,10 @@ export default {
       type: Date,
       required: true
     },
+    dateEnd: {
+      type: Date,
+      required: true
+    },
     color: {
       type: String,
       required: false
@@ -81,16 +88,25 @@ export default {
       const minutes = String(this.date.getMinutes()).padStart(2, '0')
       return `${hours}:${minutes}`;
     },
-    dayOfMonth() {      
-      const day = String(this.date.getDate()).padStart(2, '0');
-      const month = String(this.date.getMonth() + 1).padStart(2, '0');
-      return `${day}.${month}`;
+    startDay() {      
+      const day = String(this.date.getDate()).padStart(2, '0')
+      const month = String(this.date.getMonth() + 1).padStart(2, '0')
+      return `${day}.${month}`
+    },
+    endDay() {      
+      if (this.isLastingEvent()) {
+        return String(this.dateEnd.getDate()).padStart(2, '0') + '.' + String(this.dateEnd.getMonth() + 1).padStart(2, '0')
+      }
+      return null;
     }
   },
   methods: {
-    isLastingEvent(event) {
-      // compare days of start and end
+    isLastingEvent() {
+      return this.dateEnd.getDate() !== this.date.getDate()
     },
+  },
+  mounted() {
+    // console.log(this.dateEnd)
   }
 };
 </script>

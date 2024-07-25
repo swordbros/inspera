@@ -816,24 +816,66 @@ button[type="submit"] {
 
 /* SIDE WIDGET */
 .side-widget {
-  width: 540px;
-  max-width: 80vw;
-  height: 100vh;
-  min-height: 500px;
-  display: flex;
-  flex-wrap: wrap;
-  position: fixed;
-  left: -100%;
-  top: 0;
+  max-width: 80vw;  
+  position: fixed;  
   z-index: 10;
-  padding: 30px 50px;
-  padding-right: 110px;
   color: #fff;
   @include transition-cubic;
   overflow: auto;
-  &.active {
-    left: 0;
+
+  &.-nav {
+    left: -100%;
+    padding: 30px 110px 30px 50px;
+    width: 540px;
+    display: flex;
+    flex-wrap: wrap;
+    top: 0;
+    height: 100vh;
+    min-height: 500px;
+
+    &.active {
+      left: 0;
+    }
+
+    svg path {
+      animation-name: side-widget-out;
+    }
+
+    &.active svg path {
+      animation-name: side-widget-in;
+    }
   }
+
+  &.-filter {
+    right: -100%;
+    padding: 30px 30px 30px 80px;
+    width: 440px;
+    top: 20vh;
+    height: 80vh;
+    min-height: 500px;
+
+    h2, h3 {
+      color: white;
+    }
+
+    &.active {
+      right: 0;
+    }
+
+    svg {
+      transform: scaleX(-1);
+    }
+
+    svg path {
+      animation-name: side-widget-out;
+    }
+
+    &.active svg path {
+      animation-name: side-widget-in;
+    }
+  }
+
+  
   &.active .logo {
     opacity: 1;
     transform: translateX(0);
@@ -846,27 +888,27 @@ button[type="submit"] {
     opacity: 1;
     transform: translateX(0);
   }
+
   &.active svg path {
-    -webkit-animation-name: side-widget-in;
-    -moz-animation-name: side-widget-in;
-    -ms-animation-name: side-widget-in;
-    -o-animation-name: side-widget-in;
-    animation-name: side-widget-in;
-
     @include animation-timing;
-
-    -webkit-animation-duration: 0.8s;
-    -moz-animation-duration: 0.8s;
-    -ms-animation-duration: 0.8s;
-    -o-animation-duration: 0.8s;
     animation-duration: 0.8s;
-
-    -webkit-animation-fill-mode: forwards;
-    -moz-animation-fill-mode: forwards;
-    -ms-animation-fill-mode: forwards;
-    -o-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
   }
+
+  .filter-inner {
+    color: white;
+    width: 100%;    
+    position: relative;
+    opacity: 0;
+    @include transition;
+    transform: translateX(-100px);
+  }
+
+  &.active .filter-inner {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
   svg {
     width: 100%;
     height: 100%;
@@ -874,17 +916,14 @@ button[type="submit"] {
     right: 0;
     top: 0;
     fill: $color-dark;
-    path {
-      -webkit-animation-name: side-widget-out;
-      -moz-animation-name: side-widget-out;
-      -ms-animation-name: side-widget-out;
-      -o-animation-name: side-widget-out;
-      animation-name: side-widget-out;
+
+    path {      
       @include animation-timing;
       animation-duration: 0.8s;
       animation-fill-mode: forwards;
     }
   }
+
   .logo {
     width: 100%;
     display: block;
@@ -983,6 +1022,27 @@ button[type="submit"] {
           }
         }
       }
+    }
+  }
+}
+
+.filter-group {
+  margin-bottom: 1rem;;
+}
+
+.filter-tags {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+
+  li {
+    padding: 2px 8px;
+    color: #fff;
+    background-color: $color-dark;
+    cursor: pointer;
+
+    i {
+      padding-left: 10px;
     }
   }
 }
@@ -1132,6 +1192,19 @@ $date-col-width: 90px;
   padding: 0 8px;
   display: inline-block;
   background-color: $color-secondary;
+}
+
+.event-card-day {
+  position: relative;
+  line-height: .9;
+  padding-right: 5px;
+  font-size: 36px;
+
+  // &::before {
+  //   content: '- ';
+  //   position: absolute;
+  //   left: -15px;
+  // }
 }
 
 /* NAVBAR */

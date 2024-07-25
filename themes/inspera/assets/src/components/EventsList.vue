@@ -1,33 +1,46 @@
 <template>
   <div>
+    <div class="date-navigator">
+      <span class="month-nav -left" @click="getPrevMonth"></span>
+      <div class="today h2">
+        {{ thisMonth }}
+      </div>
+      <span class="month-nav -right" @click="getNextMonth"></span>
+    </div>
+
+    <div class="date-days" v-if="monthDays.length">
+      <ul class="list-unstyled">
+        <li
+          v-for="(day, index) in monthDays"
+          :key="index"
+          :class="getDayClasses(day)"
+        >
+          <span v-if="!day.hasEvent" class="day-disabled">{{ day.number }}</span>
+          <a 
+            v-else
+            class="day-button"
+            @click="filterDate(day.number)"
+          >
+            {{ day.number }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <button style="margin-left: auto; display: block; width: 150px;" type="button" @click="isFilterShown = true">Show filter</button>
+
+    <events-filter 
+      :filterOptions="filterOptions"
+      :selectedFilters="filters"
+      :isFilterShown="isFilterShown"
+      :params="params"
+      @hideFilter="isFilterShown = false"
+      @updateFilters="handleFiltersUpdate"
+    />
+
     <div v-if="isLoading">Loading...</div>
     <div v-else-if="events.length === 0">No events available.</div>
     <div v-else>
-      <div class="date-navigator">
-        <span class="month-nav -left" @click="getPrevMonth"></span>
-        <div class="today h2">
-          {{ thisMonth }}
-        </div>
-        <span class="month-nav -right" @click="getNextMonth"></span>
-      </div>
-      <div class="date-days">
-        <ul class="list-unstyled">
-          <li
-            v-for="(day, index) in monthDays"
-            :key="index"
-            :class="getDayClasses(day)"
-          >
-            <span v-if="!day.hasEvent" class="day-disabled">{{ day.number }}</span>
-            <a 
-              v-else
-              class="day-button"
-              @click="filterDate(day.number)"
-            >
-              {{ day.number }}
-            </a>
-          </li>
-        </ul>
-      </div>
       <div class="row">
         <div class="col-lg-6 mb-4" v-for="event in events" :key="event.id">
           <event-card 
@@ -65,6 +78,7 @@ export default {
         types: [],
         categories: [],
         venues: [],
+        audiences: [],
         // searchQuery: null
       },
       events: [],
@@ -73,7 +87,16 @@ export default {
       monthIndex: null,
       year: null,
       monthDays: [],
-      isFilterShown: false
+      isFilterShown: false,
+      shouldChangeMonth: true,
+      filters: {
+        'categories': [],
+        'venues': [],
+        'types': [],
+        'date': null,
+        'dateEnd': null
+      },
+      filterOptions: {}
     };
   },
   methods: {
@@ -83,12 +106,18 @@ export default {
         const self = this
         $.request('onGetEvents', {
           data: {
-            params: self.params
+            params: self.params,
+            shouldChangeMonth: this.shouldChangeMonth ? true : false
           },
           success: function(data) {
-            self.getFeedSuccess(data.events);
-            self.monthDays = data.daysData.days
-            // console.log(self.monthDays)
+            self.getFeedSuccess(data.events)
+  
+            if (self.shouldChangeMonth) {
+              self.monthDays = data.daysData
+              self.filterOptions = data.filters
+              // console.log(self.filterOptions)
+            }
+            self.shouldChangeMonth = false
           },
           error: function(err) {
             self.getFeedFailure(err)
@@ -108,16 +137,65 @@ export default {
       this.isLoading = false
       this.error = err
     },
+    setParamsFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const params = this.params
+      urlParams.forEach((value, key) => {
+        if (params.hasOwnProperty(key)) {
+          if (Array.isArray(params[key])) {
+            params[key] = value.split(',')
+          } else {
+            params[key] = value
+          }
+        }
+      })
+      this.params = params
+    },
+    updateUrlSearchParams() {
+      const url = new URL(window.location);
+      const params = this.params;
+      const searchParams = new URLSearchParams();
+
+      for (const [key, value] of Object.entries(params)) {
+        if (value === null || value === undefined || value === '') {
+          searchParams.delete(key);
+          continue;
+        }
+
+        if (key === 'date') {
+          searchParams.delete('month');
+        }
+
+        if (Array.isArray(value) && value.length === 0) {
+          searchParams.delete(key);
+          continue;
+        }
+
+        if (Array.isArray(value)) {
+          searchParams.set(key, value.join(','));
+        } else {
+          searchParams.set(key, value);
+        }
+      }
+
+      const searchString = Array.from(searchParams.entries())
+        .map(([key, val]) => `${key}=${val}`)
+        .join('&');
+
+      url.search = searchString;
+      window.history.replaceState({}, '', url.toString());
+    },
     setMonthYear() {
       // console.log('params month ' + this.params.month)
       if (this.params.month && this.isValidMonth(this.params.month)) {
-        const [year, month] = dateString.split('-').map(Number)
+        const [year, month] = this.params.month.split('-').map(Number)
         this.year = year
         this.monthIndex = month - 1 // month index start is 0
       } else {
-        var today = new Date();
+        const today = new Date()
         this.year = today.getFullYear()
         this.monthIndex = today.getMonth()
+        this.params.month = this.formatMonth(this.year, this.monthIndex)
       }
     },
     isValidMonth(dateString) {
@@ -135,91 +213,76 @@ export default {
 
       return true;
     },
-    formatMonth(year, month) {
-      return '${year}-${month}'
+    formatMonth(year, monthIndex) {
+      return `${year}-${String(monthIndex + 1).padStart(2, '0')}`
     },
     getPrevMonth() {
-      this.params.month = this.formatMonth(this.year, this.monthIndex - 1)
-      this.updateUrlSearchParams()
-      this.getEvents()
+      this.monthIndex--
+      this.params.date = null
+      this.params.month = this.formatMonth(this.year, this.monthIndex)
+      this.shouldChangeMonth = true
     },
     getNextMonth() {
-      this.params.month = this.formatMonth(this.year, this.monthIndex + 1)
-      this.updateUrlSearchParams()
-      this.getEvents()
+      this.monthIndex++
+      this.params.date = null
+      this.params.month = this.formatMonth(this.year, this.monthIndex)
+      this.shouldChangeMonth = true
     },
     filterDate(day) {
-      this.params.date = this.formatMonth(this.year, this.monthIndex - 1) + '-' + String(day).padStart(2, '0')
-      this.updateUrlSearchParams()
-      this.getEvents()
+      this.params.date = this.formatMonth(this.year, this.monthIndex) + '-' + String(day).padStart(2, '0')
+      this.params.dateEnd = this.formatMonth(this.year, this.monthIndex) + '-' + String(day).padStart(2, '0')
+      this.filters.date = this.params.date
+      this.filters.dateEnd = this.params.dateEnd
     },
     getDayClasses(day) {
       return {
         'is-weekend': day.isWeekend
       }
     },
-    setParamsFromUrl() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const params = this.params
-      urlParams.forEach((value, key) => {
-        if (params.hasOwnProperty(key)) {
-          if (Array.isArray(params[key])) {
-            params[key] = value.split(',')
-          } else {
-            params[key] = value
-          }
-        }
-      })
-      this.params = params
-    },
-    updateUrlSearchParams() {
-      const url = new URL(window.location)
-      const searchParams = new URLSearchParams(url.search)
-      const params = this.params
-
-      for (const [key, value] of Object.entries(params)) {
-        // if (value === null) {
-        //   searchParams.delete(key)
-        //   continue;
-        // }
-
-        if (Array.isArray(value)) {
-          let currentValues = searchParams.get(key)
-          if (currentValues) {
-            currentValues = currentValues.split(',')
-
-            // Toggle values: Add if not present, remove if present
-            value.forEach(val => {
-              const index = currentValues.indexOf(val)
-              if (index === -1) {
-                currentValues.push(val)
-              } else {
-                currentValues.splice(index, 1)
-              }
-            });
-
-            searchParams.set(key, currentValues.join(','))
-          } else {
-            searchParams.set(key, value.join(','))
-          }
+    
+    handleFiltersUpdate(newParams) {
+      this.params = Object.keys(this.params).reduce((acc, key) => {
+        if (newParams.hasOwnProperty(key)) {
+          acc[key] = newParams[key];
         } else {
-          searchParams.set(key, value)
+          acc[key] = this.params[key];
         }
-      }
-      url.search = searchParams.toString()
-      window.history.replaceState({}, '', url.toString())
+        return acc;
+      }, {});
     }
   },
   created() {
     this.setParamsFromUrl()
     this.setMonthYear()
-    this.getEvents()
+
+    this.filters = Object.keys(this.filters).reduce((acc, key) => {
+      if (this.params.hasOwnProperty(key)) {
+        if (Array.isArray(this.params[key])) {
+          acc[key] = this.params[key].map(v => parseInt(v, 10))
+        } else {
+          acc[key] = this.params[key]
+        }
+        
+      } else {
+        acc[key] = this.filters[key];
+      }
+      return acc;
+    }, {});
   },
   computed: {
     thisMonth() {
       const month = String(this.monthIndex + 1).padStart(2, '0')
       return `${month}.${this.year}`
     }
-  }
+  },
+  watch: {
+    params: {
+      handler() {
+        this.updateUrlSearchParams()
+        this.getEvents()        
+      },
+      deep: true
+    }
+  },
 };
 </script>

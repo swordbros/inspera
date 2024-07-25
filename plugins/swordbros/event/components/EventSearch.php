@@ -23,7 +23,9 @@ use Storage;
 class EventSearch extends ComponentBase
 {
     public $events = [];
+    public $filters = [];
     public $vars = [];
+
     public function componentDetails()
     {
         return [
@@ -142,8 +144,10 @@ class EventSearch extends ComponentBase
 
     private function getMonthDays(): array
     {
+        $params = Input::get('params');
+
         $data = [];
-        $date = Input::get('date');
+        $date = $params['month'];
         if (empty($date)) {
             $year = date('Y');
             $month = date('m');
@@ -175,43 +179,43 @@ class EventSearch extends ComponentBase
             ];
         }
 
-        $data['todayStart'] = date('Y-m-d 00:00:00');
-        $data['todayEnd'] = date('Y-m-d 23:59:09');
+        // $data['todayStart'] = date('Y-m-d 00:00:00');
+        // $data['todayEnd'] = date('Y-m-d 23:59:09');
 
-        $tomorrow = new DateTime();
-        $tomorrow->modify('+1 day');
+        // $tomorrow = new DateTime();
+        // $tomorrow->modify('+1 day');
 
-        $data['tomorrowStart'] = $tomorrow->format('Y-m-d 00:00:00');
-        $data['tomorrowEnd'] = $tomorrow->format('Y-m-d 23:59:09');
+        // $data['tomorrowStart'] = $tomorrow->format('Y-m-d 00:00:00');
+        // $data['tomorrowEnd'] = $tomorrow->format('Y-m-d 23:59:09');
 
 
-        $firstDayOfWeek = new DateTime();
-        $firstDayOfWeek->setISODate((int)$firstDayOfWeek->format('o'), (int)$firstDayOfWeek->format('W'), 1);
-        $lastDayOfWeek = new DateTime();
-        $lastDayOfWeek->setISODate((int)$lastDayOfWeek->format('o'), (int)$lastDayOfWeek->format('W'), 7);
-        $data['weekStart'] =  $firstDayOfWeek->format('Y-m-d 00:00:00');
-        $data['weekEnd'] =  $lastDayOfWeek->format('Y-m-d 23:59:09');
+        // $firstDayOfWeek = new DateTime();
+        // $firstDayOfWeek->setISODate((int)$firstDayOfWeek->format('o'), (int)$firstDayOfWeek->format('W'), 1);
+        // $lastDayOfWeek = new DateTime();
+        // $lastDayOfWeek->setISODate((int)$lastDayOfWeek->format('o'), (int)$lastDayOfWeek->format('W'), 7);
+        // $data['weekStart'] =  $firstDayOfWeek->format('Y-m-d 00:00:00');
+        // $data['weekEnd'] =  $lastDayOfWeek->format('Y-m-d 23:59:09');
 
-        $now = new DateTime();
-        $startOfWeekend = clone $now;
-        $startOfWeekend->modify('next saturday');
-        if ($startOfWeekend->format('N') != 6) {
-            $startOfWeekend->modify('last saturday');
-        }
-        $endOfWeekend = clone $startOfWeekend;
-        $endOfWeekend->modify('next sunday');
-        $data['weekendStart'] = $startOfWeekend->format('Y-m-d 00:00:00');
-        $data['weekendEnd'] = $endOfWeekend->format('Y-m-d 23:59:09');
+        // $now = new DateTime();
+        // $startOfWeekend = clone $now;
+        // $startOfWeekend->modify('next saturday');
+        // if ($startOfWeekend->format('N') != 6) {
+        //     $startOfWeekend->modify('last saturday');
+        // }
+        // $endOfWeekend = clone $startOfWeekend;
+        // $endOfWeekend->modify('next sunday');
+        // $data['weekendStart'] = $startOfWeekend->format('Y-m-d 00:00:00');
+        // $data['weekendEnd'] = $endOfWeekend->format('Y-m-d 23:59:09');
 
-        $today = new DateTime();
-        $data['monthStart'] = $today->format('Y-m-01 00:00:00');
-        $data['monthEnd'] = $today->format('Y-m-t 23:59:09');
+        // $today = new DateTime();
+        // $data['monthStart'] = $today->format('Y-m-01 00:00:00');
+        // $data['monthEnd'] = $today->format('Y-m-t 23:59:09');
 
-        $currentMonthFirstDay = Carbon::create($year, $month, 1);
-        $data['datePrev'] = date('Y-m', strtotime('-1 month', strtotime($currentMonthFirstDay)));
-        $data['dateNext'] = date('Y-m', strtotime('+1 month', strtotime($currentMonthFirstDay)));
+        // $currentMonthFirstDay = Carbon::create($year, $month, 1);
+        // $data['datePrev'] = date('Y-m', strtotime('-1 month', strtotime($currentMonthFirstDay)));
+        // $data['dateNext'] = date('Y-m', strtotime('+1 month', strtotime($currentMonthFirstDay)));
 
-        return $data;
+        return $data['days'];
     }
 
     private function eventSearchPagination()
@@ -274,32 +278,79 @@ class EventSearch extends ComponentBase
         ];
     }
 
+    /**
+     * Single entry point for listing updates
+     */
     public function onGetEvents()
     {
-        $params = Input::get('params');
-        if (!isset($params['month'])) {
-            throw new NotFoundException("Date is a required parameter");
+        $this->events = $this->getEvents();
+
+        $result['events'] = $this->events
+            ->map(function (EventModel $event) {
+                return [
+                    'title' => $event->title,
+                    'url' => $event->url,
+                    'thumb' => 'https://place-hold.it/546x400', // MediaLibrary::url($event->thumb), // resize
+                    'start' => $event->start,
+                    'end' => $event->end,
+                    'color' => $event->color,
+                    'venue' => $event->event_zone->name,
+                    'type' => $event->event_type->name,
+                    'category' => $event->event_category->name,
+                ];
+            });
+
+        if (Input::get('shouldChangeMonth')) {
+            $result['filters'] = $this->getFilters();
+            $result['daysData'] = $this->getMonthDays();
         }
 
-        return [
-            'events' => EventModel::where(['status' => 1])
-                // ->select(...)
-                ->with('event_zone', 'event_category', 'event_type')
-                ->get()
-                ->map(function ($event) {
-                    return [
-                        'title' => $event->title,
-                        'url' => $event->url,
-                        'thumb' => 'https://place-hold.it/546x400', // MediaLibrary::url($event->thumb), // resize
-                        'start' => $event->start,
-                        'end' => $event->end,
-                        'color' => $event->color,
-                        'venue' => $event->event_zone->name,
-                        'type' => $event->event_type->name,
-                        'category' => $event->event_category->name,
-                    ];
-                }),
-            'daysData' => $this->getMonthDays()
+        return $result;
+    }
+
+    private function getFilters()
+    {
+        $this->filters = [
+            'types' => $this->getFilter('event_type'),
+            'venues' => $this->getFilter('event_zone'),
+            'categories' => $this->getFilter('event_category'),
         ];
+
+        return $this->filters;
+    }
+
+    private function getFilter(string $relationName): array
+    {
+        return [
+            'title' => $relationName,
+            'options' => array_values(
+                $this->events
+                    ->map(function (EventModel $e) use ($relationName) {
+                        return [
+                            'value' => $e->$relationName->id,
+                            'label' => $e->$relationName->name
+                        ];
+                    })
+                    ->unique('value')
+                    ->toArray()
+            )
+        ];
+    }
+
+    private function getEvents()
+    {
+        $params = Input::get('params');
+
+        if (!isset($params['month'])) {
+            // TODO maybe not throw but use current month (frontend side?)
+            throw new NotFoundException("Month is a required parameter");
+        }
+
+        return EventModel::published()
+            // ->select(...)
+            ->with('event_zone', 'event_category', 'event_type')
+            ->filtered($params)
+            ->orderBy('start')
+            ->get();
     }
 }

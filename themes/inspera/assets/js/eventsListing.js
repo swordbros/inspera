@@ -12839,6 +12839,10 @@ __webpack_require__.r(__webpack_exports__);
       type: Date,
       required: true
     },
+    dateEnd: {
+      type: Date,
+      required: true
+    },
     color: {
       type: String,
       required: false
@@ -12865,16 +12869,25 @@ __webpack_require__.r(__webpack_exports__);
       const minutes = String(this.date.getMinutes()).padStart(2, '0');
       return `${hours}:${minutes}`;
     },
-    dayOfMonth() {
+    startDay() {
       const day = String(this.date.getDate()).padStart(2, '0');
       const month = String(this.date.getMonth() + 1).padStart(2, '0');
       return `${day}.${month}`;
+    },
+    endDay() {
+      if (this.isLastingEvent()) {
+        return String(this.dateEnd.getDate()).padStart(2, '0') + '.' + String(this.dateEnd.getMonth() + 1).padStart(2, '0');
+      }
+      return null;
     }
   },
   methods: {
-    isLastingEvent(event) {
-      // compare days of start and end
+    isLastingEvent() {
+      return this.dateEnd.getDate() !== this.date.getDate();
     }
+  },
+  mounted() {
+    // console.log(this.dateEnd)
   }
 });
 
@@ -12893,52 +12906,100 @@ __webpack_require__.r(__webpack_exports__);
     params: {
       type: Object,
       required: true
+    },
+    selectedFilters: {
+      type: Object,
+      required: true
+    },
+    filterOptions: {
+      type: Object,
+      required: true
+    },
+    isFilterShown: {
+      type: Boolean,
+      required: true
     }
   },
   data() {
     return {
-      selectedFilters: {
-        venue: [],
-        category: []
-      },
-      filters: {
-        venue: {
-          title: 'Filter Venue',
-          options: [{
-            value: 1,
-            label: 'Area 1'
-          }, {
-            value: 2,
-            label: 'Area 2'
-          }, {
-            value: 3,
-            label: 'Area 3'
-          }]
-        },
-        category: {
-          options: [{
-            value: 1,
-            label: 'Category 1'
-          }, {
-            value: 2,
-            label: 'Category 2'
-          }, {
-            value: 3,
-            label: 'Category 3'
-          }]
-        }
-      }
+      today: new Date().toISOString().split('T')[0],
+      tomorrow: new Date(Date.now() + 86400000).toISOString().split('T')[0],
+      thisWeek: this.getWeekStartAndEnd()
     };
+  },
+  computed: {
+    selectedTags() {
+      const selected = this.selectedFilters;
+      let dateTags = [];
+      if (this.params.date) {
+        const end = this.params.dateEnd?.length ? this.params.dateEnd : this.params.date;
+        const dateLabel = this.params.date === end ? this.params.date : `${this.params.date} - ${end}`;
+        dateTags.push({
+          filter: 'dates',
+          label: dateLabel,
+          value: null
+        });
+      }
+      return Object.keys(this.filterOptions).reduce((acc, key) => {
+        const options = this.filterOptions[key].options;
+        if (selected.hasOwnProperty(key) && selected[key].length > 0) {
+          // is not empty
+          options.filter(o => {
+            // likely there will be only arrays of selected
+            return selected[key].includes(o.value);
+          }).forEach(o => {
+            acc.push({
+              filter: key,
+              label: o.label,
+              value: o.value
+            });
+          });
+        }
+        return acc;
+      }, dateTags);
+    }
   },
   watch: {
     selectedFilters: {
       handler(newFilters) {
-        // This function is called every time selectedFilters change
-        // You can handle your filtering logic here
-        console.log(newFilters);
+        // console.log(newFilters);
+        this.$emit('updateFilters', newFilters);
       },
-      deep: true
+      deep: true,
+      immediate: true
     }
+  },
+  methods: {
+    removeOption(filterName, value) {
+      if (filterName === 'dates') {
+        this.selectedFilters['date'] = null;
+        this.selectedFilters['dateEnd'] = null;
+      } else {
+        let selected = this.selectedFilters[filterName];
+        selected.splice(selected.findIndex(item => item === value), 1);
+      }
+    },
+    setDates(start, end) {
+      this.selectedFilters['date'] = start;
+      this.selectedFilters['dateEnd'] = end;
+    },
+    getWeekStartAndEnd() {
+      const today = new Date();
+      const dayOfWeek = today.getDay();
+      const startOfWeek = new Date(today);
+      const endOfWeek = new Date(today);
+      const mondayOffset = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+      startOfWeek.setDate(today.getDate() - mondayOffset);
+      endOfWeek.setDate(today.getDate() + (6 - mondayOffset));
+      const formatDate = date => date.toISOString().split('T')[0];
+      return {
+        start: formatDate(startOfWeek),
+        end: formatDate(endOfWeek)
+      };
+    }
+  },
+  mounted() {
+    // console.log(this.selectedFilters)
   }
 });
 
@@ -12968,7 +13029,8 @@ __webpack_require__.r(__webpack_exports__);
         dateEnd: null,
         types: [],
         categories: [],
-        venues: []
+        venues: [],
+        audiences: []
         // searchQuery: null
       },
       events: [],
@@ -12977,7 +13039,16 @@ __webpack_require__.r(__webpack_exports__);
       monthIndex: null,
       year: null,
       monthDays: [],
-      isFilterShown: false
+      isFilterShown: false,
+      shouldChangeMonth: true,
+      filters: {
+        'categories': [],
+        'venues': [],
+        'types': [],
+        'date': null,
+        'dateEnd': null
+      },
+      filterOptions: {}
     };
   },
   methods: {
@@ -12987,12 +13058,17 @@ __webpack_require__.r(__webpack_exports__);
         const self = this;
         $.request('onGetEvents', {
           data: {
-            params: self.params
+            params: self.params,
+            shouldChangeMonth: this.shouldChangeMonth ? true : false
           },
           success: function (data) {
             self.getFeedSuccess(data.events);
-            self.monthDays = data.daysData.days;
-            // console.log(self.monthDays)
+            if (self.shouldChangeMonth) {
+              self.monthDays = data.daysData;
+              self.filterOptions = data.filters;
+              // console.log(self.filterOptions)
+            }
+            self.shouldChangeMonth = false;
           },
           error: function (err) {
             self.getFeedFailure(err);
@@ -13012,53 +13088,6 @@ __webpack_require__.r(__webpack_exports__);
       this.isLoading = false;
       this.error = err;
     },
-    setMonthYear() {
-      // console.log('params month ' + this.params.month)
-      if (this.params.month && this.isValidMonth(this.params.month)) {
-        const [year, month] = dateString.split('-').map(Number);
-        this.year = year;
-        this.monthIndex = month - 1; // month index start is 0
-      } else {
-        var today = new Date();
-        this.year = today.getFullYear();
-        this.monthIndex = today.getMonth();
-      }
-    },
-    isValidMonth(dateString) {
-      // Regular expression to match YYYY-MM format
-      const regex = /^\d{4}-(0[1-9]|1[0-2])$/;
-      if (!regex.test(dateString)) {
-        return false;
-      }
-      const [year, month] = dateString.split('-').map(Number);
-      if (year < 2023 || year > 3000) {
-        return false;
-      }
-      return true;
-    },
-    formatMonth(year, month) {
-      return '${year}-${month}';
-    },
-    getPrevMonth() {
-      this.params.month = this.formatMonth(this.year, this.monthIndex - 1);
-      this.updateUrlSearchParams();
-      this.getEvents();
-    },
-    getNextMonth() {
-      this.params.month = this.formatMonth(this.year, this.monthIndex + 1);
-      this.updateUrlSearchParams();
-      this.getEvents();
-    },
-    filterDate(day) {
-      this.params.date = this.formatMonth(this.year, this.monthIndex - 1) + '-' + String(day).padStart(2, '0');
-      this.updateUrlSearchParams();
-      this.getEvents();
-    },
-    getDayClasses(day) {
-      return {
-        'is-weekend': day.isWeekend
-      };
-    },
     setParamsFromUrl() {
       const urlParams = new URLSearchParams(window.location.search);
       const params = this.params;
@@ -13075,49 +13104,124 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateUrlSearchParams() {
       const url = new URL(window.location);
-      const searchParams = new URLSearchParams(url.search);
       const params = this.params;
+      const searchParams = new URLSearchParams();
       for (const [key, value] of Object.entries(params)) {
-        // if (value === null) {
-        //   searchParams.delete(key)
-        //   continue;
-        // }
-
+        if (value === null || value === undefined || value === '') {
+          searchParams.delete(key);
+          continue;
+        }
+        if (key === 'date') {
+          searchParams.delete('month');
+        }
+        if (Array.isArray(value) && value.length === 0) {
+          searchParams.delete(key);
+          continue;
+        }
         if (Array.isArray(value)) {
-          let currentValues = searchParams.get(key);
-          if (currentValues) {
-            currentValues = currentValues.split(',');
-
-            // Toggle values: Add if not present, remove if present
-            value.forEach(val => {
-              const index = currentValues.indexOf(val);
-              if (index === -1) {
-                currentValues.push(val);
-              } else {
-                currentValues.splice(index, 1);
-              }
-            });
-            searchParams.set(key, currentValues.join(','));
-          } else {
-            searchParams.set(key, value.join(','));
-          }
+          searchParams.set(key, value.join(','));
         } else {
           searchParams.set(key, value);
         }
       }
-      url.search = searchParams.toString();
+      const searchString = Array.from(searchParams.entries()).map(_ref => {
+        let [key, val] = _ref;
+        return `${key}=${val}`;
+      }).join('&');
+      url.search = searchString;
       window.history.replaceState({}, '', url.toString());
+    },
+    setMonthYear() {
+      // console.log('params month ' + this.params.month)
+      if (this.params.month && this.isValidMonth(this.params.month)) {
+        const [year, month] = this.params.month.split('-').map(Number);
+        this.year = year;
+        this.monthIndex = month - 1; // month index start is 0
+      } else {
+        const today = new Date();
+        this.year = today.getFullYear();
+        this.monthIndex = today.getMonth();
+        this.params.month = this.formatMonth(this.year, this.monthIndex);
+      }
+    },
+    isValidMonth(dateString) {
+      // Regular expression to match YYYY-MM format
+      const regex = /^\d{4}-(0[1-9]|1[0-2])$/;
+      if (!regex.test(dateString)) {
+        return false;
+      }
+      const [year, month] = dateString.split('-').map(Number);
+      if (year < 2023 || year > 3000) {
+        return false;
+      }
+      return true;
+    },
+    formatMonth(year, monthIndex) {
+      return `${year}-${String(monthIndex + 1).padStart(2, '0')}`;
+    },
+    getPrevMonth() {
+      this.monthIndex--;
+      this.params.date = null;
+      this.params.month = this.formatMonth(this.year, this.monthIndex);
+      this.shouldChangeMonth = true;
+    },
+    getNextMonth() {
+      this.monthIndex++;
+      this.params.date = null;
+      this.params.month = this.formatMonth(this.year, this.monthIndex);
+      this.shouldChangeMonth = true;
+    },
+    filterDate(day) {
+      this.params.date = this.formatMonth(this.year, this.monthIndex) + '-' + String(day).padStart(2, '0');
+      this.params.dateEnd = this.formatMonth(this.year, this.monthIndex) + '-' + String(day).padStart(2, '0');
+      this.filters.date = this.params.date;
+      this.filters.dateEnd = this.params.dateEnd;
+    },
+    getDayClasses(day) {
+      return {
+        'is-weekend': day.isWeekend
+      };
+    },
+    handleFiltersUpdate(newParams) {
+      this.params = Object.keys(this.params).reduce((acc, key) => {
+        if (newParams.hasOwnProperty(key)) {
+          acc[key] = newParams[key];
+        } else {
+          acc[key] = this.params[key];
+        }
+        return acc;
+      }, {});
     }
   },
   created() {
     this.setParamsFromUrl();
     this.setMonthYear();
-    this.getEvents();
+    this.filters = Object.keys(this.filters).reduce((acc, key) => {
+      if (this.params.hasOwnProperty(key)) {
+        if (Array.isArray(this.params[key])) {
+          acc[key] = this.params[key].map(v => parseInt(v, 10));
+        } else {
+          acc[key] = this.params[key];
+        }
+      } else {
+        acc[key] = this.filters[key];
+      }
+      return acc;
+    }, {});
   },
   computed: {
     thisMonth() {
       const month = String(this.monthIndex + 1).padStart(2, '0');
       return `${month}.${this.year}`;
+    }
+  },
+  watch: {
+    params: {
+      handler() {
+        this.updateUrlSearchParams();
+        this.getEvents();
+      },
+      deep: true
     }
   }
 });
@@ -13146,51 +13250,59 @@ const _hoisted_3 = {
   class: "event-card-date"
 };
 const _hoisted_4 = ["datetime"];
-const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_6 = {
+const _hoisted_5 = {
+  key: 0,
+  class: "h4 event-card-day"
+};
+const _hoisted_6 = ["datetime"];
+const _hoisted_7 = {
   class: "event-card-year"
 };
-const _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   class: "fa fa-calendar-alt"
 }, null, -1 /* HOISTED */);
-const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-const _hoisted_9 = {
+const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+const _hoisted_10 = {
   class: "event-card-time"
 };
-const _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+const _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   class: "fa fa-clock"
 }, null, -1 /* HOISTED */);
-const _hoisted_11 = {
+const _hoisted_12 = {
   class: "event-card-info"
 };
-const _hoisted_12 = {
+const _hoisted_13 = {
   class: "event-card-thumb"
 };
-const _hoisted_13 = ["href"];
-const _hoisted_14 = ["src"];
-const _hoisted_15 = {
+const _hoisted_14 = ["href"];
+const _hoisted_15 = ["src"];
+const _hoisted_16 = {
   class: "h5"
 };
-const _hoisted_16 = ["href"];
-const _hoisted_17 = {
+const _hoisted_17 = ["href"];
+const _hoisted_18 = {
   class: "event-card-venue"
 };
-const _hoisted_18 = {
+const _hoisted_19 = {
   key: 0,
   class: "event-card-category mb-4"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.type), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("time", {
-    datetime: $props.date,
-    class: "h4"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.dayOfMonth), 9 /* TEXT, PROPS */, _hoisted_4), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.year), 1 /* TEXT */)]), _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.time), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    datetime: $options.startDay,
+    class: "h4 event-card-day"
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.startDay), 9 /* TEXT, PROPS */, _hoisted_4), null != $options.endDay ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_5, " -")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $options.endDay ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("time", {
+    key: 1,
+    datetime: $options.endDay,
+    class: "h4 event-card-day"
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.endDay), 9 /* TEXT, PROPS */, _hoisted_6)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.year), 1 /* TEXT */)]), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.time), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.url
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $props.picture,
     class: "img-fluid"
-  }, null, 8 /* PROPS */, _hoisted_14)], 8 /* PROPS */, _hoisted_13)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, null, 8 /* PROPS */, _hoisted_15)], 8 /* PROPS */, _hoisted_14)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.url
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.title), 9 /* TEXT, PROPS */, _hoisted_16)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.venue), 1 /* TEXT */), $props.category ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.category), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.title), 9 /* TEXT, PROPS */, _hoisted_17)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.venue), 1 /* TEXT */), $props.category ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.category), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
 
 /***/ }),
@@ -13208,26 +13320,101 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 const _hoisted_1 = {
-  class: "side-widget -right active"
+  key: 0,
+  class: "filter-tags"
 };
-const _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Filter", -1 /* HOISTED */);
-const _hoisted_3 = ["value", "onUpdate:modelValue"];
+const _hoisted_2 = ["onClick"];
+const _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  class: "far fa-window-close"
+}, null, -1 /* HOISTED */);
+const _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  viewBox: "0 0 600 1080",
+  preserveAspectRatio: "none",
+  version: "1.1"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M540,1080H0V0h540c0,179.85,0,359.7,0,539.54C540,719.7,540,899.85,540,1080z"
+})], -1 /* HOISTED */);
+const _hoisted_5 = {
+  class: "filter-inner"
+};
+const _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  class: "h4"
+}, "Filter", -1 /* HOISTED */);
+const _hoisted_7 = {
+  class: "filter-group"
+};
+const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  class: "h5"
+}, " Filter Date ", -1 /* HOISTED */);
+const _hoisted_9 = {
+  class: "filter-option"
+};
+const _hoisted_10 = ["value"];
+const _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Today ");
+const _hoisted_12 = {
+  class: "filter-option"
+};
+const _hoisted_13 = ["value"];
+const _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Tomorrow ");
+const _hoisted_15 = {
+  class: "filter-option"
+};
+const _hoisted_16 = ["value"];
+const _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" This week ");
+const _hoisted_18 = {
+  class: "h5"
+};
+const _hoisted_19 = ["value", "onUpdate:modelValue"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", _hoisted_1, [_hoisted_2, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.filters, (group, groupName) => {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [$options.selectedTags.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.selectedTags, tag => {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+      key: tag.value,
+      class: "filter-tag",
+      onClick: $event => $options.removeOption(tag.filter, tag.value)
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(tag.label) + " ", 1 /* TEXT */), _hoisted_3], 8 /* PROPS */, _hoisted_2);
+  }), 128 /* KEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", {
+    class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["side-widget -filter", $props.isFilterShown && 'active'])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[0] || (_cache[0] = $event => _ctx.$emit('hideFilter')),
+    style: {
+      "cursor": "pointer",
+      "color": "white",
+      "z-index": "10",
+      "position": "relative",
+      "background": "transparent",
+      "display": "block",
+      "margin-left": "auto"
+    }
+  }, "X"), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "radio",
+    name: "dates",
+    value: $data.today,
+    onChange: _cache[1] || (_cache[1] = $event => $options.setDates($data.today, $data.today))
+  }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_10), _hoisted_11])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "radio",
+    name: "dates",
+    value: $data.tomorrow,
+    onChange: _cache[2] || (_cache[2] = $event => $options.setDates($data.tomorrow, $data.tomorrow))
+  }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_13), _hoisted_14])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "radio",
+    name: "dates",
+    value: `${$data.thisWeek.start} - ${$data.thisWeek.end}`,
+    onChange: _cache[3] || (_cache[3] = $event => $options.setDates($data.thisWeek.start, $data.thisWeek.end))
+  }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_16), _hoisted_17])])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.filterOptions, (group, groupName) => {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: groupName,
       class: "filter-group"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(group.title), 1 /* TEXT */), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(group.options, option => {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(group.title), 1 /* TEXT */), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(group.options, option => {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
         key: option.value,
         class: "filter-option"
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "checkbox",
         value: option.value,
-        "onUpdate:modelValue": $event => $data.selectedFilters[groupName] = $event
-      }, null, 8 /* PROPS */, _hoisted_3), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.selectedFilters[groupName]]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.label), 1 /* TEXT */)])]);
+        "onUpdate:modelValue": $event => $props.selectedFilters[groupName] = $event
+      }, null, 8 /* PROPS */, _hoisted_19), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $props.selectedFilters[groupName]]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.label), 1 /* TEXT */)])]);
     }), 128 /* KEYED_FRAGMENT */))]);
-  }), 128 /* KEYED_FRAGMENT */))]);
+  }), 128 /* KEYED_FRAGMENT */))])], 2 /* CLASS */)]);
 }
 
 /***/ }),
@@ -13245,56 +13432,73 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 const _hoisted_1 = {
-  key: 0
-};
-const _hoisted_2 = {
-  key: 1
-};
-const _hoisted_3 = {
-  key: 2
-};
-const _hoisted_4 = {
   class: "date-navigator"
 };
-const _hoisted_5 = {
+const _hoisted_2 = {
   class: "today h2"
 };
-const _hoisted_6 = {
+const _hoisted_3 = {
+  key: 0,
   class: "date-days"
 };
-const _hoisted_7 = {
+const _hoisted_4 = {
   class: "list-unstyled"
 };
-const _hoisted_8 = {
+const _hoisted_5 = {
   key: 0,
   class: "day-disabled"
 };
-const _hoisted_9 = ["onClick"];
+const _hoisted_6 = ["onClick"];
+const _hoisted_7 = {
+  key: 1
+};
+const _hoisted_8 = {
+  key: 2
+};
+const _hoisted_9 = {
+  key: 3
+};
 const _hoisted_10 = {
   class: "row"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_events_filter = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("events-filter");
   const _component_event_card = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("event-card");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, "Loading...")) : $data.events.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, "No events available.")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     class: "month-nav -left",
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.getPrevMonth && $options.getPrevMonth(...arguments);
     })
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.thisMonth), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.thisMonth), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     class: "month-nav -right",
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.getNextMonth && $options.getNextMonth(...arguments);
     })
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_7, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.monthDays, (day, index) => {
+  })]), $data.monthDays.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.monthDays, (day, index) => {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: index,
       class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.getDayClasses(day))
-    }, [!day.hasEvent ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(day.number), 1 /* TEXT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+    }, [!day.hasEvent ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(day.number), 1 /* TEXT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
       key: 1,
       class: "day-button",
       onClick: $event => $options.filterDate(day.number)
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(day.number), 9 /* TEXT, PROPS */, _hoisted_9))], 2 /* CLASS */);
-  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.events, event => {
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(day.number), 9 /* TEXT, PROPS */, _hoisted_6))], 2 /* CLASS */);
+  }), 128 /* KEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    style: {
+      "margin-left": "auto",
+      "display": "block",
+      "width": "150px"
+    },
+    type: "button",
+    onClick: _cache[2] || (_cache[2] = $event => $data.isFilterShown = true)
+  }, "Show filter"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_events_filter, {
+    filterOptions: $data.filterOptions,
+    selectedFilters: $data.filters,
+    isFilterShown: $data.isFilterShown,
+    params: $data.params,
+    onHideFilter: _cache[3] || (_cache[3] = $event => $data.isFilterShown = false),
+    onUpdateFilters: $options.handleFiltersUpdate
+  }, null, 8 /* PROPS */, ["filterOptions", "selectedFilters", "isFilterShown", "params", "onUpdateFilters"]), $data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, "Loading...")) : $data.events.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, "No events available.")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.events, event => {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       class: "col-lg-6 mb-4",
       key: event.id
