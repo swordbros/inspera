@@ -143,37 +143,37 @@
     },
 
 
-    loop: true,
-    loopedSlides: 1,
-    thumbs: {
-      swiper: slidertexts
-    }
+    // loop: true,
+    // loopedSlides: 1,
+    // thumbs: {
+    //   swiper: slidertexts
+    // }
   });
 
 
   //SLIDER THUMBS
-  var slidertexts = new Swiper('.slider-texts', {
-    spaceBetween: 10,
-    centeredSlides: true,
-    slidesPerView: 1,
-    touchRatio: 0,
-    slideToClickedSlide: false,
-    loop: true,
-    loopedSlides: 1,
+  // var slidertexts = new Swiper('.slider-texts', {
+  //   spaceBetween: 10,
+  //   centeredSlides: true,
+  //   slidesPerView: 1,
+  //   touchRatio: 0,
+  //   slideToClickedSlide: false,
+  //   loop: true,
+  //   loopedSlides: 1,
 
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'progressbar',
-    },
+  //   pagination: {
+  //     el: '.swiper-pagination',
+  //     type: 'progressbar',
+  //   },
 
-  });
+  // });
 
-  if ($(".slider-images")[0]) {
-    sliderimages.controller.control = slidertexts;
-    slidertexts.controller.control = sliderimages;
-  } else {
+  // if ($(".slider-images")[0]) {
+  //   sliderimages.controller.control = slidertexts;
+  //   slidertexts.controller.control = sliderimages;
+  // } else {
 
-  }
+  // }
 
 
   // KINETIC TEXTS

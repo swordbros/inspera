@@ -25,10 +25,19 @@
   {% endif %}
 {% endput %}
 
+
 {% if box.background_video %}
 
   <div class="video-bg">
     <video src="{{ box.background_video | media }}" loop autoplay playsinline muted></video>
+  </div>
+
+  {% placeholder overlay %}
+
+{% elseif box.background_vimeo %}
+
+  <div class="video-bg">
+    {{ box.background_vimeo | raw}}
   </div>
 
   {% placeholder overlay %}
@@ -48,7 +57,9 @@
     {{ box.anchor_id ? 'id="'~box.anchor_id~'"' }}
   >
   </div>
+  {% placeholder overlay %}
 
-  {% placeholder overlay %}  
+  
+
 
 {% endif %}
