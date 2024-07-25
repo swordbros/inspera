@@ -35,7 +35,7 @@ mix.options({
   }
 })
 .setPublicPath('/')
-.js('assets/src/app.js', 'assets/js/eventsListing.js')
+.js('assets/src/app.js', 'assets/js/events.js')
 .vue()
 // .sass('assets/src/css/main.scss', 'assets/css/main.css')
 
