@@ -933,7 +933,7 @@ button[type="submit"] {
     @include transition;
     transform: translateX(-100px);
     img {
-      height: 62px;
+      height: 45px;
     }
   }
 
@@ -980,21 +980,27 @@ button[type="submit"] {
     @include transition;
     transform: translateX(-100px);
     display: none;
+
     .custom-menu {
       width: 100%;
       display: block;
       margin-top: auto;
+
       ul {
         width: 100%;
         margin: 0;
+        list-style: none;
+        padding: 0;
+
         li {
           width: 100%;
-          @include font-second;
-          font-size: 20px;
+          font-size: $font-size;
+
           a {
             display: inline-block;
             color: #fff;
             margin: 5px 0;
+
             &:hover {
               text-decoration: none;
               color: $color-main;
@@ -1003,6 +1009,7 @@ button[type="submit"] {
         }
       }
     }
+
     .site-menu {
       width: 100%;
       display: block;
@@ -1012,11 +1019,13 @@ button[type="submit"] {
       ul {
         width: 100%;
         margin: 0;
+        list-style: none;
+        padding: 0;
 
         li {
           width: 100%;
-          @include font-second;
-          font-size: 20px;
+          font-size: $font-size-huge;
+
           a {
             display: inline-block;
             color: #fff;
@@ -1304,7 +1313,8 @@ $date-col-width: 90px;
     a {
       display: block;
       img {
-        height: 62px;
+        height: 45px;
+        margin-left: -8px;
       }
     }
   }
@@ -3609,7 +3619,7 @@ $date-col-width: 90px;
     display: block;
     margin-bottom: 15px;
     img {
-      height: 64px;
+      height: 45px;
     }
   }
   .app-logos {
@@ -4027,7 +4037,7 @@ $date-col-width: 90px;
     max-width: 85vw;
   }
   .side-widget .logo img {
-    height: 52px;
+    height: 45px;
   }
   .search-box .container .form input[type="search"] {
     width: 100%;
@@ -4041,7 +4051,7 @@ $date-col-width: 90px;
     display: none;
   }
   .navbar .logo a img {
-    height: 48px;
+    height: 45px;
   }
   .slider .container-fluid {
     width: calc(100% - 30px);

@@ -1,14 +1,3 @@
-[sitePicker]
-
-[section mainMenu]
-handle = "Site\Menus"
-identifier = "slug"
-value = "top-menu"
-==
-{% if mainMenu.items.count %}
-  {% set menuItems = mainMenu.items.toNested | filter(i => not i.is_hidden) %}
-{% endif %}
-
 <nav class="navbar">
 
   <div class="logo">
@@ -30,40 +19,40 @@ value = "top-menu"
     </ul>
 
   </div>
- {% if menuItems is not empty  %}
-  <div class="site-menu">
-    <ul>
-      {% for item in menuItems %}
-      {#{d(item)}#}
-        <li>
-          <a href="{{ item.reference | link }}">
-            {{ item.title }}
-          </a>
+  {% if menuItems is not empty  %}
+    <div class="site-menu">
+      <ul>
+        {% for item in menuItems %}
 
-          {% if item.children.count %}
-            <ul class="dropdown-menu">
-              {% for child in item.children | filter(i => not i.is_hidden) %}
-                <li>
-                  <a
-                  class="
-                    dropdown-item 
-                    {{ link(child.reference).isActive ? 'active' }}                  
-                  "
-                  href="{{ child.reference|link }}"
-                  {{ child.is_external ? 'target="_blank" '}}
-                  >
-                    {{ child.title }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endif %}
+          <li>
+            <a href="{{ item.reference | link }}">
+              {{ item.title }}
+            </a>
 
-        </li>
-      {% endfor %}   
-    </ul>
+            {% if item.children.count %}
+              <ul class="dropdown-menu">
+                {% for child in item.children | filter(i => not i.is_hidden) %}
+                  <li>
+                    <a
+                    class="
+                      dropdown-item 
+                      {{ link(child.reference).isActive ? 'active' }}                  
+                    "
+                    href="{{ child.reference|link }}"
+                    {{ child.is_external ? 'target="_blank" '}}
+                    >
+                      {{ child.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
 
-  </div>
+          </li>
+        {% endfor %}   
+      </ul>
+
+    </div>
   {% endif %}
   <div class="search-button">
     <i class="far fa-search"></i>
@@ -78,8 +67,8 @@ value = "top-menu"
   </div>
 
   <div class="navbar-button">
-    <a href="membership.html">
-      {{ 'Get a ticket'|_ }}
+    <a href="{{ 'event/events'|page }}">
+      {{ 'Calendar'|_ }}
     </a>
   </div>
 

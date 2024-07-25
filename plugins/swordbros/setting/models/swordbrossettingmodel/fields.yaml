@@ -41,6 +41,29 @@ tabs:
             label: swordbross.settings.closing_time
             type: text
             comment: Store closing_time
+
+        panel_intro:
+            tab: event.tab.business_settings
+            label: swordbross.settings.panel_intro_text
+            type: richeditor
+            span: auto
+        welcome_image:
+            tab: event.tab.business_settings
+            label: swordbross.settings.welcome_image
+            type: mediafinder
+            span: auto
+        working_hours:
+            tab: event.tab.business_settings
+            label: swordbross.settings.opening_time
+            type: repeater
+            form:
+                fields:
+                    week_days:
+                        label: swordbross.settings.opening_time_days
+                        span: auto
+                    time:
+                        label: swordbross.settings.opening_time_time
+                        span: auto
         map_url:
             tab: event.tab.business_settings
             label: swordbross.settings.map_url
