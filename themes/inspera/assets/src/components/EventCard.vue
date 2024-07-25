@@ -6,7 +6,8 @@
     <div class="event-card-date">
       <time :datetime="startDay" class="h4 event-card-day">
         {{ startDay }}
-      </time><span class="h4 event-card-day" v-if="null != endDay">  -</span>
+      </time>
+      <span class="h4 event-card-day" v-if="null != endDay">  -</span>
       <time :datetime="endDay" class="h4 event-card-day" v-if="endDay">
         {{ endDay }}
       </time>

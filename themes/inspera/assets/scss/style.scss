@@ -837,11 +837,11 @@ button[type="submit"] {
       left: 0;
     }
 
-    svg path {
+    .animated-overlay path {
       animation-name: side-widget-out;
     }
 
-    &.active svg path {
+    &.active .animated-overlay path {
       animation-name: side-widget-in;
     }
   }
@@ -862,15 +862,15 @@ button[type="submit"] {
       right: 0;
     }
 
-    svg {
+    .animated-overlay {
       transform: scaleX(-1);
+
+      path {
+        animation-name: side-widget-out;
+      }
     }
 
-    svg path {
-      animation-name: side-widget-out;
-    }
-
-    &.active svg path {
+    &.active .animated-overlay path {
       animation-name: side-widget-in;
     }
   }
@@ -889,7 +889,7 @@ button[type="submit"] {
     transform: translateX(0);
   }
 
-  &.active svg path {
+  &.active .animated-overlay path {
     @include animation-timing;
     animation-duration: 0.8s;
     animation-fill-mode: forwards;
@@ -909,7 +909,7 @@ button[type="submit"] {
     transform: translateX(0);
   }
 
-  svg {
+  .animated-overlay {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -936,6 +936,7 @@ button[type="submit"] {
       height: 62px;
     }
   }
+
   .inner {
     width: 100%;
     display: flex;
@@ -944,6 +945,7 @@ button[type="submit"] {
     opacity: 0;
     @include transition;
     transform: translateX(-100px);
+
     .widget {
       width: 100%;
       display: block;
@@ -951,12 +953,14 @@ button[type="submit"] {
       &:last-child {
         margin-bottom: 0;
       }
+
       p:last-child {
         margin-bottom: 0;
         font-weight: 400;
         opacity: 0.8;
       }
     }
+
     .widget-title {
       width: 100%;
       display: block;
@@ -1004,9 +1008,11 @@ button[type="submit"] {
       display: block;
       margin-bottom: auto;
       margin-top: 10px;
+
       ul {
         width: 100%;
         margin: 0;
+
         li {
           width: 100%;
           @include font-second;
@@ -1026,6 +1032,45 @@ button[type="submit"] {
   }
 }
 
+.close-filter-button {
+  writing-mode: vertical-lr;
+  transform: rotate(-180deg);
+  position: absolute;
+  cursor: pointer; 
+  color: white;
+  z-index: 10;
+  right: 0;
+    top: 0;
+    padding: 16px 8px;
+
+  svg {
+    width: 26px;
+    height: 26px;
+    margin-top: 14px;
+  }
+
+  span, svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.filter-button {
+  margin-left: auto;
+  display: block;
+  width: 50px;
+
+  &:hover {
+    color: #0d5eff;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
 .filter-group {
   margin-bottom: 1rem;;
 }
@@ -1041,8 +1086,12 @@ button[type="submit"] {
     background-color: $color-dark;
     cursor: pointer;
 
-    i {
-      padding-left: 10px;
+    svg {
+      margin-left: 10px;
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      stroke: #fff;
     }
   }
 }
@@ -1065,6 +1114,17 @@ button[type="submit"] {
     a, span {
       color: $danger;
     }
+  }
+
+  .is-today {
+    font-size: $font-size-huge;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .is-tomorrow {
+    font-size: 22px;
+    color: #000;
   }
 
   .day-button {

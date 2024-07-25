@@ -148,29 +148,22 @@ class EventSearch extends ComponentBase
 
         $data = [];
         $date = $params['month'];
+
         if (empty($date)) {
             $year = date('Y');
             $month = date('m');
         } else {
             [$year, $month] = explode('-', $date);
         }
-        // $data['year'] =  $year;
-        // $data['month'] =  $month;
-        $firstDayOfMonth = Carbon::create($year, $month, 1);
-        // $data['start'] =  $firstDayOfMonth->format('Y-m-d H:i:s');
 
+        $firstDayOfMonth = Carbon::create($year, $month, 1);
         $lastDayOfMonth = $firstDayOfMonth->copy()->endOfMonth();
-        // $data['end'] =  $lastDayOfMonth->format('Y-m-d H:i:s');
         for ($date = $firstDayOfMonth->copy(); $date->lte($lastDayOfMonth); $date->addDay()) {
             $data['days'][] = [
-                // 'date' => $date->format('Y-m'),
-                // 'start' => $date->format('Y-m-d 00:00:00'),
-                // 'end' => $date->format('Y-m-d 23:59:09'),
-                // 'monthName' => __('event.plugin.month-' . $date->format('d')),
-                // 'yearNumber' => $date->format('Y'),
-                // 'monthNumber' => $date->format('m'),
                 'number' => $date->format('j'),
                 'isWeekend' => $date->isWeekend(),
+                'isToday' => $date->isToday(),
+                'isTomorrow' => $date->isTomorrow(),
                 'hasEvent' => (bool) EventModel::where([
                     ['status', '=', 1],
                     ['start', '>=', $date->format('Y-m-d 00:00:00')],
@@ -178,42 +171,6 @@ class EventSearch extends ComponentBase
                 ])->count()
             ];
         }
-
-        // $data['todayStart'] = date('Y-m-d 00:00:00');
-        // $data['todayEnd'] = date('Y-m-d 23:59:09');
-
-        // $tomorrow = new DateTime();
-        // $tomorrow->modify('+1 day');
-
-        // $data['tomorrowStart'] = $tomorrow->format('Y-m-d 00:00:00');
-        // $data['tomorrowEnd'] = $tomorrow->format('Y-m-d 23:59:09');
-
-
-        // $firstDayOfWeek = new DateTime();
-        // $firstDayOfWeek->setISODate((int)$firstDayOfWeek->format('o'), (int)$firstDayOfWeek->format('W'), 1);
-        // $lastDayOfWeek = new DateTime();
-        // $lastDayOfWeek->setISODate((int)$lastDayOfWeek->format('o'), (int)$lastDayOfWeek->format('W'), 7);
-        // $data['weekStart'] =  $firstDayOfWeek->format('Y-m-d 00:00:00');
-        // $data['weekEnd'] =  $lastDayOfWeek->format('Y-m-d 23:59:09');
-
-        // $now = new DateTime();
-        // $startOfWeekend = clone $now;
-        // $startOfWeekend->modify('next saturday');
-        // if ($startOfWeekend->format('N') != 6) {
-        //     $startOfWeekend->modify('last saturday');
-        // }
-        // $endOfWeekend = clone $startOfWeekend;
-        // $endOfWeekend->modify('next sunday');
-        // $data['weekendStart'] = $startOfWeekend->format('Y-m-d 00:00:00');
-        // $data['weekendEnd'] = $endOfWeekend->format('Y-m-d 23:59:09');
-
-        // $today = new DateTime();
-        // $data['monthStart'] = $today->format('Y-m-01 00:00:00');
-        // $data['monthEnd'] = $today->format('Y-m-t 23:59:09');
-
-        // $currentMonthFirstDay = Carbon::create($year, $month, 1);
-        // $data['datePrev'] = date('Y-m', strtotime('-1 month', strtotime($currentMonthFirstDay)));
-        // $data['dateNext'] = date('Y-m', strtotime('+1 month', strtotime($currentMonthFirstDay)));
 
         return $data['days'];
     }

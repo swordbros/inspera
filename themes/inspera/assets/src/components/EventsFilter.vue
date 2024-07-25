@@ -8,20 +8,21 @@
         @click="removeOption(tag.filter, tag.value)"
       >
         {{ tag.label }}
-        <i class="far fa-window-close"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.5 0 25 25"><path stroke="currenColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m3 21.32 18-18M3 3.32l18 18"/></svg>
       </li>
     </ul>
 
     <aside class="side-widget -filter" :class="isFilterShown && 'active'">
 
-      <button @click="$emit('hideFilter')" style="cursor: pointer; color: white;
-    z-index: 10;
-    position: relative;
-    background: transparent;
-    display: block;
-    margin-left: auto;" >X</button>
+      <div 
+        @click="$emit('hideFilter')" 
+        class="close-filter-button"
+      >
+        <span>Filter</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.5 0 25 25"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m3 21.32 18-18M3 3.32l18 18"/></svg>  
+      </div>
 
-      <svg viewBox="0 0 600 1080" preserveAspectRatio="none" version="1.1">
+      <svg class="animated-overlay" viewBox="0 0 600 1080" preserveAspectRatio="none" version="1.1">
         <path d="M540,1080H0V0h540c0,179.85,0,359.7,0,539.54C540,719.7,540,899.85,540,1080z"></path>
       </svg>
           
@@ -31,30 +32,7 @@
           <h3 class="h5">
             Filter Date
           </h3>
-          <div class="filter-option">
-            <label>
-              <input
-                type="radio"
-                name="dates"
-                :value="today"
-                @change="setDates(today, today)"
-              />
-              Today
-            </label>
-          </div>
-
-          <div class="filter-option">
-            <label>
-              <input
-                type="radio"
-                name="dates"
-                :value="tomorrow"
-                @change="setDates(tomorrow, tomorrow)"
-              />
-              Tomorrow
-            </label>
-          </div>
-
+          
           <div class="filter-option">
             <label>
               <input
@@ -66,17 +44,31 @@
               This week
             </label>
           </div>
+
+          <div class="filter-option">
+            <label>
+              <input
+                type="radio"
+                name="dates"
+                :value="`${weekend.start} - ${weekend.end}`"
+                @change="setDates(weekend.start, weekend.end)"
+              />
+              This weekend
+            </label>
+          </div>
+
         </div>
         <div
           v-for="(group, groupName) in filterOptions"
           :key="groupName"
           class="filter-group"
         >
-          <h3 class="h5">
+          <h3 class="h5" v-if="group.options.length > 1">
             {{ group.title }}
           </h3>
           <div
             v-for="option in group.options"
+            v-if="group.options.length > 1"
             :key="option.value"
             class="filter-option"
           >
@@ -120,7 +112,8 @@ export default {
     return {
       today: new Date().toISOString().split('T')[0],
       tomorrow: new Date(Date.now() + 86400000).toISOString().split('T')[0],
-      thisWeek: this.getWeekStartAndEnd()
+      thisWeek: this.getWeekStartAndEnd(),
+      weekend: this.getWeekendDates()
     }
   },
   computed: {
@@ -199,10 +192,16 @@ export default {
         start: formatDate(startOfWeek),
         end: formatDate(endOfWeek)
       }
+    },
+    getWeekendDates() {
+      return {
+        start: new Date(Date.now() + (6 - (new Date().getDay() || 7)) * 86400000).toISOString().split('T')[0], 
+        end: new Date(Date.now() + (7 - (new Date().getDay() || 7)) * 86400000).toISOString().split('T')[0] 
+      }
     }
   },
   mounted() {
-    // console.log(this.selectedFilters)
+    // console.log(this.filterOptions)
   }
 };
 </script>
