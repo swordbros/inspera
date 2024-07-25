@@ -29,7 +29,7 @@ emails_date_format = "Y-m-d"
         {% partial 'components/head-styles' %}
     </head>
     {# remove page-loaded for animations #}
-    <body class="page-loaded {{ 'page-'~this.page.id }}">
+    <body class="page-loaded {{ 'page-'~this.page.title }}">
 
         {#<div class="preloader" id="preloader">
             <svg viewBox="0 0 1920 1080" preserveAspectRatio="none" version="1.1">
