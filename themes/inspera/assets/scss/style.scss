@@ -120,6 +120,7 @@ theme.
 //   font-family: "DM Sans", sans-serif;
 // }
 $font-titles: "Bebas Neue", sans-serif;
+$font-text: "Poppins", sans-serif;
 
 @mixin font-second {
   font-family: $font-titles;
@@ -130,7 +131,7 @@ $font-titles: "Bebas Neue", sans-serif;
 }
 
 @mixin font-text {
-  font-family: "Poppins", sans-serif;
+  font-family: $font-text;
 }
 
 $color-dark: #080808;
@@ -140,6 +141,7 @@ $color-secondary: #DDFA80;
 $color-white: #ffffff;
 $color-muted: #F4F3F2;
 $gray: #cecece;
+$font-color-lighter: #636669;
 
 $success: $color-secondary;
 $info: $color-main;
@@ -149,7 +151,7 @@ $danger: red;
 $color-borders: $gray;
 
 /* SIZES */
-$font-size: 16px;
+$font-size: 17px;
 $font-size-huge: 25px;
 $font-size-small: 14px;
 $font-size-h1: 92px;
@@ -195,7 +197,7 @@ $font-size-h6: $font-size;
   font-weight: 400;
 }
 @mixin font-h6 {
-  font-family: $font-titles;
+  font-family: $font-text;
   font-size: $font-size-h6;
   line-height: 1.6;
   font-style: normal;
@@ -758,10 +760,12 @@ button[type="submit"] {
         font-size: 19px;
       }
     }
+
     .search-events {
       width: 100%;
       display: block;
       margin-top: 5vh;
+
       ul {
         width: 100%;
         display: flex;
@@ -774,6 +778,7 @@ button[type="submit"] {
           padding: 0 5%;
           list-style: none;
           text-align: center;
+
           h5 {
             width: 100%;
             display: block;
@@ -806,7 +811,7 @@ button[type="submit"] {
           small {
             width: 100%;
             display: block;
-            opacity: 0.7;
+            color: $font-color-lighter;
           }
         }
       }
@@ -1588,7 +1593,7 @@ $date-col-width: 90px;
   //     p {
   //       font-size: 19px;
   //       margin: 0;
-  //       opacity: 0.7;
+  //       color: $font-color-lighter;
   //       padding-left: 30px;
   //       border-left: 3px solid #fff;
   //       margin-left: 10px;
@@ -1679,7 +1684,7 @@ $date-col-width: 90px;
         color: var(--slider-text-color);
         font-size: 19px;
         margin: 0;
-        opacity: 0.7;
+        color: $font-color-lighter;
         padding-left: 30px;
         position: relative;
         margin-left: 10px;
@@ -1853,7 +1858,7 @@ $date-col-width: 90px;
     p {
       font-size: 19px;
       margin: 0;
-      opacity: 0.7;
+      color: $font-color-lighter;
       padding-left: 30px;
       border-left: 3px solid $color-dark;
       margin-left: 10px;
@@ -2142,10 +2147,12 @@ $date-col-width: 90px;
   display: flex;
   flex-wrap: wrap;
   padding-right: 80px;
+
   &.right-side {
     padding-right: 0;
     padding-left: 80px;
   }
+
   ul {
     width: 100%;
     display: block;
@@ -2160,6 +2167,7 @@ $date-col-width: 90px;
       &:last-child {
         margin-bottom: 0;
       }
+
       figure {
         width: 80px;
         height: 100%;
@@ -2172,20 +2180,16 @@ $date-col-width: 90px;
       .content {
         width: calc(100% - 80px);
         display: inline-block;
-        margin-top: 10px;
+        margin-top: 4px;
+
         h5 {
           width: 100%;
-          display: block;
-          @include font-titles-fancy;
-          font-size: 22px;
           margin-bottom: 15px;
-          font-weight: 600;
         }
+
         p {
-          width: 100%;
-          display: block;
           margin-bottom: 10px;
-          opacity: 0.7;
+          color: $font-color-lighter;
         }
         a {
           display: inline-block;
@@ -2248,9 +2252,11 @@ $date-col-width: 90px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+
   &.left {
     padding-right: 20%;
   }
+
   small {
     height: 40px;
     line-height: 40px;
@@ -2265,29 +2271,31 @@ $date-col-width: 90px;
     background: $color-main;
     border-radius: 40px;
   }
-  h2 {
+
+  h1 {
     width: 100%;
-    display: block;
     margin-bottom: 20px;
-    @include font-second;
-    font-size: 52px;
   }
+
   p {
     width: 100%;
     display: block;
     margin: 0;
-    opacity: 0.7;
+    color: $font-color-lighter;
   }
+
   table {
     width: 100%;
     margin: 20px 0;
-    opacity: 0.7;
+    color: $font-color-lighter;
+
     tr {
       padding: 5px 0;
     }
-    tr td:nth-child(2) {
-      font-weight: 700;
-    }
+
+    // tr td:nth-child(2) {
+    //   font-weight: 700;
+    // }
   }
 }
 
@@ -2297,6 +2305,7 @@ $date-col-width: 90px;
   display: block;
   margin: 0;
   overflow: hidden;
+
   &.left-half {
     width: 50vw;
     float: right;
@@ -2464,7 +2473,7 @@ $date-col-width: 90px;
     margin: 0;
     text-align: center;
     font-weight: 700;
-    opacity: 0.7;
+    color: $font-color-lighter;
   }
 }
 
@@ -2519,7 +2528,7 @@ $date-col-width: 90px;
       width: 100%;
       display: block;
       margin: 0;
-      opacity: 0.7;
+      color: $font-color-lighter;
     }
   }
 }
@@ -2730,7 +2739,7 @@ $date-col-width: 90px;
     p {
       width: 100%;
       display: block;
-      opacity: 0.7;
+      color: $font-color-lighter;
     }
   }
 }
@@ -2811,7 +2820,7 @@ $date-col-width: 90px;
 
     p {
       width: 100%;
-      opacity: 0.7;
+      color: $font-color-lighter;
     }
   }
 }
@@ -2844,7 +2853,7 @@ $date-col-width: 90px;
   p {
     width: 100%;
     display: block;
-    opacity: 0.7;
+    color: $font-color-lighter;
   }
 }
 
@@ -2868,7 +2877,7 @@ $date-col-width: 90px;
     width: 100%;
     display: block;
     padding-right: 40px;
-    opacity: 0.7;
+    color: $font-color-lighter;
     position: relative;
     padding-left: 30px;
     &:before {
@@ -3269,7 +3278,7 @@ $date-col-width: 90px;
     width: 100%;
     display: block;
     margin: 0;
-    opacity: 0.7;
+    color: $font-color-lighter;
     font-size: 19px;
   }
 }
@@ -3343,7 +3352,7 @@ $date-col-width: 90px;
       display: block;
       padding-right: 30%;
       margin-bottom: 40px;
-      opacity: 0.7;
+      color: $font-color-lighter;
     }
   }
 }
@@ -3483,7 +3492,7 @@ $date-col-width: 90px;
     width: 100%;
     display: block;
     margin-bottom: 10px;
-    opacity: 0.7;
+    color: $font-color-lighter;
     &:last-child {
       margin-bottom: 0;
     }
@@ -3587,7 +3596,7 @@ $date-col-width: 90px;
       width: 100%;
       display: block;
       margin-bottom: 40px;
-      opacity: 0.7;
+      color: $font-color-lighter;
       &:last-child {
         margin-bottom: 0;
       }
