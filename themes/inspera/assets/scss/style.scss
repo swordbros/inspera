@@ -1831,6 +1831,20 @@ $date-col-width: 90px;
   }
 }
 
+/* BREADCRUMBS */
+.breadcrumbs {
+  font-size: $font-size-small;
+  list-style: none;
+  margin: 0 0 1rem -8px;
+  padding: 0;
+  display: flex;
+  color: $font-color-lighter;
+
+  li {
+    padding: 0 8px;
+  }
+}
+
 /* PAGE HEADER */
 .page-header {
   width: 100%;

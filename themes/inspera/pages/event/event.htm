@@ -5,12 +5,31 @@ title = "Event Detail"
 [eventDetail]
 ==
 {% if event is empty %}
-{% do abort(404) %}
+  {% do abort(404) %}
 {% endif %}
+
+{% set breadcrumbs = {
+  ('Home'|_): ('home'|boxesPage),
+  ('Events'|_):('event/events'|page)
+} %}
+
 <section class="content-section event-section">
   <div class="container">
+
     <div class="row">
       <div class="col-lg-6">
+        <ul class="breadcrumbs">
+          {% for name, url in breadcrumbs %}
+            <li>
+              <a href="{{ url }}">
+                {{ name  }}
+              </a>
+            </li>        
+            /
+          {% endfor %}
+          {{ event.title }}
+        </ul>
+        
         <div class="side-content left">
           <small class="event-category">
             {{ event.event_category.name }}
