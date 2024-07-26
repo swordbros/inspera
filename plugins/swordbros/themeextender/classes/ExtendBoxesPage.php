@@ -42,42 +42,34 @@ class ExtendBoxesPage
                     'label' => 'cms::lang.editor.hidden',
                     'comment' => 'cms::lang.editor.hidden_comment',
                     'type' => 'checkbox',
-                    'tab' => 'Swordbros.themeextender::lang.boxes.page.visibility',
+                    'tab' => 'swordbros.themeextender::lang.boxes.page.visibility',
                 ],
                 'is_hidden_in_navigation' => [
                     'label' => 'offline.boxes::lang.is_hidden_in_navigation',
                     'comment' => 'offline.boxes::lang.is_hidden_in_navigation_comment',
                     'type' => 'checkbox',
-                    'tab' => 'Swordbros.themeextender::lang.boxes.page.visibility',
+                    'tab' => 'swordbros.themeextender::lang.boxes.page.visibility',
                 ],
 
-
-
-                /*        is_hidden_in_navigation:
-            label: 'offline.boxes::lang.is_hidden_in_navigation'
-            comment: 'offline.boxes::lang.is_hidden_in_navigation_comment'
-            type: checkbox
-            tab: CMS*/
-
-                'custom_config[logo_color]' => [
-                    'label' => 'Swordbros.themeextender::lang.boxes.page.logo_color_label',
-                    'type' => 'balloon-selector',
-                    'default' => 'white',
-                    'tab' => 'CMS',
-                    'span' => 'auto',
-                    'options' => [
-                        'white' => 'Swordbros.themeextender::lang.boxes.page.logo_color_white',
-                        'black' => 'Swordbros.themeextender::lang.boxes.page.logo_color_black'
-                    ]
-                ],
-                'custom_config[hide_in_main_nav]' => [
-                    'label' => 'Swordbros.themeextender::lang.boxes.page.hide_in_main_label',
-                    'type' => 'checkbox',
-                    'default' => 'true',
-                    'tab' => 'Swordbros.themeextender::lang.boxes.page.visibility',
-                ],
+                // 'custom_config[logo_color]' => [
+                //     'label' => 'swordbros.themeextender::lang.boxes.page.logo_color_label',
+                //     'type' => 'balloon-selector',
+                //     'default' => 'white',
+                //     'tab' => 'CMS',
+                //     'span' => 'auto',
+                //     'options' => [
+                //         'white' => 'Swordbros.themeextender::lang.boxes.page.logo_color_white',
+                //         'black' => 'Swordbros.themeextender::lang.boxes.page.logo_color_black'
+                //     ]
+                // ],
+                // 'custom_config[hide_in_main_nav]' => [
+                //     'label' => 'swordbros.themeextender::lang.boxes.page.hide_in_main_label',
+                //     'type' => 'checkbox',
+                //     'default' => 'true',
+                //     'tab' => 'Swordbros.themeextender::lang.boxes.page.visibility',
+                // ],
                 'custom_config[show_breadcrumb]' => [
-                    'label' => 'Swordbros.themeextender::lang.boxes.page.show_breadcrumb',
+                    'label' => 'swordbros.themeextender::lang.boxes.page.show_breadcrumb',
                     'type' => 'checkbox',
                     'order' => 30,
                     'default' => true,
