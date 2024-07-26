@@ -1,61 +1,67 @@
 <template>
   <div>
-    <div class="date-navigator">
-      <span class="month-nav -left" @click="getPrevMonth"></span>
-      <div class="today h2">
-        {{ thisMonth }}
+    <div class="container-fluid">
+      <div class="date-navigator">
+        <span class="month-nav -left" @click="getPrevMonth"></span>
+        <div class="today h2">
+          {{ thisMonth }}
+        </div>
+        <span class="month-nav -right" @click="getNextMonth"></span>
       </div>
-      <span class="month-nav -right" @click="getNextMonth"></span>
-    </div>
 
-    <div class="date-days" v-if="monthDays.length">
-      <ul class="list-unstyled">
-        <li
-          v-for="(day, index) in monthDays"
-          :key="index"
-          :class="getDayClasses(day)"
-        >
-          <span v-if="!day.hasEvent" class="day-disabled">{{ day.number }}</span>
-          <a 
-            v-else
-            class="day-button"
-            @click="filterDate(day.number)"
+      <div class="date-days" v-if="monthDays.length">
+        <ul class="list-unstyled">
+          <li
+            v-for="(day, index) in monthDays"
+            :key="index"
+            :class="getDayClasses(day)"
           >
-            {{ day.number }}
-          </a>
-        </li>
-      </ul>
+            <span v-if="!day.hasEvent" class="day-disabled">{{ day.number }}</span>
+            <a 
+              v-else
+              class="day-button"
+              @click="filterDate(day.number)"
+            >
+              {{ day.number }}
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <div class="filter-button" type="button" @click="isFilterShown = true">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 64"><path d="M50.69 32h5.63M7.68 32h31.01M26.54 15.97h29.78M7.68 15.97h6.88M35 48.03h21.32M7.68 48.03H23"/><circle cx="20.55" cy="15.66" r="6"/><circle cx="44.69" cy="32" r="6"/><circle cx="29" cy="48.03" r="6"/></svg>
-    </div>
+    <div class="container">
+      <div class="filter-button" type="button" @click="isFilterShown = true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 64"><path d="M50.69 32h5.63M7.68 32h31.01M26.54 15.97h29.78M7.68 15.97h6.88M35 48.03h21.32M7.68 48.03H23"/><circle cx="20.55" cy="15.66" r="6"/><circle cx="44.69" cy="32" r="6"/><circle cx="29" cy="48.03" r="6"/></svg>
+      </div>
 
-    <events-filter 
-      :filterOptions="filterOptions"
-      :selectedFilters="filters"
-      :isFilterShown="isFilterShown"
-      :params="params"
-      @hideFilter="isFilterShown = false"
-      @updateFilters="handleFiltersUpdate"
-    />
+      <events-filter 
+        :filterOptions="filterOptions"
+        :selectedFilters="filters"
+        :isFilterShown="isFilterShown"
+        :params="params"
+        @hideFilter="isFilterShown = false"
+        @updateFilters="handleFiltersUpdate"
+      />
+    </div>
 
     <div v-if="isLoading">Loading...</div>
     <div v-else-if="events.length === 0">No events available.</div>
     <div v-else>
-      <div class="row">
-        <div class="col-lg-6 mb-4" v-for="event in events" :key="event.id">
-          <event-card 
-            :title="event.title"
-            :url="event.url"
-            :picture="event.thumb"
-            :date="new Date(event.start)"
-            :dateEnd="new Date(event.end)"
-            :color="event.color"
-            :venue="event.venue"
-            :type="event.type"
-            :category="event.category"
-          />
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-4" v-for="event in events" :key="event.id">
+            <event-card 
+              :title="event.title"
+              :url="event.url"
+              :picture="event.thumb"
+              :date="new Date(event.start)"
+              :dateEnd="new Date(event.end)"
+              :color="event.color"
+              :venue="event.venue"
+              :type="event.type"
+              :category="event.category"
+            />
+          </div>
         </div>
       </div>
     </div>

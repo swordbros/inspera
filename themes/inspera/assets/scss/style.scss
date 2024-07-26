@@ -1127,12 +1127,20 @@ button[type="submit"] {
 }
 .date-days ul {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  font-size: $font-size;
+  font-size: 1.1em;
+  @media (max-width: 1023px) {
+    overflow: auto;
+    margin-left: 1.40156vw;
+  }
 
   li {
-    padding: 2px 10px;
+    padding: 2px 0;
+    margin-right: .66406vw;
+    @media (max-width: 1023px) {
+      margin-right: 3.53333vw;
+    }
   }
 
   .is-weekend {
@@ -1142,13 +1150,13 @@ button[type="submit"] {
   }
 
   .is-today {
-    font-size: $font-size-huge;
+    font-size: 1.5em;
     font-weight: bold;
     color: #000;
   }
 
   .is-tomorrow {
-    font-size: 22px;
+    font-size: 1.3em;
     color: #000;
   }
 
@@ -1923,6 +1931,21 @@ $date-col-width: 90px;
     z-index: 1;
   }
 }
+
+.section {
+  width: 100%;
+  padding: 80px 0;
+  position: relative;  
+  overflow: hidden;
+
+  .container {
+    position: relative;
+  }
+  .container-fluid {
+    position: relative;
+  }
+}
+
 .bottom-white {
   position: relative;
   &:before {
