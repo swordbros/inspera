@@ -1,4 +1,6 @@
-<?php namespace Swordbros\Event\Components;
+<?php
+
+namespace Swordbros\Event\Components;
 
 use Flash;
 use Input;
@@ -24,7 +26,8 @@ class EventDetail extends ComponentBase
             'description' => 'Show a Swordbros Event.'
         ];
     }
-    /*public function registerMailTemplates()
+    /* they should be registered in Plugin.php
+    public function registerMailTemplates()
     {
         return [
             'booking_request_new' => 'swordbros.event::mail.booking_request_new',
@@ -32,29 +35,33 @@ class EventDetail extends ComponentBase
     }*/
     public function onRun()
     {
-        $this->page['mediaUrl'] = MediaLibrary::url('/');
+        // $this->page['mediaUrl'] = MediaLibrary::url('/'); // not necessary
         $this->page['title'] = __('event.events');
         $this->event = $this->page['event'] = $this->loadRecord();
     }
-    protected function loadRecord()
+
+    protected function loadRecord(): EventModel
     {
-        if (!strlen($this->param('id'))) {
+        $id = $this->param('id');
+        if (!strlen($id)) {
             return "1";
         }
-        $model = new EventModel();
-        $row =  $model->where('id', '=', (int)$this->param('id'))->first();
+        $row = EventModel::findOrFail((int)$id);
+
         return $row;
     }
-    public function onSubmitBookingForm(){
+
+    public function onSubmitBookingForm()
+    {
         $booking_request = Input::get('booking_request');
-        if($booking_request){
+        if ($booking_request) {
             $createuser = $this->getUseridBookingRequest($booking_request);
-            if($createuser['message']){
+            if ($createuser['message']) {
                 Flash::warning($createuser['message']);
                 return;
             }
             $booking_request['user_id'] =
-            $bokingRequestModel = new BookingRequestModel();
+                $bokingRequestModel = new BookingRequestModel();
             $bokingRequestModel->fill($booking_request);
             $bokingRequestModel->status = 0;
             $bokingRequestModel->otp = md5(\Str::random(64));
@@ -66,52 +73,53 @@ class EventDetail extends ComponentBase
             $site_id = Site::getSiteIdFromContext();
             $data['send_email'] = $data['email'];
 
-            Mail::send('swordbros.booking_request_new-'.$site_id, $data, function ($message) use($data) {
+            Mail::send('swordbros.booking_request_new-' . $site_id, $data, function ($message) use ($data) {
                 $message->to($data['send_email'], $data['first_name']);
             });
 
-            $data['requestApprove'] = route('request-approve', ['otp'=>$bokingRequestModel->otp]);
-            $data['requestDecline'] =route('request-decline', ['otp'=>$bokingRequestModel->otp]);
+            $data['requestApprove'] = route('request-approve', ['otp' => $bokingRequestModel->otp]);
+            $data['requestDecline'] = route('request-decline', ['otp' => $bokingRequestModel->otp]);
             $emails = Amele::getAlertEmails();
-            foreach($emails as $email){
+            foreach ($emails as $email) {
                 $email = preg_replace('/[^a-zA-Z0-9._%+-@]/', '', $email);
-                if(filter_var($email, FILTER_VALIDATE_EMAIL) !== false){
+                if (filter_var($email, FILTER_VALIDATE_EMAIL) !== false) {
                     $data['send_email'] = $email;
-                    Mail::send('swordbros.booking_request_new-'.$site_id, $data, function ($message) use($data) {
+                    Mail::send('swordbros.booking_request_new-' . $site_id, $data, function ($message) use ($data) {
                         $message->to($data['send_email'], $data['first_name']);
                     });
                 }
             }
-            Amele::addBookingHistory($data['booking']['id'], $data['send_email'].' adresine email gönderildi. '.$data['bookingModel']['email_title']);
+            Amele::addBookingHistory($data['booking']['id'], $data['send_email'] . ' adresine email gönderildi. ' . $data['bookingModel']['email_title']);
             //Flash::success('Booking Created!');
-            return Redirect::to(url('/booking/thankyou', ['id'=>$bokingRequestModel->id]));
-        } else{
+            return Redirect::to(url('/booking/thankyou', ['id' => $bokingRequestModel->id]));
+        } else {
             Flash::warning('booking_request not posted');
         }
     }
-    private function getUseridBookingRequest($data){
+    private function getUseridBookingRequest($data)
+    {
         $result = [
-            'userId'=>0,
-            'message'=>'',
+            'userId' => 0,
+            'message' => '',
         ];
         $user = Auth::getUser();
-        if($user){
+        if ($user) {
             $result['userId'] = $user->id;
             return $result;
         }
-        $user = User::where(['email'=>$data['email']])->first();
-        if($user){
+        $user = User::where(['email' => $data['email']])->first();
+        if ($user) {
             $result['message'] = 'Kayıtlı kullanıcı emaili kullanmak için oturum açmalısınız ';
             return $result;
         }
         $create_user_booking_request = SwordbrosSettingModel::swordbros_setting('create_user_booking_request');
-        if($create_user_booking_request){
+        if ($create_user_booking_request) {
             $user = new User();
             $user->email = $data['email'];
             $user->first_name = $data['first_name'];
             $user->last_name = $data['last_name'];
             $user->save();
-            if($user->id){
+            if ($user->id) {
                 $result['userId'] = $user->id;
                 return $result;
             }
