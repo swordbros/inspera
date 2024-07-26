@@ -22,8 +22,7 @@
           <div class="news-box" data-scroll data-scroll-speed="-1">
             <figure>
               <a href="{{ url }}">
-                {# TODO remove opacity 1 for animations #}
-                <img src="{{ post.banner.path | resize(510, 382, {'mode': 'crop'}) }}" alt="{{ post.title }}" class="img" style="opacity: 1">
+                <img src="{{ post.banner.path | resize(510, 382, {'mode': 'crop'}) }}" alt="{{ post.title }}" class="img">
               </a>
             </figure>
 
