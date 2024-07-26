@@ -1293,10 +1293,10 @@ $date-col-width: 90px;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 30px 60px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 9;
+  // position: absolute;
+  // left: 0;
+  // top: 0;
+  // z-index: 9;
   &.light {
     color: #fff;
     .custom-menu ul li a {
