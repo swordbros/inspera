@@ -12,15 +12,15 @@
 
 
     // ACCORDION
-    var allPanels = $('.accordion > dd').hide();
-    $('.accordion > dt > a').click(function () {
-      var panel = $(this).parent().next();
-      panel.slideToggle();
-      setTimeout(function() {
-        locoScroll.update();
-      }, 400);
-      return false;
-    });
+    // var allPanels = $('.accordion > dd').hide();
+    // $('.accordion > dt > a').click(function () {
+    //   var panel = $(this).parent().next();
+    //   panel.slideToggle();
+    //   setTimeout(function() {
+    //     locoScroll.update();
+    //   }, 400);
+    //   return false;
+    // });
 
 
     /* HAMBURGER */
@@ -78,14 +78,14 @@
 
 
     //TAB
-    $(".tab-nav li").on('click', function (e) {
-      $(".tab-item").hide();
-      $(".tab-nav li").removeClass('active');
-      $(this).addClass("active");
-      var selected_tab = $(this).find("a").attr("href");
-      $(selected_tab).stop().show();
-      return false;
-    });
+    // $(".tab-nav li").on('click', function (e) {
+    //   $(".tab-item").hide();
+    //   $(".tab-nav li").removeClass('active');
+    //   $(this).addClass("active");
+    //   var selected_tab = $(this).find("a").attr("href");
+    //   $(selected_tab).stop().show();
+    //   return false;
+    // });
 
 
   });
@@ -111,28 +111,28 @@
 
 
   // IMAGE BOX CAROUSEL
-  var swiper = new Swiper('.image-box-carousel', {
-    slidesPerView: 1,
-    loop: true,
-    spaceBetween: 0,
-    breakpoints: {
-      640: {
-        slidesPerView: 1,
-        spaceBetween: 0,
-      },
-      768: {
-        slidesPerView: 2,
-        spaceBetween: 30,
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 60,
-      },
-    }
-  });
+  // var swiper = new Swiper('.image-box-carousel', {
+  //   slidesPerView: 1,
+  //   loop: true,
+  //   spaceBetween: 0,
+  //   breakpoints: {
+  //     640: {
+  //       slidesPerView: 1,
+  //       spaceBetween: 0,
+  //     },
+  //     768: {
+  //       slidesPerView: 2,
+  //       spaceBetween: 30,
+  //     },
+  //     1024: {
+  //       slidesPerView: 3,
+  //       spaceBetween: 60,
+  //     },
+  //   }
+  // });
 
 
-  //SLIDER
+  // HOME INTRO SLIDER
   var sliderimages = new Swiper('.slider-images', {
     spaceBetween: 0,
     direction: 'vertical',
@@ -186,21 +186,21 @@
 
 
   // KINETIC TEXTS
-  var slidertexts = new Swiper('.kinetic-texts', {
-    spaceBetween: 10,
-    centeredSlides: true,
-    slidesPerView: 1,
-    touchRatio: 0,
-    slideToClickedSlide: false,
-    loop: true,
-    loopedSlides: 1,
-    effect: 'fade',
-    navigation: {
-      nextEl: '.button-next',
-      prevEl: '.button-prev',
-    },
+  // var slidertexts = new Swiper('.kinetic-texts', {
+  //   spaceBetween: 10,
+  //   centeredSlides: true,
+  //   slidesPerView: 1,
+  //   touchRatio: 0,
+  //   slideToClickedSlide: false,
+  //   loop: true,
+  //   loopedSlides: 1,
+  //   effect: 'fade',
+  //   navigation: {
+  //     nextEl: '.button-next',
+  //     prevEl: '.button-prev',
+  //   },
 
-  });
+  // });
 
 
   /* COLLECTION SLIDER */
@@ -450,10 +450,10 @@
 
 
   // ODOMETER
-  $(".odometer").each(function () {
-    $(this).html($(this).data('count'));
+  // $(".odometer").each(function () {
+  //   $(this).html($(this).data('count'));
 
-  });
+  // });
 
 
 })(jQuery);

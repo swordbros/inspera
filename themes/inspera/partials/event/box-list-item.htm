@@ -1,5 +1,5 @@
 <div class="col-md-6 mb-4">
-  <div class="exhibition-box" data-scroll data-scroll-speed="-1">
+  <div class="exhibition-box" data-scroll data-scroll-speed="{{ index==1 ? -1 : 1 }}">
     <figure>
       <a href="{{ event.url }}">
         <img src="{{ event.thumb.getThumb(510, 382, {'mode': 'crop'}) }}" alt="{{ event.title }}" class="img">
