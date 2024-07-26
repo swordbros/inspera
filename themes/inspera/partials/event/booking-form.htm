@@ -1,27 +1,31 @@
 <div class="container-narrow">
-    <h3 class="mb-4 text-center">{{'Book Now!' |_}}</h3>
+    <h3 class="mb-4 text-center">
+        {{ 'Book Now!' |_}}
+    </h3>
 
     <form  data-request="onSubmitBookingForm" data-request-flash="success,warning">
         <div class="row">
-            <div class="col-md-6 col-12">
-                <input type="text"  id="first_name" name="booking_request[first_name]" placeholder="{{ 'First Name' |_ }}" required>
+            <div class="col-md-6 col-12 mb-4">
+                <input type="text" id="first_name" name="booking_request[first_name]" placeholder="{{ 'First Name' |_ }}" required>
             </div>
-            <div class="col-md-6 col-12">
-                <input type="text" id="last_name" name="booking_request[last_name]"  placeholder="{{ 'Last Name' |_ }}" required>
+            <div class="col-md-6 col-12 mb-4">
+                <input type="text" id="last_name" name="booking_request[last_name]" placeholder="{{ 'Last Name' |_ }}" required>
             </div>
-            <div class="col-md-6 col12">
-               <input type="email" id="email" name="booking_request[email]"  placeholder="{{ 'Email address' |_ }}" required>
+            <div class="col-md-6 col-12 mb-4">
+               <input type="text" id="email" name="booking_request[email]" placeholder="{{ 'Email address' |_ }}" required>
             </div>
-            <div class="col-md-6 col-12">
-                <input type="text"  id="phone" name="booking_request[phone]" placeholder="{{ 'Telephone' |_ }}" required>
+            <div class="col-md-6 col-12 mb-4">
+                <input type="text" id="phone" name="booking_request[phone]" placeholder="{{ 'Telephone' |_ }}" required>
             </div>
         </div>
-        <div class="col-12">
-            <textarea  id="commentContentTextarea"  placeholder="{{ 'Comment' |_ }}" name="booking_request[note]"></textarea>
+        <div class="col-12 mb-4">
+            <textarea id="commentContentTextarea" placeholder="{{ 'Comment' |_ }}" name="booking_request[note]"></textarea>
         </div>
         <div class="form-buttons d-flex pt-2">
             <div>
-                <button type="submit" class="btn btn-primary btn-pill">{{'Book Now'|_}}</button>
+                <button type="submit" class="custom-button -primary">
+                    {{ 'Book Now'|_ }}
+                </button>
                 <input type="hidden" id="event_id" name="booking_request[event_id]" value="{{ event.id }}">
                 {{ form_token() }}
             </div>
