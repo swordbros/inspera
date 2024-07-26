@@ -79,7 +79,7 @@ title = "Event Detail"
 
       <div class="col-lg-6">
         <div class="right-half" data-scroll data-scroll-speed="1">
-          <div class="swiper eventSwiper2">
+          <div class="swiper eventSwiper">
             <div class="swiper-wrapper">
               {% for slide in event.images %}
                 <div class="swiper-slide">
@@ -88,7 +88,7 @@ title = "Event Detail"
               {% endfor %}
             </div>     
           </div>
-          <div thumbsSlider="" class="swiper eventSwiper">
+          <div thumbsSlider="" class="swiper eventSwiperNav">
             <div class="swiper-wrapper">
               {% for slide in event.images %}
                 <div class="swiper-slide">
@@ -143,19 +143,19 @@ title = "Event Detail"
 
 {% put scripts %}
 <script>
-    var swiper = new Swiper(".eventSwiper", {
-      loop: true,
+    var swiperNav = new Swiper(".eventSwiperNav", {
+      //loop: true,
       spaceBetween: 10,
       slidesPerView: 4,
       freeMode: true,
       watchSlidesProgress: true,
     });
-    var swiper2 = new Swiper(".eventSwiper2", {
+
+    new Swiper(".eventSwiper", {
       loop: true,
-      spaceBetween: 10,
-      // direction: getDirection(),
+      //spaceBetween: 10,
       thumbs: {
-        swiper: swiper,
+        swiper: swiperNav,
       },
     });
 
