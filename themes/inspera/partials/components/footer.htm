@@ -85,9 +85,13 @@ value = "about-footer"
           {{ 'Visit Us Now' |_ }}
         </h6>
         <address class="address">
-          {{ swordbrosSettings.address }}
-          <i class="fas fa-info-circle"></i>
-          <a href="tel:{{ swordbrosSettings.telephone }}">{{ swordbrosSettings.telephone }}</a>
+          {{ swordbrosSettings.address | raw }} <br>
+          {% if swordbrosSettings.telephone %}
+            <i class="fas fa-info-circle"></i>
+            <a href="tel:{{ swordbrosSettings.telephone }}">
+              {{ swordbrosSettings.telephone }}
+            </a>
+          {% endif %}
         </address>
       </div>
     </div>

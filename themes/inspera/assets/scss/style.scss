@@ -1046,7 +1046,6 @@ button[type="submit"] {
         li {
           width: 100%;
           font-size: $font-size-huge;
-          
 
           a {
             display: inline-block;
@@ -1059,7 +1058,13 @@ button[type="submit"] {
           }
         }
       }
+
+      .menu-level-2 li {
+        font-size: $font-size;
+      }
     }
+
+    
   }
 }
 
@@ -2363,6 +2368,10 @@ $date-col-width: 90px;
     width: 50vw;
     float: left;
     overflow: hidden;
+    @media (max-width: 991px) {
+      margin-bottom: 2rem;
+      
+    }
   }
   &.is-inview img {
     opacity: 1;
