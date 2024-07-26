@@ -244,12 +244,11 @@ class EventSearch extends ComponentBase
 
         $result['events'] = $this->events
             ->map(function (EventModel $event) {
-                $path = Storage::disk('media')->path($event->thumb);
-                $image = \System\Classes\ResizeImages::resize($path, 546, 402, ['mode' => 'crop']);
+                $path = $event->thumb?->getThumb(546, 402, ['mode' => 'crop']);
                 return [
                     'title' => $event->title,
                     'url' => $event->url,
-                    'thumb' => $image, //MediaLibrary::url($event->thumb), // resize 'https://place-hold.it/546x400'
+                    'thumb' => $path ?: 'https://place-hold.it/546x400',
                     'start' => $event->start,
                     'end' => $event->end,
                     'color' => $event->color,
@@ -306,7 +305,7 @@ class EventSearch extends ComponentBase
 
         return EventModel::published()
             // ->select(...)
-            ->with('event_zone', 'event_category', 'event_type')
+            ->with('event_zone', 'event_category', 'event_type', 'thumb')
             ->filtered($params)
             ->orderBy('start')
             ->get();

@@ -62,7 +62,7 @@ tabs:
             type: textarea
         thumb:
             label: event.fields.thumb
-            type: mediafinder
+            type: fileupload
             maxItems: 1
             mode: image
         status:
@@ -77,19 +77,16 @@ tabs:
             label: event.fields.description
             tab: event.tab.description
             type: richeditor
+        images:
+            tab: event.tab.images
+            label: event.fields.image
+            type: fileupload
+            maxItems: 10
+            mode: image
         content_buttons:
             tab: event.tab.description
             type: partial
             path: $/swordbros/event/controllers/event/_content_buttons.htm
-        images:
-            type: repeater
-            tab: event.tab.images
-            form:
-                fields:
-                    image:
-                        label: event.fields.image
-                        type: mediafinder
-                        mode: image
         event_metas:
             tab: event.tab.meta
             #label: event.fields.metas

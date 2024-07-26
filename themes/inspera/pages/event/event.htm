@@ -5,32 +5,57 @@ title = "Event Detail"
 [eventDetail]
 ==
 {% if event is empty %}
-{% do abort(404) %}
+  {% do abort(404) %}
 {% endif %}
+
+{% set breadcrumbs = {
+  ('Home'|_): ('home'|boxesPage),
+  ('Events'|_):('event/events'|page)
+} %}
+
 <section class="content-section event-section">
   <div class="container">
+
     <div class="row">
       <div class="col-lg-6">
+        <ul class="breadcrumbs">
+          {% for name, url in breadcrumbs %}
+            <li>
+              <a href="{{ url }}">
+                {{ name  }}
+              </a>
+            </li>        
+            /
+          {% endfor %}
+          {{ event.title }}
+        </ul>
+
         <div class="side-content left">
-          <small class="event-category">{{ event.event_category.name }}</small>
-          <h2>{{ event.title }}</h2>
-          <p>{{ event.short }}</p>
+          <small class="event-category">
+            {{ event.event_category.name }}
+          </small>
+          <h1 class="h2">
+            {{ event.title }}
+          </h1>
+          <p>
+            {{ event.short | raw }}
+          </p>
           <table>
             <tr>
-              <td>{{ 'Start'|_}}</td>
-              <td>: {{ carbon(event.start).formatLocalized('%d.%m.%Y') }}</td>
+              <td>{{ 'Start'|_}}: </td>
+              <td>{{ carbon(event.start).formatLocalized('%d.%m.%Y') }}</td>
             </tr>
             <tr>
-              <td>{{ 'End'|_}} </td>
-              <td>: {{ carbon(event.end).formatLocalized('%d.%m.%Y') }} </td>
+              <td>{{ 'End'|_}}:  </td>
+              <td>{{ carbon(event.end).formatLocalized('%d.%m.%Y') }}</td>
             </tr>
             <tr>
-              <td>{{ 'Event Category'|_ }}</td>
-              <td>: {{ event.event_category.name }}</td>
+              <td>{{ 'Event Category'|_ }}: </td>
+              <td>{{ event.event_category.name }}</td>
             </tr>
             <tr>
-              <td>{{ 'Venue Name'|_ }} </td>
-              <td>: {{ event.event_zone.name }}</td>
+              <td>{{ 'Venue Name'|_ }}: </td>
+              <td>{{ event.event_zone.name }}</td>
             </tr>
           </table>
         </div>
@@ -39,112 +64,74 @@ title = "Event Detail"
           <ul>
             <li>
               <figure>
-                <img src="{{ 'assets/images/clock.png' | theme }}" alt="Image">
+                <img src="{{ 'assets/images/clock.png' | theme }}" alt="Opening times">
               </figure>
               <div class="content">
-                <h5>Opening times</h5>
+                <div class="h5">
+                  {{ 'Opening times' |_ }}
+                </div>
                 <p>From 27 August <br> Thursday – Sunday: 11.00-19.00 </p>
               </div>
             </li>
           </ul>
         </div>
       </div>
+
       <div class="col-lg-6">
         <div class="right-half" data-scroll data-scroll-speed="1">
-		    <div class="swiper eventSwiper2">
-			    <div class="swiper-wrapper">
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-					</div>
-		    	</div>
-		  	</div>
-		  	<div thumbsSlider="" class="swiper eventSwiper">
-			    <div class="swiper-wrapper">
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-					</div>
-					<div class="swiper-slide">
-					<img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-					</div>
-			    </div>
-		  	</div>
+          <div class="swiper eventSwiper2">
+            <div class="swiper-wrapper">
+              {% for slide in event.images %}
+                <div class="swiper-slide">
+                  <img src="{{ slide.getThumb(636, 477, {'mode': 'crop'}) }}" alt="{{ slide.title }}"/>
+                </div>
+              {% endfor %}
+            </div>     
+          </div>
+          <div thumbsSlider="" class="swiper eventSwiper">
+            <div class="swiper-wrapper">
+              {% for slide in event.images %}
+                <div class="swiper-slide">
+                  <img src="{{ slide.getThumb(636, 477, {'mode': 'crop'}) }}" alt="{{ slide.title }}"/>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 <section class="content-section event-details">
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="text-box event-description">
-          <h3>Concert Details</h3>
-          <div><strong>Yaş sınırı:</strong> 18+</div>
-          <div><strong>Süre:</strong> 90 dakika</div>
-           {{ event.description|raw }}
+        <div class="event-description">
+          <h2 class="h3">
+            {{ 'Event Details'|_ }}
+          </h2>
+          <p>
+            <strong>Yaş sınırı:</strong> 18+ <br>
+            <strong>Süre:</strong> 90 dakika
+          </p>
+
+           {{ event.description | raw }}
+
           <div><strong>Kapı Açılış:</strong> 20.30</div>
           <div><strong>Konser Başlangıç:</strong> 21.30</div>
         </div>
       </div>
     </div>
     <div class="card-divider"></div>
-    <div class="card-lg">
-        {% if event.booking_url %}
-        <a class="btn btn-primary btn-pill" href="{{ event.booking_url }}"> Book Now </a>
-        {% else %}
+    <div class="card-body card-lg">
+      {% if event.booking_url %}
+        <a class="custom-button -blue" href="{{ event.booking_url }}">
+          {{ 'Book Now'|_}}
+        </a>
+      {% else %}
         {% partial 'event/booking-form' %}
-        {% endif %}
+      {% endif %}
     </div>
     <div class="card-divider"></div>
     <div class="card-lg">
@@ -152,7 +139,6 @@ title = "Event Detail"
     </div>
   </div>
 </section>
-
 
 
 {% put scripts %}
@@ -213,7 +199,7 @@ title = "Event Detail"
     }
 
     .event-description p {
-      margin: 40px 0;
+      margin: 26px 0;
     }
 
     .event-section .event-category {

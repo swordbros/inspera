@@ -25,6 +25,9 @@ class EventTypeModel extends BaseModel
      */
     public $rules = [
     ];
+    public $attachOne = [
+        'thumb' => 'System\Models\File'
+    ];
 
     public function categories()
     {
