@@ -26,6 +26,9 @@ class EventCategoryModel extends BaseModel
     public $belongsTo = [
         'event_type' => EventTypeModel::class,
     ];
+    public $attachOne = [
+        'thumb' => 'System\Models\File'
+    ];
 
     protected static function boot()
     {

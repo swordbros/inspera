@@ -16,8 +16,7 @@ fields:
         type: colorpicker
     thumb:
         label: event.fields.thumb
-        type: mediafinder
-        thumbOptions: true
+        type: fileupload
         maxItems: 1
         mode: image
     status:

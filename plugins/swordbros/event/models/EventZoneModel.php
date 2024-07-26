@@ -24,6 +24,10 @@ class EventZoneModel extends BaseModel
 
     public $rules = [
     ];
+    public $attachOne = [
+        'thumb' => 'System\Models\File'
+    ];
+
     protected static function boot()
     {
         parent::boot();

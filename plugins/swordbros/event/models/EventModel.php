@@ -41,13 +41,12 @@ class EventModel extends BaseModel
         'event_category' => EventCategoryModel::class,
         'event_type' => EventTypeModel::class,
     ];
-    protected static function boot()
-    {
-        parent::boot();
-        static::fetched(function ($row) {
-            $row->images = json_decode($row->images);
-        });
-    }
+    public $attachOne = [
+        'thumb' => 'System\Models\File'
+    ];
+    public $attachMany = [
+        'images' => 'System\Models\File'
+    ];
     public function getAudienceOptions()
     {
         $result = [];
