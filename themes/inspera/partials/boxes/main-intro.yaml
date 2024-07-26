@@ -45,6 +45,8 @@ form:
               options:
                 left: Left
                 right: Right
+            button-mixin:
+              type: mixin
 
       anchor-mixin:
         type: mixin

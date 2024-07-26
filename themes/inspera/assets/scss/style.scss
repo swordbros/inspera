@@ -1677,7 +1677,11 @@ $date-col-width: 90px;
     //   }
     // }
       &.-right {
-        justify-content: end;
+        justify-content: flex-end;
+
+        .text-content {
+          justify-content: flex-end;
+        }
 
         p, .title__group {
           text-align: right;
@@ -1708,7 +1712,7 @@ $date-col-width: 90px;
       p {
         color: var(--slider-text-color);
         font-size: 19px;
-        margin: 0;
+        // margin: 0;
         padding: 10px 30px 0;
         position: relative;
         margin-left: 10px;
@@ -1721,6 +1725,10 @@ $date-col-width: 90px;
           left: 0;
           background-color: var(--slider-text-color);;
         }
+      }
+
+      p + .custom-button {
+        margin-top: 2rem;
       }
   }
 
