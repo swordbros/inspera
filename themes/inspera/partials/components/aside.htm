@@ -53,14 +53,11 @@
                   {% for child in item.children | filter(i => not i.is_hidden) %}
                     <li>
                       <a
-                      class="
-                        dropdown-item 
-                        {{ link(child.reference).isActive ? 'active' }}                  
-                      "
+                      class="{{ link(child.reference).isActive ? 'active' }}"
                       href="{{ child.reference|link }}"
                       {{ child.is_external ? 'target="_blank" '}}
                       >
-                        {{ child.title }}
+                        - {{ child.title }}
                       </a>
                     </li>
                   {% endfor %}
