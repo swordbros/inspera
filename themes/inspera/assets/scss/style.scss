@@ -4927,3 +4927,35 @@ $date-col-width: 90px;
 .page-Home .navbar {
   background-color: #fff;
 }
+
+.blog-post-comment-form {
+  margin-top: 60px;
+  input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    outline: none !important;
+  }
+  textarea {
+    height: 125px;
+    padding-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    outline: none !important;
+    width: 100%;
+  }
+
+  // input:focus, textarea:focus {
+  //   border-color: #cecece;
+  // }
+
+  button {
+    color: #fff;
+  }
+
+  button:hover {
+    text-decoration: none;
+    background: #080808;
+    color: #fff;
+  }
+}

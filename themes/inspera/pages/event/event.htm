@@ -139,7 +139,7 @@ title = "Event Detail"
       </div>
     </div>
     <div class="card-divider"></div>
-    <div class="card-body card-lg">
+    <div class="card-lg">
         {% if event.booking_url %}
         <a class="btn btn-primary btn-pill" href="{{ event.booking_url }}"> Book Now </a>
         {% else %}
@@ -147,7 +147,7 @@ title = "Event Detail"
         {% endif %}
     </div>
     <div class="card-divider"></div>
-    <div class="card-body card-lg">
+    <div class="card-lg">
         {% partial 'event/comment-list' %}
     </div>
   </div>
