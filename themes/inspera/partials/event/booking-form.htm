@@ -1,47 +1,32 @@
 <div class="container-narrow">
-    <h3 class="mb-4 text-center">
-        {{ 'Book Now' |_ }}!
-    </h3>
+    <h3 class="mb-4 text-center">{{'Book Now!' |_}}</h3>
 
     <form  data-request="onSubmitBookingForm" data-request-flash="success,warning">
         <div class="row">
-            <div class="col-md-6">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="first_name" name="booking_request[first_name]" required>
-                    <label for="first_name">{{ 'First Name' |_ }}</label>
-                </div>
+            <div class="col-md-6 col-12">
+                <input type="text"  id="first_name" name="booking_request[first_name]" placeholder="{{ 'First Name' |_ }}" required>
             </div>
-                        <div class="col-md-6">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="last_name" name="booking_request[last_name]" required>
-                    <label for="last_name">{{ 'Last Name'|_}}</label>
-                </div>
+            <div class="col-md-6 col-12">
+                <input type="text" id="last_name" name="booking_request[last_name]"  placeholder="{{ 'Last Name' |_ }}" required>
             </div>
-            <div class="col-md-6">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="email" name="booking_request[email]" required>
-                    <label for="email">{{ 'Email address'|_}}</label>
-                </div>
+            <div class="col-md-6 col12">
+               <input type="email" id="email" name="booking_request[email]"  placeholder="{{ 'Email address' |_ }}" required>
             </div>
-            <div class="col-md-6">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="phone" name="booking_request[phone]" required>
-                    <label for="phone">{{ 'Telephone' |_ }}</label>
-                </div>
+            <div class="col-md-6 col-12">
+                <input type="text"  id="phone" name="booking_request[phone]" placeholder="{{ 'Telephone' |_ }}" required>
             </div>
         </div>
-        <div class="mb-3 form-floating">
-            <textarea style="height:125px" class="form-control" id="commentContentTextarea" name="booking_request[note]"></textarea>
-            <label for="commentContentTextarea">{{ 'Comment' |_ }}</label>
+        <div class="col-12">
+            <textarea  id="commentContentTextarea"  placeholder="{{ 'Comment' |_ }}" name="booking_request[note]"></textarea>
         </div>
         <div class="form-buttons d-flex pt-2">
             <div>
-                <button type="submit" class="btn btn-primary btn-pill">{{ 'Book Now' |_ }}</button>
+                <button type="submit" class="btn btn-primary btn-pill">{{'Book Now'|_}}</button>
                 <input type="hidden" id="event_id" name="booking_request[event_id]" value="{{ event.id }}">
                 {{ form_token() }}
             </div>
             <p class="text-muted ms-3 mt-1">
-                <small>New booking Request</small>
+                <small>{{ 'New booking Request.' |_ }}</small>
             </p>
         </div>
     </form>
