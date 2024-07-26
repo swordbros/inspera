@@ -13,12 +13,16 @@
 
         <div class="swiper-slide swiper-slide-{{ loop.index }}">
           {% partial 'boxes/parts/_background.htm' box=item %}
-            <div class="slider-texts -{{ item.title_position }}">
-              <div class="container-fluid text-content">
 
-                {% partial 'boxes/parts/_title.htm' box=item %}
-                {{ item.text | raw }}
-            </div>
+          <div class="slider-texts -{{ item.title_position }}">
+            <div class="container-fluid text-content">
+
+              {% partial 'boxes/parts/_title.htm' box=item %}
+
+              {{ item.text | raw }}
+
+              {% partial 'boxes/parts/_button.htm' box=item %}
+          </div>
           </div>
         </div>
             
