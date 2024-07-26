@@ -12,15 +12,15 @@
 
 
     // ACCORDION
-    // var allPanels = $('.accordion > dd').hide();
-    // $('.accordion > dt > a').click(function () {
-    //   var panel = $(this).parent().next();
-    //   panel.slideToggle();
-    //   setTimeout(function() {
-    //     locoScroll.update();
-    //   }, 400);
-    //   return false;
-    // });
+    var allPanels = $('.accordion > dd').hide();
+    $('.accordion > dt > a').click(function () {
+      var panel = $(this).parent().next();
+      panel.slideToggle();
+      setTimeout(function() {
+        locoScroll.update();
+      }, 400);
+      return false;
+    });
 
 
     /* HAMBURGER */
@@ -47,45 +47,45 @@
 
 
     // PAGE TRANSITION
-    // $('body a').on('click', function (e) {
+    $('body a').on('click', function (e) {
 
-    //   var target = $(this).attr('target');
-    //   var fancybox = $(this).data('fancybox');
-    //   var url = this.getAttribute("href");
-    //   if (target != '_blank' && typeof fancybox == 'undefined' && url.indexOf('#') < 0) {
-
-
-    //     e.preventDefault();
-    //     var url = this.getAttribute("href");
-    //     if (url.indexOf('#') != -1) {
-    //       var hash = url.substring(url.indexOf('#'));
+      var target = $(this).attr('target');
+      var fancybox = $(this).data('fancybox');
+      var url = this.getAttribute("href");
+      if (target != '_blank' && typeof fancybox == 'undefined' && url.indexOf('#') < 0) {
 
 
-    //       if ($('body ' + hash).length != 0) {
-    //         $('.page-transition').removeClass("active");
+        e.preventDefault();
+        var url = this.getAttribute("href");
+        if (url.indexOf('#') != -1) {
+          var hash = url.substring(url.indexOf('#'));
 
 
-    //       }
-    //     } else {
-    //       $('.page-transition').toggleClass("active");
-    //       setTimeout(function () {
-    //         window.location = url;
-    //       }, 1000);
-
-    //     }
-    //   }
-    // });
+          if ($('body ' + hash).length != 0) {
+            $('.page-transition').removeClass("active");
 
 
-    // TAB
-    // $(".tab-nav li").on('click', function (e) {
-    //   $(".tab-item").hide();
-    //   $(".tab-nav li").removeClass('active');
-    //   $(this).addClass("active");
-    //   var selected_tab = $(this).find("a").attr("href");
-    //   $(selected_tab).stop().show();
-    //   return false;
-    // });
+          }
+        } else {
+          $('.page-transition').toggleClass("active");
+          setTimeout(function () {
+            window.location = url;
+          }, 1000);
+
+        }
+      }
+    });
+
+
+    //TAB
+    $(".tab-nav li").on('click', function (e) {
+      $(".tab-item").hide();
+      $(".tab-nav li").removeClass('active');
+      $(this).addClass("active");
+      var selected_tab = $(this).find("a").attr("href");
+      $(selected_tab).stop().show();
+      return false;
+    });
 
 
   });
@@ -93,43 +93,43 @@
 
 
   // DATA BACKGROUND IMAGE
-  var pageSection = $("*");
-  pageSection.each(function (indx) {
-    if ($(this).attr("data-background")) {
-      $(this).css("background", "url(" + $(this).data("background") + ")");
-    }
-  });
+  // var pageSection = $("*");
+  // pageSection.each(function (indx) {
+  //   if ($(this).attr("data-background")) {
+  //     $(this).css("background", "url(" + $(this).data("background") + ")");
+  //   }
+  // });
 
 
   // DATA BACKGROUND COLOR
-  var pageSection = $("*");
-  pageSection.each(function (indx) {
-    if ($(this).attr("data-background")) {
-      $(this).css("background", $(this).data("background"));
-    }
-  });
+  // var pageSection = $("*");
+  // pageSection.each(function (indx) {
+  //   if ($(this).attr("data-background")) {
+  //     $(this).css("background", $(this).data("background"));
+  //   }
+  // });
 
 
   // IMAGE BOX CAROUSEL
-  // var swiper = new Swiper('.image-box-carousel', {
-  //   slidesPerView: 1,
-  //   loop: true,
-  //   spaceBetween: 0,
-  //   breakpoints: {
-  //     640: {
-  //       slidesPerView: 1,
-  //       spaceBetween: 0,
-  //     },
-  //     768: {
-  //       slidesPerView: 2,
-  //       spaceBetween: 30,
-  //     },
-  //     1024: {
-  //       slidesPerView: 3,
-  //       spaceBetween: 60,
-  //     },
-  //   }
-  // });
+  var swiper = new Swiper('.image-box-carousel', {
+    slidesPerView: 1,
+    loop: true,
+    spaceBetween: 0,
+    breakpoints: {
+      640: {
+        slidesPerView: 1,
+        spaceBetween: 0,
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 30,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 60,
+      },
+    }
+  });
 
 
   //SLIDER
@@ -186,21 +186,21 @@
 
 
   // KINETIC TEXTS
-  // var slidertexts = new Swiper('.kinetic-texts', {
-  //   spaceBetween: 10,
-  //   centeredSlides: true,
-  //   slidesPerView: 1,
-  //   touchRatio: 0,
-  //   slideToClickedSlide: false,
-  //   loop: true,
-  //   loopedSlides: 1,
-  //   effect: 'fade',
-  //   navigation: {
-  //     nextEl: '.button-next',
-  //     prevEl: '.button-prev',
-  //   },
+  var slidertexts = new Swiper('.kinetic-texts', {
+    spaceBetween: 10,
+    centeredSlides: true,
+    slidesPerView: 1,
+    touchRatio: 0,
+    slideToClickedSlide: false,
+    loop: true,
+    loopedSlides: 1,
+    effect: 'fade',
+    navigation: {
+      nextEl: '.button-next',
+      prevEl: '.button-prev',
+    },
 
-  // });
+  });
 
 
   /* COLLECTION SLIDER */
@@ -258,121 +258,121 @@
   //   }
   // });
 
-  if ($(".art-slider-images")[0]) {
-    artsliderimages.controller.control = artslidercontent;
-    artslidercontent.controller.control = artsliderimages;
-  } else {
+  // if ($(".art-slider-images")[0]) {
+  //   artsliderimages.controller.control = artslidercontent;
+  //   artslidercontent.controller.control = artsliderimages;
+  // } else {
 
-  }
+  // }
 
 
   // PRELOADER
-  // let settings = {
-  //   progressSize: 320,
-  //   progressColor: '#ffffff',
-  //   lineWidth: 2,
-  //   lineCap: 'round',
-  //   preloaderAnimationDuration: 800,
-  //   startDegree: -90,
-  //   finalDegree: 270
-  // }
+  let settings = {
+    progressSize: 320,
+    progressColor: '#ffffff',
+    lineWidth: 2,
+    lineCap: 'round',
+    preloaderAnimationDuration: 800,
+    startDegree: -90,
+    finalDegree: 270
+  }
 
-  // function setAttributes(elem, attrs) {
+  function setAttributes(elem, attrs) {
 
-  //   for (let key in attrs) {
-  //     elem.setAttribute(key, attrs[key]);
-  //   }
+    for (let key in attrs) {
+      elem.setAttribute(key, attrs[key]);
+    }
 
-  // }
+  }
 
-  // let preloader = document.createElement('div'),
-  //   canvas = document.createElement('canvas'),
-  //   size;
+  let preloader = document.createElement('div'),
+    canvas = document.createElement('canvas'),
+    size;
 
-  // (function () {
+  (function () {
 
-  //   let width = window.innerWidth,
-  //     height = window.innerHeight;
+    let width = window.innerWidth,
+      height = window.innerHeight;
 
-  //   if (width > height) {
+    if (width > height) {
 
-  //     size = Math.min(settings.progressSize, height / 2);
+      size = Math.min(settings.progressSize, height / 2);
 
-  //   } else {
+    } else {
 
-  //     size = Math.min(settings.progressSize, width - 50);
+      size = Math.min(settings.progressSize, width - 50);
 
-  //   }
+    }
 
-  // })();
+  })();
 
-  // setAttributes(preloader, {
-  //   class: "preloader",
-  //   id: 'preloader',
-  //   style: 'transition: opacity ' + settings.preloaderAnimationDuration / 1000 + 's'
-  // });
-  // setAttributes(canvas, {
-  //   class: 'progress-bar',
-  //   id: 'progress-bar',
-  //   width: settings.progressSize,
-  //   height: settings.progressSize
-  // });
-
-
-  // preloader = document.getElementById('preloader');
-
-  // let progressBar = document.getElementById('progress-bar'),
-  //   images = document.images,
-  //   imagesAmount = images.length,
-  //   imagesLoaded = 0,
-  //   barCtx = progressBar.getContext('2d'),
-  //   circleCenterX = progressBar.width / 2,
-  //   circleCenterY = progressBar.height / 2,
-  //   circleRadius = circleCenterX - settings.lineWidth,
-  //   degreesPerPercent = 3.6,
-  //   currentProgress = 0,
-  //   showedProgress = 0,
-  //   progressStep = 0,
-  //   progressDelta = 0,
-  //   startTime = null,
-  //   running;
-
-  // (function () {
-
-  //   return requestAnimationFrame
-  //     || mozRequestAnimationFrame
-  //     || webkitRequestAnimationFrame
-  //     || oRequestAnimationFrame
-  //     || msRequestAnimationFrame
-  //     || function (callback) {
-  //       setTimeout(callback, 1000 / 60);
-  //     };
-
-  // })();
-
-  // Math.radians = function (degrees) {
-  //   return degrees * Math.PI / 180;
-  // };
+  setAttributes(preloader, {
+    class: "preloader",
+    id: 'preloader',
+    style: 'transition: opacity ' + settings.preloaderAnimationDuration / 1000 + 's'
+  });
+  setAttributes(canvas, {
+    class: 'progress-bar',
+    id: 'progress-bar',
+    width: settings.progressSize,
+    height: settings.progressSize
+  });
 
 
-  // progressBar.style.opacity = settings.progressOpacity;
-  // barCtx.strokeStyle = settings.progressColor;
-  // barCtx.lineWidth = settings.lineWidth;
-  // barCtx.lineCap = settings.lineCap;
-  // let angleMultiplier = (Math.abs(settings.startDegree) + Math.abs(settings.finalDegree)) / 360;
-  // let startAngle = Math.radians(settings.startDegree);
-  // document.body.style.overflowY = 'hidden';
-  // preloader.style.backgroundColor = settings.preloaderBackground;
+  preloader = document.getElementById('preloader');
+
+  let progressBar = document.getElementById('progress-bar'),
+    images = document.images,
+    imagesAmount = images.length,
+    imagesLoaded = 0,
+    barCtx = progressBar.getContext('2d'),
+    circleCenterX = progressBar.width / 2,
+    circleCenterY = progressBar.height / 2,
+    circleRadius = circleCenterX - settings.lineWidth,
+    degreesPerPercent = 3.6,
+    currentProgress = 0,
+    showedProgress = 0,
+    progressStep = 0,
+    progressDelta = 0,
+    startTime = null,
+    running;
+
+  (function () {
+
+    return requestAnimationFrame
+      || mozRequestAnimationFrame
+      || webkitRequestAnimationFrame
+      || oRequestAnimationFrame
+      || msRequestAnimationFrame
+      || function (callback) {
+        setTimeout(callback, 1000 / 60);
+      };
+
+  })();
+
+  Math.radians = function (degrees) {
+    return degrees * Math.PI / 180;
+  };
 
 
-  // for (let i = 0; i < imagesAmount; i++) {
+  progressBar.style.opacity = settings.progressOpacity;
+  barCtx.strokeStyle = settings.progressColor;
+  barCtx.lineWidth = settings.lineWidth;
+  barCtx.lineCap = settings.lineCap;
+  let angleMultiplier = (Math.abs(settings.startDegree) + Math.abs(settings.finalDegree)) / 360;
+  let startAngle = Math.radians(settings.startDegree);
+  document.body.style.overflowY = 'hidden';
+  preloader.style.backgroundColor = settings.preloaderBackground;
 
-  //   let imageClone = new Image();
-  //   imageClone.onload = onImageLoad;
-  //   imageClone.onerror = onImageLoad;
-  //   imageClone.src = images[i].src;
 
-  // }
+  for (let i = 0; i < imagesAmount; i++) {
+
+    let imageClone = new Image();
+    imageClone.onload = onImageLoad;
+    imageClone.onerror = onImageLoad;
+    imageClone.src = images[i].src;
+
+  }
 
   function onImageLoad() {
 
@@ -431,29 +431,29 @@
   var resizeTimer;
 
 
-  // LOCOMOTIVE
-  // const locoScroll = new LocomotiveScroll({
-  //   el: document.querySelector(".smooth-scroll"),
-  //   smooth: true,
-  //   class: 'is-inview',
-  //   getSpeed: true,
-  //   getDirection: true,
-  //   smartphone: {
-  //     smooth: false,
-  //   },
-  //   tablet: {
-  //     smooth: false,
-  //   },
-  // });
+  //LOCOMOTIVE
+  const locoScroll = new LocomotiveScroll({
+    el: document.querySelector(".smooth-scroll"),
+    smooth: true,
+    class: 'is-inview',
+    getSpeed: true,
+    getDirection: true,
+    smartphone: {
+      smooth: false,
+    },
+    tablet: {
+      smooth: false,
+    },
+  });
 
 
 
 
   // ODOMETER
-  // $(".odometer").each(function () {
-  //   $(this).html($(this).data('count'));
+  $(".odometer").each(function () {
+    $(this).html($(this).data('count'));
 
-  // });
+  });
 
 
 })(jQuery);
