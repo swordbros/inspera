@@ -26,7 +26,10 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-
+        Event::listen('cms.page.beforeDisplay', function ($controller, $url, $page) {
+            $settings = SwordbrosSettingModel::instance();
+            $controller->vars['swordbrosSettings'] = $settings;
+        });
     }
 
     /**
