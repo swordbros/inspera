@@ -37,43 +37,43 @@ value = "about-footer"
         </h6>
         <ul class="social-media">
          {# whatsapp? #}
-          {% if swordbrosSettings.social_x %}
+          {% if swordbrosSettings.social_x.url %}
             <li>
-              <a href="{{ swordbrosSettings.social_x }}">
+              <a href="{{ swordbrosSettings.social_x.url }}">
                 <i class="fab fa-twitter-x"></i>
-                / insperabodrum
+                {{ swordbrosSettings.social_x.title }}
               </a>
             </li>
           {% endif %}
-          {% if swordbrosSettings.social_likedin %}
+          {% if swordbrosSettings.social_linkedin.url %}
             <li>
-              <a href="{{ swordbrosSettings.social_likedin }}">
+              <a href="{{ swordbrosSettings.social_linkedin.url }}">
                 <i class="fab fa-linkedin"></i>
-                / insperabodrum
+                {{ swordbrosSettings.social_linkedin.title }}
               </a>
             </li>
           {% endif %}
-          {% if swordbrosSettings.social_instagram %}
+          {% if swordbrosSettings.social_instagram.url %}
             <li>
-              <a href="{{ swordbrosSettings.social_instagram }}">
+              <a href="{{ swordbrosSettings.social_instagram.url }}">
                 <i class="fab fa-instagram"></i>
-                / insperabodrum
+                {{ swordbrosSettings.social_instagram.title }}
               </a>
             </li>
           {% endif %}
-          {% if swordbrosSettings.social_facebook %}
+          {% if swordbrosSettings.social_facebook.url %}
             <li>
-              <a href="{{ swordbrosSettings.social_facebook }}">
+              <a href="{{ swordbrosSettings.social_facebook.url }}">
                 <i class="fab fa-facebook-f"></i>
-                / insperabodrum
+                {{ swordbrosSettings.social_facebook.title }}
               </a>
             </li>
           {% endif %}
-          {% if swordbrosSettings.social_youtube %}
+          {% if swordbrosSettings.social_youtube.url %}
             <li>
-              <a href="{{ swordbrosSettings.social_youtube }}">
+              <a href="{{ swordbrosSettings.social_youtube.url }}">
                 <i class="fab fa-youtube"></i>
-                / insperabodrum
+                {{ swordbrosSettings.social_youtube.title }}
               </a>
             </li>
           {% endif %}

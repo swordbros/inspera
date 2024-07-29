@@ -48,7 +48,7 @@
     class="background-image"
     style="
       {% if box.background_image %}
-          {% if .scope == 'mobile' %}
+          {% if box.scope == 'mobile' %}
             background: url(' {{ box.background_image | media | resize(1000,1000)}} ')
           {% else %}
             background: url(' {{ box.background_image | media | resize(1920,1080)}} ')
@@ -59,12 +59,8 @@
         height: {{ box.px_height }}px;
       {% endif %}
     "
-    {{ box.anchor_id ? 'id="'~box.anchor_id~'"' }}
   >
   </div>
+
   {% placeholder overlay %}
-
-  
-
-
 {% endif %}

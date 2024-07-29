@@ -99,7 +99,7 @@ tabs:
                         type: text
                         comment: X title
                         span: auto
-        social_likedin:
+        social_linkedin:
             tab: event.tab.social
             type: nestedform
             form:
@@ -125,7 +125,7 @@ tabs:
                         comment: Instagram url
                         span: auto
                     title:
-                        label: swordbross.settings.social_linkedin.title
+                        label: swordbross.settings.social_instagram.title
                         type: text
                         comment: Instagram title
                         span: auto
@@ -140,7 +140,7 @@ tabs:
                         comment: Facebook url
                         span: auto
                     title:
-                        label: swordbross.settings.social_linkedin.title
+                        label: swordbross.settings.social_facebook.title
                         type: text
                         comment: Facebook title
                         span: auto
@@ -155,7 +155,7 @@ tabs:
                         comment: Youtube url
                         span: auto
                     title:
-                        label: swordbross.settings.social_linkedin.title
+                        label: swordbross.settings.social_youtube.title
                         type: text
                         comment: Youtube title
                         span: auto
