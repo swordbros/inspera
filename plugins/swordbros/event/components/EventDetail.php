@@ -2,10 +2,13 @@
 
 namespace Swordbros\Event\Components;
 
+use Auth;
 use Flash;
 use Input;
 use Mail;
 use Media\Classes\MediaLibrary;
+use RainLab\User\Models\User;
+use RainLab\User\Models\UserLog;
 use Redirect;
 use Site;
 use Swordbros\Base\Controllers\Amele;
@@ -13,6 +16,7 @@ use Swordbros\Booking\Models\BookingRequestHistoryModel;
 use Swordbros\Booking\models\BookingRequestModel;
 use Swordbros\Event\Models\EventModel;
 use Cms\Classes\ComponentBase;
+use Swordbros\Setting\Models\SwordbrosSettingModel;
 
 /**
  * BackendLink component
@@ -60,13 +64,14 @@ class EventDetail extends ComponentBase
                 Flash::warning($createuser['message']);
                 return;
             }
-            $booking_request['user_id'] =
-                $bokingRequestModel = new BookingRequestModel();
+            $booking_request['user_id'] = $createuser['userId'];
+            $bokingRequestModel = new BookingRequestModel();
             $bokingRequestModel->fill($booking_request);
             $bokingRequestModel->status = 0;
             $bokingRequestModel->otp = md5(\Str::random(64));
             $bokingRequestModel->save();
             $data = $bokingRequestModel->toArray();
+
             $data['subject'] = 'Subject';
             $data['content'] = 'Content';
 
@@ -89,15 +94,14 @@ class EventDetail extends ComponentBase
                     });
                 }
             }
-            Amele::addBookingHistory($data['booking']['id'], $data['send_email'] . ' adresine email gönderildi. ' . $data['bookingModel']['email_title']);
+            Amele::addBookingRequestHistory($data['id'], $data['send_email'] . ' adresine email gönderildi. ' );
             //Flash::success('Booking Created!');
             return Redirect::to(url('/booking/thankyou', ['id' => $bokingRequestModel->id]));
         } else {
             Flash::warning('booking_request not posted');
         }
     }
-    private function getUseridBookingRequest($data)
-    {
+    private function getUseridBookingRequest($data){
         $result = [
             'userId' => 0,
             'message' => '',
@@ -109,7 +113,7 @@ class EventDetail extends ComponentBase
         }
         $user = User::where(['email' => $data['email']])->first();
         if ($user) {
-            $result['message'] = 'Kayıtlı kullanıcı emaili kullanmak için oturum açmalısınız ';
+            $result['message'] = trans('booking.alert.xsd');
             return $result;
         }
         $create_user_booking_request = SwordbrosSettingModel::swordbros_setting('create_user_booking_request');
@@ -118,9 +122,16 @@ class EventDetail extends ComponentBase
             $user->email = $data['email'];
             $user->first_name = $data['first_name'];
             $user->last_name = $data['last_name'];
+            //$user->phone = $data['phone'];
+            $user->password =  \Str::random(16);
             $user->save();
             if ($user->id) {
                 $result['userId'] = $user->id;
+                UserLog::createRecord($user->getKey(), 'User Created', [
+                    'user_full_name' => $user->full_name,
+                    'old_value' => '',
+                    'new_value' => ''
+                ]);
                 return $result;
             }
         }

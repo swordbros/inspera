@@ -1,4 +1,5 @@
 {
+    "booking.alert.xsd": "'Kayıtlı bir kullanıcının emailini kullanmak için oturum açmalısınız '",
     "booking.scops.payment_status": "Ödeme Durumu",
     "booking.scops.payment_method": "Ödeme Metodu",
     "booking.scops.booking_status": "Rezervasyon Durumu",

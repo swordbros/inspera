@@ -1,6 +1,8 @@
 <?php Block::put('breadcrumb') ?>
     <ul class="float-start">
+        <?php if(isset($formModel)){?>
         <li><a href="/event/<?=$formModel->id?>" target="_blank"><i class=" icon-eye"></i></a></li>
+        <?php } ?>
         <li><a href="<?= Backend::url('swordbros/event/event') ?>"><?= e(trans('event.plugin.events')) ?></a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>

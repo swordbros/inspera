@@ -42,7 +42,8 @@ class EventModel extends BaseModel
         'event_type' => EventTypeModel::class,
     ];
     public $attachOne = [
-        'thumb' => 'System\Models\File'
+        'thumb' => 'System\Models\File',
+        'baslik' => 'Swordbros\Base\Models\TranslateModel'
     ];
     public $attachMany = [
         'images' => 'System\Models\File'

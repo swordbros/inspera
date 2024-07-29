@@ -117,6 +117,9 @@ class Amele extends Controller
        if($row){
            return $row->translate_value;
        }
+       if(isset($original->attributes[$translate_key])){
+           return $original->attributes[$translate_key];
+       }
        return '';
 
     }
