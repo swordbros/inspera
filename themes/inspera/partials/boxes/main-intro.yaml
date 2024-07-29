@@ -21,6 +21,14 @@ form:
             is_hidden:
               type: checkbox
               label: Hide
+            scope:
+              label: box.name.slides.scope.label
+              type: balloon-selector
+              default: both
+              options: 
+                both: box.name.slides.scope.options.both
+                mobile: box.name.slides.scope.options.mobile
+                desktop: box.name.slides.scope.options.desktop
             title-mixin:
               type: mixin
             background-mixin:

@@ -48,7 +48,12 @@
     class="background-image"
     style="
       {% if box.background_image %}
-        background: url(' {{ box.background_image | media }} ') {{ box.background_horizontal_position }} {{ box.background_vertical_position }} / {{ box.background_size }} {{ box.background_repeat }} {{ box.background_fix ? 'fixed' }};
+          {% if .scope == 'mobile' %}
+            background: url(' {{ box.background_image | media | resize(1000,1000)}} ')
+          {% else %}
+            background: url(' {{ box.background_image | media | resize(1920,1080)}} ')
+          {% endif %}
+        {{ box.background_horizontal_position }} {{ box.background_vertical_position }} / {{ box.background_size }} {{ box.background_repeat }} {{ box.background_fix ? 'fixed' }};
       {% endif %}
       {% if box.box_height and box.px_height %}
         height: {{ box.px_height }}px;
