@@ -15,6 +15,7 @@
   "box.mixin_background.background_video_file" : "Video file",
   "box.mixin_background.background_video_vimeo" : "Video vimeo",
   "box.mixin_background.background_image.label": "Background image",
+  "box.mixin_background.background_image_mobile.label": "Background image mobile",
   "box.mixin_background.background_video.label": "Background video",
   "box.mixin_background.background_video_vimeo.label" : "Video embed code (iframe)",
   "box.mixin_background.background_horizontal_position.label": "Background horizontal position",
@@ -239,5 +240,11 @@
   "box.intro.name.slides.pic_mobile.label": "Picture for mobile screens",
   "box.intro.name.slides.pic_title.label": "Alt title for CEO",
   "box.mixin_button.button_attributes.label": "Button attributes",
-  "box.upcoming_events.count": "Number of items to show"
+  "box.upcoming_events.count": "Number of items to show",
+  "box.intro.name.slides.fonts_color": "Title color",
+  "box.intro.name.slides.title_position": "Title position",
+  "box.name.slides.scope.label": "Slide mobile/desktop useability",
+  "box.name.slides.scope.options.both": "Both", 
+  "box.name.slides.scope.options.mobile": "Mobile only", 
+  "box.name.slides.scope.options.desktop": "Desktop only" 
 }

@@ -17,6 +17,15 @@ mixin:
       action: show
       field: background_type
       condition: value[image]
+
+  # background_image_mobile:
+  #   label: box.mixin_background.background_image_mobile.label
+  #   type: mediafinder
+  #   mode: image
+  #   trigger:
+  #     action: show
+  #     field: background_type
+  #     condition: value[image]
   
   background_video:
     label: box.mixin_background.background_video.label

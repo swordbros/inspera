@@ -11,7 +11,8 @@
           </style>
         {% endif %}
 
-        <div class="swiper-slide swiper-slide-{{ loop.index }}">
+        <div class="swiper-slide swiper-slide-{{ loop.index }} 
+        {% if item.scope == 'mobile' %}_mobile{% elseif item.scope == 'desktop' %}_desktop{% endif %}">
           {% partial 'boxes/parts/_background.htm' box=item %}
 
           <div class="slider-texts -{{ item.title_position }}">
@@ -22,7 +23,7 @@
               {{ item.text | raw }}
 
               {% partial 'boxes/parts/_button.htm' box=item %}
-          </div>
+            </div>
           </div>
         </div>
       {% endfor %}
