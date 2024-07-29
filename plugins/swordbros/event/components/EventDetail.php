@@ -116,6 +116,11 @@ class EventDetail extends ComponentBase
             $result['message'] = trans('booking.alert.email_in_use_please_login');
             return $result;
         }
+        $existRequest = BookingRequestModel::where(['email' => $data['email'], 'event_id'=> $data['event_id']])->exists();
+        if($existRequest){
+            $result['message'] = trans('booking.alert.request_allready_exists');
+            return $result;
+        }
         $create_user_booking_request = SwordbrosSettingModel::swordbros_setting('create_user_booking_request');
         if ($create_user_booking_request) {
             $user = new User();
@@ -130,7 +135,7 @@ class EventDetail extends ComponentBase
                 UserLog::createRecord($user->getKey(), 'User Created', [
                     'user_full_name' => $user->full_name,
                     'old_value' => '',
-                    'new_value' => ''
+                    'new_value' => $data['email']
                 ]);
                 return $result;
             }
