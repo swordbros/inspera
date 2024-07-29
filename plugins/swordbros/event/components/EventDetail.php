@@ -113,7 +113,7 @@ class EventDetail extends ComponentBase
         }
         $user = User::where(['email' => $data['email']])->first();
         if ($user) {
-            $result['message'] = trans('booking.alert.xsd');
+            $result['message'] = trans('booking.alert.email_in_use_please_login');
             return $result;
         }
         $create_user_booking_request = SwordbrosSettingModel::swordbros_setting('create_user_booking_request');
