@@ -86,29 +86,79 @@ tabs:
             comment: Create a user for appointment requests?
         social_x:
             tab: event.tab.social
-            label: swordbross.settings.social_x
-            type: text
-            comment: X url
+            type: nestedform
+            form:
+                fields:
+                    url:
+                        label: swordbross.settings.social_x
+                        type: text
+                        comment: X url
+                        span: auto
+                    title:
+                        label: swordbross.settings.social_x.title
+                        type: text
+                        comment: X title
+                        span: auto
         social_likedin:
             tab: event.tab.social
-            label: swordbross.settings.social_likedin
-            type: text
-            comment: Linkedin url
+            type: nestedform
+            form:
+                fields:
+                    url:
+                        label: swordbross.settings.social_likedin
+                        type: text
+                        comment: Linkedin url
+                        span: auto
+                    title:
+                        label: swordbross.settings.social_linkedin.title
+                        type: text
+                        comment: Linkedin title
+                        span: auto
         social_instagram:
             tab: event.tab.social
-            label: swordbross.settings.social_instagram
-            type: text
-            comment: Instagram url
+            type: nestedform
+            form:
+                fields:
+                    url:
+                        label: swordbross.settings.social_instagram
+                        type: text
+                        comment: Instagram url
+                        span: auto
+                    title:
+                        label: swordbross.settings.social_linkedin.title
+                        type: text
+                        comment: Instagram title
+                        span: auto
         social_facebook:
             tab: event.tab.social
-            label: swordbross.settings.social_facebook
-            type: text
-            comment: Facebook url
+            type: nestedform
+            form:
+                fields:
+                    url:
+                        label: swordbross.settings.social_facebook
+                        type: text
+                        comment: Facebook url
+                        span: auto
+                    title:
+                        label: swordbross.settings.social_linkedin.title
+                        type: text
+                        comment: Facebook title
+                        span: auto
         social_youtube:
             tab: event.tab.social
-            label: swordbross.settings.social_youtube
-            type: text
-            comment: Youtube url
+            type: nestedform
+            form:
+                fields:
+                    url:
+                        label: swordbross.settings.social_youtube
+                        type: text
+                        comment: Youtube url
+                        span: auto
+                    title:
+                        label: swordbross.settings.social_linkedin.title
+                        type: text
+                        comment: Youtube title
+                        span: auto
         event_description:
             tab: event.tab.event_description
             label: swordbross.settings.event_description
