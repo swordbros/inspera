@@ -13028,6 +13028,12 @@ __webpack_require__.r(__webpack_exports__);
     EventCard: _EventCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     EventsFilter: _EventsFilter_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
+  props: {
+    noEventsText: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       params: {
@@ -13475,16 +13481,16 @@ const _hoisted_8 = {
 const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" viewBox=\"0 0 64 64\"><path d=\"M50.69 32h5.63M7.68 32h31.01M26.54 15.97h29.78M7.68 15.97h6.88M35 48.03h21.32M7.68 48.03H23\"></path><circle cx=\"20.55\" cy=\"15.66\" r=\"6\"></circle><circle cx=\"44.69\" cy=\"32\" r=\"6\"></circle><circle cx=\"29\" cy=\"48.03\" r=\"6\"></circle></svg>", 1);
 const _hoisted_10 = [_hoisted_9];
 const _hoisted_11 = {
-  key: 0
+  class: "container"
 };
 const _hoisted_12 = {
-  key: 1
+  key: 0
 };
 const _hoisted_13 = {
-  key: 2
+  key: 1
 };
 const _hoisted_14 = {
-  class: "container"
+  key: 2
 };
 const _hoisted_15 = {
   class: "row"
@@ -13522,7 +13528,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     params: $data.params,
     onHideFilter: _cache[3] || (_cache[3] = $event => $data.isFilterShown = false),
     onUpdateFilters: $options.handleFiltersUpdate
-  }, null, 8 /* PROPS */, ["filterOptions", "selectedFilters", "isFilterShown", "params", "onUpdateFilters"])]), $data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, "Loading...")) : $data.events.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, "No events available.")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.events, event => {
+  }, null, 8 /* PROPS */, ["filterOptions", "selectedFilters", "isFilterShown", "params", "onUpdateFilters"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, "Loading...")) : $data.events.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.noEventsText) + ".", 1 /* TEXT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.events, event => {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       class: "col-lg-6 mb-4",
       key: event.id
@@ -13537,7 +13543,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       type: event.type,
       category: event.category
     }, null, 8 /* PROPS */, ["title", "url", "picture", "date", "dateEnd", "color", "venue", "type", "category"])]);
-  }), 128 /* KEYED_FRAGMENT */))])])]))]);
+  }), 128 /* KEYED_FRAGMENT */))])]))])]);
 }
 
 /***/ }),
@@ -20283,9 +20289,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
-  template: '<EventsList />',
+  template: '<EventsList :noEventsText="noEventsText"/>',
   components: {
     EventsList: _components_EventsList_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data() {
+    return {
+      noEventsText: 'No events available'
+    };
   }
 }).mount('#events-list');
 /******/ })()

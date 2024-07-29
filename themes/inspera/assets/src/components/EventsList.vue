@@ -44,10 +44,10 @@
       />
     </div>
 
-    <div v-if="isLoading">Loading...</div>
-    <div v-else-if="events.length === 0">No events available.</div>
-    <div v-else>
-      <div class="container">
+    <div class="container">
+      <div v-if="isLoading">Loading...</div>
+      <div v-else-if="events.length === 0">{{ noEventsText }}.</div>
+      <div v-else>
         <div class="row">
           <div class="col-lg-6 mb-4" v-for="event in events" :key="event.id">
             <event-card 
@@ -76,6 +76,12 @@ export default {
   components: {
     EventCard,
     EventsFilter
+  },
+  props: {
+    noEventsText: {
+      type: String,
+      required: true
+    }
   },
   data() {
     return {
