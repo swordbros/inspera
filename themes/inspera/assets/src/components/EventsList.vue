@@ -37,18 +37,34 @@
           <span v-else>{{ page.title }}</span>
         </li>
       </ul>
-      <div class="filter-button" type="button" @click="isFilterShown = true">
+      
+      <div class="filter-button" type="button" @click="showFilter">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 64"><path d="M50.69 32h5.63M7.68 32h31.01M26.54 15.97h29.78M7.68 15.97h6.88M35 48.03h21.32M7.68 48.03H23"/><circle cx="20.55" cy="15.66" r="6"/><circle cx="44.69" cy="32" r="6"/><circle cx="29" cy="48.03" r="6"/></svg>
       </div>
 
-      <events-filter 
+      <ul class="filter-tags" v-if="selectedTags.length">
+        <li
+          v-for="tag in selectedTags"
+          :key="tag.value"
+          class="filter-tag"
+          @click="removeOption(tag.filter, tag.value)"
+        >
+          {{ tag.label }}
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.5 0 25 25"><path stroke="currenColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m3 21.32 18-18M3 3.32l18 18"/></svg>
+        </li>
+      </ul>
+
+      <Teleport to="body">
+        <events-filter 
         :filterOptions="filterOptions"
         :selectedFilters="filters"
         :isFilterShown="isFilterShown"
         :params="params"
+        :labels="labels"
         @hideFilter="isFilterShown = false"
         @updateFilters="handleFiltersUpdate"
-      />
+        />
+      </Teleport>
     </div>
 
     <div class="container">
@@ -112,6 +128,8 @@ export default {
         'dateEnd': null
       },
       filterOptions: {},
+      // selectedTags: {},
+      labels: {},
       breadcrumbs: [],
       noEventsText: 'No events available'
     };
@@ -125,6 +143,12 @@ export default {
           success: function(data) {
             self.breadcrumbs = data.breadcrumbs
             self.noEventsText = data.noEventsText
+            self.labels = {
+              'filterTitle': data.filterTitle,
+              'dateFilterTitle': data.dateFilterTitle,
+              'thisWeek': data.thisWeek,
+              'thisWeekend': data.thisWeekend
+            }
           },
           error: function(err) {
           }
@@ -272,6 +296,19 @@ export default {
         'is-tomorrow': day.isTomorrow
       }
     },
+    removeOption(filterName, value) {
+      if (filterName === 'dates') {
+        this.filters['date'] = null
+        this.filters['dateEnd'] = null
+      } else {
+        let selected = this.filters[filterName]
+        selected.splice(selected.findIndex(item => item === value), 1)
+      }
+    },
+    showFilter(e) {
+      e.stopPropagation()
+      this.isFilterShown = true
+    },
     
     handleFiltersUpdate(newParams) {
       this.params = Object.keys(this.params).reduce((acc, key) => {
@@ -307,6 +344,40 @@ export default {
     thisMonth() {
       const month = String(this.monthIndex + 1).padStart(2, '0')
       return `${month}.${this.year}`
+    },
+    selectedTags() {
+      const selected = this.filters
+      let dateTags = []
+
+      if (this.params.date) {
+        const end = this.params.dateEnd?.length ? this.params.dateEnd : this.params.date
+        const dateLabel = this.params.date === end ? this.params.date : `${this.params.date} - ${end}`
+        
+        dateTags.push({
+          filter: 'dates',
+          label: dateLabel,
+          value: null
+        })
+      }
+      
+      return Object.keys(this.filterOptions).reduce((acc, key) => {
+        const options = this.filterOptions[key].options
+
+        if (selected.hasOwnProperty(key) && selected[key].length > 0) { // is not empty
+          options
+            .filter(o => { // likely there will be only arrays of selected
+              return selected[key].includes(o.value)
+            })
+            .forEach(o => {
+              acc.push({
+                filter: key,
+                label: o.label,
+                value: o.value
+              })
+            })
+        }
+        return acc;
+      }, dateTags);
     }
   },
   watch: {

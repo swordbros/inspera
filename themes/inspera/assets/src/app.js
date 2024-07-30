@@ -1,9 +1,13 @@
 import { createApp } from 'vue';
 import EventsList from './components/EventsList.vue';
+import ClickOutside from './helpers/ClickOutsideDirective.js';
 
-createApp({
+const app = createApp({
   template: '<EventsList/>',
   components: {
     EventsList
   }
-}).mount('#events-list');
+});
+
+app.directive('click-outside', ClickOutside);
+app.mount('#events-list');

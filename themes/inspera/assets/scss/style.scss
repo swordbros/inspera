@@ -852,7 +852,7 @@ button[type="submit"] {
     flex-wrap: wrap;
     top: 0;
     height: 100vh;
-    min-height: 500px;
+    position: fixed;
 
     &.active {
       left: 0;
@@ -869,11 +869,10 @@ button[type="submit"] {
 
   &.-filter {
     right: -100%;
-    padding: 30px 30px 30px 80px;
+    padding: 0 30px 0 80px;
     width: 440px;
     top: 20vh;
     height: 80vh;
-    min-height: 500px;
 
     h2, h3 {
       color: white;
@@ -918,11 +917,14 @@ button[type="submit"] {
 
   .filter-inner {
     color: white;
-    width: 100%;    
+    width: 100%;
+    height: 100%;
+    padding: 30px 0;
     position: relative;
     opacity: 0;
     @include transition;
     transform: translateX(-100px);
+    overflow: auto;
   }
 
   &.active .filter-inner {
@@ -1318,7 +1320,7 @@ $date-col-width: 90px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 30px 60px;
+  padding: 20px 60px;
   // position: absolute;
   // left: 0;
   // top: 0;
@@ -1565,7 +1567,7 @@ $date-col-width: 90px;
 /* SLIDER */
 .slider {
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 85px);
   display: flex;
   flex-wrap: wrap;
   align-items: end;
@@ -5025,7 +5027,7 @@ $date-col-width: 90px;
 
 .page-home .navbar {
   background-color: #fff;
-  position: absolute;
+  // position: absolute;
   z-index: 10;
 }
 

@@ -289,6 +289,10 @@ class EventSearch extends ComponentBase
                 ]
             ],
             'noEventsText' => Lang::get('swordbros.themeextender::lang.components.no_events_text'),
+            'filterTitle' => Lang::get('swordbros.themeextender::lang.components.filter_title'),
+            'dateFilterTitle' => Lang::get('swordbros.themeextender::lang.components.date_filter_title'),
+            'thisWeek' => Lang::get('swordbros.themeextender::lang.components.this_week'),
+            'thisWeekend' => Lang::get('swordbros.themeextender::lang.components.this_weekend'),
         ];
     }
 

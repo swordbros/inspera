@@ -24,11 +24,35 @@
 
 
     /* HAMBURGER */
-    $('.hamburger').on('click', function () {
-      $(".hamburger").toggleClass("active")
-      $(".side-widget.-nav").toggleClass("active")
-      $(".section-wrapper").toggleClass("no-transform")
-    })
+    var $burger = $('.hamburger')
+    var $nav = $(".side-widget.-nav")
+    if ($burger !== null) {
+      $burger.on('click', function (e) {
+        e.stopPropagation()
+        $burger.toggleClass("active")
+        $nav.toggleClass("active")
+        $(".section-wrapper").toggleClass("no-transform")
+
+        if ($burger.hasClass('active')) {
+          $(document).on('click.hamburgerClose', function(event) {
+            if (!$(event.target).closest('.side-widget.-nav, .hamburger').length) {
+              closeHamburgerMenu();
+            }
+          });
+        } else {
+          $(document).off('click.hamburgerClose');
+        }
+
+        function closeHamburgerMenu() {
+          $burger.removeClass("active");
+          $nav.removeClass("active");
+          $(".section-wrapper").removeClass("no-transform");
+          $(document).off('click.hamburgerClose'); // Unbind the listener
+        }
+      });
+    }
+
+
 
     /* DROPDOWN MENU HOVER */
     $('.dropdown').hover(function() {
