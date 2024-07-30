@@ -1352,8 +1352,9 @@ $date-col-width: 90px;
     a {
       display: block;
       img {
-        height: 45px;
+        // height: 45px;
         margin-left: -8px;
+        width: 160px;
       }
     }
   }
@@ -1563,6 +1564,7 @@ $date-col-width: 90px;
 :root {
   --slider-text-color: #{$color-dark};
 }
+$slider-nav-size: 50px;
 
 /* SLIDER */
 .slider {
@@ -1772,7 +1774,7 @@ $date-col-width: 90px;
     position: relative;
     z-index: 3;
 
-    $slider-nav-size: 60px;
+    
 
     .button-prev {
       width: $slider-nav-size;
@@ -1819,6 +1821,37 @@ $date-col-width: 90px;
         color: $color-main;
       }
     }
+  }
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 15px;
+  right: 65px;
+  width: $slider-nav-size;
+  height: $slider-nav-size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  background: $color-main;
+  color: #fff;
+  z-index: 1000;
+  cursor: pointer;
+  transform: translateY(-20px);
+  border-radius: 50%;
+  @include transition;
+  text-decoration: none;
+  opacity: 0;
+
+  &:hover {
+    text-decoration: none;
+    background: $color-dark;
+    color: #fff;
+  }
+
+  &.-active {
+    opacity: 1;
   }
 }
 
@@ -4256,9 +4289,9 @@ $date-col-width: 90px;
   .navbar .navbar-button {
     display: none;
   }
-  .navbar .logo a img {
-    height: 45px;
-  }
+  // .navbar .logo a img {
+  //   height: 45px;
+  // }
   .slider .container-fluid {
     width: calc(100% - 30px);
     margin: 0 15px;
