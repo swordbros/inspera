@@ -150,6 +150,11 @@ class EventModel extends BaseModel
         $query->whereStatus(1);
     }
 
+    public function scopeFuture($query)
+    {
+        $query->where('end', '>=', Carbon::now());
+    }
+
     public function scopeByMonth($query, string $date)
     {
         if (empty($date)) {

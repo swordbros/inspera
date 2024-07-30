@@ -9,6 +9,7 @@ use Swordbros\Base\Controllers\Amele;
 use Swordbros\Event\Models\EventModel;
 use System;
 use Backend;
+use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
 
 /**
@@ -28,9 +29,30 @@ class EventList extends ComponentBase
 
     public function onRun()
     {
-        $this->page['mediaUrl'] = MediaLibrary::url('/');
-        $this->page['title'] = __('event.events');
-        $this->page['events'] = $this->events = EventModel::where(['status' => 1])->get();
+        $this->page['events'] = $this->events = EventModel::published()
+            ->future()
+            ->with('event_zone', 'event_category', 'event_type', 'thumb')
+            ->orderBy('start')
+            ->get()
+            ->map(function (EventModel $event) {
+                $path = $event->thumb?->getThumb(546, 402, ['mode' => 'crop']);
+                $startDate = Carbon::parse($event->start);
+                $endDate = Carbon::parse($event->end);
+                return [
+                    'title' => $event->title,
+                    'url' => $event->url,
+                    'thumb' => $path ?: 'https://place-hold.it/546x400',
+                    'startDate' => $startDate->format('d.m'),
+                    'endDate' => $startDate->format('d.m') === $endDate->format('d.m') ? null : $endDate->format('d.m'),
+                    'year' => $startDate->format('Y'),
+                    'time' => $startDate->format('H:i'),
+                    'color' => $event->color,
+                    'venue' => $event->event_zone->name,
+                    'type' => $event->event_type->name,
+                    'category' => $event->event_category->name,
+                    'short' => $event->short
+                ];
+            });
     }
     /**function onLoadAjaxPartial()
     {

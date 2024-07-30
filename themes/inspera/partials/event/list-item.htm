@@ -1,15 +1,51 @@
-<div>
-  <div class="row">
-    {% for event in events.items %}
-      <div class="col-md-4">
-        {% if event.thumb %}
-          <a href="{{ event.url }}">
-            <img src="{{ event.thumb | media }}" class="img-thumbnail">
-          </a>
-        {% endif %}
-        {{ event.title}}
+<div class="col-md-6 mb-4" data-scroll data-scroll-speed="{{ index==1 ? -1 : 1 }}">
+  <div class="event-card">
+    <div class="event-card-type">
+      {{ event.type }}
+    </div>
+    <div class="event-card-date">
+      <span class="h4 event-card-day">
+        {{ event.startDate }}
+      </span>
+      {% if event.endDate %}
+        <span class="h4 event-card-day">  -</span>
+        <span  class="h4 event-card-day">
+          {{ event.endDate }}
+        </span>
+      {% endif %}
+      <span class="event-card-year">
+        <i class="fa fa-calendar-alt"></i>
+        <span>{{ event.year }}</span>
+      </span><br>
+      <span class="event-card-time">
+        <i class="fa fa-clock"></i>
+        <span>{{ event.time }}</span>
+      </span>      
+    </div>
+
+    <div class="event-card-info">
+      <div class="event-card-thumb">
+        <a href="{{ event.url }}">
+          <img src="{{ event.thumb }}" alt="{{ event.title }}" class="img">
+        </a>
       </div>
-    {% endfor %}
+      <div class="event-card-venue">
+        {{ event.venue }}
+      </div>
+      <h3 class="h5">
+        <a href="{{ event.url }}">
+          {{ event.title }}
+        </a>
+      </h3>
+      <p class="truncate-two-lines">
+        {{ event.short | raw }}
+      </p>
+      {% if event.category %}
+        <small class="event-card-category mb-4">
+          {{ event.category }}
+        </small>
+      {% endif %}
+    </div>
   </div>
 </div>
 
