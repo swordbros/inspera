@@ -280,8 +280,8 @@ class EventSearch extends ComponentBase
         return [
             'breadcrumbs' => [
                 [
-                    'url' => $homePage?->url,
-                    'title' => $homePage?->name
+                    'url' => Cms::fullUrl('/'),
+                    'title' => $homePage?->name ?? 'Home'
                 ],
                 [
                     'url' => null,

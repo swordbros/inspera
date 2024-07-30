@@ -32,7 +32,7 @@
     <div class="container">
       <ul class="breadcrumbs">
         <li v-for="page in breadcrumbs" :key="page.title">
-          <a v-if="page.url" href="{{ page.url }}">{{ page.title }}</a>
+          <a v-if="page.url" :href="page.url">{{ page.title }}</a>
           <span class="breadcrumb-delimiter" v-if="page.url">/</span>
           <span v-else>{{ page.title }}</span>
         </li>
