@@ -1,14 +1,13 @@
 import { createApp } from 'vue';
 import EventsList from './components/EventsList.vue';
+import ClickOutside from './helpers/ClickOutsideDirective.js';
 
-createApp({
-  template: '<EventsList :noEventsText="noEventsText"/>',
+const app = createApp({
+  template: '<EventsList/>',
   components: {
     EventsList
-  },
-  data() {
-    return {
-      noEventsText: 'No events available'
-    }
   }
-}).mount('#events-list');
+});
+
+app.directive('click-outside', ClickOutside);
+app.mount('#events-list');

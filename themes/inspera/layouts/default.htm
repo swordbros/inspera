@@ -1,5 +1,12 @@
 description = "Default layout"
 
+[sitePicker]
+
+[section mainMenu]
+handle = "Site\Menus"
+identifier = "slug"
+value = "top-menu"
+
 [genericForm]
 group = "newsletter"
 rules[email] = "required|email"
@@ -19,6 +26,10 @@ recaptcha_type = "image"
 recaptcha_size = "normal"
 emails_date_format = "Y-m-d"
 ==
+{% if mainMenu.items.count %}
+  {% set menuItems = mainMenu.items.toNested | filter(i => not i.is_hidden) %}
+{% endif %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -52,10 +63,11 @@ emails_date_format = "Y-m-d"
 
         {#% partial 'components/flash-messages' %#}
 
+        {% partial 'components/aside' menuItems=menuItems %}
+
         <div class="smooth-scroll">
             <div class="section-wrapper" {#data-scroll-section#}>
-                {% partial 'components/header' %}
-
+                {% partial 'components/header' menuItems=menuItems %}
                 {% page %}
             </div>
             {% partial 'components/footer' %}

@@ -8,5 +8,19 @@ return [
             'visibility' => 'Visibility',
             'show_breadcrumb' => 'Show breadcrumbs'
         ]
-    ]
+    ],
+    'components' => [
+        'events' => 'Events',
+        'calendar' => 'Event Calendar',
+        'title' => 'Events',
+        'no_events_text' => 'No events',
+        'event_type' => 'Event type',
+        'event_zone' => 'Event venue',
+        'event_category' => 'Event category',
+        'filter_title' => 'Filter',
+        'date_filter_title' => 'Filter Date',
+        'this_week' => 'This week',
+        'this_weekend' => 'This weekend',
+        // 'filter_title' => 'Filter',
+    ],
 ];

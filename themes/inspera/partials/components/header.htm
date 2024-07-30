@@ -1,16 +1,5 @@
-[sitePicker]
 
-[section mainMenu]
-handle = "Site\Menus"
-identifier = "slug"
-value = "top-menu"
 ==
 {% partial 'search/modal' %}
-
-{% if mainMenu.items.count %}
-  {% set menuItems = mainMenu.items.toNested | filter(i => not i.is_hidden) %}
-{% endif %}
-
-{% partial 'components/aside' menuItems=menuItems %}
 
 {% partial 'components/navbar' menuItems=menuItems %}
