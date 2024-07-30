@@ -47,13 +47,7 @@
       });
     });
 
-    $(window).on('ajaxInvalidField', function(event, fieldElement, fieldName, errorMsg, isFirst) {
-      $(fieldElement).closest('.inner').addClass('has-error');
-    });
-
-    $(document).on('ajaxPromise', '[data-request]', function() {
-      $(this).closest('form').find('.inner.has-error').removeClass('has-error');
-    });
+    
   </script>
 {% endput %}
 

@@ -441,26 +441,27 @@ select:focus {
   border-color: gray;
   outline: 0;
 }
+
 select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #000;
 }
+
 input[type="submit"] {
   height: 70px;
   display: inline-block;
-  font-size: 14px;
-  font-weight: 600;
-  color: $color-dark;
+  font-size: $font-size-small;
+  color: #fff;
   background: $color-main;
   border: none;
   padding: 0 50px;
 }
+
 button[type="submit"] {
   height: 70px;
   display: inline-block;
-  font-size: 14px;
-  font-weight: 600;
-  color: $color-dark;
+  font-size: $font-size-small;
+  color: #fff;
   background: $color-main;
   border: none;
   padding: 0 50px;
@@ -470,6 +471,20 @@ button[type="submit"] {
     font-size: 18px;
     transform: translateY(2px);
   }
+}
+
+[data-validate-for] {
+  color: $danger;
+  font-size: $font-size-small;
+  position: absolute;
+  left: 30px;
+  top: 12px;
+}
+
+.privacy-agreement [data-validate-for] {
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 .unica-one-regular {
@@ -1245,6 +1260,31 @@ $arrow-size: 8px;
       border-left-color: $color-main;
     }
   }
+}
+
+.event-section {
+  padding-bottom: 0;
+}
+
+.event-details {
+  padding-top: 0;
+}
+
+.event-description {
+  display: block;
+}
+
+.event-description p {
+  margin: 26px 0;
+}
+
+.event-section .event-category {
+  border-radius: 0;
+  background-color: #ddfa80;
+}
+
+.event-section tr td:first-child {
+  text-transform: uppercase;
 }
 
 /* EVENT CARD - LISTING */
@@ -3554,9 +3594,7 @@ $slider-nav-size: 50px;
       }
     }
 
-    .inner.has-error input[type=text] {
-      border-color: $danger;
-    }
+    
 
     input[type="submit"] {
       position: absolute;
@@ -3574,10 +3612,6 @@ $slider-nav-size: 50px;
     }
 
     [data-validate-for] {
-      color: $danger;
-      font-size: $font-size-small;
-      position: absolute;
-      left: 30px;
       top: 5px;
     }
   }
@@ -3596,6 +3630,10 @@ $slider-nav-size: 50px;
       color: #fff;
     }
   }
+}
+
+.inner.has-error input[type=text] {
+  border-color: $danger;
 }
 
 /* MODAL FOOTER */

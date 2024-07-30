@@ -3,23 +3,31 @@
         {{ 'Book Now!' |_}}
     </h3>
 
-    <form  data-request="onSubmitBookingForm" data-request-flash="success,warning">
+    <form data-request="onSubmitBookingForm" data-request-flash="success,warning" data-request-validate>
         <div class="row">
             <div class="col-md-6 col-12 mb-4">
-                <input type="text" id="first_name" name="booking_request[first_name]" placeholder="{{ 'First Name' |_ }}">
-                <div data-validate-for="first_name"></div>
+                <div class="inner position-relative">
+                    <input type="text" id="first_name" name="booking_request[first_name]" placeholder="{{ 'First Name' |_ }}">
+                    <div data-validate-for="booking_request.first_name"></div>
+                </div>
             </div>
             <div class="col-md-6 col-12 mb-4">
-                <input type="text" id="last_name" name="booking_request[last_name]" placeholder="{{ 'Last Name' |_ }}">
-                <div data-validate-for="last_name"></div>
+                <div class="inner position-relative">
+                    <input type="text" id="last_name" name="booking_request[last_name]" placeholder="{{ 'Last Name' |_ }}">
+                    <div data-validate-for="booking_request.last_name"></div>
+                </div>
             </div>
             <div class="col-md-6 col-12 mb-4">
-               <input type="text" id="email" name="booking_request[email]" placeholder="{{ 'Email address' |_ }}">
-               <div data-validate-for="email"></div>
+                <div class="inner position-relative">
+                    <input type="text" id="email" name="booking_request[email]" placeholder="{{ 'Email address' |_ }}">
+                    <div data-validate-for="booking_request.email"></div>
+                </div>
             </div>
             <div class="col-md-6 col-12 mb-4">
-                <input type="text" id="phone" name="booking_request[phone]" placeholder="{{ 'Telephone' |_ }}" >
-                <div data-validate-for="phone"></div>
+                <div class="inner position-relative">
+                    <input type="text" id="phone" name="booking_request[phone]" placeholder="{{ 'Telephone' |_ }}" >
+                    <div data-validate-for="booking_request.phone"></div>
+                </div>
             </div>
         </div>
         <div class="col-12 mb-4">
@@ -33,19 +41,21 @@
                 <input type="hidden" id="event_id" name="booking_request[event_id]" value="{{ event.id }}">
                 {{ form_token() }}
             </div>
-            <p class="text-muted ms-3 mt-1">
+            {#<p class="text-muted ms-3 mt-1">
                 <small>{{ 'New booking Request.' |_ }}</small>
-            </p>
+            </p>#}
         </div>
         <div class="privacy-agreement">
-            <input type="checkbox" name="agreement">
-            <div data-validate-for="agreement"></div>
-            <small>
-                {{ 'I agree with our' |_ }} 
-                <a href="/privacy">
-                    {{ 'Privacy Policy' |_ }}
-                </a>    
-            </small> 
+            <label class="position-relative">
+                <div data-validate-for="consent"></div>
+                <input type="checkbox" name="consent">
+                <small>
+                    {{ 'I agree with the ' |_ }} 
+                    <a href="{{ 'privacy' | boxesPage }}" target="_blank">
+                        {{ 'Privacy Policy' |_ }}
+                    </a>    
+                </small>
+            </label>
         </div>  
     </form>
 </div>

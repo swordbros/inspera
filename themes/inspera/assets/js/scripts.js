@@ -98,6 +98,14 @@
       }
     });
 
+    $(window).on('ajaxInvalidField', function(event, fieldElement, fieldName, errorMsg, isFirst) {
+      $(fieldElement).closest('.inner').addClass('has-error');
+    });
+
+    $(document).on('ajaxPromise', '[data-request]', function() {
+      $(this).closest('form').find('.inner.has-error').removeClass('has-error');
+    });
+
 
     //TAB
     // $(".tab-nav li").on('click', function (e) {
@@ -511,7 +519,7 @@
       observer.observe(observedElement);
     }
   });
-
+  
   // ODOMETER
   // $(".odometer").each(function () {
   //   $(this).html($(this).data('count'));

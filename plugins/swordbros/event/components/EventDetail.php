@@ -17,6 +17,8 @@ use Swordbros\Booking\models\BookingRequestModel;
 use Swordbros\Event\Models\EventModel;
 use Cms\Classes\ComponentBase;
 use Swordbros\Setting\Models\SwordbrosSettingModel;
+use ValidationException;
+use Validator;
 
 /**
  * BackendLink component
@@ -57,6 +59,30 @@ class EventDetail extends ComponentBase
 
     public function onSubmitBookingForm()
     {
+        $rules = [
+            'booking_request.first_name' => 'required',
+            'booking_request.last_name' => 'required',
+            'booking_request.email' => 'required|email',
+            'booking_request.phone' => 'required',
+            'consent' => 'accepted',
+            // 'secondname' => 'size:0',
+        ];
+
+        $messages = [
+            'booking_request.first_name' => trans('First name is required'),
+            'booking_request.last_name' => trans('Last name is required'),
+            'booking_request.email.required' => trans('Email is required'),
+            'booking_request.phone' => trans('Phone is required'),
+            'accepted' => trans('Accept Privacy rules'),
+            // 'secondname.size' => translate('secondname.size'),
+        ];
+
+        $validation = Validator::make(post(), $rules, $messages);
+
+        if ($validation->fails()) {
+            throw new ValidationException($validation);
+        }
+
         $booking_request = Input::get('booking_request');
         if ($booking_request) {
             $createuser = $this->getUseridBookingRequest($booking_request);
@@ -94,14 +120,15 @@ class EventDetail extends ComponentBase
                     });
                 }
             }
-            Amele::addBookingRequestHistory($data['id'], $data['send_email'] . ' adresine email gönderildi. ' );
+            Amele::addBookingRequestHistory($data['id'], $data['send_email'] . ' adresine email gönderildi. ');
             //Flash::success('Booking Created!');
             return Redirect::to(url('/booking/thankyou', ['id' => $bokingRequestModel->id]));
         } else {
             Flash::warning('booking_request not posted');
         }
     }
-    private function getUseridBookingRequest($data){
+    private function getUseridBookingRequest($data)
+    {
         $result = [
             'userId' => 0,
             'message' => '',
@@ -116,8 +143,8 @@ class EventDetail extends ComponentBase
             $result['message'] = trans('booking.alert.email_in_use_please_login');
             return $result;
         }
-        $existRequest = BookingRequestModel::where(['email' => $data['email'], 'event_id'=> $data['event_id']])->exists();
-        if($existRequest){
+        $existRequest = BookingRequestModel::where(['email' => $data['email'], 'event_id' => $data['event_id']])->exists();
+        if ($existRequest) {
             $result['message'] = trans('booking.alert.request_allready_exists');
             return $result;
         }

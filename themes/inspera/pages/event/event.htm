@@ -138,7 +138,7 @@ title = "Event Detail"
 
 
 {% put scripts %}
-<script>
+  <script>
     var swiperNav = new Swiper(".eventSwiperNav", {
       //loop: true,
       spaceBetween: 10,
@@ -154,57 +154,28 @@ title = "Event Detail"
         swiper: swiperNav,
       },
     });
-
-</script>
+  </script>
 {% endput %}
 
 {% put styles %}
-<style>
-	.eventSwiper2 {
+  <style>
+    .eventSwiper2 {
       height: 80%;
       width: 100%;
       overflow: hidden;
     }
-
     .eventSwiper {
       height: 20%;
       box-sizing: border-box;
       padding: 10px 0;
       overflow: hidden;
     }
-
     .eventSwiper .swiper-slide {
       width: 25%;
       height: 100%;
     }
-
     .eventSwiper2 .swiper-slide-thumb-active {
       opacity: 1;
-    }
-
-    .event-section {
-      padding-bottom: 0;
-    }
-    
-    .event-details {
-      padding-top: 0;
-    }
-
-    .event-description {
-      display: block;
-    }
-
-    .event-description p {
-      margin: 26px 0;
-    }
-
-    .event-section .event-category {
-      border-radius: 0;
-      background-color: #ddfa80;
-    }
-
-    .event-section tr td:first-child {
-      text-transform: uppercase;
-    }
-</style>
+    }    
+  </style>
 {% endput %}
