@@ -466,9 +466,10 @@
 
   //LOCOMOTIVE
   const smoothScrollWrapper = document.querySelector(".smooth-scroll")
+  let locoScroll;
   if (smoothScrollWrapper) {
  
-    const locoScroll = new LocomotiveScroll({
+    locoScroll = new LocomotiveScroll({
       el: document.querySelector(".smooth-scroll"),
       smooth: true,
       class: 'is-inview',
@@ -489,7 +490,7 @@
         locoScroll.scrollTo(document.getElementById(target));
       });
     });
-   }
+  }
 
 
   /* BACK TO TOP */
@@ -497,9 +498,11 @@
     const observedElement = document.querySelector('.slider');
     const scrollButton = document.querySelector('.back-to-top');
 
-    scrollButton.addEventListener('click', function() {
-      locoScroll.scrollTo(0);
-    });
+    if (locoScroll) {
+      scrollButton.addEventListener('click', function() {
+        locoScroll.scrollTo(0);
+      });
+    }
 
     // Check if the observed element exists and the page height is more than 1500px
     if (observedElement && document.body.scrollHeight > 1500) {
