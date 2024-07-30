@@ -30,6 +30,13 @@
     </div>
 
     <div class="container">
+      <ul class="breadcrumbs">
+        <li v-for="page in breadcrumbs" :key="page.title">
+          <a v-if="page.url" href="{{ page.url }}">{{ page.title }}</a>
+          <span class="breadcrumb-delimiter" v-if="page.url">/</span>
+          <span v-else>{{ page.title }}</span>
+        </li>
+      </ul>
       <div class="filter-button" type="button" @click="isFilterShown = true">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 64"><path d="M50.69 32h5.63M7.68 32h31.01M26.54 15.97h29.78M7.68 15.97h6.88M35 48.03h21.32M7.68 48.03H23"/><circle cx="20.55" cy="15.66" r="6"/><circle cx="44.69" cy="32" r="6"/><circle cx="29" cy="48.03" r="6"/></svg>
       </div>
@@ -77,12 +84,6 @@ export default {
     EventCard,
     EventsFilter
   },
-  props: {
-    noEventsText: {
-      type: String,
-      required: true
-    }
-  },
   data() {
     return {
       params: {
@@ -110,10 +111,26 @@ export default {
         'date': null,
         'dateEnd': null
       },
-      filterOptions: {}
+      filterOptions: {},
+      breadcrumbs: [],
+      noEventsText: 'No events available'
     };
   },
   methods: {
+    getComponentSettings() {
+      return new Promise(() => {
+       
+        const self = this
+        $.request('onGetVars', {          
+          success: function(data) {
+            self.breadcrumbs = data.breadcrumbs
+            self.noEventsText = data.noEventsText
+          },
+          error: function(err) {
+          }
+        })
+      })
+    },
     getEvents() {
       return new Promise(() => {
         this.getFeedStart()
@@ -136,8 +153,8 @@ export default {
           error: function(err) {
             self.getFeedFailure(err)
           }
-        });
-      });
+        })
+      })
     },    
     getFeedStart() {
       this.isLoading = true
@@ -268,6 +285,7 @@ export default {
     }
   },
   created() {
+    this.getComponentSettings()
     this.setParamsFromUrl()
     this.setMonthYear()
 

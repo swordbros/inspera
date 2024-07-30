@@ -8,5 +8,14 @@ return [
             'visibility' => 'Visibility',
             'show_breadcrumb' => 'Show breadcrumbs'
         ]
-    ]
+    ],
+    'components' => [
+        'events' => 'Events',
+        'calendar' => 'Event Calendar',
+        'title' => 'Events',
+        'no_events_message' => 'No events',
+        'event_type' => 'Event type',
+        'event_zone' => 'Event venue',
+        'event_category' => 'Event category',
+    ],
 ];

@@ -13028,12 +13028,6 @@ __webpack_require__.r(__webpack_exports__);
     EventCard: _EventCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     EventsFilter: _EventsFilter_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: {
-    noEventsText: {
-      type: String,
-      required: true
-    }
-  },
   data() {
     return {
       params: {
@@ -13061,10 +13055,24 @@ __webpack_require__.r(__webpack_exports__);
         'date': null,
         'dateEnd': null
       },
-      filterOptions: {}
+      filterOptions: {},
+      breadcrumbs: [],
+      noEventsText: 'No events available'
     };
   },
   methods: {
+    getComponentSettings() {
+      return new Promise(() => {
+        const self = this;
+        $.request('onGetVars', {
+          success: function (data) {
+            self.breadcrumbs = data.breadcrumbs;
+            self.noEventsText = data.noEventsText;
+          },
+          error: function (err) {}
+        });
+      });
+    },
     getEvents() {
       return new Promise(() => {
         this.getFeedStart();
@@ -13210,6 +13218,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created() {
+    this.getComponentSettings();
     this.setParamsFromUrl();
     this.setMonthYear();
     this.filters = Object.keys(this.filters).reduce((acc, key) => {
@@ -13478,21 +13487,35 @@ const _hoisted_7 = ["onClick"];
 const _hoisted_8 = {
   class: "container"
 };
-const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" viewBox=\"0 0 64 64\"><path d=\"M50.69 32h5.63M7.68 32h31.01M26.54 15.97h29.78M7.68 15.97h6.88M35 48.03h21.32M7.68 48.03H23\"></path><circle cx=\"20.55\" cy=\"15.66\" r=\"6\"></circle><circle cx=\"44.69\" cy=\"32\" r=\"6\"></circle><circle cx=\"29\" cy=\"48.03\" r=\"6\"></circle></svg>", 1);
-const _hoisted_10 = [_hoisted_9];
+const _hoisted_9 = {
+  class: "breadcrumbs"
+};
+const _hoisted_10 = {
+  key: 0,
+  href: "{{ page.url }}"
+};
 const _hoisted_11 = {
-  class: "container"
+  key: 1,
+  class: "breadcrumb-delimiter"
 };
 const _hoisted_12 = {
-  key: 0
-};
-const _hoisted_13 = {
-  key: 1
-};
-const _hoisted_14 = {
   key: 2
 };
+const _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" viewBox=\"0 0 64 64\"><path d=\"M50.69 32h5.63M7.68 32h31.01M26.54 15.97h29.78M7.68 15.97h6.88M35 48.03h21.32M7.68 48.03H23\"></path><circle cx=\"20.55\" cy=\"15.66\" r=\"6\"></circle><circle cx=\"44.69\" cy=\"32\" r=\"6\"></circle><circle cx=\"29\" cy=\"48.03\" r=\"6\"></circle></svg>", 1);
+const _hoisted_14 = [_hoisted_13];
 const _hoisted_15 = {
+  class: "container"
+};
+const _hoisted_16 = {
+  key: 0
+};
+const _hoisted_17 = {
+  key: 1
+};
+const _hoisted_18 = {
+  key: 2
+};
+const _hoisted_19 = {
   class: "row"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -13517,18 +13540,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       class: "day-button",
       onClick: $event => $options.filterDate(day.number)
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(day.number), 9 /* TEXT, PROPS */, _hoisted_7))], 2 /* CLASS */);
-  }), 128 /* KEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }), 128 /* KEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.breadcrumbs, page => {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+      key: page.title
+    }, [page.url ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(page.title), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), page.url ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_11, "/")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(page.title), 1 /* TEXT */))]);
+  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     class: "filter-button",
     type: "button",
     onClick: _cache[2] || (_cache[2] = $event => $data.isFilterShown = true)
-  }, _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_events_filter, {
+  }, _hoisted_14), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_events_filter, {
     filterOptions: $data.filterOptions,
     selectedFilters: $data.filters,
     isFilterShown: $data.isFilterShown,
     params: $data.params,
     onHideFilter: _cache[3] || (_cache[3] = $event => $data.isFilterShown = false),
     onUpdateFilters: $options.handleFiltersUpdate
-  }, null, 8 /* PROPS */, ["filterOptions", "selectedFilters", "isFilterShown", "params", "onUpdateFilters"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, "Loading...")) : $data.events.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.noEventsText) + ".", 1 /* TEXT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.events, event => {
+  }, null, 8 /* PROPS */, ["filterOptions", "selectedFilters", "isFilterShown", "params", "onUpdateFilters"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, "Loading...")) : $data.events.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.noEventsText) + ".", 1 /* TEXT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.events, event => {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       class: "col-lg-6 mb-4",
       key: event.id
@@ -20289,14 +20316,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
-  template: '<EventsList :noEventsText="noEventsText"/>',
+  template: '<EventsList/>',
   components: {
     EventsList: _components_EventsList_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  data() {
-    return {
-      noEventsText: 'No events available'
-    };
   }
 }).mount('#events-list');
 /******/ })()

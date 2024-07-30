@@ -10,7 +10,7 @@ title = "Event Detail"
 
 {% set breadcrumbs = {
   ('Home'|_): ('home'|boxesPage),
-  ('Events'|_):('event/events'|page)
+  ('Calendar'|_):('event/events'|page)
 } %}
 
 <section class="section event-section">
@@ -111,15 +111,7 @@ title = "Event Detail"
           <h2 class="h3">
             {{ 'Event Details'|_ }}
           </h2>
-          <p>
-            <strong>Yaş sınırı:</strong> 18+ <br>
-            <strong>Süre:</strong> 90 dakika
-          </p>
-
-           {{ event.description | raw }}
-
-          <div><strong>Kapı Açılış:</strong> 20.30</div>
-          <div><strong>Konser Başlangıç:</strong> 21.30</div>
+          {{ event.description | raw }}
         </div>
       </div>
     </div>

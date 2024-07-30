@@ -1134,8 +1134,9 @@ button[type="submit"] {
 
 /* MONTHS NAV */
 .date-days {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
+
 .date-days ul {
   display: flex;
   justify-content: space-between;
@@ -1875,6 +1876,11 @@ $date-col-width: 90px;
   li {
     padding: 0 8px;
   }
+}
+
+.breadcrumb-delimiter {
+  position: relative;
+  right: -8px;
 }
 
 /* PAGE HEADER */

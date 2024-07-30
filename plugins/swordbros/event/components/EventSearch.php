@@ -2,6 +2,7 @@
 
 namespace Swordbros\Event\Components;
 
+use App;
 use Db;
 use Input;
 use Carbon\Carbon;
@@ -10,11 +11,16 @@ use DateTime;
 use Media\Classes\MediaLibrary;
 use PHPUnit\TextUI\Help;
 
+use OFFLINE\Boxes\Models\Page as BoxesPage;
+
 use Swordbros\Base\Controllers\Amele;
 use Swordbros\Event\Models\EventModel;
 use Swordbros\Event\Models\EventTypeModel;
 use Swordbros\Event\Models\EventZoneModel;
 use Cms\Classes\ComponentBase;
+use Cms\Classes\Page;
+use Cms\Facades\Cms;
+use Lang;
 use NotFoundException;
 use Storage;
 
@@ -266,6 +272,26 @@ class EventSearch extends ComponentBase
         return $result;
     }
 
+    public function onGetVars()
+    {
+        App::setLocale('en');
+        $homePage = BoxesPage::whereSlug('home')->first();
+
+        return [
+            'breadcrumbs' => [
+                [
+                    'url' => $homePage?->url,
+                    'title' => $homePage?->name
+                ],
+                [
+                    'url' => null,
+                    'title' => Lang::get('swordbros.themeextender::lang.components.calendar')
+                ]
+            ],
+            'noEventsText' => Lang::get('swordbros.themeextender::lang.components.no_events_text'),
+        ];
+    }
+
     private function getFilters()
     {
         $this->filters = [
@@ -279,7 +305,7 @@ class EventSearch extends ComponentBase
     private function getFilter(string $relationName): array
     {
         return [
-            'title' => trans("event.plugin.{$relationName}"),
+            'title' => Lang::get("swordbros.themeextender::lang.components.{$relationName}"),
             'options' => array_values(
                 $this->events
                     ->map(function (EventModel $e) use ($relationName) {
@@ -300,7 +326,7 @@ class EventSearch extends ComponentBase
 
         if (!isset($params['month'])) {
             // TODO maybe not throw but use current month (frontend side?)
-            throw new NotFoundException("Month is a required parameter");
+            throw new NotFoundException('Month is a required parameter');
         }
 
         return EventModel::published()
