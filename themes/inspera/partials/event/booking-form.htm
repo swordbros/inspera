@@ -1,4 +1,4 @@
-<div class="container-narrow blog-post-comment-form">
+<div class="container-narrow blog-post-comment-form" data-scroll data-scroll-speed="1">
     <h3 class="mb-4 text-center">
         {{ 'Book Now!' |_}}
     </h3>
@@ -6,16 +6,20 @@
     <form  data-request="onSubmitBookingForm" data-request-flash="success,warning">
         <div class="row">
             <div class="col-md-6 col-12 mb-4">
-                <input type="text" id="first_name" name="booking_request[first_name]" placeholder="{{ 'First Name' |_ }}" required>
+                <input type="text" id="first_name" name="booking_request[first_name]" placeholder="{{ 'First Name' |_ }}">
+                <div data-validate-for="first_name"></div>
             </div>
             <div class="col-md-6 col-12 mb-4">
-                <input type="text" id="last_name" name="booking_request[last_name]" placeholder="{{ 'Last Name' |_ }}" required>
+                <input type="text" id="last_name" name="booking_request[last_name]" placeholder="{{ 'Last Name' |_ }}">
+                <div data-validate-for="last_name"></div>
             </div>
             <div class="col-md-6 col-12 mb-4">
-               <input type="text" id="email" name="booking_request[email]" placeholder="{{ 'Email address' |_ }}" required>
+               <input type="text" id="email" name="booking_request[email]" placeholder="{{ 'Email address' |_ }}">
+               <div data-validate-for="email"></div>
             </div>
             <div class="col-md-6 col-12 mb-4">
-                <input type="text" id="phone" name="booking_request[phone]" placeholder="{{ 'Telephone' |_ }}" required>
+                <input type="text" id="phone" name="booking_request[phone]" placeholder="{{ 'Telephone' |_ }}" >
+                <div data-validate-for="phone"></div>
             </div>
         </div>
         <div class="col-12 mb-4">
@@ -33,5 +37,15 @@
                 <small>{{ 'New booking Request.' |_ }}</small>
             </p>
         </div>
+        <div class="privacy-agreement">
+            <input type="checkbox" name="agreement">
+            <div data-validate-for="agreement"></div>
+            <small>
+                {{ 'I agree with our' |_ }} 
+                <a href="/privacy">
+                    {{ 'Privacy Policy' |_ }}
+                </a>    
+            </small> 
+        </div>  
     </form>
 </div>
