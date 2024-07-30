@@ -74,6 +74,10 @@ title = "Event Detail"
               </div>
             </li>
           </ul>
+          
+          <a data-scroll-to="booking-form" href="#" class="custom-button -primary">
+            {{ 'Book now'|_ }}
+          </a>
         </div>
       </div>
 
@@ -116,7 +120,7 @@ title = "Event Detail"
       </div>
     </div>
     <div class="card-divider"></div>
-    <div class="card-body card-lg">
+    <div class="card-body card-lg" id="booking-form">
       {% if event.booking_url %}
         <a class="custom-button -blue" href="{{ event.booking_url }}">
           {{ 'Book Now'|_}}

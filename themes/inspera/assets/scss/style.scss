@@ -2271,6 +2271,7 @@ $slider-nav-size: 50px;
     display: block;
     margin: 0;
     padding: 0;
+
     li {
       width: 100%;
       display: block;
@@ -2310,6 +2311,11 @@ $slider-nav-size: 50px;
         }
       }
     }
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 2rem;
   }
 }
 

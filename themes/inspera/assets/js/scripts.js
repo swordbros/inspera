@@ -471,6 +471,14 @@
     },
   });
 
+  document.querySelectorAll('a[data-scroll-to]').forEach(link => {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      const target = this.getAttribute('data-scroll-to');
+      locoScroll.scrollTo(document.getElementById(target));
+    });
+  });
+
 
   /* BACK TO TOP */
   document.addEventListener('DOMContentLoaded', () => {
