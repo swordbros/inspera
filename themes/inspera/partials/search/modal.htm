@@ -1,10 +1,9 @@
 <div class="search-box">
   <div class="container">
-    <div class="form">
+    <form class="form" action="{{ 'event/search' | page }}?queryString={{ query | url_encode(true) }}" method="get">
       <h3>
         {{ 'Search event' |_ }}
       </h3>
-      <form action="{{ 'event/search' | page }}?queryString={{ query | url_encode(true) }}" method="get">
         <input 
           type="search"
           name="queryString"
@@ -17,8 +16,7 @@
           data-request-before-update="document.getElementById('autocomplete-results').classList.toggle('-visible', !!this.value)"
         >
         {#<input type="submit" value="{{ 'Search'|_ }}">#}
-      </form>
       <div class="search-events" id="autocomplete-results"></div>
-    </div>
+    </form>
   </div>
 </div>
