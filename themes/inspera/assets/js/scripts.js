@@ -113,30 +113,9 @@
   });
   // END DOCUMENT READY
 
-/* BACK TO TOP */
-  document.addEventListener('DOMContentLoaded', () => {
-    const observedElement = document.querySelector('.slider');
-    const scrollButton = document.querySelector('.back-to-top');
-    console.log(scrollButton)
 
-    // Check if the observed element exists and the page height is more than 1500px
-    if (observedElement && document.body.scrollHeight > 1500) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) {
-            scrollButton.style.opacity = 1;
-          } else {
-            scrollButton.style.opacity = 0;
-          }
-        });
-      }, {
-        root: null,
-        threshold: 0 // Trigger when the element is fully out of view
-      });
 
-      observer.observe(observedElement);
-    }
-  });
+  
 
   // DATA BACKGROUND IMAGE
   // var pageSection = $("*");
@@ -493,7 +472,33 @@
   });
 
 
+  /* BACK TO TOP */
+  document.addEventListener('DOMContentLoaded', () => {
+    const observedElement = document.querySelector('.slider');
+    const scrollButton = document.querySelector('.back-to-top');
 
+    scrollButton.addEventListener('click', function() {
+      locoScroll.scrollTo(0);
+    });
+
+    // Check if the observed element exists and the page height is more than 1500px
+    if (observedElement && document.body.scrollHeight > 1500) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) {
+            scrollButton.style.opacity = 1;
+          } else {
+            scrollButton.style.opacity = 0;
+          }
+        });
+      }, {
+        root: null,
+        threshold: 0 // Trigger when the element is fully out of view
+      });
+
+      observer.observe(observedElement);
+    }
+  });
 
   // ODOMETER
   // $(".odometer").each(function () {
