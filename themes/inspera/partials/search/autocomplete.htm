@@ -1,0 +1,27 @@
+{% if events.count %}
+    <ul>
+        {% for event in events.take(3) %}
+            <li>
+                <h5>
+                    <a href="{{ event.url }}">
+                        {{ event.title }}
+                    </a>
+                </h5>
+                <small>
+                    {{ event.startDateTranslated }} 
+                    {% if event.startDateTranslated != event.endDateTranslated %}
+                        – {{ event.endDateTranslated }} 
+                    {% endif %}
+                    {{ event.year }}
+                </small>
+            </li>
+        {% endfor %}
+    </ul>
+    {#<p class="search-all-button">
+        <a href="{{ 'event/search' | page }}?queryString={{ query | url_encode(true) }}">
+            {{ 'Show all results'|_}} &raquo;
+        </a>
+    </p>#}
+{% else %}
+    <p>{{ 'Your search returned no results'|_}}.</p>
+{% endif %}

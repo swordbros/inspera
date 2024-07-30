@@ -13549,7 +13549,7 @@ const _hoisted_21 = {
   key: 2
 };
 const _hoisted_22 = {
-  class: "row"
+  class: "row justify-content-between"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_events_filter = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("events-filter");
@@ -13604,7 +13604,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onUpdateFilters: $options.handleFiltersUpdate
   }, null, 8 /* PROPS */, ["filterOptions", "selectedFilters", "isFilterShown", "params", "labels", "onUpdateFilters"])]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, "Loading...")) : $data.events.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.noEventsText) + ".", 1 /* TEXT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.events, event => {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      class: "col-lg-6 mb-4",
+      class: "col-lg-6 col-xl-auto mb-4",
       key: event.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_event_card, {
       title: event.title,

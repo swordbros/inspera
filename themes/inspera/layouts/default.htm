@@ -25,6 +25,8 @@ recaptcha_theme = "light"
 recaptcha_type = "image"
 recaptcha_size = "normal"
 emails_date_format = "Y-m-d"
+
+[eventSearch]
 ==
 {% if mainMenu.items.count %}
   {% set menuItems = mainMenu.items.toNested | filter(i => not i.is_hidden) %}

@@ -792,6 +792,11 @@ button[type="submit"] {
       width: 100%;
       display: block;
       margin-top: 5vh;
+      display: none;
+
+      &.-visible {
+        display: block;
+      }
 
       ul {
         width: 100%;
@@ -799,6 +804,7 @@ button[type="submit"] {
         flex-wrap: wrap;
         margin: 0;
         padding: 0;
+
         li {
           flex: 1;
           margin: 0;
@@ -808,33 +814,8 @@ button[type="submit"] {
 
           h5 {
             width: 100%;
-            display: block;
-            font-size: 20px;
-            @include font-second;
-            font-weight: 400;
-            a {
-              display: inline;
-              background-image: -moz-linear-gradient(
-                rgba(0, 0, 0, 0) calc(99% - 1px),
-                $color-dark 2px
-              );
-              background-image: -webkit-linear-gradient(
-                rgba(0, 0, 0, 0) calc(99% - 1px),
-                $color-dark 2px
-              );
-              background-image: linear-gradient(
-                rgba(0, 0, 0, 0) calc(99% - 1px),
-                $color-dark 1px
-              );
-              background-repeat: no-repeat;
-              background-size: 0% 100%;
-              transition: background-size 0.5s;
-              &:hover {
-                background-size: 100% 100%;
-                text-decoration: none;
-              }
-            }
           }
+
           small {
             width: 100%;
             display: block;
@@ -1290,7 +1271,7 @@ $arrow-size: 8px;
 /* EVENT CARD - LISTING */
 $date-col-width: 90px;
 .event-card {
-  max-width: 580px;
+  max-width: 546px;
   display: grid;
   grid-template-columns: $date-col-width 1fr;
   grid-template-rows: auto auto;

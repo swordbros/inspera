@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-between">
       
       {% for event in component.events.take(box.count) %}
         {% partial 'event/list-item' event=event index=loop.index %}

@@ -1,22 +1,24 @@
 <div class="search-box">
   <div class="container">
-    <div class="form">
-        <h3>{{ 'Search event'|_}}</h3>
-        <input type="search" placeholder="{{ 'What are you looking for?' |_ }}">
-        <input type="submit" value="{{ 'Search'|_ }}">
-    </div>
-    <div class="search-events">
-      <ul>
-      <li>
-          <h5><a href="#">Artemisia Gentileschi talk with Maria</a></h5>
-          <small>15 August – 31 October 2020</small> </li>
-      <li>
-          <h5><a href="#">Artemisia Gentileschi talk with Maria</a></h5>
-          <small>15 August – 31 October 2020</small> </li>
-      <li>
-          <h5><a href="#">Artemisia Gentileschi talk with Maria</a></h5>
-          <small>15 August – 31 October 2020</small> </li>
-      </ul>
+    <form class="form">
+      <h3>
+        {{ 'Search event' |_ }}
+      </h3>
+      <form action="{{ 'event/search' | page }}?queryString={{ query | url_encode(true) }}" method="get">
+        <input 
+          type="search"
+          name="queryString"
+          placeholder="{{ 'What are you looking for?' |_ }}"
+          value=""
+          autocomplete="off"
+          autofocus
+          data-track-input
+          data-request="eventSearch::onGetEvents"
+          data-request-before-update="document.getElementById('autocomplete-results').classList.toggle('-visible', !!this.value)"
+        >
+        {#<input type="submit" value="{{ 'Search'|_ }}">#}
+      </form>
+      <div class="search-events" id="autocomplete-results"></div>
     </div>
   </div>
 </div>

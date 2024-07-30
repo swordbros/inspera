@@ -1,13 +1,12 @@
 <nav class="navbar">
 
   <div class="logo">
-    <a href="{{ app_url }}">
+    <a href="{{ 'home' | boxesPage }}">
       <img src="{{ app_logo }}" alt="{{ app_name }}">
     </a>
   </div>
 
   <div class="custom-menu">
-
     <ul>
       {% for site in sitePicker.sites %}
         <li>
@@ -17,8 +16,8 @@
         </li>
       {% endfor %}
     </ul>
-
   </div>
+
   {% if menuItems is not empty  %}
     <div class="site-menu">
       <ul>

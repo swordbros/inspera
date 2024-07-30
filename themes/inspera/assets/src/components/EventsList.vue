@@ -71,8 +71,8 @@
       <div v-if="isLoading">Loading...</div>
       <div v-else-if="events.length === 0">{{ noEventsText }}.</div>
       <div v-else>
-        <div class="row">
-          <div class="col-lg-6 mb-4" v-for="event in events" :key="event.id">
+        <div class="row justify-content-between">
+          <div class="col-lg-6 col-xl-auto mb-4" v-for="event in events" :key="event.id">
             <event-card 
               :title="event.title"
               :url="event.url"

@@ -180,6 +180,10 @@ class EventModel extends BaseModel
             $query->byMonth($params['month']);
         }
 
+        if (isset($params['queryString'])) {
+            $query->where('title', 'like', '%' . $params['queryString'] . '%');
+        }
+
         $query->where(function ($q) use ($params) {
             if (isset($params['types'])) {
                 $q->whereIn('event_type_id', $params['types']);
