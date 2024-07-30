@@ -65,7 +65,7 @@ emails_date_format = "Y-m-d"
 
         {% partial 'components/aside' menuItems=menuItems %}
 
-        <div class="smooth-scroll">
+        <div class="{{ this.page.id != 'event-events' ? 'smooth-scroll' }}">
             <div class="section-wrapper" {#data-scroll-section#}>
                 {% partial 'components/header' menuItems=menuItems %}
                 {% page %}

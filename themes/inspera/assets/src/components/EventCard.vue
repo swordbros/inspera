@@ -24,7 +24,7 @@
     <div class="event-card-info">
       <div class="event-card-thumb">
         <a :href="url">
-          <img :src="picture" class="img-fluid">
+          <img :src="picture" class="img-fluid img">
         </a>
       </div>
       <h3 class="h5">
