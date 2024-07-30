@@ -298,8 +298,9 @@ export default {
     },
     removeOption(filterName, value) {
       if (filterName === 'dates') {
-        this.filters['date'] = null
-        this.filters['dateEnd'] = null
+        // nullify all params
+        Object.keys(this.filters).forEach(key => this.filters[key] = Array.isArray(this.filters[key]) ? [] : null)
+        this.shouldChangeMonth = true
       } else {
         let selected = this.filters[filterName]
         selected.splice(selected.findIndex(item => item === value), 1)
