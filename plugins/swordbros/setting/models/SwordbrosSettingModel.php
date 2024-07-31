@@ -86,7 +86,7 @@ class SwordbrosSettingModel extends SettingModel
     }
      public static function swordbros_setting($setting_key){
        $value = self::get($setting_key, '');
-       if(is_string()){
+       if(is_string($value)){
            return html_entity_decode($value);
        }
        return $value;
