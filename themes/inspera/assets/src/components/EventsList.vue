@@ -52,6 +52,14 @@
           {{ tag.label }}
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.5 0 25 25"><path stroke="currenColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m3 21.32 18-18M3 3.32l18 18"/></svg>
         </li>
+        <li
+          class="filter-tag"
+          @click="clearAllFilters"
+          v-if="selectedTags.length > 1"
+        >
+          {{ labels.clearAllFilters }}
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.5 0 25 25"><path stroke="currenColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m3 21.32 18-18M3 3.32l18 18"/></svg>
+        </li>
       </ul>
 
       <Teleport to="body">
@@ -68,8 +76,12 @@
     </div>
 
     <div class="container">
-      <div v-if="isLoading">Loading...</div>
-      <div v-else-if="events.length === 0">{{ noEventsText }}.</div>
+      <div v-if="isLoading">
+        Loading...
+      </div>
+      <div v-else-if="events.length === 0" class="events-empty-message">
+        {{ noEventsText }}
+      </div>
       <div v-else>
         <div class="row justify-content-between">
           <div class="col-lg-6 col-xl-auto mb-4" v-for="event in events" :key="event.id">
@@ -147,7 +159,8 @@ export default {
               'filterTitle': data.filterTitle,
               'dateFilterTitle': data.dateFilterTitle,
               'thisWeek': data.thisWeek,
-              'thisWeekend': data.thisWeekend
+              'thisWeekend': data.thisWeekend,
+              'clearAllFilters': data.clearAllFilters
             }
           },
           error: function(err) {
@@ -305,6 +318,9 @@ export default {
         let selected = this.filters[filterName]
         selected.splice(selected.findIndex(item => item === value), 1)
       }
+    },
+    clearAllFilters(){
+      Object.keys(this.filters).forEach(key => this.filters[key] = Array.isArray(this.filters[key]) ? [] : null)
     },
     showFilter(e) {
       e.stopPropagation()

@@ -46,7 +46,7 @@ class EventList extends ComponentBase
                     'endDate' => $startDate->format('d.m') === $endDate->format('d.m') ? null : $endDate->format('d.m'),
                     'year' => $startDate->format('Y'),
                     'time' => $startDate->format('H:i'),
-                    'color' => $event->color,
+                    'color' => $event->event_type->color,
                     'venue' => $event->event_zone->name,
                     'type' => $event->event_type->name,
                     'category' => $event->event_category->name,

@@ -1,5 +1,10 @@
 <div class="col-lg-6 col-xl-auto mb-4" data-scroll data-scroll-speed="{{ index==1 ? -1 : 1 }}">
-  <div class="event-card">
+  <style>
+    .event-card-{{ index }} {
+      --event-type-background: {{ event.color }};
+    }
+  </style>
+  <div class="event-card event-card-{{ index }}">
     <div class="event-card-type">
       {{ event.type }}
     </div>

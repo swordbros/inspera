@@ -35,7 +35,13 @@
       <p class="event-card-venue">
         {{ venue }}
       </p>
-      <small v-if="category" class="event-card-category mb-4">{{ category }}</small>
+      <small
+        v-if="category"
+        class="event-card-category mb-4"
+        :style="`background-color: `+color"
+      >
+        {{ category }}
+      </small>
     </div>
   </div>
 </template>

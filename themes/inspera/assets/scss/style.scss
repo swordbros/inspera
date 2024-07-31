@@ -1106,13 +1106,14 @@ button[type="submit"] {
 }
 
 .filter-group {
-  margin-bottom: 1rem;;
+  margin-bottom: 1rem;
 }
 
 .filter-tags {
   display: flex;
   gap: 15px;
   list-style: none;
+  padding-left: 0;
 
   li {
     padding: 2px 8px;
@@ -1261,11 +1262,16 @@ $arrow-size: 8px;
 
 .event-section .event-category {
   border-radius: 0;
-  background-color: #ddfa80;
+  background-color: var(--event-type-background);
 }
 
 .event-section tr td:first-child {
   text-transform: uppercase;
+}
+
+.events-empty-message {
+  font-size: 20px;
+  margin-top: 2rem;
 }
 
 /* EVENT CARD - LISTING */
@@ -1319,7 +1325,7 @@ $date-col-width: 90px;
 .event-card-category {
   padding: 0 8px;
   display: inline-block;
-  background-color: $color-secondary;
+  background-color: var(--event-type-background);
 }
 
 .event-card-day {
@@ -1586,6 +1592,7 @@ $date-col-width: 90px;
 
 :root {
   --slider-text-color: #{$color-dark};
+  --event-type-background: #{$color-secondary};
 }
 $slider-nav-size: 50px;
 
@@ -1850,7 +1857,7 @@ $slider-nav-size: 50px;
 .back-to-top {
   position: fixed;
   bottom: 15px;
-  right: 65px;
+  right: 15px;
   width: $slider-nav-size;
   height: $slider-nav-size;
   display: flex;
@@ -1866,6 +1873,9 @@ $slider-nav-size: 50px;
   @include transition;
   text-decoration: none;
   opacity: 0;
+  @media (min-width: 768px) {
+    right: 65px;
+  }
 
   &:hover {
     text-decoration: none;
@@ -4172,9 +4182,7 @@ $slider-nav-size: 50px;
   .side-icon-list {
     padding-left: 0;
   }
-  .side-icon-list ul li .content p br {
-    display: none;
-  }
+
   .sidebar {
     padding-left: 0;
     margin-top: 60px;
@@ -4404,9 +4412,7 @@ $slider-nav-size: 50px;
   .side-icon-list ul li .content {
     width: 100%;
   }
-  .side-icon-list ul li .content p br {
-    display: none;
-  }
+
   .col-lg-6 .side-list.right {
     padding-left: 0;
     margin-top: 60px;

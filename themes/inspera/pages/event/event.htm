@@ -165,6 +165,9 @@ title = "Event Detail"
 
 {% put styles %}
   <style>
+    .event-section {
+      --event-type-background: {{ event.event_type.color }};
+    }
     .eventSwiper2 {
       height: 80%;
       width: 100%;
