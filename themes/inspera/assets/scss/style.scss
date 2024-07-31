@@ -835,7 +835,7 @@ button[type="submit"] {
 .side-widget {
   max-width: 80vw;  
   position: fixed;  
-  z-index: 10;
+  z-index: 100;
   color: #fff;
   @include transition-cubic;
   overflow: auto;
@@ -867,8 +867,8 @@ button[type="submit"] {
     right: -100%;
     padding: 0 30px 0 80px;
     width: 440px;
-    top: 20vh;
-    height: 80vh;
+    top: 0;
+    height: 100vh;
 
     h2, h3 {
       color: white;
