@@ -4,7 +4,7 @@
   </svg>
 
   <figure class="logo">
-    <img src="{{ app_logo }}" alt="{{ app_name }}">
+    <img src="{{ app_logo }}" alt="{{ app_name }}" width="150">
   </figure>
   <div class="inner">
     <div class="widget">
@@ -15,15 +15,15 @@
     </div>
     
     <div class="widget">
-        <h6 class="widget-title">
-          {{ 'Opening Hours'|_ }}
-        </h6>
-        <p>
-          {% for item in swordbrosSettings.working_hours %}
-            {{ item.week_days }}: {{ item.time }}
-            {{ not loop.last ? '<br>'|raw }}
-          {% endfor %}
-        </p>
+      <h6 class="widget-title">
+        {{ 'Opening Hours'|_ }}
+      </h6>
+      <p>
+        {% for item in swordbrosSettings.working_hours %}
+          {{ item.week_days }}: {{ item.time }}
+          {{ not loop.last ? '<br>'|raw }}
+        {% endfor %}
+      </p>
     </div>
   </div>
   <div class="display-mobile">
