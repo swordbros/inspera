@@ -70,7 +70,13 @@ title = "Event Detail"
                 <div class="h5">
                   {{ 'Opening times' |_ }}
                 </div>
-                <p>From 27 August <br> Thursday – Sunday: 11.00-19.00 </p>
+                <p>
+                  {{ 'From'|_ }} {{ carbon(event.start).formatLocalized('%d.%m') }}<br>
+                  {% for item in swordbrosSettings.working_hours %}
+                    {{ item.week_days }}: {{ item.time }}
+                    {{ not loop.last ? '<br>'|raw }}
+                  {% endfor %}
+                </p>
               </div>
             </li>
           </ul>
@@ -159,6 +165,9 @@ title = "Event Detail"
 
 {% put styles %}
   <style>
+    .event-section {
+      --event-type-background: {{ event.event_type.color }};
+    }
     .eventSwiper2 {
       height: 80%;
       width: 100%;

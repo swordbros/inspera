@@ -232,7 +232,7 @@ class EventSearch extends ComponentBase
                     'startDateTranslated' => Carbon::parse($event->start)->translatedFormat('d F'),
                     'endDateTranslated' => Carbon::parse($event->end)->translatedFormat('d F'),
                     'year' => Carbon::parse($event->end)->format('Y'),
-                    'color' => $event->color,
+                    'color' => $event->event_type->color,
                     'venue' => $event->event_zone->name,
                     'type' => $event->event_type->name,
                     'category' => $event->event_category->name,
@@ -273,6 +273,7 @@ class EventSearch extends ComponentBase
             'dateFilterTitle' => Lang::get('swordbros.themeextender::lang.components.date_filter_title'),
             'thisWeek' => Lang::get('swordbros.themeextender::lang.components.this_week'),
             'thisWeekend' => Lang::get('swordbros.themeextender::lang.components.this_weekend'),
+            'clearAllFilters' => Lang::get('swordbros.themeextender::lang.components.clear_all_filters'),
         ];
     }
 

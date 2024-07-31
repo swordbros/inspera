@@ -21,6 +21,6 @@ return [
         'date_filter_title' => 'Filter Date',
         'this_week' => 'This week',
         'this_weekend' => 'This weekend',
-        // 'filter_title' => 'Filter',
+        'clear_all_filters' => 'Clear all',
     ],
 ];
