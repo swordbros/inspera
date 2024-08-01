@@ -107,6 +107,12 @@ title = "Event Detail"
               {% endfor %}
             </div>
           </div>
+          <div class="container-fluid slider-nav">
+            <div class="swiper-pagination"></div>
+            <div class="swiper-fraction"></div>
+            <div class="button-prev"><i class="far fa-chevron-down"></i></div>
+            <div class="button-next"><i class="far fa-chevron-up"></i></div>
+          </div>
         </div>
       </div>
     </div>
@@ -151,6 +157,24 @@ title = "Event Detail"
       slidesPerView: 4,
       freeMode: true,
       watchSlidesProgress: true,
+      navigation: {
+      nextEl: '.button-next',
+      prevEl: '.button-prev',
+      },
+      touchRatio: 0,
+
+      breakpoints: {
+        360: {
+          draggable: true,
+        },
+        768: {
+          draggable: false,
+        },
+      },
+      pagination: {
+        el: '.swiper-fraction',
+        type: 'fraction',
+      },
     });
 
     new Swiper(".eventSwiper", {

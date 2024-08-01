@@ -179,6 +179,16 @@
     },
     touchRatio: 0,
 
+    breakpoints: {
+      360: {
+        draggable: true,
+      },
+      768: {
+        draggable: false,
+      },
+    },
+
+
     pagination: {
       el: '.swiper-fraction',
       type: 'fraction',
