@@ -168,7 +168,6 @@
   // HOME INTRO SLIDER
   var sliderimages = new Swiper('.slider-images', {
     spaceBetween: 0,
-    direction: 'vertical',
     autoplay: {
       delay: 9500,
       disableOnInteraction: false,
@@ -177,14 +176,16 @@
       nextEl: '.button-next',
       prevEl: '.button-prev',
     },
-    touchRatio: 0,
 
     breakpoints: {
       360: {
-        draggable: true,
+        // draggable: true,
+        direction: 'horizontal',
       },
       768: {
         draggable: false,
+        direction: 'vertical',
+        touchRatio: 0,
       },
     },
 
