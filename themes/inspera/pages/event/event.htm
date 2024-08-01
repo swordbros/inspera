@@ -88,7 +88,7 @@ title = "Event Detail"
       </div>
 
       <div class="col-lg-6">
-        <div class="right-half" data-scroll data-scroll-speed="1">
+        <div class="right-half double-slider-wrapper" data-scroll data-scroll-speed="1">
           <div class="swiper eventSwiper">
             <div class="swiper-wrapper">
               {% for slide in event.images %}
@@ -107,11 +107,9 @@ title = "Event Detail"
               {% endfor %}
             </div>
           </div>
-          <div class="container-fluid slider-nav">
-            <div class="swiper-pagination"></div>
-            <div class="swiper-fraction"></div>
-            <div class="button-prev"><i class="far fa-chevron-down"></i></div>
-            <div class="button-next"><i class="far fa-chevron-up"></i></div>
+          <div class="container-fluid double-slider-nav">
+            <div class="button-prev"><i class="far fa-chevron-left"></i></div>
+            <div class="button-next"><i class="far fa-chevron-right"></i></div>
           </div>
         </div>
       </div>
@@ -155,26 +153,8 @@ title = "Event Detail"
       //loop: true,
       spaceBetween: 10,
       slidesPerView: 4,
-      freeMode: true,
-      watchSlidesProgress: true,
-      navigation: {
-      nextEl: '.button-next',
-      prevEl: '.button-prev',
-      },
-      touchRatio: 0,
-
-      breakpoints: {
-        360: {
-          draggable: true,
-        },
-        768: {
-          draggable: false,
-        },
-      },
-      pagination: {
-        el: '.swiper-fraction',
-        type: 'fraction',
-      },
+      // freeMode: true,
+      watchSlidesProgress: true,      
     });
 
     new Swiper(".eventSwiper", {
@@ -182,6 +162,10 @@ title = "Event Detail"
       //spaceBetween: 10,
       thumbs: {
         swiper: swiperNav,
+      },
+      navigation: {
+        nextEl: '.button-next',
+        prevEl: '.button-prev',
       },
     });
   </script>
