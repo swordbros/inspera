@@ -21,8 +21,8 @@
         }
 
         $links[] = [
-          'title' => str_replace('- ', '', $resolver->title),
-          'url' => $resolver->url,
+          'title' => $resolver ? str_replace('- ', '', $resolver->title) : '',
+          'url' => $resolver ? $resolver->url : '',
           'picture' => [
             'path' => $image,
             'title' => $link['pic_title'] ?? null
