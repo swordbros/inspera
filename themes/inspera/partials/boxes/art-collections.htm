@@ -13,19 +13,19 @@
       $links = [];
 
       foreach ($collection['links'] as $link) {
+        $image = null;
         $resolver = \Cms\Classes\PageManager::resolve($link['reference'] ?? '');
-        if (!isset($link['pic'])) {
-          throw new Exception('Fill in the collection pages images in Boxes plugin!');
+        if (isset($link['pic'])) {
+          $path = \Storage::disk('media')->path($link['pic']);
+          $image = \System\Classes\ResizeImages::resize($path, 662, 662, ['mode' => 'crop']);
         }
-        $path = \Storage::disk('media')->path($link['pic']);
-        $image = \System\Classes\ResizeImages::resize($path, 662, 662, ['mode' => 'crop']);
 
         $links[] = [
           'title' => str_replace('- ', '', $resolver->title),
           'url' => $resolver->url,
           'picture' => [
             'path' => $image,
-            'title' => $link['pic_title']
+            'title' => $link['pic_title'] ?? null
           ]
         ];
       }
