@@ -13,6 +13,7 @@ use Swordbros\Event\Models\EventTranslateModel;
 use Swordbros\Event\Models\EventTypeModel;
 use Swordbros\Event\Models\EventZoneModel;
 use Swordbros\Setting\Models\SwordbrosSettingModel;
+use Tailor\Models\EntryRecord;
 
 class Amele extends Controller
 {
@@ -464,5 +465,27 @@ class Amele extends Controller
     static function humanDate($date = NULL, $format = 'd.m.Y') {
         if ($date === NULL) $date = date('Y-m-d');
         return date($format, strtotime($date));
+    }
+    static  function get_event_detail($eventId){
+        return EventModel::find($eventId);
+    }
+    static function get_post_detail($postId){
+        $site_id = Site::getSiteIdFromContext();
+        $post =  EntryRecord::inSection('Blog\Post')->where(['id'=> $postId])->limit(1)->first();
+
+        return $post;
+    }
+    static function event_thumb($event){
+        $url = false;
+        if($event->thumb){
+            $root = config('filesystems.disks.uploads.root');
+            if(file_exists($root.'/'.$event->thumb->getDiskPath())){
+                $url = $event->thumb->getPath();
+            }
+        }
+        if(empty($url)){
+            $url = url('themes/wandau/assets/images/event05.jpg');
+        }
+        return $url;
     }
 }
