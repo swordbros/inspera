@@ -43,7 +43,6 @@ class EventModel extends BaseModel
     ];
     public $attachOne = [
         'thumb' => 'System\Models\File',
-        'baslik' => 'Swordbros\Base\Models\TranslateModel'
     ];
     public $attachMany = [
         'images' => 'System\Models\File'
