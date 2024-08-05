@@ -1971,6 +1971,7 @@ $slider-nav-size: 50px;
   @include transition;
   text-decoration: none;
   opacity: 0;
+  z-index: -1;
   @media (min-width: 768px) {
     right: 65px;
   }
@@ -1983,6 +1984,7 @@ $slider-nav-size: 50px;
 
   &.-active {
     opacity: 1;
+    z-index: 1000;
   }
 }
 
