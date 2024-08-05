@@ -189,15 +189,13 @@
       },
     },
 
-
     pagination: {
       el: '.swiper-fraction',
       type: 'fraction',
     },
 
-
-    // loop: true,
-    // loopedSlides: 1,
+    loop: true,
+    loopedSlides: 1,
     // thumbs: {
     //   swiper: slidertexts
     // }
