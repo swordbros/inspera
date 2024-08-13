@@ -5268,3 +5268,24 @@ $slider-nav-size: 50px;
     text-decoration: underline;
   }
 }
+.stats-item {
+  position: relative;
+  text-transform: uppercase;
+  &:after {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #0d5eff;
+    top: -10px;
+    right: 0;
+  }
+
+  .stats-item-title {
+    font-size: 35px;
+  }
+  .stats-item-text {
+    font-size: 30px;
+  }
+}

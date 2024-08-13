@@ -1,0 +1,31 @@
+name: box.stats.name
+handle: stats
+labelFrom: box_title
+section: box.section.base_components
+
+form:
+  tabs:
+    defaultTab: box.stats.defaultTab
+    fields:
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.stats.name
+      
+      title-mixin:
+        type: mixin
+
+      anchor-mixin:
+        type: mixin
+
+      stats:
+        type: repeater
+        prompt: box.stats.stats.prompt 
+        label: box.stats.stats.label 
+        form: 
+          fields:
+            title:
+              label: box.stats.stats.title.label
+              type: pagefinder
+            text:
+              label:  box.stats.stats.text.label

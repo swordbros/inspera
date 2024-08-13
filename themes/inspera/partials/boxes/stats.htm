@@ -1,0 +1,21 @@
+<section class="content-section" {{ box.anchor_id ? 'id='~box.anchor_id }}>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+            {% partial 'boxes/parts/_section-title.htm' %}
+            </div>
+        </div>
+        <div class="stats">
+            <div class="row">
+                {% for item in box.stats %}
+                    <div class="col-md-4">
+                        <div class="stats-item">
+                            <div class="stats-item-title">{{ item.title }}</div>
+                            <div class="stats-item-desc">{{ item.text }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
