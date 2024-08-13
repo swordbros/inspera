@@ -1,0 +1,32 @@
+name: box.accordion.name
+handle: accordion
+labelFrom: box_title
+section: box.section.base_components
+
+form:
+  tabs:
+    defaultTab: box.accordion.defaultTab
+    fields:
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.accordion.name
+      
+      title-mixin:
+        type: mixin
+
+      anchor-mixin:
+        type: mixin
+
+      accordion:
+        type: repeater
+        prompt: box.accordion.accordion.prompt 
+        label: box.accordion.accordion.label 
+        form: 
+          fields:
+            title:
+              label: box.accordion.accordion.title.label
+              type: pagefinder
+            text:
+              type: textarea
+              label:  box.accordion.accordion.text.label
