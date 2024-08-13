@@ -1,0 +1,54 @@
+name: box.carousel.name
+handle: carousel
+labelFrom: box_title
+section: box.defaultTab.content
+
+form:
+  tabs:
+    defaultTab: box.defaultTab.content
+    fields:
+
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.carousel.name
+
+      title-mixin:
+        type: mixin
+      
+      background_color:
+        label: box.carousel.section_background.label
+        type: colorpicker
+        availableColors: ['#94ffc4','#0d5eff', '#F4F3F2']
+
+      items:
+        type: repeater
+        prompt: box.carousel.items.prompt
+        label: box.carousel.items.label
+        form:
+          fields:
+            pic:
+              type: mediafinder
+              mode: image
+              label: box.carousel.items.pic.label
+
+            pic_title: 
+              label: box.carousel.items.pic_title.label
+
+            description:
+              label: box.carousel.items.text.label
+              type: richeditor
+      
+      no-bottom-spacing-mixin:
+        type: mixin
+
+      anchor-mixin:
+        type: mixin
+
+
+            
+
+
+     
+
+    

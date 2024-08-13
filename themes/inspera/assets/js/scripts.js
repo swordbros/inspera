@@ -12,15 +12,15 @@
 
 
     // ACCORDION
-    // var allPanels = $('.accordion > dd').hide();
-    // $('.accordion > dt > a').click(function () {
-    //   var panel = $(this).parent().next();
-    //   panel.slideToggle();
-    //   setTimeout(function() {
-    //     locoScroll.update();
-    //   }, 400);
-    //   return false;
-    // });
+    var allPanels = $('.accordion > dd').hide();
+    $('.accordion > dt > a').click(function () {
+      var panel = $(this).parent().next();
+      panel.slideToggle();
+      setTimeout(function() {
+        locoScroll.update();
+      }, 400);
+      return false;
+    });
 
 
     /* HAMBURGER */
@@ -126,21 +126,21 @@
   
 
   // DATA BACKGROUND IMAGE
-  // var pageSection = $("*");
-  // pageSection.each(function (indx) {
-  //   if ($(this).attr("data-background")) {
-  //     $(this).css("background", "url(" + $(this).data("background") + ")");
-  //   }
-  // });
+  var pageSection = $("*");
+  pageSection.each(function (indx) {
+    if ($(this).attr("data-background")) {
+      $(this).css("background", "url(" + $(this).data("background") + ")");
+    }
+  });
 
 
   // DATA BACKGROUND COLOR
-  // var pageSection = $("*");
-  // pageSection.each(function (indx) {
-  //   if ($(this).attr("data-background")) {
-  //     $(this).css("background", $(this).data("background"));
-  //   }
-  // });
+  var pageSection = $("*");
+  pageSection.each(function (indx) {
+    if ($(this).attr("data-background")) {
+      $(this).css("background", $(this).data("background"));
+    }
+  });
 
 
   // IMAGE BOX CAROUSEL

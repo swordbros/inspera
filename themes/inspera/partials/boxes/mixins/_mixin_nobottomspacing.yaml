@@ -1,0 +1,7 @@
+handle: no-bottom-spacing-mixin
+mixin:
+  no_bottom_spacing:
+    label: box.mixin_no_bottom_spacing.label
+    comment: box.mixin_no_bottom_spacing.comment
+    span: auto
+    type: switch

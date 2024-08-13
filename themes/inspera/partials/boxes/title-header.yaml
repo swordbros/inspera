@@ -1,0 +1,29 @@
+name: box.title_header.name
+handle: header
+labelFrom: box_title
+section: box.defaultTab.content
+
+form:
+  tabs:
+    defaultTab: box.defaultTab.content
+    fields:
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.title_header.name
+      
+      title:
+        label: box.title.name
+        comment: box.title_header.title.comment
+
+      description:
+        label: box.title.sub_title.label
+        type: textarea
+      
+      background_image:
+        label: box.mixin_background.background_image.label
+        type: mediafinder
+        mode: image
+      
+      anchor-mixin:
+        type: mixin

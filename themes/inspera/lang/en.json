@@ -246,5 +246,14 @@
   "box.name.slides.scope.label": "Slide mobile/desktop useability",
   "box.name.slides.scope.options.both": "Both", 
   "box.name.slides.scope.options.mobile": "Mobile only", 
-  "box.name.slides.scope.options.desktop": "Desktop only" 
+  "box.name.slides.scope.options.desktop": "Desktop only",
+  "box.carousel.name": "Carousel",
+  "box.carousel.items.prompt": "Add carousel item",
+  "box.carousel.items.label": "Carousel",
+  "box.carousel.items.pic.label": "Picture",
+  "box.carousel.items.pic_title.label": "Title",
+  "box.carousel.items.text.label": "Description",
+  "box.carousel.section_background.label": "Background color",
+  "box.title_header.name": "Title header",
+  "box.title_header.title.comment": "Not required, page title will be used if empty"
 }

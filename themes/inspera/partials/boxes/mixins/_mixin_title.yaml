@@ -20,15 +20,15 @@ mixin:
       h5: H5
       h6: H6
 
-  # horizontal_alignment:
-  #   label: box.title.horizontal_alignment.label
-  #   type: dropdown
-  #   default: ''
-  #   options:
-  #     '': box.title.horizontal_alignment.options.unset
-  #     left: box.title.horizontal_alignment.options.left
-  #     center: box.title.horizontal_alignment.options.center
-  #     right: box.title.horizontal_alignment.options.right
+  horizontal_alignment:
+    label: box.title.horizontal_alignment.label
+    type: dropdown
+    default: ''
+    options:
+      '': box.title.horizontal_alignment.options.unset
+      left: box.title.horizontal_alignment.options.left
+      center: box.title.horizontal_alignment.options.center
+      right: box.title.horizontal_alignment.options.right
 
   # sub_title:
   #   label: box.title.sub_title.label

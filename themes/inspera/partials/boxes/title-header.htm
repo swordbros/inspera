@@ -1,0 +1,7 @@
+{% set header = {
+    'title': box.title ?: boxesPage.name,
+    'intro': box.description,
+    'description': box.background_image
+} %}
+
+{% partial 'components/page-title' header=header %}
