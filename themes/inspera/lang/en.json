@@ -110,7 +110,7 @@
   "box.accordion.name": "Accordion",
   "box.accordion.defaultTab": "Content",
   "box.accordion.accordion.prompt": "Add accordion item",
-  "box.accordion.accordion.label ": "Accordion items",
+  "box.accordion.accordion.label": "Accordion items",
   "box.accordion.accordion.title.label": "Accordion item header",
   "box.accordion.accordion.text.label": "Accordion item body",
   "box.buttons.name": "Buttons",
@@ -250,5 +250,11 @@
   "box.carousel.items.text.label": "Description",
   "box.carousel.section_background.label": "Background color",
   "box.title_header.name": "Title header",
-  "box.title_header.title.comment": "Not required, page title will be used if empty"
+  "box.title_header.title.comment": "Not required, page title will be used if empty",
+  "box.stats.name": "Stats",
+  "box.stats.defaultTab": "Content",
+  "box.stats.stats.prompt": "Add stats item",
+  "box.stats.stats.label": "Stats items",
+  "box.stats.stats.title.label": "Stats item title",
+  "box.stats.stats.text.label": "Stats item text"
 }

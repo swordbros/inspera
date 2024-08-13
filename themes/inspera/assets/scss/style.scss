@@ -5275,3 +5275,26 @@ $slider-nav-size: 50px;
     text-decoration: underline;
   }
 }
+.stats-item {
+  text-transform: uppercase;
+  text-align: center;
+  .stats-item-title {
+    font-size: 35px;
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #0d5eff;
+      top: -5px;
+      right: 50%;
+      transform: translateX(85%);
+      z-index: -1;
+    }
+  }
+  .stats-item-text {
+    font-size: 30px;
+  }
+}
