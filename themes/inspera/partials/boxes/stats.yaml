@@ -26,6 +26,5 @@ form:
           fields:
             title:
               label: box.stats.stats.title.label
-              type: pagefinder
             text:
-              label:  box.stats.stats.text.label
+              label: box.stats.stats.text.label

@@ -110,7 +110,7 @@
   "box.accordion.name": "Accordion",
   "box.accordion.defaultTab": "Content",
   "box.accordion.accordion.prompt": "Add accordion item",
-  "box.accordion.accordion.label ": "Accordion items",
+  "box.accordion.accordion.label": "Accordion items",
   "box.accordion.accordion.title.label": "Accordion item header",
   "box.accordion.accordion.text.label": "Accordion item body",
   "box.buttons.name": "Buttons",
