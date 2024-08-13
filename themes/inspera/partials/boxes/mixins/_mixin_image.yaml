@@ -10,24 +10,24 @@ mixin:
   #   type: mixin
   #   tab: box.content_alignment.tab
 
-  picture_size:
-    label: box.mixin_image.picture_size.label
-    type: balloon-selector
-    default: md
-    options:
-      sm: box.mixin_image.picture_size.options.sm
-      md: box.mixin_image.picture_size.options.md
-      lg: box.mixin_image.picture_size.options.lg
-      full: box.mixin_image.picture_size.options.full
-      custom: box.mixin_image.picture_size.options.custom
+  # picture_size:
+  #   label: box.mixin_image.picture_size.label
+  #   type: balloon-selector
+  #   default: md
+  #   options:
+  #     sm: box.mixin_image.picture_size.options.sm
+  #     md: box.mixin_image.picture_size.options.md
+  #     lg: box.mixin_image.picture_size.options.lg
+  #     full: box.mixin_image.picture_size.options.full
+  #     custom: box.mixin_image.picture_size.options.custom
   
   picture_width:
     label: box.mixin_image.picture_width.label
     type: number
-    trigger:
-      action: show
-      field: picture_size
-      condition: value[custom]
+    # trigger:
+    #   action: show
+    #   field: picture_size
+    #   condition: value[custom]
 
   picture_link:
     label: box.mixin_image.picture_link.label

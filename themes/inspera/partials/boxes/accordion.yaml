@@ -26,7 +26,7 @@ form:
           fields:
             title:
               label: box.accordion.accordion.title.label
-              type: pagefinder
+              type: text
             text:
               type: textarea
               label:  box.accordion.accordion.text.label

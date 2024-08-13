@@ -1,9 +1,8 @@
 name: box.image.name
 handle: image
 labelFrom: box_title
-section: box.section.base_components
-spacing:
-  - general
+section: box.accordion.defaultTab
+
 validation:
   rules:
     picture:
