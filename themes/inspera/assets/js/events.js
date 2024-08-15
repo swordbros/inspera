@@ -12992,10 +12992,31 @@ __webpack_require__.r(__webpack_exports__);
     },
     hideFilter() {
       this.$emit('hideFilter');
+    },
+    shouldShowList(group) {
+      return group.hasOwnProperty('options') && Array.isArray(group.options) && group.options.length > 1;
+    },
+    shouldShowGrouped(group) {
+      return group.hasOwnProperty('options') && false === Array.isArray(group.options) && Object.values(group.options).reduce((t, a) => t + a.length, 0) > 1;
     }
   },
-  mounted() {
-    // console.log(this.filterOptions)
+  computed: {
+    groupedFilters() {
+      if (typeof this.filterOptions.categories === 'undefined') {
+        return this.filterOptions;
+      }
+      const categories = this.filterOptions.categories.options;
+      const groupedCategories = categories.reduce((acc, option) => {
+        const parent = option.parent || 'Uncategorized';
+        if (!acc[parent]) {
+          acc[parent] = [];
+        }
+        acc[parent].push(option);
+        return acc;
+      }, {});
+      this.filterOptions.categories.options = groupedCategories;
+      return this.filterOptions;
+    }
   }
 });
 
@@ -13023,7 +13044,7 @@ __webpack_require__.r(__webpack_exports__);
         month: null,
         date: null,
         dateEnd: null,
-        types: [],
+        // types: [],
         categories: [],
         venues: [],
         audiences: []
@@ -13040,7 +13061,7 @@ __webpack_require__.r(__webpack_exports__);
       filters: {
         'categories': [],
         'venues': [],
-        'types': [],
+        // 'types': [],
         'date': null,
         'dateEnd': null
       },
@@ -13354,7 +13375,7 @@ const _hoisted_18 = {
   class: "event-card-venue"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.type), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("time", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.category), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("time", {
     datetime: $options.startDay,
     class: "h4 event-card-day"
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.startDay), 9 /* TEXT, PROPS */, _hoisted_4), null != $options.endDay ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_5, " -")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $options.endDay ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("time", {
@@ -13368,11 +13389,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     class: "img-fluid img"
   }, null, 8 /* PROPS */, _hoisted_15)], 8 /* PROPS */, _hoisted_14)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.url
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.title), 9 /* TEXT, PROPS */, _hoisted_17)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.venue), 1 /* TEXT */), $props.category ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", {
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.title), 9 /* TEXT, PROPS */, _hoisted_17)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.venue), 1 /* TEXT */), $props.type ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("small", {
     key: 0,
     class: "event-card-category mb-4",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)(`background-color: ` + $props.color)
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.category), 5 /* TEXT, STYLE */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.type), 5 /* TEXT, STYLE */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
 
 /***/ }),
@@ -13433,6 +13454,10 @@ const _hoisted_11 = {
   class: "h5"
 };
 const _hoisted_12 = ["value", "onUpdate:modelValue"];
+const _hoisted_13 = {
+  class: "h6"
+};
+const _hoisted_14 = ["value", "onUpdate:modelValue"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _directive_click_outside = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("click-outside");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", {
@@ -13454,11 +13479,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     value: `${$data.weekend.start} - ${$data.weekend.end}`,
     onChange: _cache[2] || (_cache[2] = $event => $options.setDates($data.weekend.start, $data.weekend.end)),
     checked: $props.selectedFilters['date'] === $data.weekend.start && $props.selectedFilters['dateEnd'] === $data.weekend.end
-  }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.labels.thisWeekend), 1 /* TEXT */)])])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.filterOptions, (group, groupName) => {
+  }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.labels.thisWeekend), 1 /* TEXT */)])])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.groupedFilters, (group, groupName) => {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: groupName,
       class: "filter-group"
-    }, [group.hasOwnProperty('options') && group.options.length > 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h3", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(group.title), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), group.hasOwnProperty('options') && group.options.length > 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    }, [$options.shouldShowList(group) || $options.shouldShowGrouped(group) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h3", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(group.title), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $options.shouldShowList(group) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
       key: 1
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(group.options, option => {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
@@ -13469,6 +13494,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         value: option.value,
         "onUpdate:modelValue": $event => $props.selectedFilters[groupName] = $event
       }, null, 8 /* PROPS */, _hoisted_12), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $props.selectedFilters[groupName]]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.label), 1 /* TEXT */)])]);
+    }), 128 /* KEYED_FRAGMENT */)) : $options.shouldShowGrouped(group) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+      key: 2
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(group.options, (options, parent) => {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+        key: parent,
+        class: "mb-3"
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(parent), 1 /* TEXT */), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(options, option => {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+          key: option.value,
+          class: "filter-option"
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+          type: "checkbox",
+          value: option.value,
+          "onUpdate:modelValue": $event => $props.selectedFilters[groupName] = $event
+        }, null, 8 /* PROPS */, _hoisted_14), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $props.selectedFilters[groupName]]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.label), 1 /* TEXT */)])]);
+      }), 128 /* KEYED_FRAGMENT */))]);
     }), 128 /* KEYED_FRAGMENT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
   }), 128 /* KEYED_FRAGMENT */))])], 2 /* CLASS */)), [[_directive_click_outside, $options.hideFilter]]);
 }
