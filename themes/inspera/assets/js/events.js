@@ -12962,7 +12962,6 @@ __webpack_require__.r(__webpack_exports__);
         this.$emit('updateFilters', newFilters);
       },
       deep: true
-      // immediate: true
     }
   },
   methods: {
@@ -12994,10 +12993,10 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('hideFilter');
     },
     shouldShowList(group) {
-      return group.hasOwnProperty('options') && Array.isArray(group.options) && group.options.length > 1;
+      return group.hasOwnProperty('options') && group.hasOwnProperty('groupedOptions') === false && group.options.length > 1;
     },
     shouldShowGrouped(group) {
-      return group.hasOwnProperty('options') && false === Array.isArray(group.options) && Object.values(group.options).reduce((t, a) => t + a.length, 0) > 1;
+      return group.hasOwnProperty('groupedOptions') && group.options.length > 1;
     }
   },
   computed: {
@@ -13014,7 +13013,7 @@ __webpack_require__.r(__webpack_exports__);
         acc[parent].push(option);
         return acc;
       }, {});
-      this.filterOptions.categories.options = groupedCategories;
+      this.filterOptions.categories.groupedOptions = groupedCategories;
       return this.filterOptions;
     }
   }
@@ -13496,11 +13495,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8 /* PROPS */, _hoisted_12), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $props.selectedFilters[groupName]]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.label), 1 /* TEXT */)])]);
     }), 128 /* KEYED_FRAGMENT */)) : $options.shouldShowGrouped(group) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
       key: 2
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(group.options, (options, parent) => {
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(group.groupedOptions, (options, parentName) => {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-        key: parent,
+        key: parentName,
         class: "mb-3"
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(parent), 1 /* TEXT */), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(options, option => {
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(parentName), 1 /* TEXT */), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(options, option => {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           key: option.value,
           class: "filter-option"

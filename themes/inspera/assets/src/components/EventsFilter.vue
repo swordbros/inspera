@@ -62,8 +62,8 @@
         </h3>
 
         <div
-          v-for="option in group.options"
           v-if="shouldShowList(group)"
+          v-for="option in group.options"
           :key="option.value"
           class="filter-option"
         >
@@ -78,12 +78,13 @@
         </div>
 
         <div
-          v-for="(options, parent) in group.options" :key="parent"
           v-else-if="shouldShowGrouped(group)"
+          v-for="(options, parentName) in group.groupedOptions"
+          :key="parentName"
           class="mb-3"
         >
           <h4 class="h6">
-            {{ parent }}
+            {{ parentName }}
           </h4>    
           <div
             v-for="option in options"
@@ -145,7 +146,6 @@ export default {
         this.$emit('updateFilters', newFilters)
       },
       deep: true,
-      // immediate: true
     }
   },
   methods: {
@@ -180,10 +180,10 @@ export default {
       this.$emit('hideFilter')
     },
     shouldShowList(group) {
-      return group.hasOwnProperty('options') && Array.isArray(group.options) && group.options.length > 1
+      return group.hasOwnProperty('options') && group.hasOwnProperty('groupedOptions') === false && group.options.length > 1
     },
     shouldShowGrouped(group) {
-      return group.hasOwnProperty('options') && false === Array.isArray(group.options) && (Object.values(group.options).reduce((t, a) => t + a.length, 0) > 1)
+      return group.hasOwnProperty('groupedOptions') && group.options.length > 1
     }
   },
   computed: {
@@ -199,7 +199,7 @@ export default {
         return acc;
       }, {});
 
-      this.filterOptions.categories.options = groupedCategories;
+      this.filterOptions.categories.groupedOptions = groupedCategories;
       return this.filterOptions;
     }
   }
