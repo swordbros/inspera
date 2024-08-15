@@ -22,6 +22,12 @@ form:
       count:
         label: box.upcoming_events.count
       
+      no-bottom-spacing-mixin:
+        type: mixin
+
+      enabled-mixin:
+        type: mixin
+      
       button-mixin:
         type: mixin
       

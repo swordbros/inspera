@@ -42,6 +42,9 @@ form:
       no-bottom-spacing-mixin:
         type: mixin
 
+      enabled-mixin:
+        type: mixin
+
       anchor-mixin:
         type: mixin
 

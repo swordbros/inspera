@@ -15,9 +15,6 @@ form:
       title-mixin:
         type: mixin
 
-      anchor-mixin:
-        type: mixin
-
       stats:
         type: repeater
         prompt: box.stats.stats.prompt 
@@ -28,3 +25,12 @@ form:
               label: box.stats.stats.title.label
             text:
               label: box.stats.stats.text.label
+      
+      no-bottom-spacing-mixin:
+        type: mixin
+
+      enabled-mixin:
+        type: mixin
+        
+      anchor-mixin:
+        type: mixin

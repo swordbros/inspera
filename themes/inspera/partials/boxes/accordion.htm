@@ -1,4 +1,5 @@
-<section class="content-section" {{ box.anchor_id ? 'id='~box.anchor_id }}>
+{% if box.is_enabled %}
+  <section class="content-section" {{ box.anchor_id ? 'id='~box.anchor_id }}>
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-12">
@@ -7,11 +8,18 @@
         <div class="col-lg-8">
           <dl class="accordion">
             {% for item in box.accordion %}
-              <dt><a href="#">{{ item.title }}</a></dt>
-              <dd>{{ item.text | raw }}</dd>
+              <dt>
+                <a href="#">
+                  {{ item.title }}
+                </a>
+              </dt>
+              <dd>
+                {{ item.text | raw }}
+              </dd>
             {% endfor %}
           </dl>
         </div>
       </div>
     </div>
-</section>
+  </section>
+{% endif %}

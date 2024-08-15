@@ -256,5 +256,9 @@
   "box.stats.stats.prompt": "Add stats item",
   "box.stats.stats.label": "Stats items",
   "box.stats.stats.title.label": "Stats item title",
-  "box.stats.stats.text.label": "Stats item text"
+  "box.stats.stats.text.label": "Stats item text",
+  "box.mixins.enabled.label": "Is enabled",
+  "box.mixins.enabled.tab": "Box visibility",
+  "box.cta.min_height.label": "Box minimum height, px",
+  "box.mixin_no_bottom_spacing.label": "Remove bottom spacing"
 }

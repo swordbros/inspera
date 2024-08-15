@@ -1,5 +1,11 @@
 {% if box.is_enabled %}
-  <section class="content-section no-spacing" {{ box.anchor_id ? 'id='~box.anchor_id }}>
+  <section
+    class="
+      content-section
+      {{ box.no_bottom_spacing ? 'no-bottom-spacing' }}
+    "
+    {{ box.anchor_id ? 'id='~box.anchor_id }}
+  >
     <div class="container">
       <div class="row">
         <div class="col-12">

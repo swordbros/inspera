@@ -37,7 +37,13 @@ form:
                     mode: image
                     label:  box.art_collections.collections.pic.label
                   pic_title: 
-                    label: box.art_collections.collections.pic_title.label 
+                    label: box.art_collections.collections.pic_title.label
+
+      no-bottom-spacing-mixin:
+        type: mixin
+
+      enabled-mixin:
+        type: mixin
         
       anchor-mixin:
         type: mixin

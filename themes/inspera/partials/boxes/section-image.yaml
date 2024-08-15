@@ -21,6 +21,12 @@ form:
       image-mixin:
         type: mixin
 
+      no-bottom-spacing-mixin:
+        type: mixin
+
+      enabled-mixin:
+        type: mixin
+        
       anchor-mixin:
         type: mixin
       

@@ -15,9 +15,6 @@ form:
       title-mixin:
         type: mixin
 
-      anchor-mixin:
-        type: mixin
-
       accordion:
         type: repeater
         prompt: box.accordion.accordion.prompt 
@@ -30,3 +27,9 @@ form:
             text:
               type: textarea
               label:  box.accordion.accordion.text.label
+      
+      enabled-mixin:
+        type: mixin
+      
+      anchor-mixin:
+        type: mixin

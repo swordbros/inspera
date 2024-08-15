@@ -2,7 +2,6 @@ name: CTA
 handle: cta
 labelFrom: box_title
 section: box.defaultTab.content
-# translatable:
 
 form:
   tabs:
@@ -22,6 +21,16 @@ form:
       background-mixin:
         type: mixin
         tab: box.mixin_background.tab
+      
+      min_height:
+        label: box.cta.min_height.label
+        type: number
+
+      no-bottom-spacing-mixin:
+        type: mixin
+
+      enabled-mixin:
+        type: mixin
       
       anchor-mixin:
         type: mixin
