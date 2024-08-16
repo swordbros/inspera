@@ -256,5 +256,25 @@
   "box.stats.stats.prompt": "Add stats item",
   "box.stats.stats.label": "Stats items",
   "box.stats.stats.title.label": "Stats item title",
-  "box.stats.stats.text.label": "Stats item text"
+  "box.stats.stats.text.label": "Stats item text",
+  "box.50text50pic.name": "50% text, 50% pic",
+  "box.50text50pic.defaultTab": "Content",
+  "box.50text50pic.icon.label": "Block's detail icon",
+  "box.50text50pic.details_title.label": "Block's detail title",
+  "box.50text50pic.details.prompt": "Add details item",
+  "box.50text50pic.details.label": "Block's details",
+  "box.50text50pic.text.label": "Block's description",
+  "box.50text50pic.details.text.label": "Details item",
+  "box.50text50pic.pic.label": "Picture",
+  "box.50text50pic.pic_title.label": "Picture title (seo)",
+  "box.items_slider.name": "Items-slider",
+  "box.items_slider.defaultTab": "Content",
+  "box.items_slider.slider.prompt": "Add slider item",
+  "box.items_slider.slider.label": "Items slider",
+  "box.items_slider.slider.title.label": "Slide's title",
+  "box.items_slider.slider.link.label": "Slide's link",
+  "box.items_slider.slider.reference.label": "Choose a page",
+  "box.items_slider.slider.pic.label": "Slide's picture",
+  "box.items_slider.slider.pic_title.label": "Slide's picture title (seo)"
+
 }
