@@ -4,6 +4,9 @@
     {{ box.horizontal_alignment ? 'text-'~box.horizontal_alignment }}
   "
 >
+  {% if box.title_icon %}
+    <figure><img src="{{ box.title_icon | media}}" alt="{{ box.title | raw }}"></figure>
+  {% endif %}
   {% if box.eyebrow_title %}
     <div class="eyebrow">
       {{ box.eyebrow_title }}

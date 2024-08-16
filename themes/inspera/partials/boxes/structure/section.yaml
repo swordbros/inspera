@@ -19,7 +19,7 @@ form:
       background_color:
         label: box.carousel.section_background.label
         type: colorpicker
-        availableColors: ['#94ffc4','#0d5eff', '#F4F3F2', 'transparent']
+        availableColors: ['transparent', '#94ffc4','#0d5eff', '#F4F3F2']
 
       font_color_theme:
         label: box.carousel.font_color_theme.label
@@ -130,6 +130,9 @@ form:
       gutters-mixin:
         type: mixin
         tab: box.spacing.tab
+      
+      no-bottom-spacing-mixin:
+        type: mixin
 
       classes-mixin:
         type: mixin

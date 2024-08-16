@@ -1,7 +1,7 @@
 name: box.50text50pic.name
 handle: 50text50pic
 labelFrom: box_title
-section: box.section.base_components
+section: box.sections.sections
 
 form:
   tabs:
@@ -14,37 +14,22 @@ form:
       
       title-mixin:
         type: mixin
-
-      anchor-mixin:
-        type: mixin
-
-      icon:
-        type: mediafinder
-        mode: image
-        label: box.50text50pic.icon.label
       
       text:
         type: textarea
-        label: box.50text50pic.text.label
+        label: box.text.name
       
-      details_title:
-        label: box.50text50pic.details_title.label
-
-      details:
-        type: repeater
-        prompt: box.50text50pic.details.prompt 
-        label: box.50text50pic.details.label 
-        form: 
-          fields:
-            text:
-              label: box.50text50pic.details.text.label
-              type: richeditor
+      infoitems-mixin:
+        type: mixin
 
       pic:
         type: mediafinder
         mode: image
-        label: box.50text50pic.pic.label
+        label: box.picture.name
       
       pic_title: 
-        label: box.50text50pic.pic_title.label
+        label: box.half_bg_cta.picture_alt.label
+      
+      anchor-mixin:
+        type: mixin
       

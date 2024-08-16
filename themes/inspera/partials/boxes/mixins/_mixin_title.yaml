@@ -1,5 +1,10 @@
 handle: title-mixin
 mixin:
+  title_icon:
+    label: Icon
+    type: mediafinder
+    mode: image
+    
   eyebrow_title:
     label: box.title.eyebrow_title.label
     type: text

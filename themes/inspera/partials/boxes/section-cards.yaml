@@ -1,24 +1,24 @@
-name: box.items_slider.name
-handle: items_slider
+name: box.section_cards.name
+handle: cards
 labelFrom: box_title
 section: box.sections.sections
 
 form:
   tabs:
-    defaultTab: box.items_slider.defaultTab
+    defaultTab: box.section_cards.defaultTab
     fields:
       box_title:
         label: box.box_title.label
         comment: box.box_title.comment
-        default: box.items_slider.name
+        default: box.section_cards.name
       
       title-mixin:
         type: mixin
 
-      slider:
+      cards:
         type: repeater
-        prompt: box.items_slider.slider.prompt 
-        label: box.items_slider.slider.label 
+        label: box.section_cards.cards.label
+        maxItems: 3
         form: 
           fields:
             pic:
@@ -29,6 +29,11 @@ form:
               label: box.items_slider.slider.pic_title.label
             title:
               label: box.items_slider.slider.title.label
+            tynytext-mixin:
+              type: mixin
+            _section_link:
+              type: section
+              label: Link 
             is_external_link:
               label: box.items_slider.slider.is_external_link.label
               type: switch
@@ -39,5 +44,8 @@ form:
               type: pagefinder
               singleMode: true
       
+      no-bottom-spacing-mixin:
+        type: mixin
+        
       anchor-mixin:
         type: mixin

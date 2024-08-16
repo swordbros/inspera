@@ -31,9 +31,9 @@ form:
             button-mixin:
               type: mixin
               
-      # content_alignment-mixin:
-      #   type: mixin
-      #   tab: box.content_alignment.tab
+      content_alignment-mixin:
+        type: mixin
+        tab: box.content_alignment.tab
 
       classes-mixin:
         type: mixin

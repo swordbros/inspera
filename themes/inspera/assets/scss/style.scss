@@ -2466,51 +2466,53 @@ $slider-nav-size: 50px;
 }
 
 /* IMAGE BOX CAROUSEL */
-// .image-box-carousel {
-//   width: 100%;
-//   display: flex;
-//   flex-wrap: wrap;
-//   position: relative;
-//   overflow: hidden;
-//   figure {
-//     width: 100%;
-//     display: block;
-//     margin-bottom: 50px;
-//     position: relative;
-//     &:before {
-//       content: "";
-//       width: 1px;
-//       height: 64px;
-//       background: $color-dark;
-//       position: absolute;
-//       left: calc(50% - 0.5px);
-//       bottom: -32px;
-//       opacity: 0.8;
-//     }
-//     img {
-//       width: 100%;
-//     }
-//   }
-//   .content-box {
-//     width: 100%;
-//     display: flex;
-//     flex-wrap: wrap;
-//     justify-content: center;
-//     position: relative;
-//     overflow: hidden;
-//     padding-bottom: 5px;
-//     text-align: center;
+.image-box-carousel {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
 
-//     h3 {
-//       width: 100%;
-//     }
+  figure {
+    width: 100%;
+    display: block;
+    margin-bottom: 50px;
+    position: relative;
+    &:before {
+      content: "";
+      width: 1px;
+      height: 64px;
+      background: $color-dark;
+      position: absolute;
+      left: calc(50% - 0.5px);
+      bottom: -32px;
+      opacity: 0.8;
+    }
+    img {
+      width: 100%;
+    }
+  }
 
-//     .custom-link {
-//       color: #999;
-//       font-weight: 700;
-//     }
-//   }
-// }
+  .content-box {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 5px;
+    text-align: center;
+
+    h3 {
+      width: 100%;
+    }
+
+    .custom-link {
+      color: #999;
+      font-weight: 700;
+    }
+  }
+}
 
 /* SIDE CONTENT */
 .side-content {
@@ -2851,21 +2853,24 @@ $slider-nav-size: 50px;
   max-width: 90%;
   display: flex;
   flex-wrap: wrap;
+
   .content-box {
     width: 100%;
     display: block;
-    background: #fffbf7;
+    background: $color-main;
     position: relative;
     margin-bottom: 30px;
     padding: 50px;
-    font-size: 19px;
+    font-size: $font-size;
+    color: #fff;
+
     &:before {
       content: "";
       width: 0;
       height: 0;
       border-style: solid;
       border-width: 20px 20px 0 0;
-      border-color: #fffbf7 transparent transparent transparent;
+      border-color: $color-main transparent transparent transparent;
       position: absolute;
       left: 50px;
       bottom: -20px;

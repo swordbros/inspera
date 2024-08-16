@@ -1,0 +1,15 @@
+<section class="content-section" {{ box.anchor_id ? 'id='~box.anchor_id }}>
+  <div class="container">
+    <div class="row">
+      {% for quote in box.quotes %}
+		    <div class="col-md-6">
+          <div class="testimonial-box">
+            <div class="content-box">
+              {{ quote.text | raw }}
+            </div>
+            <h6>{{ quote.title }}</h6>
+          </div>
+			  </div>
+			{% endfor %}
+  </div>
+</section>

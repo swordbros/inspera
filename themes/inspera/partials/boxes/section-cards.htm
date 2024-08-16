@@ -1,0 +1,36 @@
+{% if box.is_enabled %}
+  {% set speeds = [-1, 1, 0.5] %}
+
+  <section class="content-section {{ box.no_bottom_spacing ? 'no-bottom-spacing' }}" {{ box.anchor_id ? 'id='~box.anchor_id }}>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          {% partial 'boxes/parts/_section-title.htm' %}
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        {% for item in box.cards %}
+          <div class="col-lg-4 col-md-6">
+            <div class="image-content-box" data-scroll data-scroll-speed="{{ speeds[loop.index] }}">
+              <figure>
+                <img src="{{ item.pic | media | resize(350, 471, {'mode': 'crop'})}}" alt="{{ item.pic_title }}">
+              </figure>
+              <div class="content-box">
+                <h3 class="h5">
+                  {{ item.title }}
+                </h3>
+                {{ item.text | raw }}
+                {% if url %}
+                  <a href="{{ url }}" class="custom-link" {{ item.is_external_link ? 'target=blank' }}>
+                    {{ 'Read More' | _ }}
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}

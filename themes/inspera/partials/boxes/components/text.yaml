@@ -22,11 +22,12 @@ form:
         label: box.text.fields.text.label
         type: richeditor
 
-      anchor-mixin:
-        type: mixin
       
       classes-mixin:
         type: mixin
 
       margin-mixin:
+        type: mixin
+
+      anchor-mixin:
         type: mixin

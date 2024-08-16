@@ -1,33 +1,48 @@
-<section class="content-section" {{ box.anchor_id ? 'id='~box.anchor_id }}>
+{% if box.is_enabled %}
+  <section class="content-section" {{ box.anchor_id ? 'id='~box.anchor_id }}>
     <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6">
-            <div class="side-content left">
-                {% partial 'boxes/parts/_section-title.htm' %}
-              
-                <p>{{ box.text | raw }}</p>
-            </div>
-            <div class="clearfix spacing-50"></div>
-            <div class="side-icon-list">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="side-content left">
+            {% partial 'boxes/parts/_title.htm' %}
+          
+            {{ box.text | raw }}
+          </div>
+          <div class="clearfix spacing-50"></div>
+          {% if box.info_items | length %}
+            <div class="side-icon-list left-side">
               <ul>
-                <li>
-                    {% if box.icon %}
-                        <figure> <img src="{{ box.icon | media }}" alt="Image"> </figure>
+                {% for info in box.info_items %}
+                  <li>
+                    {% if info.icon %}
+                      <figure>
+                        <img src="{{ info.icon | media }}" alt="{{ info.title }}">
+                      </figure>
                     {% endif %}
                     <div class="content">
-                        
-                        <h5>{{ box.details_title }}</h5>
-                        {% for item in box.details %}
-                            {{ item.text | raw }}
-                        {% endfor %}
+                      <h5>
+                        {{ info.title }}
+                      </h5>
+                      {{ info.text | raw }}
+                      {% if info.link %}
+                        <a href="{{ info.link }}">
+                          {{ info.link_text ?: info.link }}
+                        </a>
+                      {% endif %}
                     </div>
-                </li>
+                  </li>
+                {% endfor %}
               </ul>
             </div>
-          </div>
-          <div class="col-lg-6">
-            <figure class="side-image" data-scroll data-scroll-speed="1"> <img src="{{ box.pic | media | resize(640,775) }}" alt="{{ box.pic_title }}"> </figure>
-          </div>
+          {% endif %}
+        </div>
+
+        <div class="col-lg-6">
+          <figure class="side-image" data-scroll data-scroll-speed="1">
+            <img src="{{ box.pic | media | resize(571, 690, {'mode': 'crop'}) }}" alt="{{ box.pic_title }}">
+          </figure>
         </div>
       </div>
-</section>
+    </div>
+  </section>
+{% endif %}

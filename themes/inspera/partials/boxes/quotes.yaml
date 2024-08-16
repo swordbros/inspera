@@ -1,0 +1,37 @@
+name: box.quotes.name
+handle: quotes
+labelFrom: box_title
+section: box.sections.sections
+
+form:
+  tabs:
+    defaultTab: box.quotes.defaultTab
+    fields:
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.quotes.name
+      
+      # title-mixin:
+      #   type: mixin
+      
+      # background_color:
+      #   label: box.carousel.section_background.label
+      #   type: colorpicker
+      #   availableColors: ['#ffffff', '#F4F3F2']
+
+      quotes:
+        type: repeater
+        label: box.quotes.quotes.label 
+        form: 
+          fields:
+            title:
+              label: box.quotes.quotes.title.label
+            tynytext-mixin:
+              type: mixin
+      
+      # no-bottom-spacing-mixin:
+      #   type: mixin
+        
+      anchor-mixin:
+        type: mixin

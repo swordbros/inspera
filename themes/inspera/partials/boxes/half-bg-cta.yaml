@@ -35,30 +35,8 @@ form:
             title: 
               label: box.half_bg_cta.picture_tiles.title.label
       
-      # button-mixin:
-      #   type: mixin
-      
-      info_items:
-        label: box.half_bg_cta.info_items.label
-        type: repeater
-        prompt: box.half_bg_cta.info_items.prompt 
-        form: 
-          fields:
-            icon:
-              label: box.half_bg_cta.info_items.icon.label
-              type: mediafinder
-              mode: image
-            title: 
-              label: box.half_bg_cta.info_items.title.label
-            text:
-              label: box.half_bg_cta.info_items.text.label
-              type: richeditor
-            link_text:
-              label: box.half_bg_cta.info_items.link_text.label
-              span: auto
-            link: 
-              label: box.half_bg_cta.info_items.link.label
-              span: auto
+      infoitems-mixin:
+        type: mixin
       
       anchor-mixin:
         type: mixin

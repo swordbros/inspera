@@ -1,0 +1,9 @@
+handle: tynytext-mixin
+mixin:
+
+  text:
+    label: box.text.text.label
+    type: richeditor
+    toolbarButtons: bold|italic|fullscreen|formatUL|color|clearFormatting|html
+    comment: text.comment
+    size: small
