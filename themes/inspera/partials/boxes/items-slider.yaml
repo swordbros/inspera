@@ -1,0 +1,40 @@
+name: box.items_slider.name
+handle: items_slider
+labelFrom: box_title
+section: box.section.base_components
+
+form:
+  tabs:
+    defaultTab: box.items_slider.defaultTab
+    fields:
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.items_slider.name
+      
+      title-mixin:
+        type: mixin
+
+      anchor-mixin:
+        type: mixin
+
+      slider:
+        type: repeater
+        prompt: box.items_slider.slider.prompt 
+        label: box.items_slider.slider.label 
+        form: 
+          fields:
+            pic:
+              type: mediafinder
+              mode: image
+              label: box.items_slider.slider.pic.label 
+            pic_title:
+              label: box.items_slider.slider.pic_title.label
+            title:
+              label: box.items_slider.slider.title.label
+            link:
+              label: box.items_slider.slider.link.label
+            reference:
+              label: box.items_slider.slider.reference.label
+              type: pagefinder
+              singleMode: true
