@@ -1,0 +1,50 @@
+name: box.50text50pic.name
+handle: 50text50pic
+labelFrom: box_title
+section: box.section.base_components
+
+form:
+  tabs:
+    defaultTab: box.50text50pic.defaultTab
+    fields:
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.50text50pic.name
+      
+      title-mixin:
+        type: mixin
+
+      anchor-mixin:
+        type: mixin
+
+      icon:
+        type: mediafinder
+        mode: image
+        label: box.50text50pic.icon.label
+      
+      text:
+        type: textarea
+        label: box.50text50pic.text.label
+      
+      details_title:
+        label: box.50text50pic.details_title.label
+
+      details:
+        type: repeater
+        prompt: box.50text50pic.details.prompt 
+        label: box.50text50pic.details.label 
+        form: 
+          fields:
+            text:
+              label: box.50text50pic.details.text.label
+              type: richeditor
+
+      pic:
+        type: mediafinder
+        mode: image
+        label: box.50text50pic.pic.label
+      
+      pic_title: 
+        label: box.50text50pic.pic_title.label
+      
