@@ -8,7 +8,9 @@
       @click="hideFilter" 
       class="close-filter-button"
     >
-      <span>{{ labels.filterTitle }}</span>
+      <span>
+        {{ labels.filterTitle }}
+      </span>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.5 0 25 25"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m3 21.32 18-18M3 3.32l18 18"/></svg>  
     </div>
 
@@ -51,16 +53,17 @@
 
       </div>
       <div
-        v-for="(group, groupName) in filterOptions"
+        v-for="(group, groupName) in groupedFilters"
         :key="groupName"
         class="filter-group"
       >
-        <h3 class="h5" v-if="group.hasOwnProperty('options') && group.options.length > 1">
+        <h3 class="h5" v-if="shouldShowList(group) || shouldShowGrouped(group)">
           {{ group.title }}
         </h3>
+
         <div
+          v-if="shouldShowList(group)"
           v-for="option in group.options"
-          v-if="group.hasOwnProperty('options') && group.options.length > 1"
           :key="option.value"
           class="filter-option"
         >
@@ -72,6 +75,31 @@
             />
             {{ option.label }}
           </label>
+        </div>
+
+        <div
+          v-else-if="shouldShowGrouped(group)"
+          v-for="(options, parentName) in group.groupedOptions"
+          :key="parentName"
+          class="mb-3"
+        >
+          <h4 class="h6">
+            {{ parentName }}
+          </h4>    
+          <div
+            v-for="option in options"
+            :key="option.value"
+            class="filter-option"
+          >
+            <label>
+              <input
+                type="checkbox"
+                :value="option.value"
+                v-model="selectedFilters[groupName]"
+              />
+              {{ option.label }}
+            </label>
+          </div>
         </div>
       </div>
     </div>
@@ -118,7 +146,6 @@ export default {
         this.$emit('updateFilters', newFilters)
       },
       deep: true,
-      // immediate: true
     }
   },
   methods: {
@@ -151,10 +178,30 @@ export default {
     },
     hideFilter() {
       this.$emit('hideFilter')
+    },
+    shouldShowList(group) {
+      return group.hasOwnProperty('options') && group.hasOwnProperty('groupedOptions') === false && group.options.length > 1
+    },
+    shouldShowGrouped(group) {
+      return group.hasOwnProperty('groupedOptions') && group.options.length > 1
     }
   },
-  mounted() {
-    // console.log(this.filterOptions)
+  computed: {
+    groupedFilters() {
+      if (typeof this.filterOptions.categories === 'undefined') {
+        return this.filterOptions;
+      }
+      const categories = this.filterOptions.categories.options
+      const groupedCategories = categories.reduce((acc, option) => {
+        const parent = option.parent || 'Uncategorized';
+        if (!acc[parent]) { acc[parent] = [] }
+        acc[parent].push(option);
+        return acc;
+      }, {});
+
+      this.filterOptions.categories.groupedOptions = groupedCategories;
+      return this.filterOptions;
+    }
   }
 };
 </script>

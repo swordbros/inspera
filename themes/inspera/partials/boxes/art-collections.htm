@@ -36,53 +36,60 @@
   }
 ?>
 ==
-<section class="content-section" {{ box.anchor_id ? 'id='~box.anchor_id }}>
-  <div class="container">
-    {% for item in collections %}
-      <div 
-        class="
-        row g-0 align-items-center
-        {{ loop.index is odd ? 'collection-row-odd' : 'collection-row-even' }}
-        art-slider-{{ context.loop.index }}
-        art-slider
-        "
-        data-item="{{ item|json_encode|e('html_attr') }}"
-      >
-      </div>
-    {% endfor %}
+{% if box.is_enabled %}
+  <section
+    class="
+      content-section
+      {{ box.no_bottom_spacing ? 'no-bottom-spacing' }}
+    "
+    {{ box.anchor_id ? 'id='~box.anchor_id }}
+  >
+    <div class="container">
+      {% for item in collections %}
+        <div 
+          class="
+          row g-0 align-items-center
+          {{ loop.index is odd ? 'collection-row-odd' : 'collection-row-even' }}
+          art-slider-{{ context.loop.index }}
+          art-slider
+          "
+          data-item="{{ item|json_encode|e('html_attr') }}"
+        >
+        </div>
+      {% endfor %}
+    </div>
+  </section>
 
-  </div>
-</section>
+  {% put scripts %}
+    <script id="slider-template" type="text/x-template">
+      {% partial 'components/vue/art-collection-slider' %}
+    </script>
+    <script>
+      const SliderComponent = {
+        template: '#slider-template',
+        data() {
+          return {
+            item: {},
+            activeImage: 0
+          }
+        },
+        mounted() {
+          this.item = JSON.parse(this.$el.parentElement.dataset.item);
+        },
+        methods: {
+          showPicture(index) {
+            this.activeImage = index
+          }
+        },
+      };
 
-{% put scripts %}
-  <script id="slider-template" type="text/x-template">
-    {% partial 'components/vue/art-collection-slider' %}
-  </script>
-  <script>
-    const SliderComponent = {
-      template: '#slider-template',
-      data() {
-        return {
-          item: {},
-          activeImage: 0
-        }
-      },
-      mounted() {
-        this.item = JSON.parse(this.$el.parentElement.dataset.item);
-      },
-      methods: {
-        showPicture(index) {
-          this.activeImage = index
-        }
-      },
-    };
+      function mountSliderComponent(selector) {
+        document.querySelectorAll(selector).forEach((element) => {
+          Vue.createApp(SliderComponent).mount(element);
+        });
+      }
 
-    function mountSliderComponent(selector) {
-      document.querySelectorAll(selector).forEach((element) => {
-        Vue.createApp(SliderComponent).mount(element);
-      });
-    }
-
-    mountSliderComponent('.art-slider-{{ context.loop.index }}');
-  </script>
-{% endput %}
+      mountSliderComponent('.art-slider-{{ context.loop.index }}');
+    </script>
+  {% endput %}
+{% endif %}

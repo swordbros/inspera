@@ -118,7 +118,7 @@ export default {
         month: null,
         date: null,
         dateEnd: null,
-        types: [],
+        // types: [],
         categories: [],
         venues: [],
         audiences: [],
@@ -135,7 +135,7 @@ export default {
       filters: {
         'categories': [],
         'venues': [],
-        'types': [],
+        // 'types': [],
         'date': null,
         'dateEnd': null
       },

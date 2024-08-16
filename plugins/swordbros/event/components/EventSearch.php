@@ -232,7 +232,7 @@ class EventSearch extends ComponentBase
                     'startDateTranslated' => Carbon::parse($event->start)->translatedFormat('d F'),
                     'endDateTranslated' => Carbon::parse($event->end)->translatedFormat('d F'),
                     'year' => Carbon::parse($event->end)->format('Y'),
-                    'color' => $event->event_type->color,
+                    'color' => $event->event_category->color,
                     'venue' => $event->event_zone->name,
                     'type' => $event->event_type->name,
                     'category' => $event->event_category->name,
@@ -280,7 +280,7 @@ class EventSearch extends ComponentBase
     private function getFilters()
     {
         $this->filters = [
-            'types' => $this->getFilter('event_type'),
+            // 'types' => $this->getFilter('event_type'),
             'venues' => $this->getFilter('event_zone'),
             'categories' => $this->getFilter('event_category')
         ];
@@ -296,7 +296,8 @@ class EventSearch extends ComponentBase
                     ->map(function (EventModel $e) use ($relationName) {
                         return [
                             'value' => $e->$relationName->id,
-                            'label' => $e->$relationName->name
+                            'label' => $e->$relationName->name,
+                            'parent' => $relationName == 'event_category' ? $e->$relationName?->event_type?->name : null
                         ];
                     })
                     ->unique('value')

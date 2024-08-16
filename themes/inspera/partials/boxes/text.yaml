@@ -15,10 +15,15 @@ form:
       title-mixin:
         type: mixin
 
-      anchor-mixin:
-        type: mixin
-
-      block_text:
+      text:
         label: box.text.text.label
         type: richeditor
-       
+
+      no-bottom-spacing-mixin:
+        type: mixin
+
+      enabled-mixin:
+        type: mixin
+
+      anchor-mixin:
+        type: mixin

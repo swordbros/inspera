@@ -1,7 +1,7 @@
 <template>
   <div class="event-card">
     <div class="event-card-type">
-      {{ type }}
+      {{ category }}
     </div>
     <div class="event-card-date">
       <time :datetime="startDay" class="h4 event-card-day">
@@ -36,11 +36,11 @@
         {{ venue }}
       </p>
       <small
-        v-if="category"
+        v-if="type"
         class="event-card-category mb-4"
         :style="`background-color: `+color"
       >
-        {{ category }}
+        {{ type }}
       </small>
     </div>
   </div>

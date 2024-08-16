@@ -1,21 +1,29 @@
-<section class="content-section">
+{% if box.is_enabled %}
+  <section
+    class="
+      content-section
+      {{ box.no_bottom_spacing ? 'no-bottom-spacing' }}
+    "
+    {{ box.anchor_id ? 'id='~box.anchor_id }}
+    {{ box.min_height ? 'style=min-height:'~box.min_height ~ 'px' }}
+  >
+    {% if box.background_image or box.background_color or box.background_video %}
+      {% partial 'boxes/parts/_background.htm' %}
+    {% endif %}
 
-  {% if box.background_image or box.background_color or box.background_video %}
-    {% partial 'boxes/parts/_background.htm' %}
-  {% endif %}
+    <div class="container">
+      <div class="cta-box" data-scroll data-scroll-speed="-1">
+        
+        <div class="eyebrow">
+          {{ box.eyebrow_title | raw }}
+        </div>
+        <{{ box.title_level }}>
+          {{ box.title | raw }}
+        </{{ box.title_level }}>
 
-  <div class="container">
-    <div class="cta-box" data-scroll data-scroll-speed="-1">
-      
-      <div class="eyebrow">
-        {{ box.eyebrow_title | raw }}
+        {% partial 'boxes/parts/_button.htm' %}
+
       </div>
-      <{{ box.title_level }}>
-        {{ box.title | raw }}
-      </{{ box.title_level }}>
-
-      {% partial 'boxes/parts/_button.htm' %}
-
     </div>
-  </div>
-</section>
+  </section>
+{% endif %}

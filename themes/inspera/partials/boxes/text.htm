@@ -1,22 +1,23 @@
-<section class="content-section" {{ box.anchor_id ? 'id='~box.anchor_id }}>
-	<div class="text-block-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="section-title">
-						<div class="eyebrow">
-							{{ box.eyebrow_title | raw }}
-						</div>
-						<{{ box.title_level }}>
-							{{ box.title | raw }}
-						</{{ box.title_level }}>
-					</div>
-				</div>
-        
-				<div class="col-12">
-					{{ box.block_text|raw }}
-				</div>
-			</div>
-		</div>	
-	</div>
-</section>
+{% if box.is_enabled %}
+  <section
+    class="
+      content-section
+      {{ box.no_bottom_spacing ? 'no-bottom-spacing' }}
+    "
+    {{ box.anchor_id ? 'id='~box.anchor_id }}
+  >
+    <div class="text-block-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            {% partial 'boxes/parts/_section-title.htm' %}
+          </div>
+          
+          <div class="col-12">
+            {{ box.text | raw }}
+          </div>
+        </div>
+      </div>	
+    </div>
+  </section>
+{% endif %}
