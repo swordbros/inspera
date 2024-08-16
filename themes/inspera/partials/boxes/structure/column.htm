@@ -1,0 +1,36 @@
+{% if box.is_enabled %}
+  <div
+    class="
+      {% if box.set_column_width and not context.isEditor %}
+        {{ box.column_default ? 'col-' ~ box.column_default }}
+        {{ box.column_s ? 'col-sm-' ~ box.column_s }}
+        {{ box.column_m ? 'col-md-' ~ box.column_m }}
+        {{ box.column_l ? 'col-lg-' ~ box.column_l }}
+        {{ box.column_xl ? 'col-xl-' ~ box.column_xl }}
+      {% endif %}
+      {#% if box.column_horizontal_alignment or box.column_vertical_alignment %}
+        {% partial 'boxes/parts/_content-flex-align.htm' %}
+      {% endif %#}
+      {#% if box.background_color %}
+        uk-background-{{ box.background_color }}
+        {{ box.background_color in ['primary', 'secondary'] ? 'uk-light' }}
+      {% endif %#}
+      {#% if box.column_padding %}
+        {{ box.column_padding == 'default' ? 'uk-padding' : 'uk-padding-' ~ box.column_padding }}
+      {% endif %#}
+      {{ box.classes }}
+      {% if box.margin_top %}
+        {{ 'mt-' ~ box.margin_top }}
+      {% endif %}
+      {% if box.margin_bottom %}
+        {{ 'mb-' ~ box.margin_bottom }}
+      {% endif %}
+    "
+    {#% if box.background_image %}
+      style="background: url(' {{ box.background_image | media }} ') {{ box.background_horizontal_position }} {{ box.background_vertical_position }} / {{ box.background_size }} {{ box.background_repeat }} {{ box.background_fix ? 'fixed' }}"
+    {% endif %#}
+    {{ box.anchor_id ? 'id='~box.anchor_id }}
+  >
+    {{ box.renderChildren(context) | raw }}
+  </div>
+{% endif %}

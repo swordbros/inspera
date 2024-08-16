@@ -1,7 +1,7 @@
 name: box.intro.name
 handle: intro
 labelFrom: title
-section: box.accordion.defaultTab
+section: box.sections.sections
 
 form:
   tabs:

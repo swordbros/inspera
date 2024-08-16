@@ -1,7 +1,7 @@
 name: box.art_inspiration.name
 handle: inspiration
 labelFrom: box_title
-section: box.accordion.defaultTab
+section: box.sections.sections
 
 form:
   tabs:
@@ -39,9 +39,6 @@ form:
               label: box.art_inspiration.inspirations.pic_title.label 
 
       no-bottom-spacing-mixin:
-        type: mixin
-
-      enabled-mixin:
         type: mixin
         
       anchor-mixin:

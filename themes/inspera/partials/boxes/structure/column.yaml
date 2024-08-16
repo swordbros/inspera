@@ -1,0 +1,38 @@
+name: box.column.name
+handle: column
+labelFrom: box_title
+section: box.section.structure
+children: 
+  - nested-boxes
+contexts:
+  - section
+form:
+  tabs:
+    defaultTab: box.column.defaultTab
+    fields:
+
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.column.name
+      
+      # content_alignment-mixin:
+      #   type: mixin
+      #   tab: box.content_alignment.tab
+      
+      column_width-mixin:
+        type: mixin
+        tab: box.column_width.tab
+          
+      # background-mixin:
+      #   type: mixin
+      #   tab: box.mixin_background.tab
+
+      classes-mixin:
+        type: mixin
+
+      anchor-mixin:
+        type: mixin
+
+      margin-mixin:
+        type: mixin

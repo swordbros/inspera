@@ -1,7 +1,7 @@
 name: box.accordion.name
 handle: accordion
 labelFrom: box_title
-section: box.section.base_components
+section: box.sections.sections
 
 form:
   tabs:
@@ -27,9 +27,6 @@ form:
             text:
               type: textarea
               label:  box.accordion.accordion.text.label
-      
-      enabled-mixin:
-        type: mixin
       
       anchor-mixin:
         type: mixin

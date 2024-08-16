@@ -1,0 +1,25 @@
+handle: content_alignment-mixin
+mixin:
+  # we use flex-column property and these names are opposite of what they do (
+  column_vertical_alignment:
+    label: "box.mixin_content_alignment.column_vertical_alignment.label"
+    type: dropdown
+    default: ''
+    options:
+      '': "box.mixin_content_alignment.column_vertical_alignment.options.unset"
+      top: "box.mixin_content_alignment.column_vertical_alignment.options.top"
+      middle: "box.mixin_content_alignment.column_vertical_alignment.options.middle"
+      bottom: "box.mixin_content_alignment.column_vertical_alignment.options.bottom"
+      stretch: "box.mixin_content_alignment.column_vertical_alignment.options.stretch"
+
+  column_horizontal_alignment:
+    label: "box.mixin_content_alignment.column_horizontal_alignment.label"
+    type: dropdown
+    default: ''
+    options:
+      '': "box.mixin_content_alignment.column_horizontal_alignment.options.unset"
+      left: "box.mixin_content_alignment.column_horizontal_alignment.options.left"
+      center: "box.mixin_content_alignment.column_horizontal_alignment.options.center"
+      right: "box.mixin_content_alignment.column_horizontal_alignment.options.right"
+      between: "box.mixin_content_alignment.column_horizontal_alignment.options.between"
+      around: "box.mixin_content_alignment.column_horizontal_alignment.options.around"          

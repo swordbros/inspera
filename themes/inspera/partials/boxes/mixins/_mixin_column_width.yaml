@@ -1,0 +1,124 @@
+handle: column_width-mixin
+mixin:
+
+  set_column_width:
+    label: box.mixin_column_width.set_column_width.label
+    comment: box.mixin_column_width.set_column_width.comment
+    type: switch
+
+  column_default:
+    label: box.mixin_column_width.column_default.label
+    type: dropdown
+    options:
+      12: 100%
+      10: 10/12 (83.33%)
+      9: 75%
+      8: 8/12 (66.66%)
+      7: 7/12 (58.3%)
+      6: 50%
+      5: 5/12 (41.67%)
+      4: 25%
+      3: 3/12 (33.33%)
+      2: 2/12 (16.667%)
+      auto: box.mixin_column_width.column_default.options.auto
+      expand: box.mixin_column_width.column_default.options.expand
+    trigger:
+      action: show
+      field: set_column_width
+      condition: checked
+
+  column_s:
+    label: box.mixin_column_width.column_s.label
+    type: dropdown
+    options:
+      12: 100%
+      10: 10/12 (83.33%)
+      9: 75%
+      8: 8/12 (66.66%)
+      7: 7/12 (58.3%)
+      6: 50%
+      5: 5/12 (41.67%)
+      4: 25%
+      3: 3/12 (33.33%)
+      2: 2/12 (16.667%)
+      auto: box.mixin_column_width.column_s.options.auto
+      expand: box.mixin_column_width.column_s.options.expand
+    trigger:
+      action: show
+      field: set_column_width
+      condition: checked
+  
+  column_m:
+    label: box.mixin_column_width.column_m.label
+    type: dropdown
+    emptyOption: box.mixin_column_width.column_m.emptyOption
+    options:
+      12: 100%
+      10: 10/12 (83.33%)
+      9: 75%
+      8: 8/12 (66.66%)
+      7: 7/12 (58.3%)
+      6: 50%
+      5: 5/12 (41.67%)
+      4: 25%
+      3: 3/12 (33.33%)
+      2: 2/12 (16.667%)
+      auto: box.mixin_column_width.column_m.options.auto
+      expand: box.mixin_column_width.column_m.options.expand
+    trigger:
+      action: show
+      field: set_column_width
+      condition: checked
+  
+  column_l:
+    label: box.mixin_column_width.column_l.label
+    type: dropdown
+    emptyOption: box.mixin_column_width.column_l.emptyOption
+    options:
+      12: 100%
+      10: 10/12 (83.33%)
+      9: 75%
+      8: 8/12 (66.66%)
+      7: 7/12 (58.3%)
+      6: 50%
+      5: 5/12 (41.67%)
+      4: 25%
+      3: 3/12 (33.33%)
+      2: 2/12 (16.667%)
+      auto: box.mixin_column_width.column_l.emptyOption
+      expand: box.mixin_column_width.column_l.emptyOption
+    trigger:
+      action: show
+      field: set_column_width
+      condition: checked
+  
+  column_xl:
+    label: box.mixin_column_width.column_xl.label
+    type: dropdown
+    emptyOption: box.mixin_column_width.column_xl.emptyOption
+    options:
+      12: 100%
+      10: 10/12 (83.33%)
+      9: 75%
+      8: 8/12 (66.66%)
+      7: 7/12 (58.3%)
+      6: 50%
+      5: 5/12 (41.67%)
+      4: 25%
+      3: 3/12 (33.33%)
+      2: 2/12 (16.667%)
+      auto: box.mixin_column_width.column_xl.options.auto
+      expand: box.mixin_column_width.column_xl.options.expand
+    trigger:
+      action: show
+      field: set_column_width
+      condition: checked
+  
+  column_padding:
+    label: box.mixin_column_width.column_padding.label
+    type: dropdown
+    emptyOption: box.mixin_column_width.column_padding.emptyOption
+    options:
+      default: box.mixin_column_width.column_padding.options.default
+      small: box.mixin_column_width.column_padding.options.small
+      large: box.mixin_column_width.column_padding.options.large

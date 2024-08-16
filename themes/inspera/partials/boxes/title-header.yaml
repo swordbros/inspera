@@ -1,7 +1,7 @@
 name: box.title_header.name
 handle: header
 labelFrom: box_title
-section: box.defaultTab.content
+section: box.sections.sections
 
 form:
   tabs:

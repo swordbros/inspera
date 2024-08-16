@@ -5,7 +5,7 @@
       {{ box.no_bottom_spacing ? 'no-bottom-spacing' }}
       {{ not box.background_color ? 'bottom-white' }}
     "
-    {{ box.background_color ? 'data-background=' ~ box.background_color }}
+    {{ box.background_color and box.background_color != '#transparent' ? 'data-background=' ~ box.background_color }}
     {{ box.anchor_id ? 'id='~box.anchor_id }}
   >
     {% if box.background_color %}
@@ -20,7 +20,7 @@
 
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-12">
+        <div class="col-12" {{ box.font_color_theme == 'light' ? 'style=color:#fff' }}>
           {% partial 'boxes/parts/_section-title.htm' %}
         </div>
       </div>

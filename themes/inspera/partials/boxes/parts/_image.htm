@@ -9,9 +9,8 @@
   {% set width = box.picture_width %}
 {% endif %#}
 <figure
-  data-scroll data-scroll-speed="1"
+  data-scroll {#data-scroll-speed="1"#}
   class="
-    image-box
     image-group
     {#% if box.column_horizontal_alignment or box.column_vertical_alignment %}
       {% partial 'boxes/parts/_content-flex-align.htm' %}
@@ -20,14 +19,14 @@
 >
   {% if box.picture_link %}
     <a
-      class="image-group__link"
+      class="image-group-link"
       href="{{ box.picture_link }}"
     >
     {% put closeLink %}</a>{% endput %}
   {% endif %}
 
     <img
-      class="image-group__picture"
+      class="image-group-picture img-fluid"
       src="{{ box.picture | media }}"      
       alt="{{ box.caption ?: 'Image' }}"
       {{ box.picture_width ? 'width=' ~ box.picture_width }}
@@ -38,7 +37,7 @@
   {% if box.caption %}
     <figcaption
       class="
-        image-group__caption
+        image-group-caption
         {{ box.caption_alignment != 'left' ? 'text-' ~ box.caption_alignment }}
       "
     >

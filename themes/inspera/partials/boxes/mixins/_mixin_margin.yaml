@@ -1,0 +1,26 @@
+handle: margin-mixin
+mixin:  
+
+  margin_top:
+    tab: box.spacing.tab
+    label: box.mixin_margin.margin_top.label
+    type: dropdown
+    span: left
+    emptyOption: box.mixin_margin.margin_top.options.none
+    options:
+      3: box.mixin_margin.margin_top.options.small
+      4: box.mixin_margin.margin_top.options.medium
+      5: box.mixin_margin.margin_top.options.large
+      auto: box.mixin_margin.margin_top.options.auto
+
+  margin_bottom:
+    tab: box.spacing.tab
+    label: box.mixin_margin.margin_bottom.label
+    type: dropdown
+    span: right
+    emptyOption: box.mixin_margin.margin_bottom.options.none
+    options:
+      3: box.mixin_margin.margin_top.options.small
+      4: box.mixin_margin.margin_top.options.medium
+      5: box.mixin_margin.margin_top.options.large
+      auto: box.mixin_margin.margin_top.options.auto

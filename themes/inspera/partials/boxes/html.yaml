@@ -23,9 +23,6 @@ form:
       responsive_embed:
         label: box.html.fields.responsive_embed.label 
         type: switch
-      
-      enabled-mixin:
-        type: mixin
 
       anchor-mixin:
         type: mixin

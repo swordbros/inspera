@@ -1,7 +1,7 @@
 name: CTA
 handle: cta
 labelFrom: box_title
-section: box.defaultTab.content
+section: box.sections.sections
 
 form:
   tabs:
@@ -27,9 +27,6 @@ form:
         type: number
 
       no-bottom-spacing-mixin:
-        type: mixin
-
-      enabled-mixin:
         type: mixin
       
       anchor-mixin:

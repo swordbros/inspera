@@ -20,16 +20,22 @@ class ExtendBoxesScaffoldingClasses
             function (Box $box, RenderContext $context) {
 
                 $data = $box->data;
-                if (in_array(
-                    $box->partial,
-                    ['column', 'card']
-                ) && $data['set_column_width'] == 1) {
-                    $classes = [];
-                    $classes[] = (isset($data['column_default']) && $data['column_default'] != '1-1') ? "uk-width-{$data['column_default']}" : '';
-                    $classes[] = isset($data['column_s']) ? "uk-width-{$data['column_s']}@s" : '';
-                    $classes[] = (isset($data['column_m']) && $data['column_m']) ? "uk-width-{$data['column_m']}@m" : '';
-                    $classes[] = (isset($data['column_l']) && $data['column_l']) ? "uk-width-{$data['column_l']}@l" : '';
-                    $classes[] = (isset($data['column_xl']) && $data['column_xl']) ? "uk-width-{$data['column_xl']}@xl" : '';
+                if (
+                    in_array(
+                        $box->partial,
+                        ['column'/*, 'card'*/]
+                    ) && isset($data['set_column_width'])
+                    && $data['set_column_width'] == 1
+                ) {
+                    $classes[] = (isset($data['column_default'])) ? "col-{$data['column_default']}" : '';
+                    $classes[] = isset($data['column_s']) ? "col-sm-{$data['column_s']}" : '';
+                    $classes[] = (isset($data['column_m']) && $data['column_m']) ? "col-md-{$data['column_m']}" : '';
+                    $classes[] = (isset($data['column_l']) && $data['column_l']) ? "col-lg-{$data['column_l']}" : '';
+                    $classes[] = (isset($data['column_xl']) && $data['column_xl']) ? "col-xl-{$data['column_xl']}" : '';
+
+                    if (empty($classes)) {
+                        $classes[] = 'col';
+                    }
 
                     if ($classes) {
                         return array_filter($classes);

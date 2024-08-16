@@ -4,6 +4,7 @@
       content-section
       {{ box.no_bottom_spacing ? 'no-bottom-spacing' }}
     "
+    {{ box.background_color ? 'data-background=' ~ box.background_color }}
     {{ box.anchor_id ? 'id='~box.anchor_id }}
   >
     <div class="container">

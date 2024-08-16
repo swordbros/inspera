@@ -1,0 +1,30 @@
+{% if box.is_enabled %}
+  <div 
+    class="
+      {% if box.margin_top %}
+        {{ 'uk-margin-' ~ box.margin_top ~ '-top' }}
+      {% endif %}
+      {% if box.margin_bottom %}
+        {{ 'uk-margin-' ~ box.margin_bottom ~ '-bottom' }}
+      {% endif %}
+    ">
+    <div 
+      uk-grid
+      class="
+        uk-flex
+        uk-flex-wrap
+        uk-child-width-auto
+        uk-grid-small
+        {% if box.column_horizontal_alignment or box.column_vertical_alignment %}
+          {% partial 'boxes/parts/_content-flex-align.htm' %}
+        {% endif %}
+      "
+    >
+      {% for button in box.buttons %}
+        <div>
+          {% partial 'boxes/parts/_button' button=button %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

@@ -1,0 +1,42 @@
+name: box.buttons.name
+handle: buttons-group
+section: box.section.base_components
+labelFrom: box_title
+contexts: 
+  - nested-boxes
+validation:
+  rules:    
+    buttons.*.button_text:
+      - required
+  customMessages:
+    buttons.*.button_text: box.buttons.validation.button_text
+
+form:
+  tabs:
+    defaultTab: box.buttons.defaultTab
+    fields:
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.accordion.name
+
+      buttons:
+        commentAbove: box.buttons.commentAbove
+        type: repeater
+        prompt: box.buttons.prompt
+        maxItems: 2         
+        style: collapsed   
+        form:
+          fields:
+            button-mixin:
+              type: mixin
+              
+      # content_alignment-mixin:
+      #   type: mixin
+      #   tab: box.content_alignment.tab
+
+      classes-mixin:
+        type: mixin
+
+      margin-mixin:
+        type: mixin

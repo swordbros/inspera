@@ -1,0 +1,60 @@
+{% if box.is_enabled %}
+  <section class="content-section" {{ box.anchor_id ? 'id='~box.anchor_id }}>
+    <div class="container">
+      <div class="row g-0">
+			  <div class="col-lg-6">
+				  <div class="side-image left-half" data-scroll data-scroll-speed="2">
+				    <img src="{{ box.picture | media | resize(915, 770, {'mode': 'crop'}) }}" alt="{{ box.picture_alt }}">
+				  </div>
+          {% if box.info_items | length %}
+            <div class="side-icon-list left-side">
+              <ul>
+                {% for info in box.info_items %}
+                  <li>
+                    {% if info.icon %}
+                      <figure>
+                        <img src="{{ info.icon | media }}" alt="{{ info.title }}">
+                      </figure>
+                    {% endif %}
+                    <div class="content">
+                      <h5>
+                        {{ info.title }}
+                      </h5>
+                      {{ info.text | raw }}
+                      {% if info.link %}
+                        <a href="{{ info.link }}">
+                          {{ info.link_text ?: info.link }}
+                        </a>
+                      {% endif %}
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        </div>
+        <div class="col-lg-6">
+          <div class="side-arts">
+            <div class="titles">
+              <div class="eyebrow">
+                {{ box.eyebrow_title | raw }}
+              </div>
+              <{{ box.title_level }}>
+                {{ box.title | raw }}
+              </{{ box.title_level }}>
+            </div>
+            {% if box.picture_tiles | length %}
+              <ul>
+                {% for item in box.picture_tiles %}
+                  <li data-scroll data-scroll-speed="{{ loop.index is odd ? 0.5 : 1 }}">
+                    <img src="{{ item.pic | media }}" alt="{{ item.title }}">
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}

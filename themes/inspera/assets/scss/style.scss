@@ -1729,7 +1729,7 @@ $slider-nav-size: 50px;
           }
         }
 
-        p, .title__group {
+        p, .title-group {
           text-align: right;
           @media (max-width: 767px) {
             text-align: center;
@@ -2214,8 +2214,13 @@ $slider-nav-size: 50px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto 100px;
   max-width: 750px;
+  margin-bottom: 100px;
+
+  &.text-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   figure {
     width: 100%;
@@ -2448,6 +2453,7 @@ $slider-nav-size: 50px;
         a {
           display: inline-block;
           text-decoration: underline;
+          margin: 0;
         }
       }
     }
@@ -2590,35 +2596,20 @@ $slider-nav-size: 50px;
   }
 }
 
-/* SIDE LIST */
-.side-list {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  &.left {
-    padding-right: 20%;
-  }
-  &.right {
-    padding-left: 20%;
-  }
-  h2 {
-    width: 100%;
-    display: block;
-    font-size: 52px;
-    @include font-second;
-    margin-bottom: 30px;
-  }
+.richeditor {
   ul {
     width: 100%;
     display: block;
     margin: 0;
     padding: 0;
+
     li {
       width: 100%;
       display: block;
       padding: 0;
       margin-bottom: 20px;
       list-style: none;
+
       &:before {
         content: "";
         width: 6px;
@@ -2630,6 +2621,60 @@ $slider-nav-size: 50px;
         margin-right: 10px;
         border-radius: 50%;
       }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+/* SIDE LIST */
+.side-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  &.left {
+    padding-right: 20%;
+  }
+  &.right {
+    padding-left: 20%;
+  }
+
+  h2 {
+    width: 100%;
+    display: block;
+    font-size: 52px;
+    @include font-second;
+    margin-bottom: 30px;
+  }
+
+  ul {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+
+    li {
+      width: 100%;
+      display: block;
+      padding: 0;
+      margin-bottom: 20px;
+      list-style: none;
+
+      &:before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: $color-dark;
+        opacity: 0.5;
+        float: left;
+        margin-top: 10px;
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+
       &:last-child {
         margin-bottom: 0;
       }
@@ -3005,6 +3050,23 @@ $slider-nav-size: 50px;
       display: block;
       color: $font-color-lighter;
     }
+  }
+}
+
+.image-group {
+  margin-bottom: 0;
+
+  &-link {
+    display: block;
+  }
+
+  &-picture {
+    display: block;
+    max-width: 100%;
+  }
+
+  &-caption {
+    margin-top: 1rem;
   }
 }
 

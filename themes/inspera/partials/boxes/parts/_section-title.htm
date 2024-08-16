@@ -4,6 +4,11 @@
     {{ box.horizontal_alignment ? 'text-'~box.horizontal_alignment }}
   "
 >
+  {% if box.eyebrow_title %}
+    <div class="eyebrow">
+      {{ box.eyebrow_title }}
+    </div>
+  {% endif %}
   <{{ box.title_level }}>
     {{ box.title | raw }}
   </{{ box.title_level }}>

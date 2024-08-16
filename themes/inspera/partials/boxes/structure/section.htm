@@ -1,0 +1,54 @@
+{% if box.is_enabled %}
+  <section
+    class="
+      content-section
+      {{ box.no_bottom_spacing ? 'no-bottom-spacing' }}
+      {{ box.classes }}
+      {% if box.margin_top %}
+        {{ 'mt-' ~ box.margin_top }}
+      {% endif %}
+      {% if box.margin_bottom %}
+        {{ 'mb-' ~ box.margin_bottom }}
+      {% endif %}
+    "
+    {{ box.background_color and box.background_color != '#transparent' ? 'data-background=' ~ box.background_color }}
+    {{ box.anchor_id ? 'id='~box.anchor_id }}
+  >
+    {% if box.container != 'no' %}<div class="{{ box.container }}">{% endif %}
+
+      <div
+        class="
+          row
+          {% if box.gutters_horizontal or box.gutters_vertical %}
+            {{ box.gutters_horizontal != 3 ? 'gx-'~ box.gutters_horizontal }}
+            {{ box.gutters_vertical != 3 ? 'gy-'~ box.gutters_vertical }}
+          {% else %}
+            {{ box.columns_gap != 3 ? 'g-'~ box.columns_gap }}
+          {% endif %}
+          {{ box.classes }}
+          {% if box.margin_top %}
+            {{ 'mt-' ~ box.margin_top }}
+          {% endif %}
+          {% if box.margin_bottom %}
+            {{ 'mb-' ~ box.margin_bottom }}
+          {% endif %}
+          {% if box.set_all_columns %}
+            {{ box.columns_default ? 'row-cols-' ~ box.columns_default }}
+            {{ box.columns_s ? 'row-cols-sm-' ~ box.columns_s }}
+            {{ box.columns_m ? 'row-cols-md-' ~ box.columns_m }}
+            {{ box.columns_l ? 'row-cols-lg-' ~ box.columns_l }}
+            {{ box.columns_xl ? 'row-cols-xl-' ~ box.columns_xl }}
+          {% endif %}    
+        "  
+        {{ box.anchor_id ? 'id='~box.anchor_id }}
+        data-boxes-container
+      > 
+
+        {{ box.renderChildren(context) | raw }}
+        
+      </div>
+
+    {% if box.container != 'no' %}</div>{% endif %}
+
+  </section>
+{% endif %}

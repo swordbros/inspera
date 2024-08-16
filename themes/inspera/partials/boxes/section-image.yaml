@@ -1,7 +1,7 @@
 name: box.image.name
 handle: image
 labelFrom: box_title
-section: box.accordion.defaultTab
+section: box.sections.sections
 
 validation:
   rules:
@@ -22,9 +22,6 @@ form:
         type: mixin
 
       no-bottom-spacing-mixin:
-        type: mixin
-
-      enabled-mixin:
         type: mixin
         
       anchor-mixin:

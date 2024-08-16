@@ -1,0 +1,141 @@
+name: box.section.name
+handle: section
+labelFrom: box_title
+section: box.section.structure
+children: 
+  - section
+
+form:
+  tabs:
+    defaultTab: box.section.defaultTab
+    fields:
+
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.section.name
+        span: auto
+      
+      background_color:
+        label: box.carousel.section_background.label
+        type: colorpicker
+        availableColors: ['#94ffc4','#0d5eff', '#F4F3F2', 'transparent']
+
+      font_color_theme:
+        label: box.carousel.font_color_theme.label
+        type: dropdown
+        default: dark
+        options:
+          dark: box.carousel.font_color_theme.dark
+          light: box.carousel.font_color_theme.light
+        trigger:
+          field: background_color
+          condition: value[]
+          action: hide
+      
+      container:
+        label: box.section.fields.container.label
+        type: dropdown
+        default: container
+        options:
+          no: box.section.fields.container.options.no
+          'container-fluid': box.section.fields.container.options.fluid
+          container: box.section.fields.container.options.fixed
+          'container-xxl':  box.section.fields.container.options.xxl
+
+      set_all_columns:
+        label: box.columns.fields.set_all_columns.label
+        type: switch
+
+      columns_default:
+        label: box.mixin_column_width.column_default.label
+        type: dropdown
+        default: 1
+        options:
+          1: 1
+          2: 2
+          3: 3
+          4: 4
+          5: 5
+          6: 6
+          '': box.columns.fields.options.unset
+        trigger:
+          action: show
+          field: set_all_columns
+          condition: checked
+
+      columns_s:
+        label: box.mixin_column_width.column_s.label
+        type: dropdown
+        default: 1
+        options:
+          1: 1
+          2: 2
+          3: 3
+          4: 4
+          5: 5
+          6: 6
+          '': box.columns.fields.options.unset
+        trigger:
+          action: show
+          field: set_all_columns
+          condition: checked
+      
+      columns_m:
+        label: box.mixin_column_width.column_m.label
+        type: dropdown
+        emptyOption: box.mixin_column_width.column_m.emptyOption
+        options:
+          2: 2
+          3: 3
+          4: 4
+          5: 5
+          6: 6
+          '': box.columns.fields.options.unset
+        trigger:
+          action: show
+          field: set_all_columns
+          condition: checked
+      
+      columns_l:
+        label: box.mixin_column_width.column_l.label
+        type: dropdown
+        emptyOption: box.mixin_column_width.column_m.emptyOption
+        options:
+          2: 2
+          3: 3
+          4: 4
+          5: 5
+          6: 6
+        trigger:
+          action: show
+          field: set_all_columns
+          condition: checked
+      
+      columns_xl:
+        label: box.mixin_column_width.column_xl.label
+        type: dropdown
+        emptyOption: box.mixin_column_width.column_m.emptyOption
+        options:
+          2: 2
+          3: 3
+          4: 4
+          5: 5
+          6: 6
+        trigger:
+          action: show
+          field: set_all_columns
+          condition: checked
+        
+      gutters-mixin:
+        type: mixin
+        tab: box.spacing.tab
+
+      classes-mixin:
+        type: mixin
+
+      margin-mixin:
+        type: mixin
+      
+      anchor-mixin:
+        type: mixin

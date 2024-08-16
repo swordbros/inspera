@@ -1,8 +1,11 @@
 name: box.text.name
 handle: text
 labelFrom: box_title
-section: box.section.base_components
-
+section: box.sections.sections
+validation:
+  rules:
+    text:
+      - required
 form:
   tabs:
     defaultTab: box.accordion.defaultTab
@@ -20,9 +23,6 @@ form:
         type: richeditor
 
       no-bottom-spacing-mixin:
-        type: mixin
-
-      enabled-mixin:
         type: mixin
 
       anchor-mixin:

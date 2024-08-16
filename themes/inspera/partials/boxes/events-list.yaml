@@ -1,7 +1,7 @@
 name: box.upcoming_events.name
 handle: events
 labelFrom: box_title
-section: box.accordion.defaultTab
+section: box.sections.sections
 components:
   eventList:
     uniqueAlias: true
@@ -23,9 +23,6 @@ form:
         label: box.upcoming_events.count
       
       no-bottom-spacing-mixin:
-        type: mixin
-
-      enabled-mixin:
         type: mixin
       
       button-mixin:

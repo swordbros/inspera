@@ -1,39 +1,16 @@
-{# use this but with template - bootstrap5 styles #}
-
-<div
-  class="
-    title__group      
-    {{ box.classes }}
-  "
-  {{ box.anchor_id ? 'id='~box.anchor_id }}
->
+<div class="title-group">
   {% if box.eyebrow_title %}
-    <div 
-      class="
-        title__eyebrow
-        title__eyebrow--{{ box.title_level }}
-      "
-    >
+    <div class="eyebrow">
       {{ box.eyebrow_title }}
     </div>
   {% endif %}
 
-  <{{ box.title_level }}
-    class="
-      title__{{ box.title_level }}
-      {{ box.horizontal_alignment ? 'uk-text-' ~ box.horizontal_alignment }}
-    "
-  >
+  <{{ box.title_level }}>
     {{ box.title }}
   </{{ box.title_level }}>
 
   {% if box.sub_title %}
-    <div
-      class="
-        title__subtitle
-        title__subtitle--{{ box.title_level }}
-      "
-    >
+    <div class="subtitle">
       {{ box.sub_title | raw }}
     </div>
   {% endif %}

@@ -1,0 +1,38 @@
+handle: gutters-mixin
+mixin:  
+  
+  columns_gap:
+    label: box.columns.fields.columns_gap.label
+    type: balloon-selector
+    default: 3
+    options:
+      0: box.columns.fields.columns_gap.options.remove
+      2: box.columns.fields.columns_gap.options.small
+      3: box.columns.fields.columns_gap.options.medium
+      4: box.columns.fields.columns_gap.options.large
+      5: box.columns.fields.columns_gap.options.xlarge
+      # custom: box.columns.fields.columns_gap.options.custom # show input for classes
+
+  gutters_horizontal:
+    label: Horizontal gap #box.mixin_gutters.gutters_horizontal.label
+    type: dropdown
+    span: left
+    emptyOption: --
+    options:
+      0: box.columns.fields.columns_gap.options.remove
+      2: box.mixin_margin.margin_top.options.small
+      3: box.mixin_margin.margin_top.options.medium
+      4: box.mixin_margin.margin_top.options.large
+      5: box.columns.fields.columns_gap.options.xlarge
+
+  gutters_vertical:
+    label: Vertical gap #box.mixin_gutters.gutters_vertical.label
+    type: dropdown
+    span: right
+    emptyOption: --
+    options:
+      0: box.columns.fields.columns_gap.options.remove
+      2: box.mixin_margin.margin_top.options.small
+      3: box.mixin_margin.margin_top.options.medium
+      4: box.mixin_margin.margin_top.options.large
+      5: box.columns.fields.columns_gap.options.xlarge

@@ -1,7 +1,7 @@
 name: box.carousel.name
 handle: carousel
 labelFrom: box_title
-section: box.defaultTab.content
+section: box.sections.sections
 
 form:
   tabs:
@@ -19,7 +19,19 @@ form:
       background_color:
         label: box.carousel.section_background.label
         type: colorpicker
-        availableColors: ['#94ffc4','#0d5eff', '#F4F3F2']
+        availableColors: ['#94ffc4','#0d5eff', '#F4F3F2', 'transparent']
+
+      font_color_theme:
+        label: box.carousel.font_color_theme.label
+        type: dropdown
+        default: dark
+        options:
+          dark: box.carousel.font_color_theme.dark
+          light: box.carousel.font_color_theme.light
+        trigger:
+          field: background_color
+          condition: value[]
+          action: hide
 
       items:
         type: repeater
@@ -40,9 +52,6 @@ form:
               type: richeditor
       
       no-bottom-spacing-mixin:
-        type: mixin
-
-      enabled-mixin:
         type: mixin
 
       anchor-mixin:

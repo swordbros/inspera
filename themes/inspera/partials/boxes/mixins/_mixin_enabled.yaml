@@ -1,7 +1,0 @@
-handle: enabled-mixin
-mixin:
-  is_enabled:
-    label: box.mixins.enabled.label
-    type: switch
-    default: true
-    tab: box.mixins.enabled.tab

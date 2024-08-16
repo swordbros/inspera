@@ -1,7 +1,7 @@
 name: box.art_collections.name
 handle: collections
 labelFrom: box_title
-section: box.accordion.defaultTab
+section: box.sections.sections
 
 
 form:
@@ -40,9 +40,6 @@ form:
                     label: box.art_collections.collections.pic_title.label
 
       no-bottom-spacing-mixin:
-        type: mixin
-
-      enabled-mixin:
         type: mixin
         
       anchor-mixin:

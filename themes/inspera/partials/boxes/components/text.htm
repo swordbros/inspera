@@ -1,0 +1,20 @@
+{% if box.is_enabled %}
+  <div
+    class="
+      text-box
+      richeditor
+      {% if box.margin_top %}
+        {{ 'mt-' ~ box.margin_top }}
+      {% endif %}
+      {% if box.margin_bottom %}
+        {{ 'mb-' ~ box.margin_bottom }}
+      {% endif %}
+      {{ box.classes }}
+    "
+    {{ box.anchor_id ? 'id='~box.anchor_id }}
+  >
+
+    {{ box.text | content | raw }}
+     
+  </div>
+{% endif %}

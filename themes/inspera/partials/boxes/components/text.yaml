@@ -1,32 +1,32 @@
-name: box.image.name
-handle: nested-image
+name: box.text.name
+handle: nested-text
 labelFrom: box_title
 section: box.section.base_components
 contexts: 
   - nested-boxes
 validation:
   rules:
-    picture:
+    text:
       - required
-      
 form:
   tabs:
-    defaultTab: box.image.defaultTab
+    defaultTab: box.text.defaultTab
     fields:
 
       box_title:
         label: box.box_title.label
         comment: box.box_title.comment
-        default: box.image.name
-
-      image-mixin:
-        type: mixin
-
-      margin-mixin:
-        type: mixin
+        default: box.text.name
+        
+      text:
+        label: box.text.fields.text.label
+        type: richeditor
 
       anchor-mixin:
         type: mixin
       
       classes-mixin:
+        type: mixin
+
+      margin-mixin:
         type: mixin
