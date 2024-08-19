@@ -1,0 +1,19 @@
+url = "/login"
+layout = "default"
+title = "Login"
+is_hidden = 0
+
+[authentication]
+rememberMe = "always"
+twoFactorAuth = 1
+recoverPassword = 1
+==
+<section class="content-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 offset-md-3 text-center">
+        {% component 'authentication' %}
+      </div>
+    </div>
+  </div>
+</section>

@@ -21,32 +21,41 @@ mixin:
       primary: box.mixin_button.button_type.options.primary
       secondary: box.mixin_button.button_type.options.secondary
       danger: box.mixin_button.button_type.options.danger
-      text: box.mixin_button.button_type.options.text
+      # text: box.mixin_button.button_type.options.text
       link: box.mixin_button.button_type.options.link
 
   button_size:
     label: box.mixin_button.button_size.label
     type: dropdown
     span: right
-    default: default
+    default: medium
     options:
       medium: box.mixin_button.button_size.options.medium
-      large: box.mixin_button.button_size.options.large
-      small: box.mixin_button.button_size.options.small
+      # large: box.mixin_button.button_size.options.large
+      sm: box.mixin_button.button_size.options.small
   
-  button_width:
-    label: box.mixin_button.button_width.label
-    type: dropdown
-    span: left
-    emptyOption: box.mixin_button.button_width.emptyOption
-    options: 
-      wide: box.mixin_button.button_width.wide
+  # button_width:
+  #   label: box.mixin_button.button_width.label
+  #   type: dropdown
+  #   span: left
+  #   emptyOption: box.mixin_button.button_width.emptyOption
+  #   options: 
+  #     wide: box.mixin_button.button_width.wide
 
+  button_style:
+    label: box.mixin_button.button_style.label
+    type: balloon-selector
+    default: standard
+    span: right
+    options:
+      standard: box.mixin_button.button_style.standard
+      'fancy-hover': box.mixin_button.button_style.fancy
+  
   button_is_external:
     label: box.mixin_button.button_is_external.label
     type: switch
-    span: right
-
+    span: left
+    
   button_attributes:
     label: box.mixin_button.button_attributes.label
     type: text
