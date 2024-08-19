@@ -4,6 +4,7 @@ labelFrom: box_title
 section: box.section.base_components
 contexts: 
   - nested-boxes
+  - blog
 validation:
   rules:
     text:

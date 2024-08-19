@@ -1,0 +1,65 @@
+description = "Default layout"
+
+[sitePicker]
+
+[section mainMenu]
+handle = "Site\Menus"
+identifier = "slug"
+value = "top-menu"
+
+[genericForm]
+group = "newsletter"
+rules[email] = "required|email"
+messages_success = "Your  newsletter subscribe was successfully submitted"
+messages_errors = "There were errors with your submission"
+mail_enabled = 1
+mail_subject = "new subscribe to newsletter"
+reset_form = 0
+inline_errors = "display"
+js_on_success = "new bootstrap.Modal(document.getElementById('newsletter-thankyou')).show();"
+js_on_error = "new bootstrap.Modal(document.getElementById('newsletter-thankyou')).show();"
+allowed_fields[] = "email"
+sanitize_data = "disabled"
+anonymize_ip = "disabled"
+recaptcha_theme = "light"
+recaptcha_type = "image"
+recaptcha_size = "normal"
+emails_date_format = "Y-m-d"
+
+[eventSearch]
+==
+{% if mainMenu.items.count %}
+  {% set menuItems = mainMenu.items.toNested | filter(i => not i.is_hidden) %}
+{% endif %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ this.page.meta_title ?: placeholder('pageTitle') }}</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        {% partial 'components/head-meta' %}
+        {% partial 'components/head-styles' %}
+    </head>
+
+    <body class="page-{{ this.page.title|slug }} page-loaded">        
+
+        {% partial 'components/aside' menuItems=menuItems %}
+
+        <div class="{{ this.page.id != 'event-events' ? 'smooth-scroll' }}">
+            <div class="section-wrapper" data-scroll-section>
+
+                {% partial 'components/header' menuItems=menuItems %}
+
+                {% page %}
+
+            </div>
+            
+            {% partial 'components/footer' %}
+        </div>
+
+        <a href="#" class="back-to-top"><i class="far fa-chevron-up"></i></a>
+
+        {% partial 'components/scripts' %}
+    </body>
+</html>

@@ -1,5 +1,5 @@
-name: box.image.name
-handle: nested-image
+name: box.blockquote.name
+handle: nested-blockquote
 labelFrom: box_title
 section: box.section.base_components
 contexts: 
@@ -7,27 +7,27 @@ contexts:
   - blog
 validation:
   rules:
-    picture:
+    text:
       - required
-      
 form:
   tabs:
-    defaultTab: box.image.defaultTab
+    defaultTab: box.text.defaultTab
     fields:
 
       box_title:
         label: box.box_title.label
         comment: box.box_title.comment
-        default: box.image.name
-
-      image-mixin:
+        default: box.blockquote.name
+        
+      text:
+        label: box.text.fields.text.label
+        type: textarea
+      
+      classes-mixin:
         type: mixin
 
       margin-mixin:
         type: mixin
 
       anchor-mixin:
-        type: mixin
-      
-      classes-mixin:
         type: mixin

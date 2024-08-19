@@ -2848,6 +2848,7 @@ $slider-nav-size: 50px;
 .col-md-6:nth-child(2) .testimonial-box {
   margin-left: auto;
 }
+
 .testimonial-box {
   width: 100%;
   max-width: 90%;
@@ -3888,6 +3889,7 @@ $slider-nav-size: 50px;
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 120px;
+
   figure {
     width: 100%;
     display: inline-block;
@@ -3904,17 +3906,19 @@ $slider-nav-size: 50px;
       @include transition-cubic;
     }
   }
+
   .content-box {
     width: 100%;
     display: inline-block;
     position: relative;
     z-index: 1;
     line-height: 1.7;
+
     small {
       height: 22px;
       line-height: 22px;
       display: inline-block;
-      background: $color-main;
+      background: $color-secondary;
       padding: 0 10px;
       font-size: 13px;
       font-weight: 500;

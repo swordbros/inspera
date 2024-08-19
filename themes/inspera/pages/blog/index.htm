@@ -1,0 +1,81 @@
+##
+url = "/blog"
+layout = "blog"
+title = "Blog Homepage"
+
+[collection blog]
+handle = "Blog\Post"
+
+[collection categories]
+handle = "Blog\Category"
+
+[global blogConfig]
+handle = "Blog\Config"
+
+[resources]
+vars[activeNavLink] = 'blog'
+==
+{% set posts = blog.paginate(5) %}
+
+{% set header = {
+    'title': blogConfig.blog_name ?: 'Blog',
+    'intro': blogConfig.about_this_blog,
+    'background': '#F4F3F2'
+} %}
+
+{% partial 'components/page-title' header=header %}
+
+<section class="content-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        {% for post in posts %}
+          {% partial 'blog/post-card' post=post bannerCss='banner-lg' %}
+        {% endfor %}
+
+        <nav class="blog-pagination" aria-label="Pagination">
+          {{ pager(posts) }}
+        </nav>
+      </div>
+
+      <div class="col-lg-4">
+        <aside class="sidebar">
+          {#<div class="widget">
+            <h6 class="widget-title">
+              {{ 'Search' |_ }}
+            </h6>
+            <form>
+              <input type="search" placeholder="Type here to search">
+              <input type="submit" value="Search">
+            </form>
+          </div>#}
+
+          <div class="widget">
+            <h6 class="widget-title">
+              {{ 'Categories' |_ }}
+            </h6>
+            <ul class="categories">
+              {% for category in categories %}
+                <li>
+                  <a href="#">
+                    {{ category.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          {#<div class="widget">
+            <h6 class="widget-title">GALLERY</h6>
+            <ul class="widget-gallery">
+              <li><a href="images/carousel-image01.jpg" data-fancybox><img src="images/carousel-image01.jpg" alt="Image"></a></li>
+              <li><a href="images/carousel-image02.jpg" data-fancybox><img src="images/carousel-image02.jpg" alt="Image"></a></li>
+              <li><a href="images/carousel-image05.jpg" data-fancybox><img src="images/carousel-image05.jpg" alt="Image"></a></li>
+              <li><a href="images/carousel-image04.jpg" data-fancybox><img src="images/carousel-image04.jpg" alt="Image"></a></li>
+            </ul>
+          </div>#}
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>

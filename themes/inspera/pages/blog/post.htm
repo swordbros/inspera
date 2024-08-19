@@ -1,6 +1,6 @@
 ##
 url = "/blog/post/:slug/:id"
-layout = "blog"
+layout = "default"
 title = "Display a Blog Post"
 meta_title = "{{ blog.title }} - Blog"
 
@@ -8,78 +8,91 @@ meta_title = "{{ blog.title }} - Blog"
 handle = "Blog\Post"
 identifier = "id"
 
-[collection blogCategories]
+[collection categories]
 handle = "Blog\Category"
 
 [resources]
 vars[activeNavLink] = 'blog'
 ==
 {% if post is empty %}
-    {% do abort(404) %}
+  {% do abort(404) %}
 {% elseif post.slug and post.slug != this.param.slug %}
-    {% do redirect(''|page({ slug: post.slug }), 301) %}
+  {% do redirect(''|page({ slug: post.slug }), 301) %}
 {% endif %}
 
-<article class="card card-post card-primary">
-    {% if post.banner %}
-        <div class="card-banner banner-lg" style="background-image:url('{{ post.banner.path }}')"></div>
-    {% else %}
-        <div class="card-banner banner-lg" style="background-image:url('{{ partial('site/helpers/random-stock-image') }}')"></div>
-    {% endif %}
+{% set header = {
+  'title': post.title,
+  'intro': post.featured_text,
+  'background': post.banner.path
+} %}
 
-    <div class="card-body card-lg">
-        <h1 class="card-title">
-            {{ post.title }}
-        </h1>
+{% partial 'components/page-title' header=header %}
 
-        {% if post.entry_type == 'markdown_post' %}
-            {{ post.content|md|content }}
-        {% else %}
-            {{ post.content|content }}
-        {% endif %}
+<section class="content-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="blog-post">
+          {% if post.gallery.count %}
+            <figure data-scroll data-scroll-speed="-1">
+              <img src="{{ post.gallery[0].path }}" alt="{{ post.title }}">
+            </figure>
+          {% endif %}
 
-        <div class="blog-post-gallery">
-            {% partial 'controls/gallery-slider' gallery=post.gallery %}
+          <div class="content-box">
+            <small>
+              {{ post.published_at_date|date('d M Y') }}
+            </small>
+
+            {% if post.content_group == 'regular_post' %}
+              {{ post.content | content | raw }}
+            {% elseif post.content_group == 'blocks_post' %}
+              {{ post.boxes_content.render() | raw }}
+            {% endif %}
+
+            <ul class="pagination">
+              <li class="page-item"> <a class="page-link" href="#">Prev Post</a> </li>
+              <li class="page-item"><a class="page-link" href="#">Next Post</a></li>
+            </ul>
+
+          </div>
         </div>
+      </div>
 
-        <div class="row pt-3">
-            <div class="col-md-8">
-                <div class="card-meta">
-                    {% if post.categories %}
-                        <div class="meta-item meta-categories">
-                            Posted in
-                            {% for category in post.categories %}
-                                <a href="{{ 'blog/category'|page({ slug: category.slug, id: category.id }) }}">{{ category.title }}</a>{{ not loop.last ? ',' }}
-                            {% endfor %}
-                        </div>
-                        <div class="meta-item px-2">
-                            &bull;
-                        </div>
-                    {% endif %}
-                    <div class="meta-item text-icon text-icon-date">
-                        {{ post.published_at_date|date('j M Y') }}
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 text-end">
-                <div class="share-button">
-                    {% partial 'elements/share-button' %}
-                </div>
-            </div>
-        </div>
+      <div class="col-lg-4">
+        <aside class="sidebar">
+
+          <div class="widget">
+            <h6 class="widget-title">
+              {{ 'Categories' |_ }}
+            </h6>
+            <ul class="categories">
+              {% for category in categories %}
+                <li>
+                  <a href="#">
+                    {{ category.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="widget">
+            <h6 class="widget-title">
+              {{ 'Gallery' |_ }}
+            </h6>
+            <ul class="widget-gallery">
+              {% for image in post.gallery %}
+                <li>
+                  <a href="{{ image.path }}" data-fancybox>
+                    <img src="{{ image.path }}" alt="{{ image.title }}">
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </aside>
+      </div>
     </div>
-    {% if post.author %}
-        <div class="card-divider"></div>
-        <div class="card-body card-lg">
-            {% partial 'elements/user-panel-author' user=post.author %}
-        </div>
-    {% endif %}
-    <div class="card-divider"></div>
-    <div class="card-body card-lg">
-        {% partial 'blog/comment-list' %}
-    </div>
-    <div class="card-divider"></div>
-    <div class="card-body card-lg">
-        {% partial 'blog/comment-form' %}
-    </div>
-</article>
+  </div>
+</section>

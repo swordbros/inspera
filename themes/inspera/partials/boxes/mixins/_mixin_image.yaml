@@ -21,9 +21,9 @@ mixin:
   #     full: box.mixin_image.picture_size.options.full
   #     custom: box.mixin_image.picture_size.options.custom
   
-  picture_width:
-    label: box.mixin_image.picture_width.label
-    type: number
+  # picture_width:
+  #   label: box.mixin_image.picture_width.label
+  #   type: number
     # trigger:
     #   action: show
     #   field: picture_size

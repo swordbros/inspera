@@ -313,5 +313,6 @@
   "box.quotes.quotes.label": "Testimonials",
   "box.quotes.quotes.title.label": "Title",
   "box.section_cards.name": "Cards",
-  "box.items_slider.slider.is_external_link.label": "Is external URL"
+  "box.items_slider.slider.is_external_link.label": "Is external URL",
+  "box.blockquote.name": "Blockquote"
 }

@@ -20,6 +20,22 @@ navigation:
     order: 100
 
 groups:
+    
+    blocks_post:
+        name: Post With custom blocks
+        fields:
+            boxes_content:
+                label: Boxes Content
+                tab: Content           # Put the Editor on its own tab. It won't look good otherwise.
+                span: adaptive         # This makes sure the Boxes Editor looks good in Tailor.
+                type: boxes            # This loads the Boxes Editor.
+                partialContexts:
+                    - blog
+
+            _blog_post_content:
+                type: mixin
+                source: Fields\BlogContent
+            
     regular_post:
         name: Regular Post
         fields:
@@ -33,15 +49,3 @@ groups:
                 type: mixin
                 source: Fields\BlogContent
 
-    markdown_post:
-        name: Markdown Post
-        fields:
-            content:
-                tab: Edit
-                label: Content
-                type: markdown
-                span: adaptive
-
-            _blog_post_content:
-                type: mixin
-                source: Fields\BlogContent

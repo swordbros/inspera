@@ -1,0 +1,36 @@
+<div class="blog-post">
+  <figure data-scroll data-scroll-speed="-1">
+    {% if post.banner %}
+      <img src="{{ post.banner.path }}" alt="{{ post.title }}">
+    {% else %}
+      <img src="partial('helpers/random-stock-image')" alt="{{ post.title }}">
+    {% endif %}
+  </figure>
+  <div class="content-box">
+    <small>
+      {{ post.published_at_date|date('d M Y') }}
+    </small>
+    <h3>
+      {{ post.title }}
+    </h3>
+    {% if post.categories %}
+      <div class="blog-post-categories">
+        <ul class="list-inline">
+          {% for category in post.categories %}
+            <li class="list-inline-item">
+              &mdash; <a href="{{ 'blog/category'|page({ slug: category.slug, id: category.id }) }}">
+                {{ category.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    <p>
+      {{ post.featured_text }}
+    </p>
+    <a href="{{ 'blog/post'|page({ slug: post.slug, id: post.id }) }}" class="custom-link">
+      {{ 'Continue reading' |_ }}
+    </a>
+  </div>
+</div>

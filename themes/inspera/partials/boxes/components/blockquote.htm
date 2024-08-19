@@ -1,0 +1,15 @@
+{% if box.is_enabled %}
+  <blockquote
+    {% if box.margin_top or box.margin_bottom %}
+      class="
+        {{ box.margin_top ? 'mt-' ~ box.margin_top }}
+        {{ box.margin_bottom ? 'mb-' ~ box.margin_bottom }}
+      "
+    {% endif %}
+    {{ box.anchor_id ? 'id='~box.anchor_id }}
+  >
+
+    {{ box.text }}
+     
+  </blockquote>
+{% endif %}
