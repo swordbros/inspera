@@ -4,7 +4,6 @@
       method="post"
       data-request="onLogin"
       data-request-flash
-      data-request-validate
     >
       <input type="hidden" name="redirect" value="true" />
 
@@ -62,7 +61,7 @@
       </div>
 
       <button
-        class="btn btn-primary btn-lg w-100 py-2"
+        class="button -primary w-100 py-2"
         data-attach-loading
         type="submit">
         {{ 'Sign in' |_ }}
@@ -90,7 +89,7 @@
       {% if __SELF__.canRegister %}
         <p class="mt-5 mb-1 text-body-secondary">
           {{ 'New user' |_ }}?
-          <a href="{{ 'account/register'|page }}">
+          <a href="{{ 'account/register' | page }}" class="custom-link">
             {{ 'Create a new account' |_ }}
           </a>
         </p>
@@ -102,7 +101,9 @@
           <a
             href="javascript:;"
             data-bs-toggle="collapse"
-            data-bs-target=".login-collapse">
+            data-bs-target=".login-collapse"
+            class="custom-link"
+          >
             {{ 'Recover password' |_ }}
           </a>
         </p>
@@ -139,9 +140,10 @@
       </div>
 
       <button
-        class="btn btn-primary btn-lg w-100 py-2"
+        class="button -primary w-100 py-2"
         data-attach-loading
-        type="submit">
+        type="submit"
+      >
         {{ 'Recover' |_ }}
       </button>
     </form>
@@ -152,7 +154,9 @@
         <a
           href="javascript:;"
           data-bs-toggle="collapse"
-          data-bs-target=".login-collapse">
+          data-bs-target=".login-collapse"
+          class="custom-link"
+        >
           {{ 'Sign in again' |_ }}
         </a>
       </p>
@@ -185,7 +189,7 @@
       </div>
 
       <button
-        class="btn btn-primary btn-lg w-100 py-2"
+        class="button -primary w-100 py-2"
         data-attach-loading
         type="submit"
       >
@@ -200,6 +204,7 @@
           href="javascript:;"
           data-bs-toggle="collapse"
           data-bs-target=".two-factor-collapse"
+          class="custom-link"
         >
           {{ 'Use a recovery code' |_ }}
         </a>
@@ -231,7 +236,7 @@
       </div>
 
       <button
-        class="btn btn-primary btn-lg w-100 py-2"
+        class="button -primary w-100 py-2"
         data-attach-loading
         type="submit"
       >
@@ -246,6 +251,7 @@
           href="javascript:;"
           data-bs-toggle="collapse"
           data-bs-target=".two-factor-collapse"
+          class="custom-link"
         >
           {{ 'Use an authentication code' |_ }}
         </a>

@@ -2364,7 +2364,8 @@ $btnEasing: 0.15s ease-in-out;
   }
 
   &.-danger {
-    --btn-bg-color: $danger;
+    --btn-label-hover-color: #fff;
+    --btn-bg-color: #{$danger};
   }
 
   &.-sm {
