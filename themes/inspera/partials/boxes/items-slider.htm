@@ -12,7 +12,7 @@
                 {% if item.link %}
                   {% set url = item.link %}
                 {% elseif item.reference %}
-                  {% set url = link(link.reference).url %} %}
+                  {% set url = link(item.reference).url %}
                 {% endif %}
 
                 <div class="swiper-slide">
