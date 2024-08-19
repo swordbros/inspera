@@ -2092,7 +2092,7 @@ $slider-nav-size: 50px;
     p {
       font-size: 19px;
       margin: 0;
-      color: $font-color-lighter;
+      // color: $font-color-lighter;
       padding-left: 30px;
       border-left: 3px solid $color-dark;
       margin-left: 10px;
@@ -2693,6 +2693,7 @@ $slider-nav-size: 50px;
   background: $color-dark;
   color: #fff;
   padding: 100px 80px;
+
   .titles {
     width: 100%;
     display: block;
@@ -2714,6 +2715,18 @@ $slider-nav-size: 50px;
       @include font-second;
       letter-spacing: -2px;
       line-height: 1;
+    }
+    h2 + p {
+      margin-top: 1rem;
+      max-width: 550px;
+    }
+    p a {
+      color: inherit;
+      text-decoration: underline;
+
+      &:hover {
+        color: $color-main;
+      }
     }
   }
   ul {

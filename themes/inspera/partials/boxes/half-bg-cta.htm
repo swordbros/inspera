@@ -42,7 +42,11 @@
               <{{ box.title_level }}>
                 {{ box.title | raw }}
               </{{ box.title_level }}>
+              {% if box.text %}
+                {{ box.text | content | raw }}
+              {% endif %}
             </div>
+            
             {% if box.picture_tiles | length %}
               <ul>
                 {% for item in box.picture_tiles %}

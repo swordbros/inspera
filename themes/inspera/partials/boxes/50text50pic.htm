@@ -10,7 +10,7 @@
           <div class="side-content left">
             {% partial 'boxes/parts/_title.htm' %}
           
-            {{ box.text | raw }}
+            {{ box.text | content | raw }}
           </div>
           <div class="clearfix spacing-50"></div>
           {% if box.info_items | length %}

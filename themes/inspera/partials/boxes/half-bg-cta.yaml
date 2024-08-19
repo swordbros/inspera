@@ -23,6 +23,9 @@ form:
       title-mixin:
         type: mixin
       
+      tinytext-mixin:
+        type: mixin
+
       picture_tiles:
         label: box.half_bg_cta.picture_tiles.label
         type: repeater

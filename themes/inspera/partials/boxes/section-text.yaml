@@ -24,6 +24,11 @@ form:
 
       no-bottom-spacing-mixin:
         type: mixin
+      
+      background_color:
+        label: box.carousel.section_background.label
+        type: colorpicker
+        availableColors: ['transparent', '#F4F3F2']
 
       anchor-mixin:
         type: mixin

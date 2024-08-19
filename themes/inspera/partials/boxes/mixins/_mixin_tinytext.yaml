@@ -4,6 +4,6 @@ mixin:
   text:
     label: box.text.text.label
     type: richeditor
-    toolbarButtons: bold|italic|fullscreen|formatUL|color|clearFormatting|html
+    toolbarButtons: bold|italic|underline|align|insertPageLink|fullscreen|formatUL|formatOL|clearFormatting|html
     comment: text.comment
     size: small
