@@ -29,7 +29,7 @@ form:
               label: box.items_slider.slider.pic_title.label
             title:
               label: box.items_slider.slider.title.label
-            tynytext-mixin:
+            tinytext-mixin:
               type: mixin
             _section_link:
               type: section

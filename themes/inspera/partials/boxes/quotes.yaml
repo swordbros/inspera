@@ -27,7 +27,7 @@ form:
           fields:
             title:
               label: box.quotes.quotes.title.label
-            tynytext-mixin:
+            tinytext-mixin:
               type: mixin
       
       # no-bottom-spacing-mixin:

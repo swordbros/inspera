@@ -12,9 +12,8 @@ mixin:
           mode: image
         title: 
           label: box.half_bg_cta.info_items.title.label
-        text:
-          label: box.half_bg_cta.info_items.text.label
-          type: richeditor
+        tinytext-mixin:
+          type: mixin
         link_text:
           label: box.half_bg_cta.info_items.link_text.label
           span: auto

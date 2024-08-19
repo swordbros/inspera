@@ -1,5 +1,9 @@
 {% if box.is_enabled %}
-  <section class="content-section" {{ box.anchor_id ? 'id='~box.anchor_id }}>
+  <section
+    class="content-section"
+    {{ box.background_color and box.background_color != '#transparent' ? 'data-background=' ~ box.background_color }}
+    {{ box.anchor_id ? 'id='~box.anchor_id }}
+  >
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6">

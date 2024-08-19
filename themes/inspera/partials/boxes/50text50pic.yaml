@@ -30,6 +30,11 @@ form:
       pic_title: 
         label: box.half_bg_cta.picture_alt.label
       
+      background_color:
+        label: box.carousel.section_background.label
+        type: colorpicker
+        availableColors: ['transparent', '#94ffc4','#0d5eff', '#F4F3F2']
+      
       anchor-mixin:
         type: mixin
       
