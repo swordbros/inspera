@@ -1,7 +1,7 @@
 <div class="blog-post">
   <figure data-scroll data-scroll-speed="-1">
     {% if post.banner %}
-      <img src="{{ post.banner.path }}" alt="{{ post.title }}">
+      <img src="{{ post.banner.getThumb(589, 380, {'mode': 'crop'}) }}" alt="{{ post.title }}">
     {% else %}
       <img src="partial('helpers/random-stock-image')" alt="{{ post.title }}">
     {% endif %}
