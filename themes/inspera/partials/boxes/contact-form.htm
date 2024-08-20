@@ -6,6 +6,7 @@
       {{ box.margin_top ? 'mt-' ~ box.margin_top }}
       {{ box.margin_bottom ? 'mb-' ~ box.margin_bottom }}
     "
+    {{ box.background_color and box.background_color != '#transparent' ? 'data-background=' ~ box.background_color }}
     {{ box.anchor_id ? 'id='~box.anchor_id }}
   >
     <div class="container">
@@ -16,12 +17,12 @@
       {% endif %}
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-lg-6 mb-4">
           {% partial 'boxes/parts/_info-items.htm' %}
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-6">
           <div class="contact-form">
-            {% partial 'genericForm/default' %}
+            {% component 'genericForm' %}
           </div>
         </div>
       </div>

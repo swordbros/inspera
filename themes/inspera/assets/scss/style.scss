@@ -326,7 +326,7 @@ a:hover {
 }
 
 /* FORM ELEMENTS */
-$paddingTextInput: 18px 25px;
+$paddingTextInput: 20px 25px;
 
 @mixin input-spacing {
   width: 100%;
@@ -472,8 +472,8 @@ button[type="submit"] {
   color: $danger;
   font-size: $font-size-small;
   position: absolute;
-  left: 30px;
-  top: 12px;
+  left: 25px;
+  top: 2px;
 }
 
 .privacy-agreement [data-validate-for] {
@@ -3984,15 +3984,18 @@ $btnEasing: 0.15s ease-in-out;
 /* CONTACT FORM */
 .contact-form {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  // display: flex;
+  // flex-wrap: wrap;
   padding-left: 10%;
+
   .mb-3 {
     width: 100%;
     display: block;
+
     input[type="text"] {
       width: 100%;
     }
+
     textarea {
       width: 100%;
     }

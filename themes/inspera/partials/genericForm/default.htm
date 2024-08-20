@@ -4,48 +4,42 @@
 >
   {{ form_token() }}
 
-  <div id="{{ __SELF__ }}_forms_flash" class="errors"></div>
+  {#<div id="{{ __SELF__ }}_forms_flash" class="errors"></div>#}
 
-  <div class="uk-margin">
-    <label for="name" class="uk-form-label">{{'Name'|_ }}:</label>
-    <div class="uk-form-controls">
-      <input type="text" id="name" name="name" class="uk-input">
-      <div class="uk-text-danger" data-validate-for="name"></div>
-    </div>
+  <div class="inner position-relative mb-3">
+    <input type="text" name="name" placeholder="{{ 'Complete Name' |_ }}">
+    <div data-validate-for="name"></div>
+  </div>
+  <div class="inner position-relative mb-3">
+    <input type="text" name="email" placeholder="{{ 'Your Email' |_ }}">
+    <div data-validate-for="email"></div>
+  </div>
+  <div class="inner position-relative mb-3">
+    <input type="text" name="phone" placeholder="{{ 'Phone Number' |_ }}">
+    <div data-validate-for="phone"></div>
+  </div>
+  <div class="inner position-relative mb-3">
+    <textarea id="commentContentTextarea" placeholder="{{ 'Your message' |_ }}" name="message"></textarea>
+    <div data-validate-for="message"></div>
   </div>
 
-  <div class="uk-margin">
-    <label for="email" class="uk-form-label">{{ 'Email' |_ }}:</label>
-    <div class="uk-form-controls">
-      <input type="text" id="email" name="email" class="uk-input">
-      <div class="uk-text-danger" data-validate-for="email"></div>
-    </div>
-  </div>
+  <button type="submit" class="button -primary">
+    {{ 'Submit'|_ }}
+  </button>
 
-  <div class="uk-margin">
-    <label for="phone" class="uk-form-label">{{ 'Phone Number'|_}}:</label>
-    <div class="uk-form-controls">
-      <input type="text" id="phone" name="phone" class="uk-input">
-      <div class="uk-text-danger" data-validate-for="phone"></div>
-    </div>
-  </div>
+  <div class="privacy-agreement">
+    <label class="position-relative">
+      <div data-validate-for="consent"></div>
+      <input type="checkbox" name="consent">
+      <small>
+        {{ 'I agree with the ' |_ }} 
+        <a href="{{ 'privacy' | boxesPage }}" target="_blank">
+          {{ 'Privacy Policy' |_ }}
+        </a>    
+      </small>
+    </label>
+  </div>  
 
-  <div class="uk-margin">
-    <label for="message" class="uk-form-label">{{ 'Message' |_}}:</label>
-    <div class="uk-form-controls">
-      <textarea id="message" name="message" class="uk-textarea"></textarea>
-      <div class="uk-text-danger" data-validate-for="message"></div>
-    </div>
-  </div>
-
- 
-
-  <label><input class="uk-checkbox" type="checkbox" checked> I agree with <a href="">policy and rules</a></label>
-
-  <div class="uk-margin">
-    <button id="simpleContactSubmitButton" type="submit" class="uk-button uk-button-primary">
-      {{ 'Submit'|_}}
-    </button>
-  </div>
+  
 
 </form>
