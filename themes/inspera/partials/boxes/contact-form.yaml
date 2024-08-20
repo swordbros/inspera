@@ -1,51 +1,65 @@
-name: "box.form.name"
+name: box.form.name
 handle: form
-label: "box.form.name"
-section: "box.section.base_components"
-# spacing:
-#   - general
+label: box.form.name
+section: box.sections.sections
 components:
   genericForm:
     addToLayout: true
     properties:
-      group: "Contact"
+      group: Contact
       rules:
-        name: "required"
-        email: "required|email"
-        consent: "accepted"
+        name: required
+        email: required|email
+        consent: accepted
       rules_messages:
-        "email.required": "Eine gültige E-Mail ist erforderlich"
-        "email.email": "Dies sollte eine E-Mail sein"
-      messages_success: "Vielen Dank, ich melde mich umgehend bei dir."
-      messages_errors: "Es gab Fehler bei Ihrer Übermittlung"
+        email.required: Eine gültige E-Mail ist erforderlich
+        email.email: Dies sollte eine E-Mail sein
+      messages_success: Vielen Dank, ich melde mich umgehend bei dir.
+      messages_errors: Es gab Fehler bei Ihrer Übermittlung
       mail_enabled: 1
-      mail_subject: "Kontaktformular"
-      "mail_recipients[info@carmenernst.de]": "info@carmenernst.de"
+      mail_subject: Kontaktformular
+      mail_recipients[info@carmenernst.de]: info@carmenernst.de
       reset_form: 1
-      inline_errors: "display"
-      js_on_success: ""
-      js_on_error: ""
+      inline_errors: display
+      js_on_success: 
+      js_on_error: 
       allowed_fields:
         - name
         - email
         - phone
         - message
         - consent
-      sanitize_data: "htmlspecialchars"
-      anonymize_ip: "disabled"
+      sanitize_data: htmlspecialchars
+      anonymize_ip: disabled
       recaptcha_enabled: 0
-      recaptcha_theme: "light"
-      recaptcha_type: "image"
-      recaptcha_size: "compact"
-      emails_date_format: "Y-m-d"
+      recaptcha_theme: light
+      recaptcha_type: image
+      recaptcha_size: compact
+      emails_date_format: Y-m-d
+      
 form:
   tabs:
-    defaultTab: "box.form.defaultTab"
+    defaultTab: box.form.defaultTab
     fields:
 
-      legend:
-        label: "box.form.fields.legend.label"
-        type: richeditor
+      box_title:
+        label: box.box_title.label
+        comment: box.box_title.comment
+        default: box.form.name
+      
+      title-mixin:
+        type: mixin
+
+      background_color:
+        label: box.carousel.section_background.label
+        type: colorpicker
+        availableColors: ['transparent', '#F4F3F2']
+
+      tinytext-mixin:
+        type: mixin
+      
+      infoitems-mixin:
+        type: mixin
         
       anchor-mixin:
         type: mixin
