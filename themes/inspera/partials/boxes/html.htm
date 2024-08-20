@@ -1,13 +1,14 @@
 {% if box.is_enabled and box.code %}
 	<div 
     class="
-      {% if not context.isEditor %}
-        {{ box.spacingClasses }}
-      {% endif %}
-      {% if box.responsive_embed %}
-        responsive-iframe
-      {% endif %}
-    " 
+      {{ box.margin_top ? 'mt-' ~ box.margin_top }}
+      {{ box.margin_bottom ? 'mb-' ~ box.margin_bottom }}
+      {{ box.responsive_embed ? 'responsive-iframe' }}
+    "
+    style="
+      {{ box.grayscale_map ? '-webkit-filter: grayscale(85%);filter: grayscale(85%);' }}
+      {{ box.section_height ? 'height:'~box.section_height~'px' }}
+    "
     {{ box.anchor_id ? 'id='~box.anchor_id }}
   >
 	  {{ box.code | raw }}

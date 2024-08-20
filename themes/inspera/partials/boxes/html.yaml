@@ -23,6 +23,17 @@ form:
       responsive_embed:
         label: box.html.fields.responsive_embed.label 
         type: switch
+      
+      grayscale_map:
+        label: box.html.fields.grayscale_map.label 
+        type: switch
+      
+      section_height:
+        label: box.html.section_height.label
+        type: number
+      
+      margin-mixin:
+        type: mixin
 
       anchor-mixin:
         type: mixin
