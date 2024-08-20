@@ -13,32 +13,7 @@
             {{ box.text | content | raw }}
           </div>
           <div class="clearfix spacing-50"></div>
-          {% if box.info_items | length %}
-            <div class="side-icon-list left-side">
-              <ul>
-                {% for info in box.info_items %}
-                  <li>
-                    {% if info.icon %}
-                      <figure>
-                        <img src="{{ info.icon | media }}" alt="{{ info.title }}">
-                      </figure>
-                    {% endif %}
-                    <div class="content">
-                      <h5>
-                        {{ info.title }}
-                      </h5>
-                      {{ info.text | raw }}
-                      {% if info.link %}
-                        <a href="{{ info.link }}">
-                          {{ info.link_text ?: info.link }}
-                        </a>
-                      {% endif %}
-                    </div>
-                  </li>
-                {% endfor %}
-              </ul>
-            </div>
-          {% endif %}
+          {% partial 'boxes/parts/_info-items.htm' %}
         </div>
 
         <div class="col-lg-6">

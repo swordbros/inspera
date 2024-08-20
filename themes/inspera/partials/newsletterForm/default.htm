@@ -1,0 +1,53 @@
+<form 
+  data-request="{{ __SELF__ }}::onFormSubmit"
+  data-request-validate
+  class="subscribe-form"
+>
+  {{ form_token() }}
+
+  <div class="inner">
+    <input name="email" id="subscribe-email" type="text" placeholder="{{ 'Enter your e-mail address' |_ }}">
+    <span data-validate-for="email"></span>
+    <input
+      id="subscribe-submit"
+      type="submit"
+      value="{{ 'Sign up'|_ }}"
+      class="subscribe-button"
+      disabled
+      data-attach-loading
+    >
+  </div>
+</form>
+<div class="modal" tabindex="-1" id="newsletter-thankyou">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ 'Thank you!' |_ }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="{{ __SELF__ }}_forms_flash">
+      </div>
+      <div class="modal-footer">
+        <a class="custom-button -primary" data-bs-dismiss="modal">
+          {{ 'Close' |_ }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% put scripts %}
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const input = document.getElementById('subscribe-email');
+      const submitButton = document.getElementById('subscribe-submit');
+
+      input.addEventListener('input', () => {
+        submitButton.disabled = input.value.trim() === '';
+      });
+    });
+
+    
+  </script>
+{% endput %}
+

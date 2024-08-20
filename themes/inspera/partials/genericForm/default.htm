@@ -1,53 +1,51 @@
 <form 
-  data-request="{{ __SELF__ }}::onFormSubmit"
+  data-request="{{ __SELF__ }}::onFormSubmit"  
   data-request-validate
-  class="subscribe-form"
 >
   {{ form_token() }}
 
-  <div class="inner">
-    <input name="email" id="subscribe-email" type="text" placeholder="{{ 'Enter your e-mail address' |_ }}">
-    <span data-validate-for="email"></span>
-    <input
-      id="subscribe-submit"
-      type="submit"
-      value="{{ 'Sign up'|_ }}"
-      class="subscribe-button"
-      disabled
-      data-attach-loading
-    >
-  </div>
-</form>
-<div class="modal" tabindex="-1" id="newsletter-thankyou">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{ 'Thank you!' |_ }}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" id="{{ __SELF__ }}_forms_flash">
-      </div>
-      <div class="modal-footer">
-        <a class="custom-button -primary" data-bs-dismiss="modal">
-          {{ 'Close' |_ }}
-        </a>
-      </div>
+  <div id="{{ __SELF__ }}_forms_flash" class="errors"></div>
+
+  <div class="uk-margin">
+    <label for="name" class="uk-form-label">{{'Name'|_ }}:</label>
+    <div class="uk-form-controls">
+      <input type="text" id="name" name="name" class="uk-input">
+      <div class="uk-text-danger" data-validate-for="name"></div>
     </div>
   </div>
-</div>
 
-{% put scripts %}
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const input = document.getElementById('subscribe-email');
-      const submitButton = document.getElementById('subscribe-submit');
+  <div class="uk-margin">
+    <label for="email" class="uk-form-label">{{ 'Email' |_ }}:</label>
+    <div class="uk-form-controls">
+      <input type="text" id="email" name="email" class="uk-input">
+      <div class="uk-text-danger" data-validate-for="email"></div>
+    </div>
+  </div>
 
-      input.addEventListener('input', () => {
-        submitButton.disabled = input.value.trim() === '';
-      });
-    });
+  <div class="uk-margin">
+    <label for="phone" class="uk-form-label">{{ 'Phone Number'|_}}:</label>
+    <div class="uk-form-controls">
+      <input type="text" id="phone" name="phone" class="uk-input">
+      <div class="uk-text-danger" data-validate-for="phone"></div>
+    </div>
+  </div>
 
-    
-  </script>
-{% endput %}
+  <div class="uk-margin">
+    <label for="message" class="uk-form-label">{{ 'Message' |_}}:</label>
+    <div class="uk-form-controls">
+      <textarea id="message" name="message" class="uk-textarea"></textarea>
+      <div class="uk-text-danger" data-validate-for="message"></div>
+    </div>
+  </div>
 
+ 
+
+  <label><input class="uk-checkbox" type="checkbox" checked> I agree with <a href="">policy and rules</a></label>
+
+  <div class="uk-margin">
+    <button id="simpleContactSubmitButton" type="submit" class="uk-button uk-button-primary">
+      {{ 'Submit'|_}}
+    </button>
+  </div>
+
+</form>
