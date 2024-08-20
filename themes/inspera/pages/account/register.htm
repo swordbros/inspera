@@ -1,21 +1,15 @@
-##
-title = "Account"
-url = "/account/:code?"
+url = "/register"
 layout = "default"
-meta_title = "Account page"
+title = "Register"
+is_hidden = 0
 
-[account]
-isDefault = 1
-
-[session]
-security = "user"
-redirect = "/login"
+[registration]
 ==
 <section class="content-section">
   <div class="container">
     <div class="row">
       <div class="col-6 offset-md-3 text-center">
-        {% component 'account' %}
+        {% component 'registration' %}
       </div>
     </div>
   </div>

@@ -1,4 +1,60 @@
-{# Placeholder #}
-<h5>
-    Please see the documentation for detailed instructions on setting up the account component
-</h5>
+<form
+  method="post"
+  class="account-editor"
+  data-request="onUpdateProfile"
+  data-request-flash
+>
+  <div class="text-center pb-3">
+    <h1 class="h2 mb-3">
+      {{ 'Edit your profile' |_ }}
+    </h1>
+  </div>
+  <div class="form-floating my-3">
+    <input
+      name="first_name"
+      type="text"
+      value="{{ user.first_name }}"
+      class="form-control"
+      id="inputFirstName"
+    />
+    <label for="inputFirstName">
+      {{ 'First name' |_ }}
+    </label>
+    <span data-validate-for="first_name"></span>
+  </div>
+  
+  <div class="form-floating my-3">
+    <input
+      name="last_name"
+      type="text"
+      value="{{ user.last_name }}"
+      class="form-control"
+      id="inputLastName"
+    />
+    <label for="inputLastName">
+      {{ 'Last name' |_ }}
+    </label>
+    <span data-validate-for="last_name"></span>
+  </div>
+
+  <div class="form-floating my-3">
+    <input
+      name="email"
+      type="email"
+      value="{{ user.email }}"
+      class="form-control"
+      id="inputEmail"
+    />
+    <label for="inputEmail">
+      {{ 'Email address' |_ }}
+    </label>
+    <span data-validate-for="email"></span>
+  </div>
+
+  <button
+    class="button -primary"
+    data-attach-loading
+    type="submit">
+    {{ 'Save' |_ }}
+  </button>
+</form>

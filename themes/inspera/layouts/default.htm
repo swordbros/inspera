@@ -27,6 +27,9 @@ recaptcha_size = "normal"
 emails_date_format = "Y-m-d"
 
 [eventSearch]
+
+[session]
+security = "all"
 ==
 {% if mainMenu.items.count %}
   {% set menuItems = mainMenu.items.toNested | filter(i => not i.is_hidden) %}

@@ -34,13 +34,13 @@ mixin:
       # large: box.mixin_button.button_size.options.large
       sm: box.mixin_button.button_size.options.small
   
-  # button_width:
-  #   label: box.mixin_button.button_width.label
-  #   type: dropdown
-  #   span: left
-  #   emptyOption: box.mixin_button.button_width.emptyOption
-  #   options: 
-  #     wide: box.mixin_button.button_width.wide
+  button_width:
+    label: box.mixin_button.button_width.label
+    type: dropdown
+    span: left
+    emptyOption: box.mixin_button.button_width.emptyOption
+    options: 
+      wide: box.mixin_button.button_width.wide
 
   button_style:
     label: box.mixin_button.button_style.label

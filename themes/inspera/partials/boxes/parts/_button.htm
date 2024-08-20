@@ -1,10 +1,11 @@
 {% if box.button_text %}
   <a
     class="
-      button
-      -{{ box.button_type }}
-      {{ box.button_size != 'medium' ? '-' ~ box.button_size }}
+      {{ box.button_style != 'custom-link' ? 'button' }}
+      {{ box.button_style == 'custom-link' ? box.button_type : '-' ~ box.button_type }}
       {{ box.button_style != 'standard' ? '-' ~ box.button_style }}
+      {{ box.button_size != 'medium' ? '-' ~ box.button_size }}
+      {{ box.button_width == 'wide' ? 'w-100' }}
     "
     href="{{ box.button_link }}"
     {% if box.button_is_external %}
