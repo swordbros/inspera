@@ -12,13 +12,13 @@ components:
         email: required|email
         consent: accepted
       rules_messages:
-        email.required: Eine gültige E-Mail ist erforderlich
-        email.email: Dies sollte eine E-Mail sein
-      messages_success: Vielen Dank, ich melde mich umgehend bei dir.
-      messages_errors: Es gab Fehler bei Ihrer Übermittlung
+        email.required: A valid email is required
+        email.email: This should be an email
+      messages_success: Thank you very much, I will get back to you soon
+      messages_errors: There were errors in your submission
       mail_enabled: 1
-      mail_subject: Kontaktformular
-      mail_recipients[info@carmenernst.de]: info@carmenernst.de
+      mail_subject: Contact form
+      mail_recipients[7880553@gmail.com]: 7880553@gmail.com
       reset_form: 1
       inline_errors: display
       js_on_success: "new bootstrap.Modal(document.getElementById('contact-thankyou')).show();"
