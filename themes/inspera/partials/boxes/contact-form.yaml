@@ -21,8 +21,8 @@ components:
       mail_recipients[info@carmenernst.de]: info@carmenernst.de
       reset_form: 1
       inline_errors: display
-      js_on_success: 
-      js_on_error: 
+      js_on_success: "new bootstrap.Modal(document.getElementById('contact-thankyou')).show();"
+      js_on_error: "new bootstrap.Modal(document.getElementById('contact-thankyou')).show();"
       allowed_fields:
         - name
         - email

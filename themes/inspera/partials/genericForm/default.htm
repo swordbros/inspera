@@ -38,8 +38,27 @@
         </a>    
       </small>
     </label>
-  </div>  
+  </div>
 
+  <div class="modal" tabindex="-1" id="contact-thankyou">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            {{ 'Thank you!' |_ }}
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="{{ __SELF__ }}_forms_flash">
+        </div>
+        <div class="modal-footer">
+          <a class="custom-button -primary" data-bs-dismiss="modal">
+            {{ 'Close' |_ }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
   
 
 </form>
