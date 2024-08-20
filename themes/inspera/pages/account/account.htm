@@ -1,9 +1,22 @@
 ##
 title = "Account"
-url = "/account"
+url = "/account/:code?"
 layout = "default"
 meta_title = "Account page"
 
 [account]
+isDefault = 1
+
+[session]
+security = "user"
+redirect = "/login"
 ==
-{% component 'account' %}
+<section class="content-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 offset-md-3 text-center">
+        {% component 'account' %}
+      </div>
+    </div>
+  </div>
+</section>
