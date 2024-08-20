@@ -1,0 +1,57 @@
+name: "box.form.name"
+handle: form
+label: "box.form.name"
+section: "box.section.base_components"
+# spacing:
+#   - general
+components:
+  genericForm:
+    addToLayout: true
+    properties:
+      group: "Contact"
+      rules:
+        name: "required"
+        email: "required|email"
+        consent: "accepted"
+      rules_messages:
+        "email.required": "Eine gültige E-Mail ist erforderlich"
+        "email.email": "Dies sollte eine E-Mail sein"
+      messages_success: "Vielen Dank, ich melde mich umgehend bei dir."
+      messages_errors: "Es gab Fehler bei Ihrer Übermittlung"
+      mail_enabled: 1
+      mail_subject: "Kontaktformular"
+      "mail_recipients[info@carmenernst.de]": "info@carmenernst.de"
+      reset_form: 1
+      inline_errors: "display"
+      js_on_success: ""
+      js_on_error: ""
+      allowed_fields:
+        - name
+        - email
+        - phone
+        - message
+        - consent
+      sanitize_data: "htmlspecialchars"
+      anonymize_ip: "disabled"
+      recaptcha_enabled: 0
+      recaptcha_theme: "light"
+      recaptcha_type: "image"
+      recaptcha_size: "compact"
+      emails_date_format: "Y-m-d"
+form:
+  tabs:
+    defaultTab: "box.form.defaultTab"
+    fields:
+
+      legend:
+        label: "box.form.fields.legend.label"
+        type: richeditor
+        
+      anchor-mixin:
+        type: mixin
+      
+      classes-mixin:
+        type: mixin
+
+      margin-mixin:
+        type: mixin
