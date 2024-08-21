@@ -2,11 +2,11 @@ name: box.blog.name
 handle: news
 labelFrom: box_title
 section: box.sections.sections
-components:
-  posts:
-    component: collection
-    properties:
-      handle: Blog\Post
+# components:
+#   posts:
+#     component: collection
+#     properties:
+#       handle: Blog\Post
 
 form:
   tabs:
@@ -19,6 +19,36 @@ form:
       
       title-mixin:
         type: mixin
+
+      post_1: # Relation has to be added to box
+        type: recordfinder
+        nameFrom: title
+        label: Featured Blog Post 1
+      
+      post_2: # Relation has to be added to box
+        type: recordfinder
+        nameFrom: title
+        label: Featured Blog Post 2
+      
+      post_3: # Relation has to be added to box
+        type: recordfinder
+        nameFrom: title
+        label: Featured Blog Post 3
+      
+      post_4: # Relation has to be added to box
+        type: recordfinder
+        nameFrom: title
+        label: Featured Blog Post 4
+      
+      # posts:
+      #   label: Posts
+      #   type: repeater
+      #   form:
+      #     fields:
+      #       post:
+      #         label: Select post
+      #         type: recordfinder
+      #         nameFrom: title
       
       no-bottom-spacing-mixin:
         type: mixin

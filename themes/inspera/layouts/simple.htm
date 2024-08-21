@@ -1,0 +1,22 @@
+description = "Simple layout - no nav"
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ this.page.meta_title ?: placeholder('pageTitle') }}</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        {% partial 'components/head-meta' %}
+        {% partial 'components/head-styles' %}
+    </head>
+
+    <body>        
+        <div class="section-wrapper" data-scroll-section>
+
+            {% page %}
+
+        </div>
+        
+        {% partial 'components/footer-simple' %}
+    </body>
+</html>

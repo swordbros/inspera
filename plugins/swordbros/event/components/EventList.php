@@ -11,6 +11,7 @@ use System;
 use Backend;
 use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
+use Swordbros\Event\Models\EventTagModel;
 
 /**
  * BackendLink component
@@ -19,6 +20,7 @@ class EventList extends ComponentBase
 {
     public $events = [];
     public $vars = [];
+
     public function componentDetails()
     {
         return [
@@ -27,9 +29,45 @@ class EventList extends ComponentBase
         ];
     }
 
+    public function defineProperties()
+    {
+        return [
+            'featuredTag' => [
+                'title' => 'Featured tag',
+                // 'description' => 'The most amount of todo items allowed',
+                'type' => 'dropdown',
+                'options' => self::getFeaturedTags()
+            ],
+            'count' => [
+                'title' => 'Max items',
+                'description' => 'The most amount of items allowed',
+                'default' => 4,
+                'type' => 'string',
+                'validation' => [
+                    'regex' => [
+                        'message' => 'The Max Items property can contain only numeric symbols.',
+                        'pattern' => '^[0-9]+$'
+                    ]
+                ]
+            ]
+        ];
+    }
+
     public function onRun()
     {
-        $this->page['events'] = $this->events = EventModel::published()
+        if ($this->methodExists('getBoxesBox')) {
+            $boxesBox = $this->getBoxesBox();
+            if ($boxesBox->featured_tag) {
+                $this->setProperty('featuredTag', $boxesBox->featured_tag);
+            }
+            $this->setProperty('count', $boxesBox->count);
+        }
+
+        $featuredTag = $this->property('featuredTag');
+        $this->page['events'] = $this->events = EventModel::whereHas('tagged_event', function ($q) use ($featuredTag) {
+            $q->whereTag($featuredTag);
+        })
+            ->published()
             ->future()
             ->with('event_zone', 'event_category', 'event_type', 'thumb')
             ->orderBy('start')
@@ -54,6 +92,14 @@ class EventList extends ComponentBase
                 ];
             });
     }
+
+    public static function getFeaturedTags(): array
+    {
+        $tagOptions = (new EventTagModel)->getTagOptions();
+
+        return array_map(fn($tag) => $tag[0], $tagOptions);
+    }
+
     /**function onLoadAjaxPartial()
     {
         $data['page'] = \Input::get('page', 1);

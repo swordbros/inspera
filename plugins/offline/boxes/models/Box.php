@@ -285,7 +285,7 @@ class Box extends Model
         if ($count === 0) {
             return '';
         }
-        
+
         $context = $this->wrapContext($context);
 
         // Clear scaffolding classes for children.
@@ -337,7 +337,7 @@ class Box extends Model
     public static function getBoxOptions(Page $page)
     {
         return $page->boxes
-            ->pipe(fn ($pages) => new PatchedTreeCollection($pages))
+            ->pipe(fn($pages) => new PatchedTreeCollection($pages))
             ->listsNestedCallback(function (Box $box) {
                 // Try to find a suitable value to display.
                 $fields = ['title', 'label', 'heading', 'id'];
@@ -441,7 +441,7 @@ class Box extends Model
 
         $values = collect($values)
             // Remove attachments
-            ->filter(fn ($value, $key) => !in_array($key, $attachments, true))
+            ->filter(fn($value, $key) => !in_array($key, $attachments, true))
             // Move all externally stored relations to the model itself, so it is handled by the framework.
             ->filter(function ($value, $key) use ($externallyStored) {
                 if (in_array($key, $externallyStored, true)) {
@@ -507,7 +507,7 @@ class Box extends Model
     {
         return array_merge(
             ...array_map(
-                fn ($type) => array_keys($this->$type),
+                fn($type) => array_keys($this->$type),
                 static::$relationTypes
             )
         );
@@ -583,9 +583,9 @@ class Box extends Model
     {
         return static function ($q) use ($with) {
             $q
-                ->when(!BackendAuth::getUser(), fn ($q) => $q->where('is_enabled', true))
-                ->when(Features::instance()->references, fn ($q) => $q->with('reference'))
-                ->when(count($with), fn ($q) => $q->with($with));
+                ->when(!BackendAuth::getUser(), fn($q) => $q->where('is_enabled', true))
+                ->when(Features::instance()->references, fn($q) => $q->with('reference'))
+                ->when(count($with), fn($q) => $q->with($with));
         };
     }
 
@@ -610,7 +610,7 @@ class Box extends Model
         $relationNames = $this->extractRelations();
 
         // Only add the `data` prefix to fields that are not a relation.
-        $prefix = static fn ($attribute) => !in_array($attribute, $relationNames, true)
+        $prefix = static fn($attribute) => !in_array($attribute, $relationNames, true)
             ? 'data.' . $attribute
             : $attribute;
 
@@ -666,7 +666,7 @@ class Box extends Model
 
         // Restore RainLab.Translate's translated attributes (only for pre 2.0).
         if (class_exists(\RainLab\Translate\Models\Locale::class) && !App::runningInBackend()) {
-            $obj = $this->translations->first(fn ($value) => $value->attributes['locale'] === Translator::instance()->getLocale(true));
+            $obj = $this->translations->first(fn($value) => $value->attributes['locale'] === Translator::instance()->getLocale(true));
             $result = $obj ? json_decode($obj->attribute_data, true) : [];
 
             $data = $this->getDecodedData();
@@ -751,7 +751,7 @@ class Box extends Model
         }
 
         foreach ($scaffoldingClasses as $classes) {
-            array_push($context->scaffoldingClasses, ... $classes);
+            array_push($context->scaffoldingClasses, ...$classes);
         }
     }
 }

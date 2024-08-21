@@ -1,55 +1,65 @@
-<section class="content-section">
-  <div class="container">
+{% if box.is_enabled %}
 
-    <div class="row align-items-center section-title">
-      <div class="col-auto">
-        <{{ box.title_level }}>
-          {{ box.title | raw }}
-        </{{ box.title_level }}>
+  {% set posts = [] %}
+  {% for i in 1..4 %}
+    {% if box['post_'~i] %}
+      {% set posts = posts|merge([box['post_'~i]]) %}
+    {% endif %}
+  {% endfor %}
+
+  <section class="content-section">
+    <div class="container">
+
+      <div class="row align-items-center section-title">
+        <div class="col-auto">
+          <{{ box.title_level }}>
+            {{ box.title | raw }}
+          </{{ box.title_level }}>
+        </div>
+        <div class="col-auto">
+          <a href="#" class="circle-button">
+            {{ 'See all<br> News' |_ }}
+          </a>
+        </div>
       </div>
-      <div class="col-auto">
-        <a href="#" class="circle-button">
-          {{ 'See all<br> News' |_ }}
-        </a>
-      </div>
-    </div>
 
-    <div class="row align-center">
-      {% for post in posts %}
-        {% set url = 'blog/post'|page({ slug: post.slug, id: post.id }) %}
+      <div class="row align-center">
+        {% for post in posts %}
+          {% set url = 'blog/post'|page({ slug: post.slug, id: post.id }) %}
 
-        <div class="col-lg-6 mb-4">
-          <div class="news-box" data-scroll data-scroll-speed="{{ loop.index==1 ? -1 : 1 }}">
-            <figure>
-              <a href="{{ url }}">
-                <img src="{{ post.banner.path | resize(510, 382, {'mode': 'crop'}) }}" alt="{{ post.title }}" class="img">
-              </a>
-            </figure>
-
-            <div class="content-box">
-              <p>
-                <span class="date-label">
-                  {{ post.published_at_date|date('j M Y') }}
-                </span>
-              </p> 
-              <h3 class="h5">
+          <div class="col-lg-6 mb-4">
+            <div class="news-box" data-scroll data-scroll-speed="{{ loop.index==1 ? -1 : 1 }}">
+              <figure>
                 <a href="{{ url }}">
-                  {{ post.title }}
+                  <img src="{{ post.banner.path | resize(510, 382, {'mode': 'crop'}) }}" alt="{{ post.title }}" class="img">
                 </a>
-              </h3>
-              {% if post.featured_text %}
-                <p>{{ post.featured_text | raw }}</p>
-              {% endif %}
-              
-              <a href="{{ url }}" class="custom-link">
-                {{ 'Continue reading' |_ }}
-              </a>
-              <br>
+              </figure>
+
+              <div class="content-box">
+                <p>
+                  <span class="date-label">
+                    {{ post.published_at_date|date('j M Y') }}
+                  </span>
+                </p> 
+                <h3 class="h5">
+                  <a href="{{ url }}">
+                    {{ post.title }}
+                  </a>
+                </h3>
+                {% if post.featured_text %}
+                  <p>{{ post.featured_text | raw }}</p>
+                {% endif %}
+                
+                <a href="{{ url }}" class="custom-link">
+                  {{ 'Continue reading' |_ }}
+                </a>
+                <br>
+              </div>
             </div>
           </div>
-        </div>
-      {% endfor %}
-    </div>
+        {% endfor %}
+      </div>
 
-  </div>
-</section>
+    </div>
+  </section>
+{% endif %}

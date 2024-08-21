@@ -26,9 +26,8 @@ form:
             title-mixin:
               type: mixin
 
-            text:
-              label: box.art_inspiration.inspirations.text.label
-              type: richeditor
+            tinytext-mixin:
+              type: mixin
 
             pic:
               type: mediafinder
@@ -36,13 +35,21 @@ form:
               label: box.art_inspiration.inspirations.pic.label
 
             pic_title: 
-              label: box.art_inspiration.inspirations.pic_title.label 
+              label: box.art_inspiration.inspirations.pic_title.label
+
+            is_external_link:
+              label: box.items_slider.slider.is_external_link.label
+              type: switch
+            link:
+              label: box.items_slider.slider.link.label
+            link_title:
+              label: box.art_inspiration.inspirations.link_title.label
 
       no-bottom-spacing-mixin:
         type: mixin
         
       anchor-mixin:
-          type: mixin
+        type: mixin
 
 
             

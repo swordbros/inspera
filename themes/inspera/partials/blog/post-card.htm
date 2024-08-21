@@ -1,10 +1,14 @@
+{% set url = 'blog/post'|page({ slug: post.slug, id: post.id }) %}
+
 <div class="blog-post">
   <figure data-scroll data-scroll-speed="-1">
-    {% if post.banner %}
-      <img src="{{ post.banner.getThumb(589, 380, {'mode': 'crop'}) }}" alt="{{ post.title }}">
-    {% else %}
-      <img src="partial('helpers/random-stock-image')" alt="{{ post.title }}">
-    {% endif %}
+    <a href="{{ url }}" class="custom-link">
+      {% if post.banner %}
+        <img src="{{ post.banner.getThumb(589, 380, {'mode': 'crop'}) }}" alt="{{ post.title }}">
+      {% else %}
+        <img src="partial('helpers/random-stock-image')" alt="{{ post.title }}">
+      {% endif %}
+    </a>
   </figure>
   <div class="content-box">
     <small>
@@ -29,7 +33,7 @@
     <p>
       {{ post.featured_text }}
     </p>
-    <a href="{{ 'blog/post'|page({ slug: post.slug, id: post.id }) }}" class="custom-link">
+    <a href="{{ url }}" class="custom-link">
       {{ 'Continue reading' |_ }}
     </a>
   </div>

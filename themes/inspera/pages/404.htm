@@ -1,15 +1,23 @@
 title = "Page not found (404)"
 url = "/404"
-layout = "default"
+layout = "simple"
 ==
 <section class="content-section">
   <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3 text-center">
+        <a href="{{ 'home' | boxesPage }}">
+          <img src="{{ app_logo }}" alt="{{ app_name }}">
+        </a><br><br><br>
         <img src="{{ 'assets/images/404.jpg' | theme }}" alt="404">
         <br><br>
         <p>
           {{ 'It looks like nothing was found at this location' |_ }}
+        </p>
+        <p class="text-center">
+          <a href="{{ 'home' | boxesPage }}" class="button -primary">
+            {{ 'To main page' |_ }}
+          </a>
         </p>
       </div>
     </div>

@@ -5,6 +5,8 @@ section: box.sections.sections
 components:
   eventList:
     uniqueAlias: true
+    properties:
+      featuredTag: hero
 
 form:
   tabs:
@@ -19,8 +21,15 @@ form:
       title-mixin:
         type: mixin
       
+      featured_tag:
+        label: box.upcoming_events.featured_tag.label
+        type: dropdown
+        options: getTagsOptions
+      
       count:
         label: box.upcoming_events.count
+        type: number
+        default: 4
       
       no-bottom-spacing-mixin:
         type: mixin

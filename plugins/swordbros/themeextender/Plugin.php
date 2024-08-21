@@ -3,6 +3,7 @@
 namespace Swordbros\ThemeExtender;
 
 use Event;
+use Swordbros\Event\Components\EventList;
 use Swordbros\ThemeExtender\Components\Breadcrumb;
 use Swordbros\ThemeExtender\Classes\AddEssentialsVars;
 use Swordbros\ThemeExtender\Classes\ExtendBoxesPage;
@@ -42,6 +43,36 @@ class Plugin extends PluginBase
                 $editor->addCss('/themes/inspera/assets/css/box-editor.css');
             }
         );
+
+        \OFFLINE\Boxes\Models\Box::extend(function ($box) {
+            $box->belongsTo = [
+                'post_1' => [
+                    \Tailor\Models\EntryRecord::class,
+                    'blueprint' => 'edcd102e-0525-4e4d-b07e-633ae6c18db6',
+                    'replicate' => false
+                ],
+                'post_2' => [
+                    \Tailor\Models\EntryRecord::class,
+                    'blueprint' => 'edcd102e-0525-4e4d-b07e-633ae6c18db6',
+                    'replicate' => false
+                ],
+                'post_3' => [
+                    \Tailor\Models\EntryRecord::class,
+                    'blueprint' => 'edcd102e-0525-4e4d-b07e-633ae6c18db6',
+                    'replicate' => false
+                ],
+                'post_4' => [
+                    \Tailor\Models\EntryRecord::class,
+                    'blueprint' => 'edcd102e-0525-4e4d-b07e-633ae6c18db6',
+                    'replicate' => false
+                ]
+            ];
+            $box->initializeBlueprintRelationModel();
+
+            $box->addDynamicMethod('getTagsOptions', function () {
+                return EventList::getFeaturedTags();
+            });
+        });
     }
 
     public function registerComponents()

@@ -41,6 +41,14 @@ class EventModel extends BaseModel
         'event_category' => EventCategoryModel::class,
         'event_type' => EventTypeModel::class,
     ];
+
+    public $hasOne = [
+        'tagged_event' => [
+            'Swordbros\Event\Models\EventTagModel',
+            'key' => 'event_id'
+        ]
+    ];
+
     public $attachOne = [
         'thumb' => 'System\Models\File',
     ];
