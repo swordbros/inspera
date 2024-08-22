@@ -2,6 +2,7 @@ name: box.image.name
 handle: image
 labelFrom: box_title
 section: box.sections.sections
+icon: /plugins/offline/boxes/assets/img/boxes/image.svg
 
 validation:
   rules:

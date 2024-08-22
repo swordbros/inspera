@@ -2,6 +2,8 @@ name: box.blog.name
 handle: news
 labelFrom: box_title
 section: box.sections.sections
+icon: /themes/inspera/assets/images/box-thumbs/news.png
+
 # components:
 #   posts:
 #     component: collection

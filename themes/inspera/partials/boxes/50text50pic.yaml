@@ -2,6 +2,7 @@ name: box.50text50pic.name
 handle: 50text50pic
 labelFrom: box_title
 section: box.sections.sections
+icon: /themes/inspera/assets/images/box-thumbs/50text50pic.png
 
 form:
   tabs:

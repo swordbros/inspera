@@ -2,6 +2,7 @@ name: box.quotes.name
 handle: quotes
 labelFrom: box_title
 section: box.sections.sections
+icon: /themes/inspera/assets/images/box-thumbs/quotes.png
 
 form:
   tabs:

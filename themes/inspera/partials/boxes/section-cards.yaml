@@ -2,6 +2,7 @@ name: box.section_cards.name
 handle: cards
 labelFrom: box_title
 section: box.sections.sections
+icon: /themes/inspera/assets/images/box-thumbs/cards.png
 
 form:
   tabs:

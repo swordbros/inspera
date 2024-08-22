@@ -2,6 +2,8 @@ name: box.art_inspiration.name
 handle: inspiration
 labelFrom: box_title
 section: box.sections.sections
+icon: /themes/inspera/assets/images/box-thumbs/art-inspiration.png
+
 
 form:
   tabs:

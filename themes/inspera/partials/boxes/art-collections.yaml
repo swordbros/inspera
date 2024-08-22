@@ -2,7 +2,7 @@ name: box.art_collections.name
 handle: collections
 labelFrom: box_title
 section: box.sections.sections
-
+icon: /themes/inspera/assets/images/box-thumbs/art-collections.png
 
 form:
   tabs:

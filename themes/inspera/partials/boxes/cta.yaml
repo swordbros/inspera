@@ -2,6 +2,7 @@ name: CTA
 handle: cta
 labelFrom: box_title
 section: box.sections.sections
+icon: /themes/inspera/assets/images/box-thumbs/cta.png
 
 form:
   tabs:

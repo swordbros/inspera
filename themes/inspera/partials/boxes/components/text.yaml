@@ -2,6 +2,7 @@ name: box.text.name
 handle: nested-text
 labelFrom: box_title
 section: box.section.base_components
+icon: /plugins/offline/boxes/assets/img/boxes/text.svg
 contexts: 
   - nested-boxes
   - blog

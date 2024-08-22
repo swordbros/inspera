@@ -2,6 +2,7 @@ name: box.items_slider.name
 handle: items_slider
 labelFrom: box_title
 section: box.sections.sections
+icon: /themes/inspera/assets/images/box-thumbs/items-slider.png
 
 form:
   tabs:

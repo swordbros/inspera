@@ -2,6 +2,7 @@ name: box.intro.name
 handle: intro
 labelFrom: title
 section: box.sections.sections
+icon: /themes/inspera/assets/images/box-thumbs/main-intro.png
 
 form:
   tabs:

@@ -2,6 +2,7 @@ name: box.title_header.name
 handle: header
 labelFrom: box_title
 section: box.sections.sections
+icon: /themes/inspera/assets/images/box-thumbs/title-header.png
 
 form:
   tabs:

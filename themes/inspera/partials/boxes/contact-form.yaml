@@ -2,6 +2,8 @@ name: box.form.name
 handle: form
 label: box.form.name
 section: box.sections.sections
+icon: /themes/inspera/assets/images/box-thumbs/contact.png
+
 components:
   genericForm:
     addToLayout: true

@@ -2,6 +2,7 @@ name: box.half_bg_cta.name
 handle: half-bg-cta
 labelFrom: box_title
 section: box.sections.sections
+icon: /themes/inspera/assets/images/box-thumbs/half-bg.png
 
 form:
   tabs:

@@ -2,6 +2,7 @@ name: box.text.name
 handle: text
 labelFrom: box_title
 section: box.sections.sections
+icon: /plugins/offline/boxes/assets/img/boxes/text.svg
 validation:
   rules:
     text:

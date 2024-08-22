@@ -2,6 +2,7 @@ name: box.carousel.name
 handle: carousel
 labelFrom: box_title
 section: box.sections.sections
+icon: /themes/inspera/assets/images/box-thumbs/carousel.png
 
 form:
   tabs:

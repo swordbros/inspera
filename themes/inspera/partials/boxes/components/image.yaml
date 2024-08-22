@@ -2,6 +2,7 @@ name: box.image.name
 handle: nested-image
 labelFrom: box_title
 section: box.section.base_components
+icon: /plugins/offline/boxes/assets/img/boxes/image.svg
 contexts: 
   - nested-boxes
   - blog

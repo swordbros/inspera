@@ -2,6 +2,8 @@ name: box.upcoming_events.name
 handle: events
 labelFrom: box_title
 section: box.sections.sections
+icon: /themes/inspera/assets/images/box-thumbs/upcoming-events.png
+
 components:
   eventList:
     uniqueAlias: true
