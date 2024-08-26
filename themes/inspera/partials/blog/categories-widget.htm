@@ -1,0 +1,14 @@
+<div class="widget">
+  <h6 class="widget-title">
+    {{ 'Categories' |_ }}
+  </h6>
+  <ul class="categories">
+    {% for category in categories %}
+      <li>
+        <a href="{{ 'blog/category'|page({ slug: category.slug, id: category.id }) }}">
+          {{ category.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

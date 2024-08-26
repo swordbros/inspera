@@ -1519,11 +1519,24 @@ $date-col-width: 90px;
       }
     }
   }
-  .search-button {
+  .user-button {
     height: 30px;
     line-height: 34px;
     display: inline-block;
     margin-left: auto;
+    i {
+      display: inline-block;
+      font-size: 21px;
+      cursor: pointer;
+    }
+  }
+
+  .search-button {
+    height: 30px;
+    line-height: 34px;
+    display: inline-block;
+    margin-left: 30px;
+    // margin-left: auto;
     i {
       display: inline-block;
       font-size: 21px;
@@ -4121,6 +4134,7 @@ $btnEasing: 0.15s ease-in-out;
   width: 100%;
   display: block;
   padding-left: 30px;
+
   .widget {
     width: 100%;
     display: flex;
@@ -4134,6 +4148,7 @@ $btnEasing: 0.15s ease-in-out;
     * {
       position: relative;
     }
+
     .widget-title {
       width: 100%;
       display: block;
@@ -4176,6 +4191,7 @@ $btnEasing: 0.15s ease-in-out;
         color: #fff;
       }
     }
+
     .categories {
       width: 100%;
       display: block;
@@ -4193,6 +4209,7 @@ $btnEasing: 0.15s ease-in-out;
         }
       }
     }
+
     .widget-gallery {
       width: calc(100% + 4px);
       float: left;
@@ -4204,6 +4221,12 @@ $btnEasing: 0.15s ease-in-out;
         margin: 0;
         padding: 2px;
         list-style: none;
+      }
+    }
+
+    .recent-posts-list {
+      li {
+        margin-bottom: 15px;
       }
     }
   }

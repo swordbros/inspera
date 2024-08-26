@@ -24,24 +24,7 @@
           {{ not loop.last ? '<br>'|raw }}
         {% endfor %}
       </p>
-    </div>
-    <div class="custom-menu">
-      <ul>
-        {% if user %}
-          <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement">
-            <a href="#" data-request="onLogout" title="{{ 'Logout' |_ }}" data-request-redirect="/">
-              {{ 'Logout' |_ }}
-            </a>
-          </li>
-        {% else %}
-          <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement">
-            <a href="{{ 'account/login' | page }}">
-              {{ 'Login' |_ }}
-            </a>
-          </li>
-        {% endif %}
-      </ul>
-    </div>
+    </div>    
   </div>
   <div class="display-mobile">
     <div class="custom-menu">

@@ -11,6 +11,9 @@ identifier = "id"
 [collection categories]
 handle = "Blog\Category"
 
+[collection posts]
+handle = "Blog\Post"
+
 [resources]
 vars[activeNavLink] = 'blog'
 ==
@@ -83,36 +86,29 @@ function onEnd(){
 
       <div class="col-lg-4">
         <aside class="sidebar">
+          {% partial 'blog/categories-widget' categories=categories %}
 
-          <div class="widget">
-            <h6 class="widget-title">
-              {{ 'Categories' |_ }}
-            </h6>
-            <ul class="categories">
-              {% for category in categories %}
-                <li>
-                  <a href="#">
-                    {{ category.title }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
+          {% set recentPosts = posts.where('id', '!=', post.id).orderBy('published_at', 'desc').limit(4).get() %}
+          {% if recentPosts.count %}
+            {% partial 'blog/posts-widget' posts=recentPosts %}
+          {% endif %}
 
-          <div class="widget">
-            <h6 class="widget-title">
-              {{ 'Gallery' |_ }}
-            </h6>
-            <ul class="widget-gallery">
-              {% for image in post.gallery %}
-                <li>
-                  <a href="{{ image.path }}" data-fancybox>
-                    <img src="{{ image.path }}" alt="{{ image.title }}">
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
+          {% if post.gallery | length %}
+            <div class="widget">
+              <h6 class="widget-title">
+                {{ 'Gallery' |_ }}
+              </h6>
+              <ul class="widget-gallery">
+                {% for image in post.gallery %}
+                  <li>
+                    <a href="{{ image.path }}" data-fancybox>
+                      <img src="{{ image.path }}" alt="{{ image.title }}">
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
         </aside>
       </div>
     </div>

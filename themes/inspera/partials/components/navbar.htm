@@ -55,6 +55,19 @@
 
     </div>
   {% endif %}
+  {% if user %}
+    <div class="user-button">
+      <a href="#" data-request="onLogout" title="{{ 'Logout' |_ }}" data-request-redirect="/">
+        <i class="far fa-user"></i>
+      </a>
+    </div>
+  {% else %}
+    <div class="user-button">
+      <a href="{{ 'account/login' | page }}" title="{{ 'Login' |_ }}">
+        <i class="far fa-user"></i>
+      </a>
+    </div>
+  {% endif %}
   <div class="search-button">
     <i class="far fa-search"></i>
   </div>

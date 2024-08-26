@@ -1,0 +1,58 @@
+##
+url = "/blog/category/:slug/:id"
+layout = "blog"
+title = "Display a Blog Category"
+
+[section category]
+handle = "Blog\Category"
+identifier = "id"
+
+[collection categories]
+handle = "Blog\Category"
+
+[collection blog]
+handle = "Blog\Post"
+
+[resources]
+vars[activeNavLink] = 'blog'
+vars[activeBlogCategory] = "{{ :slug }}"
+==
+{% if category is empty %}
+    {% do abort(404) %}
+{% elseif category.slug and category.slug != this.param.slug %}
+    {% do redirect(''|page({ slug: category.slug }), 301) %}
+{% endif %}
+
+{% set posts = blog.whereRelation('categories', 'slug', category.slug).paginate(8) %}
+{% set header = {
+    'title': category.name,
+    'intro': blogConfig.about_this_blog,
+    'background': '#F4F3F2'
+} %}
+
+{% partial 'components/page-title' header=header %}
+
+<section class="content-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        {% for post in posts %}
+          {% partial 'blog/post-card' post=post bannerCss='banner-lg' %}
+        {% endfor %}
+
+        <nav class="blog-pagination" aria-label="Pagination">
+          {{ pager(posts) }}
+        </nav>
+      </div>
+
+      <div class="col-lg-4">
+        <aside class="sidebar">
+          
+          {% partial 'blog/categories-widget' 
+            categories=categories.where('id', '!=', category.id).get() %}
+          
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>

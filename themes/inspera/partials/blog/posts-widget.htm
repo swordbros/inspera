@@ -1,0 +1,14 @@
+<div class="widget">
+  <h6 class="widget-title">
+    {{ 'Recent posts' |_ }}
+  </h6>
+  <ul class="recent-posts-list">
+    {% for post in posts %}
+      <li>
+        <a href="{{ 'blog/post'|page({ slug: post.slug, id: post.id })  }}">
+          {{ post.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
