@@ -1,6 +1,6 @@
 ##
 url = "/blog/category/:slug/:id"
-layout = "blog"
+layout = "default"
 title = "Display a Blog Category"
 
 [section category]
@@ -25,7 +25,7 @@ vars[activeBlogCategory] = "{{ :slug }}"
 
 {% set posts = blog.whereRelation('categories', 'slug', category.slug).paginate(8) %}
 {% set header = {
-    'title': category.name,
+    'title': category.title,
     'intro': blogConfig.about_this_blog,
     'background': '#F4F3F2'
 } %}
