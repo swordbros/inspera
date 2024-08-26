@@ -14,6 +14,22 @@ handle = "Blog\Category"
 [resources]
 vars[activeNavLink] = 'blog'
 ==
+<?php
+function onEnd(){
+  $post = $this->components['post']->getPrimaryRecord();
+  $postClass = get_class($post);
+  $this['previousPost'] = $postClass::inSection('Blog\Post')
+        ->where('published_at', '<', $post->published_at)
+        ->orderBy('published_at', 'desc')
+        ->first();
+  $this['nextPost'] = $postClass::inSection('Blog\Post')
+        ->where('published_at', '>', $post->published_at)
+        ->orderBy('published_at', 'asc')
+        ->first();
+}
+
+?>
+==
 {% if post is empty %}
   {% do abort(404) %}
 {% elseif post.slug and post.slug != this.param.slug %}
@@ -50,10 +66,16 @@ vars[activeNavLink] = 'blog'
               {{ post.boxes_content.render() | raw }}
             {% endif %}
 
-            <ul class="pagination">
-              <li class="page-item"> <a class="page-link" href="#">Prev Post</a> </li>
+            {#<ul class="posts-navigation">
+              {% if previousPost %}
+                <li class="page-item">
+                  <a class="page-link" href="{{ 'blog/post'|page({ slug: previousPost.slug, id: previousPost.id }) }}">
+                    {{ 'Prev Post'|_ }}: {{ previousPost.title }}
+                  </a>
+                </li>
+              {% endif %}
               <li class="page-item"><a class="page-link" href="#">Next Post</a></li>
-            </ul>
+            </ul>#}
 
           </div>
         </div>
@@ -94,5 +116,15 @@ vars[activeNavLink] = 'blog'
         </aside>
       </div>
     </div>
+
+    {% set posts = [] %}
+    {% if previousPost %}
+      {% set posts = posts|merge([previousPost]) %}
+    {% endif %}
+    {% if nextPost %}
+      {% set posts = posts|merge([nextPost]) %}
+    {% endif %}
+
+    {% partial 'blog/featured-list' posts=posts %}
   </div>
 </section>
