@@ -131,6 +131,9 @@
     if ($(this).attr("data-background")) {
       $(this).css("background", "url(" + $(this).data("background") + ")");
     }
+    if ($(this).attr("data-background-fixed") == '1') {
+      $(this).css("background-", "url(" + $(this).data("background") + ")");
+    }
   });
 
 
@@ -474,41 +477,55 @@
 
 
   //LOCOMOTIVE
-  function initializeLocomotiveScroll() {
-    if (window.innerWidth >= 768) {
-        const smoothScrollWrapper = document.querySelector(".smooth-scroll");
-        let locoScroll;
-        if (smoothScrollWrapper) {
-            locoScroll = new LocomotiveScroll({
-                el: smoothScrollWrapper,
-                smooth: true,
-                class: 'is-inview',
-                getSpeed: true,
-                getDirection: true,
-                smartphone: {
-                    smooth: false,
-                },
-                tablet: {
-                    smooth: false,
-                },
-            });
+//   function initializeLocomotiveScroll() {
+//     if (window.innerWidth >= 768) {
+//         const smoothScrollWrapper = document.querySelector(".smooth-scroll");
+//         let locoScroll;
+//         if (smoothScrollWrapper) {
+//             locoScroll = new LocomotiveScroll({
+//                 el: smoothScrollWrapper,
+//                 smooth: true,
+//                 class: 'is-inview',
+//                 getSpeed: true,
+//                 getDirection: true,
+//                 smartphone: {
+//                     smooth: false,
+//                 },
+//                 tablet: {
+//                     smooth: false,
+//                 },
+//             });
 
-            document.querySelectorAll('a[data-scroll-to]').forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const target = this.getAttribute('data-scroll-to');
-                    locoScroll.scrollTo(document.getElementById(target));
-                });
-            });
-        }
-    }
-}
+//             document.querySelectorAll('a[data-scroll-to]').forEach(link => {
+//                 link.addEventListener('click', function(event) {
+//                     event.preventDefault();
+//                     const target = this.getAttribute('data-scroll-to');
+//                     locoScroll.scrollTo(document.getElementById(target));
+//                 });
+//             });
+//         }
+//     }
+// }
 
-// Initialize on load
-initializeLocomotiveScroll();
+// // Initialize on load
+// initializeLocomotiveScroll();
 
-// Add event listener for window resize
-window.addEventListener('resize', initializeLocomotiveScroll);
+// // Add event listener for window resize
+// window.addEventListener('resize', initializeLocomotiveScroll);
+
+const locoScroll = new LocomotiveScroll({
+  el: document.querySelector(".smooth-scroll"),
+  smooth: true,
+  class: 'is-inview',
+  getSpeed: true,
+  getDirection: true,
+  smartphone: {
+    smooth: false,
+  },
+  tablet: {
+    smooth: false,
+  },
+});
 
 
   /* BACK TO TOP */

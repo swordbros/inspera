@@ -72,6 +72,10 @@ class Plugin extends PluginBase
             $box->addDynamicMethod('getTagsOptions', function () {
                 return EventList::getFeaturedTags();
             });
+
+            $box->addDynamicMethod('getVenuesOptions', function () {
+                return EventList::getVenues();
+            });
         });
     }
 

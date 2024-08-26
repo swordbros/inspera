@@ -27,6 +27,13 @@ form:
         label: box.upcoming_events.featured_tag.label
         type: dropdown
         options: getTagsOptions
+        emptyOption: ---
+
+      venue:
+        label: box.upcoming_events.venue.label
+        type: dropdown
+        options: getVenuesOptions
+        emptyOption: ---
       
       count:
         label: box.upcoming_events.count

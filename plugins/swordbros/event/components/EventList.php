@@ -11,7 +11,9 @@ use System;
 use Backend;
 use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
+use Illuminate\Support\Collection;
 use Swordbros\Event\Models\EventTagModel;
+use Swordbros\Event\Models\EventZoneModel;
 
 /**
  * BackendLink component
@@ -36,12 +38,19 @@ class EventList extends ComponentBase
                 'title' => 'Featured tag',
                 // 'description' => 'The most amount of todo items allowed',
                 'type' => 'dropdown',
+                'emptyOption' => '---',
                 'options' => self::getFeaturedTags()
+            ],
+            'venue' => [
+                'title' => 'By venue',
+                'type' => 'dropdown',
+                'emptyOption' => '---',
+                'options' => self::getVenues()
             ],
             'count' => [
                 'title' => 'Max items',
-                'description' => 'The most amount of items allowed',
-                'default' => 4,
+                'description' => 'The most amount of items allowed, set 0 for unlimited',
+                'default' => 0,
                 'type' => 'string',
                 'validation' => [
                     'regex' => [
@@ -63,11 +72,26 @@ class EventList extends ComponentBase
             $this->setProperty('count', $boxesBox->count);
         }
 
-        $featuredTag = $this->property('featuredTag');
-        $this->page['events'] = $this->events = EventModel::whereHas('tagged_event', function ($q) use ($featuredTag) {
-            $q->whereTag($featuredTag);
-        })
-            ->published()
+        $this->page['events'] = $this->events = $this->getEvents();
+    }
+
+    public function getEvents(): Collection
+    {
+        $query = EventModel::query();
+
+        if ($featuredTag = $this->property('featuredTag')) {
+            $query->whereHas('tagged_event', function ($q) use ($featuredTag) {
+                $q->whereTag($featuredTag);
+            });
+        }
+
+        if ($venueId = $this->property('venue')) {
+            $query->whereHas('event_zone', function ($q) use ($venueId) {
+                $q->filtered(['venues' => [$venueId]]);
+            });
+        }
+
+        $events = $query->published()
             ->future()
             ->with('event_zone', 'event_category', 'event_type', 'thumb')
             ->orderBy('start')
@@ -91,6 +115,8 @@ class EventList extends ComponentBase
                     'short' => $event->short
                 ];
             });
+
+        return $events;
     }
 
     public static function getFeaturedTags(): array
@@ -100,14 +126,14 @@ class EventList extends ComponentBase
         return array_map(fn($tag) => $tag[0], $tagOptions);
     }
 
-    /**function onLoadAjaxPartial()
+    public static function getVenues(): array
     {
-        $data['page'] = \Input::get('page', 1);
-        $data['time'] = time();
-        return [
-            '#dynamic-content' => $this->renderPartial('event/list-item', $data)
-        ];
-    }*/
+        return EventZoneModel::lists('name', 'id');
+    }
+
+    /**
+     * TODO obsolete?
+     */
     function onLoadJsonItems()
     {
         $page = input('page', 1);
