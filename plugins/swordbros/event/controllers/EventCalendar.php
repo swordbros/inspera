@@ -61,7 +61,7 @@ class EventCalendar extends BaseController{
                     'title'=>$row->title,
                     'start'=>$row->start,
                     'end'=>$row->end,
-                    'backgroundColor'=> $row->color?$row->color:'red',
+                    'backgroundColor'=> $row->event_type?$row->event_type->color:'red',
                     'classNames'=> [$row->status?'swordbros-event active':'swordbros-event passive'],
                     'event_view_url'=> \Backend::url('swordbros/event/event/update',['id'=>$row->id]),
                     'event_booking_url'=> \Backend::url('swordbros/booking/booking').'?event_id='.$row->id,
