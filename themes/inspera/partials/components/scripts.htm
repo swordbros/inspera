@@ -1,12 +1,15 @@
-<script src="{{ [   
+{% set scripts = [   
     'assets/js/jquery.min.js',
     'assets/js/bootstrap.min.js',
     'assets/js/locomotive-scroll.min.js',
-    'assets/js/kinetic-slider.js',
-    'assets/js/fancybox.min.js',
-    'assets/js/odometer.min.js',
-    'assets/js/swiper.min.js',
-    'assets/js/scripts.js',
-    ]|theme }}"></script>
+    'assets/js/swiper.min.js'
+  ] %}
+{% if this.page.id != 'event-events' %}
+  {% set scripts = scripts | merge(['assets/js/locomotive-init.js']) %}
+{% endif %}
+{% set scripts = scripts | merge(['assets/js/base-scripts.js']) %}
+
+<script src="{{ scripts | theme }}"></script>
+
 {% framework extras %}
 {% scripts %}

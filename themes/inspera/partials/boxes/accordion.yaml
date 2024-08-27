@@ -3,6 +3,9 @@ handle: accordion
 labelFrom: box_title
 section: box.sections.sections
 icon: /themes/inspera/assets/images/box-thumbs/accordion.png
+assets:
+  js:
+  - name: /themes/inspera/assets/js/boxes/accordion.js
 
 form:
   tabs:

@@ -9,6 +9,7 @@ use Swordbros\ThemeExtender\Classes\AddEssentialsVars;
 use Swordbros\ThemeExtender\Classes\ExtendBoxesPage;
 use Swordbros\ThemeExtender\Classes\ExtendBoxesPagesWithSlug;
 use Swordbros\ThemeExtender\Classes\ExtendBoxesScaffoldingClasses;
+use Swordbros\ThemeExtender\Classes\ExtendUserModel;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -36,6 +37,8 @@ class Plugin extends PluginBase
         Event::subscribe(ExtendBoxesPage::class);
         Event::subscribe(ExtendBoxesScaffoldingClasses::class);
         Event::subscribe(AddEssentialsVars::class);
+
+        Event::subscribe(ExtendUserModel::class);
 
         Event::listen(
             \OFFLINE\Boxes\Classes\Events::EDITOR_RENDER,

@@ -3,6 +3,9 @@ handle: intro
 labelFrom: title
 section: box.sections.sections
 icon: /themes/inspera/assets/images/box-thumbs/main-intro.png
+assets:
+  js:
+  - name: /themes/inspera/assets/js/boxes/wide-slider.js
 
 form:
   tabs:

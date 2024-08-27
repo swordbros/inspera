@@ -45,7 +45,7 @@ security = "all"
         {% partial 'components/head-styles' %}
     </head>
 
-    <body class="page-{{ this.page.title|slug }} page-loaded" data-scroll-container>
+    <body class="page-{{ this.page.title|slug }} page-loaded">
 
         {#<div class="preloader" id="preloader">
             <svg viewBox="0 0 1920 1080" preserveAspectRatio="none" version="1.1">
@@ -70,8 +70,8 @@ security = "all"
 
         {% partial 'components/aside' menuItems=menuItems %}
 
-        <div class="{{ this.page.id != 'event-events' ? 'smooth-scroll' }}">
-            <div class="section-wrapper" {#data-scroll-section#}>
+        <div class="smooth-scroll" data-scroll-section>
+            <div class="section-wrapper">
                 {% partial 'components/header' menuItems=menuItems %}
                 {% page %}
             </div>

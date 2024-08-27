@@ -1,5 +1,5 @@
 <template>
-  <div class="event-card">
+  <div class="event-card -hidden">
     <div class="event-card-type">
       {{ category }}
     </div>
@@ -24,7 +24,11 @@
     <div class="event-card-info">
       <div class="event-card-thumb">
         <a :href="url">
-          <img :src="picture" class="img-fluid img">
+          <img
+            class="img-fluid img"
+            v-lazy="picture"
+            :alt="title"
+          >
         </a>
       </div>
       <h3 class="h5">
@@ -110,7 +114,7 @@ export default {
   methods: {
     isLastingEvent() {
       return this.dateEnd.getDate() !== this.date.getDate()
-    },
+    }
   },
   mounted() {
     // console.log(this.dateEnd)

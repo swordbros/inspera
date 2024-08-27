@@ -3,6 +3,9 @@ handle: items_slider
 labelFrom: box_title
 section: box.sections.sections
 icon: /themes/inspera/assets/images/box-thumbs/items-slider.png
+assets:
+  js:
+  - name: /themes/inspera/assets/js/boxes/items-slider.js
 
 form:
   tabs:

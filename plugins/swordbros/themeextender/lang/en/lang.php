@@ -23,4 +23,9 @@ return [
         'this_weekend' => 'This weekend',
         'clear_all_filters' => 'Clear all',
     ],
+    'user' => [
+        'validation' => [
+            'phone' => 'Enter valid phone number'
+        ]
+    ]
 ];

@@ -40,6 +40,10 @@ class GenericField extends ContentFieldBase
             'shortLabel'
         ]);
 
+        if ($this->isColumnDefaultSearchable()) {
+            $column->searchable();
+        }
+
         if (is_array($this->column)) {
             $column->useConfig($this->column);
         }
@@ -143,9 +147,6 @@ class GenericField extends ContentFieldBase
             case 'switch':
                 return 'switch';
 
-            case 'number':
-                return 'number';
-
             case 'textarea':
                 return 'summary';
 
@@ -169,6 +170,21 @@ class GenericField extends ContentFieldBase
     protected function isColumnDefaultInvisible()
     {
         switch ($this->type) {
+            case 'textarea':
+                return true;
+
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * isColumnDefaultSearchable
+     */
+    protected function isColumnDefaultSearchable()
+    {
+        switch ($this->type) {
+            case 'text':
             case 'textarea':
                 return true;
 

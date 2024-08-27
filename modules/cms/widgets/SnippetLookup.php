@@ -206,7 +206,6 @@ class SnippetLookup extends WidgetBase
      */
     protected function updateList()
     {
-
         return ['#'.$this->getId('snippet-list') => $this->makePartial('items', ['items' => $this->getData()])];
     }
 

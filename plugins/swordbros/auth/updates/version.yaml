@@ -1,0 +1,5 @@
+v1.0.1:
+    - 'First version of Auth'
+v1.0.2:
+    - 'Social Provider fields'
+    - builder_table_update_users_social.php

@@ -12,19 +12,19 @@ class ComposerStaticInit55a14c97678c7a5cb9ee8941bb6265c8
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        '662a729f963d39afe703c9d9b7ab4a8c' => __DIR__ . '/..' . '/symfony/polyfill-php83/bootstrap.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
-        '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '662a729f963d39afe703c9d9b7ab4a8c' => __DIR__ . '/..' . '/symfony/polyfill-php83/bootstrap.php',
         '9e4824c5afbdc1482b6025ce3d4dfde8' => __DIR__ . '/..' . '/league/csv/src/functions_include.php',
         '89efb1254ef2d1c5d80096acd12c4098' => __DIR__ . '/..' . '/twig/twig/src/Resources/core.php',
         'ffecb95d45175fd40f75be8a23b34f90' => __DIR__ . '/..' . '/twig/twig/src/Resources/debug.php',
@@ -33,6 +33,7 @@ class ComposerStaticInit55a14c97678c7a5cb9ee8941bb6265c8
         '9ab6c0b43d4b818d98f088285310c9d9' => __DIR__ . '/..' . '/october/rain/src/Support/helpers.php',
         '52d8d88278ae3691209807d759d9bca3' => __DIR__ . '/..' . '/october/rain/src/Support/polyfills.php',
         '97af4f586841c1bd9dd1f8710561ecaa' => __DIR__ . '/..' . '/october/rain/src/Html/helpers.php',
+        'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         '09f6b20656683369174dd6fa83b7e5fb' => __DIR__ . '/..' . '/symfony/polyfill-uuid/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
@@ -48,6 +49,10 @@ class ComposerStaticInit55a14c97678c7a5cb9ee8941bb6265c8
         'v' => 
         array (
             'voku\\' => 5,
+        ),
+        'p' => 
+        array (
+            'phpseclib3\\' => 11,
         ),
         'W' => 
         array (
@@ -93,6 +98,9 @@ class ComposerStaticInit55a14c97678c7a5cb9ee8941bb6265c8
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
+            'SocialiteProviders\\Manager\\' => 27,
+            'SocialiteProviders\\Google\\' => 26,
+            'SocialiteProviders\\Facebook\\' => 28,
             'Seld\\Signal\\' => 12,
             'Seld\\PharUtils\\' => 15,
             'Seld\\JsonLint\\' => 14,
@@ -131,6 +139,7 @@ class ComposerStaticInit55a14c97678c7a5cb9ee8941bb6265c8
         ),
         'L' => 
         array (
+            'League\\OAuth1\\Client\\' => 21,
             'League\\MimeTypeDetection\\' => 25,
             'League\\Flysystem\\Local\\' => 23,
             'League\\Flysystem\\' => 17,
@@ -138,6 +147,7 @@ class ComposerStaticInit55a14c97678c7a5cb9ee8941bb6265c8
             'League\\Config\\' => 14,
             'League\\CommonMark\\' => 18,
             'Laravel\\Tinker\\' => 15,
+            'Laravel\\Socialite\\' => 18,
             'Laravel\\SerializableClosure\\' => 28,
         ),
         'J' => 
@@ -161,6 +171,7 @@ class ComposerStaticInit55a14c97678c7a5cb9ee8941bb6265c8
         array (
             'Fruitcake\\Cors\\' => 15,
             'Firebase\\JWT\\' => 13,
+            'Faker\\' => 6,
         ),
         'E' => 
         array (
@@ -211,6 +222,10 @@ class ComposerStaticInit55a14c97678c7a5cb9ee8941bb6265c8
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
+        ),
+        'phpseclib3\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -356,6 +371,18 @@ class ComposerStaticInit55a14c97678c7a5cb9ee8941bb6265c8
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'SocialiteProviders\\Manager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/socialiteproviders/manager/src',
+        ),
+        'SocialiteProviders\\Google\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/socialiteproviders/google',
+        ),
+        'SocialiteProviders\\Facebook\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/socialiteproviders/facebook',
+        ),
         'Seld\\Signal\\' => 
         array (
             0 => __DIR__ . '/..' . '/seld/signal-handler/src',
@@ -449,6 +476,10 @@ class ComposerStaticInit55a14c97678c7a5cb9ee8941bb6265c8
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'League\\OAuth1\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/oauth1-client/src',
+        ),
         'League\\MimeTypeDetection\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
@@ -476,6 +507,10 @@ class ComposerStaticInit55a14c97678c7a5cb9ee8941bb6265c8
         'Laravel\\Tinker\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
+        ),
+        'Laravel\\Socialite\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/socialite/src',
         ),
         'Laravel\\SerializableClosure\\' => 
         array (
@@ -522,6 +557,10 @@ class ComposerStaticInit55a14c97678c7a5cb9ee8941bb6265c8
         'Firebase\\JWT\\' => 
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
+        ),
+        'Faker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
         ),
         'Egulias\\EmailValidator\\' => 
         array (

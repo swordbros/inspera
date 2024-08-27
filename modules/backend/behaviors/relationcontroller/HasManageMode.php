@@ -390,7 +390,7 @@ trait HasManageMode
 
         // Add
         if ($this->viewMode === 'multi') {
-            $checkedIds = $recordId ? [$recordId] : post('checked');
+            $checkedIds = $recordId ? [$recordId] : $this->manageListWidget->getAllCheckedIds();
 
             if (is_array($checkedIds)) {
                 // Remove existing relations from the array

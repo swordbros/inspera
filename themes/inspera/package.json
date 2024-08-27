@@ -18,7 +18,9 @@
     "lint:js": "eslint --fix  './src/js/**'"
   },
   "dependencies": {
-    "imagesloaded": "^5.0.0"
+    "imagesloaded": "^5.0.0",
+    "locomotive-scroll": "^4.1.4",
+    "vue-lazyload": "^3.0.0"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.4.33",

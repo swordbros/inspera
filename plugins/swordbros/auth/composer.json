@@ -1,0 +1,8 @@
+{
+    "name": "swordbros/auth-plugin",
+    "type": "october-plugin",
+    "description": "Swordbros Auth Plugin (3rd party)",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

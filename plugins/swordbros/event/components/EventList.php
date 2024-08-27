@@ -69,6 +69,9 @@ class EventList extends ComponentBase
             if ($boxesBox->featured_tag) {
                 $this->setProperty('featuredTag', $boxesBox->featured_tag);
             }
+            if ($boxesBox->venue) {
+                $this->setProperty('venue', $boxesBox->venue);
+            }
             $this->setProperty('count', $boxesBox->count);
         }
 
@@ -86,9 +89,7 @@ class EventList extends ComponentBase
         }
 
         if ($venueId = $this->property('venue')) {
-            $query->whereHas('event_zone', function ($q) use ($venueId) {
-                $q->filtered(['venues' => [$venueId]]);
-            });
+            $query->filtered(['venues' => [$venueId]]);
         }
 
         $events = $query->published()
