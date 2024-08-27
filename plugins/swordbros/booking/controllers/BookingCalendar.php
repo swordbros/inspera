@@ -60,7 +60,7 @@ class BookingCalendar extends BaseController
                     'title'=>$row->title." ($total/$capacity)",
                     'start'=>$row->start,
                     'end'=>$row->end,
-                    'backgroundColor'=> $row->color?$row->color:'red',
+                    'backgroundColor'=> $row->event_type?$row->event_type->color:'red',
                     'classNames'=> [$row->status?'swordbros-event active':'swordbros-event passive'],
                     'total'=> $total,
                     'event_view_url'=> \Backend::url('swordbros/event/event/update',['id'=>$row->id]),
