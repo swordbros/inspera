@@ -9,6 +9,7 @@ use Event;
 use Flash;
 use Hash;
 use Laravel\Socialite\Facades\Socialite;
+use Log;
 use RainLab\User\Models\Settings as UserSettings;
 use RainLab\User\Models\User as UserModel;
 use Redirect;
@@ -191,7 +192,7 @@ class LoginController
             }
         } catch (\Throwable $e) {
             $this->flashError($e->getMessage());
-
+            Log::error($e->getMessage(), $e->getLine(), $e->getFile());
             return redirect()->to($this->errorRedirectTo);
         }
 
@@ -228,7 +229,7 @@ class LoginController
      */
     private function findUserByEmail(string $email): ?UserModel
     {
-        return UserModel::findByEmail($email);
+        return UserModel::whereEmail($email)->first();
     }
 
     /**
