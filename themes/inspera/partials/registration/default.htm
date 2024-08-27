@@ -42,7 +42,7 @@
     <div class="form-floating my-3 inner position-relative">
       <input
         name="email"
-        type="email"
+        type="text"
         class="form-control"
         id="inputEmail"
         placeholder="{{ 'Email address' |_ }}"
@@ -50,6 +50,20 @@
       />
       <label for="inputEmail">
         {{ 'Email address' |_ }}
+      </label>
+    </div>
+
+    <div class="form-floating my-3 inner position-relative">
+      <input
+        name="phone"
+        type="text"
+        class="form-control"
+        id="inputPhone"
+        placeholder="{{ 'Phone' |_ }}"
+        autocomplete="phone"
+      />
+      <label for="inputPhone">
+        {{ 'Phone' |_ }}
       </label>
     </div>
 

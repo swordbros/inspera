@@ -51,6 +51,21 @@
     <span data-validate-for="email"></span>
   </div>
 
+  <div class="form-floating my-3 inner position-relative">
+      <input
+        name="phone"
+        type="text"
+        value="{{ user.phone }}"
+        class="form-control"
+        id="inputPhone"
+        placeholder="{{ 'Phone' |_ }}"
+        autocomplete="phone"
+      />
+      <label for="inputPhone">
+        {{ 'Phone' |_ }}
+      </label>
+    </div>
+
   <button
     class="button -primary"
     data-attach-loading
