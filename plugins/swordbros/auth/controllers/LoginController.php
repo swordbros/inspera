@@ -131,7 +131,6 @@ class LoginController
      */
     public function callbackProvider(Request $request, string $provider)
     {
-        dd($provider, $this->providers);
         if (!in_array($provider, $this->providers)) {
             abort(404);
         }

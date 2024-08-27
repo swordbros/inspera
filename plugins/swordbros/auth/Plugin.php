@@ -44,7 +44,6 @@ class Plugin extends PluginBase
 
     public function boot()
     {
-        dd(1);
         $this->addTrustedProxyMiddleware();
         $this->listenSocialCalls();
         $this->listenToLoginEventsToCompleteProfile();
