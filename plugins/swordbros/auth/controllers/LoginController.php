@@ -5,6 +5,7 @@ namespace Swordbros\Auth\Controllers;
 use Auth;
 // use Backend\Classes\Controller;
 use Carbon\Carbon;
+use Cms\Facades\Cms;
 use Event;
 use Flash;
 use Hash;
@@ -192,9 +193,9 @@ class LoginController
 
         if (!empty($user)) {
             Auth::login($user);
-            $redirectTo = Session::get(static::REDIRECT_KEY, '/');
-
-            return Redirect::intended($redirectTo);
+            return Redirect::to(Cms::url('account/account'));
+            // $redirectTo = Session::get(static::REDIRECT_KEY, '/');
+            // return Redirect::intended($redirectTo);
         } else {
             $this->flashError('Failed to find user');
 
