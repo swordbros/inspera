@@ -174,25 +174,19 @@ class LoginController
                         'name' => $socialUser['given_name'] ?? $socialUser['email'],
                         'surname' => $socialUser['family_name'] ?? $socialUser['email'],
                         'email' => $socialUser['email'],
-                        'nickname' => $socialUser['email'],
                         'password' => $password,
                         'password_confirmation' => $password,
                         $provider . '_id' => $socialUser['id'],
-                        'terms' => 1,
-                        'phone' => '0',
                         // 'github_token' => $socialiteUser['token'],
                         // 'github_refresh_token' => $socialiteUser['refreshToken'],
                     ],
                     true, /* activate user */
                     false /* do not login */
                 );
-
-                $user->phone = null;
-                $user->forceSave();
             }
         } catch (\Throwable $e) {
             $this->flashError($e->getMessage());
-            Log::error($e->getMessage(), $e->getLine(), $e->getFile());
+            Log::error(PHP_EOL . $e->getMessage() . PHP_EOL . "File: " . $e->getFile() . ", Line: " . $e->getLine() . PHP_EOL);
             return redirect()->to($this->errorRedirectTo);
         }
 
