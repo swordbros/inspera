@@ -98,7 +98,7 @@ class EventList extends ComponentBase
             $query->limit($count);
         }
 
-        $events = $query
+        return $query
             ->orderBy('start')
             ->get()
             ->map(function (EventModel $event) {
@@ -120,8 +120,6 @@ class EventList extends ComponentBase
                     'short' => $event->short
                 ];
             });
-
-        return $events;
     }
 
     public static function getFeaturedTags(): array

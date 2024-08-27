@@ -16,7 +16,7 @@
       </div>
       <div class="row justify-content-between">
         
-        {% for event in component.events.take(box.count) %}
+        {% for event in component.events %}
           {% partial 'event/list-item' event=event index=loop.index %}
         {% endfor %}
 
