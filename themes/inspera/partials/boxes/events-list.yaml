@@ -8,7 +8,8 @@ components:
   eventList:
     uniqueAlias: true
     properties:
-      featuredTag: hero
+      featuredTag: null
+      venue: null
 
 form:
   tabs:
@@ -26,19 +27,20 @@ form:
       featured_tag:
         label: box.upcoming_events.featured_tag.label
         type: dropdown
-        options: getTagsOptions
         emptyOption: ---
+        options: getTagsOptions
 
       venue:
         label: box.upcoming_events.venue.label
         type: dropdown
-        options: getVenuesOptions
         emptyOption: ---
+        options: getVenuesOptions
       
       count:
         label: box.upcoming_events.count
         type: number
-        default: 4
+        default: 0
+        comment: Set 0 for unlimited
       
       no-bottom-spacing-mixin:
         type: mixin

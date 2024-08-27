@@ -36,7 +36,6 @@ class EventList extends ComponentBase
         return [
             'featuredTag' => [
                 'title' => 'Featured tag',
-                // 'description' => 'The most amount of todo items allowed',
                 'type' => 'dropdown',
                 'emptyOption' => '---',
                 'options' => self::getFeaturedTags()
@@ -80,7 +79,9 @@ class EventList extends ComponentBase
 
     public function getEvents(): Collection
     {
-        $query = EventModel::query();
+        $query = EventModel::published()
+            ->future()
+            ->with('event_zone', 'event_category', 'event_type', 'thumb');
 
         if ($featuredTag = $this->property('featuredTag')) {
             $query->whereHas('tagged_event', function ($q) use ($featuredTag) {
@@ -92,9 +93,12 @@ class EventList extends ComponentBase
             $query->filtered(['venues' => [$venueId]]);
         }
 
-        $events = $query->published()
-            ->future()
-            ->with('event_zone', 'event_category', 'event_type', 'thumb')
+        $count = $this->property('count');
+        if ($count > 0) {
+            $query->limit($count);
+        }
+
+        $events = $query
             ->orderBy('start')
             ->get()
             ->map(function (EventModel $event) {
