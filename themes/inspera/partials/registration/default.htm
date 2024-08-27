@@ -73,6 +73,28 @@
       type="submit">
       {{ 'Create account' |_ }}
     </button>
+    <div class="register__divider">
+      <span class="register__divider-text">
+        {{ 'or continue with' |_ }}
+      </span>
+    </div>
+    <a
+      href="/auth/register/google"
+      class="
+        socsignin__button
+        socsignin__button--google
+      "
+    ></a>
+    {# <a
+      href="/auth/login/facebook"
+      class="
+        socsignin__button
+        socsignin__button--signin
+        socsignin__button--apple-sm
+      "
+    >
+      Continue with Facebook
+    </a> #}
   {% else %}
     <div class="text-center pb-3">
       <h1 class="h2 mb-3">

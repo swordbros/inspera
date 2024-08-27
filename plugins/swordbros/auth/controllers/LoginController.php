@@ -79,7 +79,7 @@ class LoginController
      *
      * @var string
      */
-    public $errorRedirectTo = 'user/login';
+    public $errorRedirectTo = '/login';
 
 
     /**
