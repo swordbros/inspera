@@ -171,8 +171,8 @@ class LoginController
                 $password = Hash::make(uniqid());
                 $user = Auth::register(
                     [
-                        'name' => $socialUser['given_name'] ?? $socialUser['email'],
-                        'surname' => $socialUser['family_name'] ?? $socialUser['email'],
+                        'first_name' => $socialUser['given_name'] ?? $socialUser['email'],
+                        'last_name' => $socialUser['family_name'] ?? $socialUser['email'],
                         'email' => $socialUser['email'],
                         'password' => $password,
                         'password_confirmation' => $password,
