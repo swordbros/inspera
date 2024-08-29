@@ -2,6 +2,8 @@
     <ul>
         {% for event in events.take(3) %}
             <li>
+                <img src="{{ event.thumb }}" alt="{{ event.title }}" width="230">
+                <br>
                 <h5>
                     <a href="{{ event.url }}">
                         {{ event.title }}
