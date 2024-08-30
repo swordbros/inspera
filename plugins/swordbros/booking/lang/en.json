@@ -15,9 +15,22 @@
     "booking.cols.first_name": "First Name",
     "booking.cols.user": "Customer",
     "booking.cols.event": "Event",
+    "booking.cols.created_at": "Event",
     "booking.plugin.bookingcreate": "Add Booking",
     "booking.plugin.bookings": "Bookings",
     "booking.plugin.requests": "Booking Requests",
     "booking.plugin.calendar": "Calendar",
-    "booking.plugin.title": "Bookings"
+    "booking.plugin.title": "Bookings",
+    "booking.fields.main": "Main",
+    "booking.fields.event": "Event",
+    "booking.fields.user_id": "User",
+    "booking.fields.first_name": "First Name",
+    "booking.fields.last_name": "Last Name",
+    "booking.fields.email": "Email",
+    "booking.fields.phone": "Phone",
+    "booking.fields.booking_status": "Booking Status",
+    "booking.fields.total": "Total",
+    "booking.fields.payment_status": "Payment Status",
+    "booking.fields.payment_method": "Payment Method",
+    "booking.fields.note": "Note"
 }

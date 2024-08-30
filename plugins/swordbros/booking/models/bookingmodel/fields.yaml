@@ -14,7 +14,7 @@ tabs:
             nameFrom: title
             required: true
         user:
-            label: event.fields.user_id
+            label: booking.fields.user_id
             span: auto
             commentAbove: 'Select the customer for this booking'
             type: recordfinder
