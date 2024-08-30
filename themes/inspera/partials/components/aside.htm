@@ -39,34 +39,52 @@
       </ul>
     </div>
 
-    {% if menuItems is not empty  %}
-      <div class="site-menu">
-        <ul>
-          {% for item in menuItems %}
-            <li>
-              <a href="{{ item.reference | link }}">
-                {{ item.title }}
-              </a>
-
-              {% if item.children.count %}
-                <ul class="menu-level-2">
-                  {% for child in item.children | filter(i => not i.is_hidden) %}
-                    <li>
-                      <a
-                      class="{{ link(child.reference).isActive ? 'active' }}"
-                      href="{{ child.reference|link }}"
-                      {{ child.is_external ? 'target="_blank" '}}
+    {% if menuItems is not empty %}
+    <div class="site-menu accordion" id="accordionMenu">
+        <ul class="nav flex-column">
+            {% for item in menuItems %}
+                {% if item.children.count %}
+                  <li class="nav-item">
+                    <div class="accordion-header" id="heading{{ loop.index }}">
+                      <div 
+                          class="accordion-title {% if not item.children.count %}collapsed{% endif %}" 
+                          data-bs-toggle="collapse" 
+                          data-bs-target="#collapse{{ loop.index }}" 
+                          aria-expanded="false" 
+                          aria-controls="collapse{{ loop.index }}"
                       >
-                        - {{ child.title }}
-                      </a>
-                    </li>
-                  {% endfor %}
-                </ul>
-              {% endif %}
-            </li>
-          {% endfor %}   
+                          {{ item.title }}
+                      </div>
+                    </div>
+                    <div 
+                      id="collapse{{ loop.index }}" 
+                      class="accordion-collapse collapse" 
+                      aria-labelledby="heading{{ loop.index }}" 
+                      data-bs-parent="#accordionMenu"
+                    >
+                      <ul class="accordion-body nav flex-column">
+                        {% for child in item.children | filter(i => not i.is_hidden) %}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link {% if link(child.reference).isActive %}active{% endif %}" 
+                                    href="{{ child.reference | link }}"
+                                    {% if child.is_external %}target="_blank"{% endif %}
+                                >
+                                    - {{ child.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </li>
+                {% else %}
+                  <li class="nav-item"> 
+                    <a href="{{ item.reference | link }}">{{ item.title }}</a>
+                  </li>
+                {% endif %}
+            {% endfor %}
         </ul>
-      </div>
-    {% endif %}    
+    </div>
+{% endif %}
   </div>
 </aside>
