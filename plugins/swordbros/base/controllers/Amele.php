@@ -318,6 +318,7 @@ class Amele extends Controller
         return self::localize_url('/event',['id'=>$event->id]);
     }
     public static function localize_url($url, $params=[]){
+        /* git testing */
         $ActiveSite = Site::getActiveSite();
         $prefix = '';
         if($ActiveSite){
