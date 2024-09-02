@@ -85,7 +85,6 @@ tabs:
             path: $/swordbros/event/controllers/event/_content_buttons.htm
         event_metas:
             tab: event.tab.meta
-            #label: event.fields.metas
             type: partial
             path: $/swordbros/event/controllers/event/_metas.php
             form:
