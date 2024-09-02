@@ -102,7 +102,9 @@ class Amele extends Controller
         }
         return false;
     }
-
+    public static function translateKey($key, $translateClass){
+        return self::translate($key, $translateClass);
+    }
    private static function translate($key, $translateClass){
        $site_id = Site::getSiteIdFromContext();
        $translateModel = new $translateClass();

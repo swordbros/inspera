@@ -13,8 +13,8 @@ columns:
         invisible: true
     event_type_id:
         label: event.cols.event_type
-        relation: event_type
-        select: name
+        #relation: event_type
+        #select: name
         type: text
     name:
         label: event.cols.name

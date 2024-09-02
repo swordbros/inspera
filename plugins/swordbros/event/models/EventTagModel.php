@@ -31,10 +31,10 @@ class EventTagModel extends BaseModel
     ];
     public function getTagOptions(){
         return[
-            'hero'=>['Show on Hero', '#ff5e00'],
-            'featured'=>['Featured', '#cd2345'],
-            'bestseller'=>['Best Seller', '#2acd23'],
-            'recommended'=>['Recommended', '#2325cd'],
+            'hero'=>[ __('event.tags.showonhero'), '#ff5e00'],
+            'featured'=>[__('event.tags.featured'), '#cd2345'],
+            'bestseller'=>[__('event.tags.bestseller'), '#2acd23'],
+            'recommended'=>[__('event.tags.recommended'), '#2325cd'],
         ];
     }
     public function scopeisTag($query, $value)

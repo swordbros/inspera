@@ -18,8 +18,8 @@ columns:
         type: text
     event_zone_id:
         label: event.cols.event_zone
-        relation: event_zone
-        select: name
+        type: partial
+        path: event_zone_name
     capacity:
         label: event.cols.capacity
         type: partial
@@ -30,12 +30,12 @@ columns:
         path: rating
     event_category_id:
         label: event.cols.event_category
-        relation: event_category
-        select: name
+        type: partial
+        path: event_category_name
     event_type_id:
         label: event.cols.event_type
-        relation: event_type
-        select: name
+        type: partial
+        path: event_type_name
     start:
         label: event.cols.start
         type: date
