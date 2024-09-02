@@ -3,7 +3,7 @@
 const locoScroll = new LocomotiveScroll({
   el: document.querySelector('.smooth-scroll'),
   smooth: true,
-  class: 'is-inview',
+  // class: 'is-inview',
   getSpeed: true,
   getDirection: true,
   smartphone: {
@@ -21,3 +21,20 @@ document.querySelectorAll('a[data-scroll-to]').forEach(link => {
     locoScroll.scrollTo(document.getElementById(target));
   });
 });
+
+/**
+ * add is-inview independent from loco
+ */
+const elements = document.querySelectorAll('.content-section');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-inview');
+    } else {
+      entry.target.classList.remove('is-inview');
+    }
+  });
+});
+
+elements.forEach(element => observer.observe(element));

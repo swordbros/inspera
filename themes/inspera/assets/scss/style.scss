@@ -3458,18 +3458,19 @@ $btnEasing: 0.15s ease-in-out;
 .col-lg-4:nth-child(3) .text-content {
   margin-top: 100px;
 }
+
 .text-content {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  h6 {
+
+  h6, h3 {
     width: 100%;
     display: block;
     margin-bottom: 20px;
-    @include  font-titles-fancy;
-    font-size: 26px;
-    font-weight: 600;
+    @include font-titles-fancy;
   }
+
   p {
     width: 100%;
     display: block;
@@ -3491,6 +3492,10 @@ $btnEasing: 0.15s ease-in-out;
       margin-bottom: 0;
     }
   }
+}
+
+.text-content-link {
+  padding-left: 30px;
 }
 
 /* ART SLIDER */
@@ -4540,7 +4545,7 @@ $btnEasing: 0.15s ease-in-out;
   .testimonial-box {
     max-width: 100%;
   }
-  .text-content p {
+  .text-content p, .text-content-link {
     padding-right: 10%;
   }
   .image-icon-box .content-box h4 {
@@ -4965,7 +4970,7 @@ $btnEasing: 0.15s ease-in-out;
   .text-content {
     text-align: center;
   }
-  .text-content p {
+  .text-content p, .text-content-link {
     padding: 0 5%;
   }
   .text-content p:before {
