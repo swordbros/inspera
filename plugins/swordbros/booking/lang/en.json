@@ -56,5 +56,6 @@
     "booking.email.created_at": "Created at",
     "booking.email.updated_at": "Updated at",
     "booking.request.approve": "Approve",
-    "booking.request.decline": "Decline"
+    "booking.request.decline": "Decline",
+    "booking.tab.history": "Booking History"
 }
