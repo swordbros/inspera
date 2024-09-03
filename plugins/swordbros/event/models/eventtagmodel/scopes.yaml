@@ -4,7 +4,7 @@
 
 scopes:
     tag:
-        label: booking.scops.tag
+        label: event.scops.tag
         scope: isTag
         modelClass: Swordbros\Event\Models\EventTagModel
         conditions: filterByTag

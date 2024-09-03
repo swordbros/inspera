@@ -1,11 +1,11 @@
 fields:
     email:
-        label: event.email.email
+        label: booking.email.email
         type: text
         required: true
     email_title:
-        label: event.email.email_title
+        label: booking.email.email_title
         type: text
     email_body:
-        label: event.email.email_body
+        label: booking.email.email_body
         type: richeditor

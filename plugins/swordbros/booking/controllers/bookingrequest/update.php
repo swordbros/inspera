@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('swordbros/booking/bookingrequest') ?>"><?= e(trans('swordbros.booking::plugin.booking_request')) ?></a></li>
+        <li><a href="<?= Backend::url('swordbros/booking/bookingrequest') ?>"><?= e(trans('booking.plugin.requests')) ?></a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -38,18 +38,18 @@
                     data-request="onApproveBookingRequest"
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="<?= e(trans('backend::lang.form.saving')) ?>"
+                    data-load-indicator="<?= e(trans('booking.request.approve')) ?>"
                     class="btn btn-success">
-                    <?= e(trans('backend::lang.form.approve')) ?>
+                    <?= e(trans('booking.request.approve')) ?>
                 </button>
                 <button
                     type="button"
                     data-request="onDeclineBookingRequest"
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="<?= e(trans('backend::lang.form.saving')) ?>"
+                    data-load-indicator="<?= e(trans('booking.request.decline')) ?>"
                     class="btn btn-danger">
-                    <?= e(trans('backend::lang.form.decline')) ?>
+                    <?= e(trans('booking.request.decline')) ?>
                 </button>
                 <button
                     type="button"
