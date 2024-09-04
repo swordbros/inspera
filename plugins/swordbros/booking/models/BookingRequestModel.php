@@ -8,6 +8,7 @@ use Swordbros\BookingRequest\Models\CategoryModel;
 use Swordbros\BookingRequest\Models\TypeModel;
 use Swordbros\BookingRequest\Models\ZoneModel;
 use Swordbros\Event\Models\EventModel;
+use System\Classes\SiteManager;
 
 /**
  * Model
@@ -43,6 +44,7 @@ class BookingRequestModel extends Model
         'last_name',
         'event_id',
         'user_id',
+        'site_id',
         'email',
         'phone',
         'note',
@@ -120,6 +122,7 @@ class BookingRequestModel extends Model
         $booking = new BookingModel();
         $booking->event_id = $this->event_id;
         $booking->user_id = $this->user_id;
+        $booking->site_id = $this->site_id;
         $booking->first_name = $this->first_name;
         $booking->last_name = $this->last_name;
         $booking->email = $this->email;

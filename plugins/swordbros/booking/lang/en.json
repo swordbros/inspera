@@ -16,6 +16,7 @@
     "booking.cols.user": "Customer",
     "booking.cols.event": "Event",
     "booking.cols.created_at": "Event",
+    "booking.cols.site": "Language",
     "booking.plugin.bookingcreate": "Add Booking",
     "booking.plugin.bookings": "Bookings",
     "booking.plugin.requests": "Booking Requests",
