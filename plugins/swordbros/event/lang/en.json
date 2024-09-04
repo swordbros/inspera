@@ -93,5 +93,7 @@
     "event.tags.showonhero": "Show On Hero",
     "event.tags.featured": "Featured",
     "event.tags.bestseller": "Bestseller",
-    "event.tags.recommended": "Recommended"
+    "event.tags.recommended": "Recommended",
+    "booking.alert.email_in_use_please_login": "Email is already in use. Please login to continue.",
+    "booking.alert.request_allready_exists": "Request already exists"
 }
