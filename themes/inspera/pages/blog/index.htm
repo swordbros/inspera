@@ -20,7 +20,11 @@ vars[activeNavLink] = 'blog'
 {% set header = {
     'title': blogConfig.blog_name ?: 'Blog',
     'intro': blogConfig.about_this_blog,
-    'background': '#F4F3F2'
+    'background': blogConfig.blog_index_picture ? blogConfig.blog_index_picture | media : '',
+    'background_overlay': blogConfig.background_overlay,
+    'custom_overlay': blogConfig.custom_overlay,
+    'background_overlay_opacity': blogConfig.background_overlay_opacity,
+    'fonts_color': blogConfig.fonts_color
 } %}
 
 {% partial 'components/page-title' header=header %}

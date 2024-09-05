@@ -4,19 +4,7 @@
     <a href="{{ 'home' | boxesPage }}">
       <img src="{{ app_logo }}" alt="{{ app_name }}">
     </a>
-  </div>
-
-  <div class="custom-menu">
-    <ul>
-      {% for site in sitePicker.sites %}
-        <li>
-          <a href="{{ site.url }}" class="{{ this.site.code == site.code ? 'active' }}">
-            {{ site.name }}
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+  </div>  
 
   {% if menuItems is not empty  %}
     <div class="site-menu">
@@ -55,6 +43,19 @@
 
     </div>
   {% endif %}
+
+  <div class="custom-menu">
+    <ul>
+      {% for site in sitePicker.sites | filter(i=>this.site.code != i.code)%}
+        <li>
+          <a href="{{ site.url }}">
+            {{ site.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
   {% if user %}
     <div class="user-button">
       <a href="#" data-request="onLogout" title="{{ 'Logout' |_ }}" data-request-redirect="/">

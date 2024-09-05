@@ -91,6 +91,7 @@ class EventDetail extends ComponentBase
                 return;
             }
             $booking_request['user_id'] = $createuser['userId'];
+            $booking_request['site_id'] = Site::getSiteIdFromContext();
             $bokingRequestModel = new BookingRequestModel();
             $bokingRequestModel->fill($booking_request);
             $bokingRequestModel->status = 0;

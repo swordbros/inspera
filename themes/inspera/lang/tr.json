@@ -1,0 +1,4 @@
+{
+    "booking.alert.email_in_use_please_login": "Girilen email ile bir reservasyon isteği oluşturulmuş. Lütfen Oturum Açın",
+    "booking.alert.request_allready_exists": "Girilen email ile bir rezervasyon isteği zaten mevcut"
+}

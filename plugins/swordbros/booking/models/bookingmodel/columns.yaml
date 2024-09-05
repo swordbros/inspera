@@ -5,6 +5,10 @@ columns:
         invisible: true
         sortable: true
         sortableDefault: DESC
+    site_id:
+        label: booking.cols.site
+        type: partial
+        path: site_id
     event_id:
         label: booking.cols.event
         relation: event
