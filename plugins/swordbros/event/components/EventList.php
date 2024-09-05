@@ -113,10 +113,10 @@ class EventList extends ComponentBase
                     'endDate' => $startDate->format('d.m') === $endDate->format('d.m') ? null : $endDate->format('d.m'),
                     'year' => $startDate->format('Y'),
                     'time' => $startDate->format('H:i'),
-                    'color' => $event->event_category?$event->event_category->color:'#000000',
-                    'venue' => $event->event_zone?$event->event_zone->name:'',
-                    'type' => $event->event_type?$event->event_type->name:'',
-                    'category' => $event->event_category?$event->event_category->name:'',
+                    'color' => $event->event_type ? $event->event_type->color : '#cccccc',
+                    'venue' => $event->event_zone ? $event->event_zone->name : '',
+                    'type' => $event->event_type ? $event->event_type->name : '',
+                    'category' => $event->event_category ? $event->event_category->name : '',
                     'short' => $event->short
                 ];
             });
