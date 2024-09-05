@@ -322,5 +322,8 @@
   "box.quotes.quotes.title.label": "Title",
   "box.section_cards.name": "3 columns - featured items",
   "box.items_slider.slider.is_external_link.label": "Is external URL",
-  "box.blockquote.name": "Blockquote"
+  "box.blockquote.name": "Blockquote",
+  "box.title_header.fonts_color.label":  "Header color theme",
+  "box.title_header.paralax_speed.label": "Parallax speed",
+  "box.title_header.paralax_speed.comment": "can't be negative. 20 is recommended"
 }

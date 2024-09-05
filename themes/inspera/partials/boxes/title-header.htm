@@ -4,4 +4,43 @@
     'background': box.background_image | media
 } %}
 
+{% if box.fonts_color == 'light' %}
+<style>
+    .page-header .inner h1 {
+        color: #fff;
+        border-left: 3px solid #fff;
+    }
+    .page-header .inner p {
+        color: #fff;
+    }
+</style>
+{% endif %}
+
+{% if box.background_overlay %}
+    <div
+    class="
+        {% if box.background_overlay == 'custom' %}
+        filter-bg-overlay
+        {% else %}
+        filter-bg-overlay-{{ box.background_overlay }}
+        {% endif %}
+    " 
+    style="
+        {% if box.background_overlay == 'custom' %}
+
+        {% set overlay = box.custom_overlay %}
+
+        {% if overlay.end_color %}
+            background: linear-gradient({% if overlay.direction == 'horizontal' %}90deg{% else %}0deg{% endif %}, {{ overlay.start_color }} 0%, {{ overlay.end_color }} 100%);
+        {% elseif box.custom_overlay.start_color %}
+            background-color: {{ overlay.start_color }};
+        {% endif %}
+        {% endif %}
+        opacity: {{ box.background_overlay_opacity ? box.background_overlay_opacity / 100 : '.5' }}
+    "
+    ></div>
+{% endif %}
+
+
 {% partial 'components/page-title' header=header %}
+

@@ -3,7 +3,7 @@
     class="parallax-image-wrapper"
     {% if header.background %}
       data-scroll
-      data-scroll-speed="20"
+      data-scroll-speed="{{ header.parallax_speed ?: 20 }}"
       data-scroll-position="top"
     {% endif %}
   >
