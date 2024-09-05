@@ -6,10 +6,10 @@
     <div class="row">
         <div class="col-6"><?= $this->formRender() ?></div>
         <div class="col-6">
-            <h5>Booking Info</h5>
+
             <lu>
                 <?php foreach ($formModel->attributes as $attribute=>$value) {?>
-<li><?= $attribute ?>: <strong><?= $value ?></strong></li>
+<li><?= e(trans('booking.email.'.$attribute)) ?>: <strong><?= $value ?></strong></li>
                 <?php }?>
             </lu>
         </div>
@@ -21,9 +21,9 @@
                 type="submit"
                 data-request="onSendEmail"
                 data-hotkey="ctrl+s, cmd+s"
-                data-load-indicator="<?= e(trans('backend::lang.form.send')) ?>"
+                data-load-indicator="?= e(trans('booking.email.send')) ?>"
                 class="btn btn-primary">
-                <?= e(trans('backend::lang.form.send')) ?>
+                <?= e(trans('booking.email.send')) ?>
             </button>
         </div>
     </div>

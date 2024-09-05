@@ -15,6 +15,7 @@
     "booking.cols.first_name": "Adı",
     "booking.cols.user": "Müşteri",
     "booking.cols.event": "Etkinlik",
+    "booking.cols.site": "Dil",
     "booking.plugin.bookingcreate": "Rezervasyon Ekle",
     "booking.plugin.bookings": "Rezervasyonlar",
     "booking.plugin.requests": "Rezervasyon İstekleri",

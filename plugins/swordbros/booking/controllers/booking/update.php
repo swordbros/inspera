@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('swordbros/booking/booking') ?>"><?= e(trans('swordbros.booking::plugin.booking')) ?></a></li>
+        <li><a href="<?= Backend::url('swordbros/booking/booking') ?>"><?= e(trans('booking.plugin.bookings')) ?></a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>

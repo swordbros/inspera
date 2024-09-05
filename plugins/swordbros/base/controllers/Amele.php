@@ -319,13 +319,15 @@ class Amele extends Controller
     }
     public static function localize_url($url, $params=[]){
         $ActiveSite = Site::getActiveSite();
+        $prefix = '';
         if($ActiveSite){
-            $prefix = $ActiveSite->route_prefix;
-        } else {
-            $prefix = '';
+            if($ActiveSite->is_prefixed){
+                $prefix = $ActiveSite->route_prefix;
+            }
         }
         return url(trim($prefix, '/').'/'.ltrim($url, '/'),  $params);
     }
+
 
     public static function getDefaultSiteId(){
         if(defined('DEFAULT_SITE_ID')){

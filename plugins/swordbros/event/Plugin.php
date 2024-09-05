@@ -30,6 +30,12 @@ class Plugin extends PluginBase
             $settings = SwordbrosSettingModel::instance();
             $controller->vars['swordbrosSettings'] = $settings;
         });
+        Event::listen('cms.sitePicker.overrideParams', function ($page,  $parameters) {
+            if(is_array($parameters) && isset($parameters['id'])){
+                if($page->fileName == 'event/event.htm') return  ['id'=>$parameters['id']];
+            }
+        });
+
     }
 
     /**
