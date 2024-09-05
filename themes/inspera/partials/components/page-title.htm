@@ -1,4 +1,30 @@
 <div class="parallax-container page-header">
+  {% if header.background_overlay %}
+    <div
+    class="
+        {% if header.background_overlay == 'custom' %}
+        filter-bg-overlay
+        {% else %}
+        filter-bg-overlay-{{ header.background_overlay }}
+        {% endif %}
+    " 
+    style="
+        {% if header.background_overlay == 'custom' %}
+
+        {% set overlay = header.custom_overlay %}
+
+        {% if overlay.end_color %}
+            background: linear-gradient({% if overlay.direction == 'horizontal' %}90deg{% else %}0deg{% endif %}, {{ overlay.start_color }} 0%, {{ overlay.end_color }} 100%);
+        {% elseif header.custom_overlay.start_color %}
+            background-color: {{ overlay.start_color }};
+        {% endif %}
+        {% endif %}
+        opacity: {{ header.background_overlay_opacity ? header.background_overlay_opacity / 100 : '.5' }}
+    "
+    ></div>
+{% endif %}
+
+
   <div
     class="parallax-image-wrapper"
     {% if header.background %}
