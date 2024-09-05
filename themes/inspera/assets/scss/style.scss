@@ -3871,26 +3871,20 @@ $btnEasing: 0.15s ease-in-out;
   h2 {
     width: 100%;
     @include font-second;
-    margin-bottom: 0;
+    margin-bottom: 2rem;
     font-size: 92px;
     
     strong {
       font-weight: 600;
     }
   }
+
   p {
     padding: 0 20%;
   }
-  .custom-button {
-    margin: 0 auto;
+
+  .button {
     margin-top: 60px;
-    &:hover {
-      background: $color-dark;
-      color: #fff;
-      &:before {
-        border-color: #fff;
-      }
-    }
   }
 }
 
