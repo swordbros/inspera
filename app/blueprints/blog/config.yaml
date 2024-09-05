@@ -20,17 +20,81 @@ fields:
 
     about_this_blog:
         label: About This Blog
-        comment: Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.
+        comment: Customize this section to tell your visitors a little bit about your publications, writers, content, or something else entirely. 
         type: textarea
         size: small
         tab: General
+    
+    blog_index_picture:
+        tab: Background picture
+        label: Blog intro picture
+        type: mediafinder
+        mode: image
+        span: left
+    
+    fonts_color:
+        span: auto
+        type: balloon-selector
+        label: box.intro.name.slides.fonts_color
+        default: dark
+        options:
+            dark: Dark
+            light: Light
+    
+    background_overlay:
+        tab: Background picture
+        label: box.mixin_background.background_overlay.label
+        type: dropdown
+        span: right
+        emptyOption: box.mixin_background.inner_content_overlay.emptyOption
+        options:
+            dark: box.mixin_background.background_overlay.options.dark
+            light: box.mixin_background.background_overlay.options.light
+            custom: box.mixin_background.background_overlay.options.custom
 
-    _section1:
-        label: Social Links
-        type: section
-        tab: General
+    custom_overlay:
+        tab: Background picture
+        label: box.mixin_background.custom_overlay.label
+        type: nestedform
+        span: right
+        trigger:
+            action: show
+            field: background_overlay
+            condition: value[custom]
+        form:
+            fields:
+                start_color:
+                    type: colorpicker
+                    availableColors: ['#F4F3F2']
+                    span: auto
+                end_color:
+                    type: colorpicker
+                    availableColors: ['#DDFA80']
+                    span: auto
+                    comment: box.mixin_background.fields.end_color.comment
+                direction:
+                    type: dropdown
+                    options:
+                        horizontal: box.mixin_background.fields.direction.options.horizontal
+                        vertical: box.mixin_background.fields.direction.options.vertical
 
-    _social_links:
-        type: mixin
-        source: Fields\SocialLinks
-        tab: General
+    background_overlay_opacity:
+        tab: Background picture
+        label: box.mixin_background.background_overlay_opacity.label
+        type: number
+        span: right
+        placeholder: 5
+        trigger:
+            action: hide
+            field: background_overlay
+            condition: value[]
+
+    # _section1:
+    #     label: Social Links
+    #     type: section
+    #     tab: General
+
+    # _social_links:
+    #     type: mixin
+    #     source: Fields\SocialLinks
+    #     tab: General
