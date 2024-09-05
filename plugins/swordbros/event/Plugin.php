@@ -33,6 +33,7 @@ class Plugin extends PluginBase
         Event::listen('cms.sitePicker.overrideParams', function ($page,  $parameters) {
             if(is_array($parameters) && isset($parameters['id'])){
                 if($page->fileName == 'event/event.htm') return  ['id'=>$parameters['id']];
+                if($page->fileName == 'booking/thank-you.htm') return  ['id'=>$parameters['id']];
             }
         });
 
