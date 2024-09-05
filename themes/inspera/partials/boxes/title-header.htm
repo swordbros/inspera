@@ -4,4 +4,18 @@
     'background': box.background_image | media
 } %}
 
+{% if box.fonts_color == 'light' %}
+<style>
+    .page-header .inner h1 {
+        color: #fff;
+        
+    }
+    .page-header .inner p {
+        color: #fff;
+        border-left: 3px solid #fff;
+    }
+</style>
+{% endif %}
+
 {% partial 'components/page-title' header=header %}
+

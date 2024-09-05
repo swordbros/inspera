@@ -324,5 +324,8 @@
     "box.items_slider.slider.is_external_link.label": "Is external URL",
     "box.blockquote.name": "Blockquote",
     "booking.alert.email_in_use_please_login": "Email is already in use. Please login to continue.",
-    "booking.alert.request_allready_exists": "Request already exists"
+    "booking.alert.request_allready_exists": "Request already exists",
+    "box.title_header.fonts_color.label":  "Header color theme",
+  "box.title_header.paralax_speed.label": "Parallax speed",
+  "box.title_header.paralax_speed.comment": "can't be negative. 20 is recommended"
 }

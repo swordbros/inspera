@@ -13,6 +13,15 @@ form:
         comment: box.box_title.comment
         default: box.title_header.name
       
+      fonts_color:
+        span: auto
+        type: balloon-selector
+        label: box.title_header.fonts_color.label
+        default: dark
+        options:
+          dark: Dark
+          light: Light
+
       title:
         label: box.title.name
         comment: box.title_header.title.comment
@@ -25,6 +34,54 @@ form:
         label: box.mixin_background.background_image.label
         type: mediafinder
         mode: image
+
+      background_overlay:
+        label: box.mixin_background.background_overlay.label
+        type: dropdown
+        emptyOption: box.mixin_background.inner_content_overlay.emptyOption
+        options:
+          dark: box.mixin_background.background_overlay.options.dark
+          light: box.mixin_background.background_overlay.options.light
+          custom: box.mixin_background.background_overlay.options.custom
+
+      custom_overlay:
+        label: box.mixin_background.custom_overlay.label
+        type: nestedform
+        trigger:
+          action: show
+          field: background_overlay
+          condition: value[custom]
+        form:
+          fields:
+            start_color:
+              type: colorpicker
+              availableColors: ['#F4F3F2']
+              span: auto
+            end_color:
+              type: colorpicker
+              availableColors: ['#DDFA80']
+              span: auto
+              comment: box.mixin_background.fields.end_color.comment
+            direction:
+              type: dropdown
+              options:
+                horizontal: box.mixin_background.fields.direction.options.horizontal
+                vertical: box.mixin_background.fields.direction.options.vertical
+
+      background_overlay_opacity:
+        label: box.mixin_background.background_overlay_opacity.label
+        type: number
+        placeholder: 5
+
+      parallax_speed:
+        label: box.title_header.paralax_speed.label
+        type: number
+        placeholder: 20
+        comment: box.title_header.paralax_speed.comment
       
       anchor-mixin:
         type: mixin
+      
+    
+      
+      
