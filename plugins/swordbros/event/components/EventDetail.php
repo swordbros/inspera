@@ -125,7 +125,7 @@ class EventDetail extends ComponentBase
             //Flash::success('Booking Created!');
             $locale = session('locale', 'en'); // Varsayılan olarak 'en'
 
-            return Redirect::to(url('/'.$locale.'/booking/thank-you', ['id' => $bokingRequestModel->id]));
+            return Redirect::to(url('/'.$locale.'/booking/thank-you', ['id' => $bokingRequestModel->id, 'otp' => $bokingRequestModel->otp]));
         } else {
             Flash::warning('booking_request not posted');
         }
