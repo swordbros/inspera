@@ -91,6 +91,11 @@ title = "Event Detail"
         <div class="right-half double-slider-wrapper" data-scroll data-scroll-speed="1">
           <div class="swiper eventSwiper">
             <div class="swiper-wrapper">
+              {% if event.thumb %}
+                <div class="swiper-slide">
+                  <img src="{{ event.thumb.getThumb(636, 477, {'mode': 'crop'}) }}" alt="{{ event.thumb.title }}"/>
+                </div>
+              {% endif %}
               {% for slide in event.images %}
                 <div class="swiper-slide">
                   <img src="{{ slide.getThumb(636, 477, {'mode': 'crop'}) }}" alt="{{ slide.title }}"/>
@@ -100,6 +105,11 @@ title = "Event Detail"
           </div>
           <div thumbsSlider="" class="swiper eventSwiperNav">
             <div class="swiper-wrapper">
+              {% if event.thumb %}
+                <div class="swiper-slide">
+                  <img src="{{ event.thumb.getThumb(636, 477, {'mode': 'crop'}) }}" alt="{{ event.thumb.title }}"/>
+                </div>
+              {% endif %}
               {% for slide in event.images %}
                 <div class="swiper-slide">
                   <img src="{{ slide.getThumb(636, 477, {'mode': 'crop'}) }}" alt="{{ slide.title }}"/>

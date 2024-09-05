@@ -3828,10 +3828,10 @@ $btnEasing: 0.15s ease-in-out;
 /* CTA BOX */
 .cta-box {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  // display: flex;
+  // flex-wrap: wrap;
   text-align: center;
-  justify-content: center;
+  // justify-content: center;
   color: #fff;
   margin: 50px 0;
 
@@ -3868,15 +3868,8 @@ $btnEasing: 0.15s ease-in-out;
     text-transform: uppercase;
   }
 
-  h2 {
-    width: 100%;
-    @include font-second;
-    margin-bottom: 2rem;
-    font-size: 92px;
-    
-    strong {
-      font-weight: 600;
-    }
+  h1, h2, h3, h4, h5 {
+    width: 100%;    
   }
 
   p {
