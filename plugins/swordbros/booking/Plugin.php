@@ -2,6 +2,7 @@
 
 use Backend;
 use Swordbros\Booking\Controllers\BookingRequest;
+use Swordbros\Booking\Models\BookingModel;
 use Swordbros\Booking\models\BookingRequestModel;
 use System\Classes\PluginBase;
 use Yaml;
@@ -32,6 +33,8 @@ class Plugin extends PluginBase
     {
         return [
             \Swordbros\Booking\Components\Booking::class => 'swordbrosBooking',
+            \Swordbros\Booking\Components\BookingDetail::class => 'swordbrosBookingDetail',
+            \Swordbros\Booking\Components\BookingRequestDetail::class => 'swordbrosBookingRequestDetail',
         ];
     }
 
@@ -43,14 +46,16 @@ class Plugin extends PluginBase
     }
     public function registerNavigation()
     {
+        $bookingCount = BookingModel::where(['is_new'=> 1])->count();
+        $requestCount = BookingRequestModel::where(['is_new'=> 1])->count();
         $navigation = [
             'main-menu-item' => [
                 'label'       => 'Booking',
                 'url'         => Backend::url('swordbros/booking/bookingrequest'),
                 'icon'        => 'icon-tags',
                 'order'=> 402,
-                'counter'      => BookingRequestModel::where(['is_new'=> 1])->count(),
-                'counterLabel' => 'New Booking Requests',
+                'counter'      => ($bookingCount + $requestCount),
+                'counterLabel' => trans('New Booking Requests and Bookings'),
                 'sideMenu' => [
                     'side-menu-item' => [
                         'label' => 'Calendar',
@@ -61,11 +66,15 @@ class Plugin extends PluginBase
                         'label' => 'Requests',
                         'url' => Backend::url('swordbros/booking/bookingrequest'),
                         'icon' => 'icon-book',
+                        'counter'      => ( $requestCount),
+                        'counterLabel' => trans('New Booking Requests'),
                     ],
                     'side-menu-item3' => [
                         'label' => 'Bookings',
                         'url' => Backend::url('swordbros/booking/booking'),
                         'icon' => 'icon-puzzle-piece',
+                        'counter'      => ( $bookingCount),
+                        'counterLabel' => trans('New Bookings'),
                     ],
                     'side-menu-item4' => [
                         'label' => 'Create Booking',
