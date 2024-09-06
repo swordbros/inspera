@@ -28,14 +28,14 @@ columns:
         label: event.cols.rating
         type: partial
         path: rating
-    event_category_id:
-        label: event.cols.event_category
-        type: partial
-        path: event_category_name
     event_type_id:
         label: event.cols.event_type
         type: partial
         path: event_type_name
+    event_category_id:
+        label: event.cols.event_category
+        type: partial
+        path: event_category_name
     start:
         label: event.cols.start
         type: date
