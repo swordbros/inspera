@@ -93,5 +93,6 @@
     "event.tags.showonhero": "Heroda Göster",
     "event.tags.featured": "Öne Çıkanlar",
     "event.tags.bestseller": "Çok Satanlar",
-    "event.tags.recommended": "Tavsiye Edilenler"
+    "event.tags.recommended": "Tavsiye Edilenler",
+    "event.scops.filter": "Filtrele"
 }

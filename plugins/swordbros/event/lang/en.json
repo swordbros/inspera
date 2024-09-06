@@ -94,5 +94,6 @@
     "event.tags.showonhero": "Show On Hero",
     "event.tags.featured": "Featured",
     "event.tags.bestseller": "Bestseller",
-    "event.tags.recommended": "Recommended"
+    "event.tags.recommended": "Recommended",
+    "event.scops.filter": "Filtrele"
 }
