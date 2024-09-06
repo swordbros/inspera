@@ -39,6 +39,7 @@
     "event.cols.event_zone": "Etkinlik Yeri",
     "event.cols.title": "Adı",
     "event.cols.thumb": "Resim",
+    "event.cols.start": "Tarih",
     "event.tab.meta": "Özel Alanlar",
     "event.tab.email_settings": "Email Ayarları",
     "event.tab.images": "Resimler",

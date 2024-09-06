@@ -39,6 +39,7 @@
     "event.cols.event_zone": "Venue",
     "event.cols.title": "Name",
     "event.cols.thumb": "Thumb",
+    "event.cols.start": "Start",
     "event.tab.meta": "Event Meta",
     "event.tab.email_settings": "Email Settings",
     "event.tab.images": "Images",
