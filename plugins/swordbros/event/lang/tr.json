@@ -39,6 +39,7 @@
     "event.cols.event_zone": "Etkinlik Yeri",
     "event.cols.title": "Adı",
     "event.cols.thumb": "Resim",
+    "event.cols.start": "Tarih",
     "event.tab.meta": "Özel Alanlar",
     "event.tab.email_settings": "Email Ayarları",
     "event.tab.images": "Resimler",
@@ -88,9 +89,13 @@
     "swordbross.settings.social_youtube": "Youtube Url",
     "swordbross.settings.social_youtube.title": "Youtube Name",
     "swordbross.settings.event_description": "Description",
+    "swordbross.settings.opening_time_days": "Açık Günler",
+    "swordbross.settings.opening_time_time": "Açık Saatler",
+    "swordbross.settings.create_user_booking_request": "Rezervasyon İsteği ile Kullanıcı Oluştur",
     "plugin.category": "Kategori",
     "event.tags.showonhero": "Heroda Göster",
     "event.tags.featured": "Öne Çıkanlar",
     "event.tags.bestseller": "Çok Satanlar",
-    "event.tags.recommended": "Tavsiye Edilenler"
+    "event.tags.recommended": "Tavsiye Edilenler",
+    "event.scops.filter": "Filtrele"
 }

@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('swordbros/event/category') ?>"><?= e(trans('swordbros.event::plugin.category'))?></a></li>
+        <li><a href="<?= Backend::url('swordbros/event/eventcategory') ?>"><?= e(trans('event.plugin.categories'))?></a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>

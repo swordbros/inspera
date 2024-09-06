@@ -39,6 +39,7 @@
     "event.cols.event_zone": "Venue",
     "event.cols.title": "Name",
     "event.cols.thumb": "Thumb",
+    "event.cols.start": "Start",
     "event.tab.meta": "Event Meta",
     "event.tab.email_settings": "Email Settings",
     "event.tab.images": "Images",
@@ -89,9 +90,13 @@
     "swordbross.settings.social_youtube": "Youtube Url",
     "swordbross.settings.social_youtube.title": "Youtube Name",
     "swordbross.settings.event_description": "Description",
+    "swordbross.settings.opening_time_days": "Opening Time Days",
+    "swordbross.settings.opening_time_time": "Opening Time",
+    "swordbross.settings.create_user_booking_request": "Create User With Booking Request",
     "plugin.category": "Category",
     "event.tags.showonhero": "Show On Hero",
     "event.tags.featured": "Featured",
     "event.tags.bestseller": "Bestseller",
-    "event.tags.recommended": "Recommended"
+    "event.tags.recommended": "Recommended",
+    "event.scops.filter": "Filtrele"
 }
