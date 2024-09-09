@@ -22,13 +22,13 @@ function onEnd(){
   $post = $this->components['post']->getPrimaryRecord();
   $postClass = get_class($post);
   $this['previousPost'] = $postClass::inSection('Blog\Post')
-        ->where('published_at', '<', $post->published_at)
-        ->orderBy('published_at', 'desc')
-        ->first();
+    ->where('published_at_date', '<=', $post->published_at_date)
+    ->orderBy('published_at_date', 'desc')
+    ->first();
   $this['nextPost'] = $postClass::inSection('Blog\Post')
-        ->where('published_at', '>', $post->published_at)
-        ->orderBy('published_at', 'asc')
-        ->first();
+    ->where('published_at_date', '>', $post->published_at_date)
+    ->orderBy('published_at_date', 'asc')
+    ->first();
 }
 
 ?>
