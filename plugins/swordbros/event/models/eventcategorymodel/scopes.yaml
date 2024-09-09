@@ -4,7 +4,7 @@
 
 scopes:
     event_type_id:
-        label: booking.scops.event_type
+        label: event.scops.filter
         scope: isEventTypeIds
         modelClass: Swordbros\Event\Models\EventCategoryModel
         conditions: filterByEventTypeId

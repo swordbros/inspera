@@ -123,7 +123,9 @@ class EventDetail extends ComponentBase
             }
             Amele::addBookingRequestHistory($data['id'], $data['send_email'] . ' adresine email gönderildi. ');
             //Flash::success('Booking Created!');
-            return Redirect::to(url('/booking/thankyou', ['id' => $bokingRequestModel->id]));
+            $locale = session('locale', 'en'); // Varsayılan olarak 'en'
+
+            return Redirect::to(url('/'.$locale.'/booking/thank-you', ['id' => $bokingRequestModel->id, 'otp' => $bokingRequestModel->otp]));
         } else {
             Flash::warning('booking_request not posted');
         }

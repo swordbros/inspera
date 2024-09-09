@@ -1,3 +1,7 @@
+<?php
+$formModel->is_new = 0;
+$formModel->save();
+?>
 <?php Block::put('breadcrumb') ?>
     <ul>
         <li><a href="<?= Backend::url('swordbros/booking/bookingrequest') ?>"><?= e(trans('booking.plugin.requests')) ?></a></li>
