@@ -2,6 +2,7 @@
   method="post"
   class="account-editor"
   data-request="onUpdateProfile"
+  data-request-redirect="{{ '/account' | app }}"
   data-request-flash
 >
   <div class="text-center pb-3">
@@ -73,3 +74,8 @@
     {{ 'Save' |_ }}
   </button>
 </form>
+<div class="text-center mt-5">
+  <a class="button -danger" href="#" data-request="onLogout" title="{{ 'Logout' |_ }}" data-request-redirect="/">
+    {{ 'Logout' |_ }}
+  </a>
+</div>

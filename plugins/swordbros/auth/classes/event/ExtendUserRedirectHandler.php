@@ -2,6 +2,7 @@
 
 namespace Swordbros\Auth\Classes\Event;
 
+use Cms\Facades\Cms;
 use Flash;
 use RainLab\User\Models\User;
 use Session;
@@ -15,7 +16,7 @@ use Swordbros\Auth\Controllers\LoginController;
 class ExtendUserRedirectHandler
 {
     const CMS_INTEND_SESSION = 'url.cms.intended';
-    const USER_SETTINGS_URL = '/user/account-settings';
+    const USER_SETTINGS_URL = '/account';
 
     /**
      * Add listeners to User Login Event.
@@ -64,7 +65,7 @@ class ExtendUserRedirectHandler
 
     public function onUpdate($user, $data)
     {
-        $redirectTo = Session::get(LoginController::REDIRECT_KEY, '/');
+        $redirectTo = Session::get(LoginController::REDIRECT_KEY, Cms::url('/account'));
 
         if (request()->ajax()) {
             request()->merge(['redirect' => $redirectTo]);
