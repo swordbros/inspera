@@ -3,7 +3,7 @@ type: structure
 handle: Blog\Category
 name: Category
 drafts: false
-
+multisite: true
 customMessages:
     buttonCreate: New Category
 
