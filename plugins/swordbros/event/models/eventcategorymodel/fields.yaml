@@ -17,10 +17,6 @@ fields:
         label: event.fields.description
         span: auto
         type: text
-    color:
-        label: event.fields.color
-        span: left
-        type: colorpicker
     thumb:
         label: event.fields.thumb
         type: fileupload
