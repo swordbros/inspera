@@ -43,7 +43,6 @@ class Regex
      */
     public static function matchStrictGroups(string $pattern, string $subject, int $flags = 0, int $offset = 0): MatchStrictGroupsResult
     {
-        // @phpstan-ignore composerPcre.maybeUnsafeStrictGroups
         $count = Preg::matchStrictGroups($pattern, $subject, $matches, $flags, $offset);
 
         return new MatchStrictGroupsResult($count, $matches);
@@ -88,7 +87,6 @@ class Regex
         self::checkOffsetCapture($flags, 'matchAllWithOffsets');
         self::checkSetOrder($flags);
 
-        // @phpstan-ignore composerPcre.maybeUnsafeStrictGroups
         $count = Preg::matchAllStrictGroups($pattern, $subject, $matches, $flags, $offset);
 
         return new MatchAllStrictGroupsResult($count, $matches);

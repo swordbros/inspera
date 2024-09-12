@@ -216,26 +216,29 @@ class Factory
         }
         $config->setAuthConfigSource(new JsonConfigSource($file, true));
 
-        self::loadComposerAuthEnv($config, $io);
+        // load COMPOSER_AUTH environment variable if set
+        if ($composerAuthEnv = Platform::getEnv('COMPOSER_AUTH')) {
+            $authData = json_decode($composerAuthEnv);
+            if (null === $authData) {
+                throw new \UnexpectedValueException('COMPOSER_AUTH environment variable is malformed, should be a valid JSON object');
+            } else {
+                if ($io instanceof IOInterface) {
+                    $io->writeError('Loading auth config from COMPOSER_AUTH', true, IOInterface::DEBUG);
+                }
+                self::validateJsonSchema($io, $authData, JsonFile::AUTH_SCHEMA, 'COMPOSER_AUTH');
+                $authData = json_decode($composerAuthEnv, true);
+                if (null !== $authData) {
+                    $config->merge(['config' => $authData], 'COMPOSER_AUTH');
+                }
+            }
+        }
 
         return $config;
     }
 
     public static function getComposerFile(): string
     {
-        $env = Platform::getEnv('COMPOSER');
-        if (is_string($env)) {
-            $env = trim($env);
-            if ('' !== $env) {
-                if (is_dir($env)) {
-                    throw new \RuntimeException('The COMPOSER environment variable is set to '.$env.' which is a directory, this variable should point to a composer.json or be left unset.');
-                }
-
-                return $env;
-            }
-        }
-
-        return './composer.json';
+        return trim((string) Platform::getEnv('COMPOSER')) ?: './composer.json';
     }
 
     public static function getLockFile(string $composerFile): string
@@ -337,9 +340,6 @@ class Factory
                 $config->setLocalAuthConfigSource(new JsonConfigSource($localAuthFile, true));
             }
         }
-
-        // make sure we load the auth env again over the local auth.json + composer.json config
-        self::loadComposerAuthEnv($config, $io);
 
         $vendorDir = $config->get('vendor-dir');
 
@@ -676,28 +676,6 @@ class Factory
         }
 
         return $httpDownloader;
-    }
-
-    private static function loadComposerAuthEnv(Config $config, ?IOInterface $io): void
-    {
-        $composerAuthEnv = Platform::getEnv('COMPOSER_AUTH');
-        if (false === $composerAuthEnv || '' === $composerAuthEnv) {
-            return;
-        }
-
-        $authData = json_decode($composerAuthEnv);
-        if (null === $authData) {
-            throw new \UnexpectedValueException('COMPOSER_AUTH environment variable is malformed, should be a valid JSON object');
-        }
-
-        if ($io instanceof IOInterface) {
-            $io->writeError('Loading auth config from COMPOSER_AUTH', true, IOInterface::DEBUG);
-        }
-        self::validateJsonSchema($io, $authData, JsonFile::AUTH_SCHEMA, 'COMPOSER_AUTH');
-        $authData = json_decode($composerAuthEnv, true);
-        if (null !== $authData) {
-            $config->merge(['config' => $authData], 'COMPOSER_AUTH');
-        }
     }
 
     private static function useXdg(): bool

@@ -59,7 +59,7 @@ class ThemeInstall extends Command
         }
 
         // Splice in version
-        if ($requireVersion = $this->getWantOption()) {
+        if ($requireVersion = $this->option('want')) {
             $composerVersion = $requireVersion;
         }
 
@@ -178,20 +178,5 @@ class ThemeInstall extends Command
             ['want', 'w', InputOption::VALUE_REQUIRED, 'Provide a custom version.'],
             ['no-lock', null, InputOption::VALUE_NONE, 'Do not lock the provided theme.'],
         ];
-    }
-
-    /**
-     * getWantOption adds the ^ character to a standard version number (1.0)
-     */
-    protected function getWantOption()
-    {
-        $want = $this->option('want');
-
-        $parts = explode('.', $want);
-        if (count($parts) === 2 && is_numeric($parts[0]) && is_numeric($parts[1])) {
-            $want = '^'.$want;
-        }
-
-        return $want;
     }
 }

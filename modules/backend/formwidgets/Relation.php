@@ -335,15 +335,4 @@ class Relation extends FormWidgetBase
 
         return $value;
     }
-
-    /**
-     * resetFormValue from the form field
-     */
-    public function resetFormValue()
-    {
-        // Transfer approved config
-        $this->scope = $this->formField->scope;
-        $this->conditions = $this->formField->conditions;
-        $this->defaultSort = $this->formField->defaultSort;
-    }
 }

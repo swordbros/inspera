@@ -552,12 +552,4 @@ class RecordFinder extends FormWidgetBase
         $widget->cssClasses[] = 'recordfinder-filter';
         return $widget;
     }
-
-    /**
-     * resetFormValue from the form field
-     */
-    public function resetFormValue()
-    {
-        $this->setKeyValue($this->formField->value);
-    }
 }

@@ -19,7 +19,6 @@ use Composer\Util\Hg as HgUtils;
 use Composer\Util\ProcessExecutor;
 use Composer\Util\Filesystem;
 use Composer\IO\IOInterface;
-use Composer\Util\Url;
 
 /**
  * @author Per Bernhardt <plb@webfactory.de>
@@ -48,7 +47,7 @@ class HgDriver extends VcsDriver
             }
 
             $cacheDir = $this->config->get('cache-vcs-dir');
-            $this->repoDir = $cacheDir . '/' . Preg::replace('{[^a-z0-9]}i', '-', Url::sanitize($this->url)) . '/';
+            $this->repoDir = $cacheDir . '/' . Preg::replace('{[^a-z0-9]}i', '-', $this->url) . '/';
 
             $fs = new Filesystem();
             $fs->ensureDirectoryExists($cacheDir);

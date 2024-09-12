@@ -33,8 +33,6 @@ interface RootPackageInterface extends CompletePackageInterface
 
     /**
      * Returns the minimum stability of the package
-     *
-     * @return key-of<BasePackage::STABILITIES>
      */
     public function getMinimumStability(): string;
 
@@ -122,14 +120,12 @@ interface RootPackageInterface extends CompletePackageInterface
     /**
      * Set the stabilityFlags
      *
-     * @phpstan-param array<string, BasePackage::STABILITY_*> $stabilityFlags
+     * @param array<string, BasePackage::STABILITY_*> $stabilityFlags
      */
     public function setStabilityFlags(array $stabilityFlags): void;
 
     /**
      * Set the minimumStability
-     *
-     * @phpstan-param key-of<BasePackage::STABILITIES> $minimumStability
      */
     public function setMinimumStability(string $minimumStability): void;
 

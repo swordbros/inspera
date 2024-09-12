@@ -40,21 +40,14 @@ abstract class BasePackage implements PackageInterface
     public const STABILITY_ALPHA = 15;
     public const STABILITY_DEV = 20;
 
-    public const STABILITIES = [
+    /** @var array<string, self::STABILITY_*> */
+    public static $stabilities = [
         'stable' => self::STABILITY_STABLE,
         'RC' => self::STABILITY_RC,
         'beta' => self::STABILITY_BETA,
         'alpha' => self::STABILITY_ALPHA,
         'dev' => self::STABILITY_DEV,
     ];
-
-    /**
-     * @deprecated
-     * @readonly
-     * @var array<key-of<BasePackage::STABILITIES>, self::STABILITY_*>
-     * @phpstan-ignore property.readOnlyByPhpDocDefaultValue
-     */
-    public static $stabilities = self::STABILITIES;
 
     /**
      * READ-ONLY: The package id, public for fast access in dependency solver
@@ -241,7 +234,7 @@ abstract class BasePackage implements PackageInterface
      */
     public function getStabilityPriority(): int
     {
-        return self::STABILITIES[$this->getStability()];
+        return self::$stabilities[$this->getStability()];
     }
 
     public function __clone()

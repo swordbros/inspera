@@ -119,7 +119,7 @@ final class SandboxNodeVisitor implements NodeVisitorInterface
     private function wrapNode(Node $node, string $name): void
     {
         $expr = $node->getNode($name);
-        if (($expr instanceof NameExpression || $expr instanceof GetAttrExpression) && !$expr->isGenerator()) {
+        if ($expr instanceof NameExpression || $expr instanceof GetAttrExpression) {
             $node->setNode($name, new CheckToStringNode($expr));
         }
     }

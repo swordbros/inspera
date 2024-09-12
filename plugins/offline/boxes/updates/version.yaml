@@ -396,13 +396,3 @@
 - "Respect allowed children contexts when moving Boxes"
 3.6.17:
 - "Fixed Boxes drag-and-drop reordering"
-3.6.18:
-- "Fixed nested Boxes display"
-3.6.19:
-- "Fixed bug where too many pages get deleted when using an old Boxes database"
-3.6.20:
-- "Added duplicate Box icon to sidebar"
-3.6.21:
-- "Added sections overview to Partial selection modal"
-3.6.22:
-- "Optimized page list"

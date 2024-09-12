@@ -1336,21 +1336,6 @@ class Lists extends WidgetBase implements ListElement
     }
 
     /**
-     * getAllCheckedIds returns all checked IDs, including those not visible on the page,
-     * stored in the list data locker from switching pagination.
-     */
-    public function getAllCheckedIds(): array
-    {
-        $checkedIds = (array) post('checked');
-
-        if ($allChecked = post('checked-all')) {
-            $checkedIds = array_merge((array) json_decode($allChecked, true), $checkedIds);
-        }
-
-        return array_filter($checkedIds, 'is_scalar');
-    }
-
-    /**
      * getRowClass adds a custom CSS class string to a record row
      * @param  Model $record Populated model
      * @return string

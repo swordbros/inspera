@@ -120,7 +120,6 @@ class Compiler
             ->notPath('/bin\/(jsonlint|validate-json|simple-phpunit|phpstan|phpstan\.phar)(\.bat)?$/')
             ->notPath('justinrainbow/json-schema/demo/')
             ->notPath('justinrainbow/json-schema/dist/')
-            ->notPath('composer/pcre/extension.neon')
             ->notPath('composer/LICENSE')
             ->exclude('Tests')
             ->exclude('tests')

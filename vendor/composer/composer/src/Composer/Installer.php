@@ -910,7 +910,7 @@ class Installer
         $this->fixedRootPackage->setRequires([]);
         $this->fixedRootPackage->setDevRequires([]);
 
-        $stabilityFlags[$this->package->getName()] = BasePackage::STABILITIES[VersionParser::parseStability($this->package->getVersion())];
+        $stabilityFlags[$this->package->getName()] = BasePackage::$stabilities[VersionParser::parseStability($this->package->getVersion())];
 
         $repositorySet = new RepositorySet($minimumStability, $stabilityFlags, $rootAliases, $this->package->getReferences(), $rootRequires, $this->temporaryConstraints);
         $repositorySet->addRepository(new RootPackageRepository($this->fixedRootPackage));
@@ -1173,7 +1173,7 @@ class Installer
      */
     public function setDryRun(bool $dryRun = true): self
     {
-        $this->dryRun = $dryRun;
+        $this->dryRun = (bool) $dryRun;
 
         return $this;
     }
@@ -1205,7 +1205,7 @@ class Installer
      */
     public function setPreferSource(bool $preferSource = true): self
     {
-        $this->preferSource = $preferSource;
+        $this->preferSource = (bool) $preferSource;
 
         return $this;
     }
@@ -1217,7 +1217,7 @@ class Installer
      */
     public function setPreferDist(bool $preferDist = true): self
     {
-        $this->preferDist = $preferDist;
+        $this->preferDist = (bool) $preferDist;
 
         return $this;
     }
@@ -1229,7 +1229,7 @@ class Installer
      */
     public function setOptimizeAutoloader(bool $optimizeAutoloader): self
     {
-        $this->optimizeAutoloader = $optimizeAutoloader;
+        $this->optimizeAutoloader = (bool) $optimizeAutoloader;
         if (!$this->optimizeAutoloader) {
             // Force classMapAuthoritative off when not optimizing the
             // autoloader
@@ -1247,7 +1247,7 @@ class Installer
      */
     public function setClassMapAuthoritative(bool $classMapAuthoritative): self
     {
-        $this->classMapAuthoritative = $classMapAuthoritative;
+        $this->classMapAuthoritative = (bool) $classMapAuthoritative;
         if ($this->classMapAuthoritative) {
             // Force optimizeAutoloader when classmap is authoritative
             $this->setOptimizeAutoloader(true);
@@ -1276,7 +1276,7 @@ class Installer
      */
     public function setUpdate(bool $update): self
     {
-        $this->update = $update;
+        $this->update = (bool) $update;
 
         return $this;
     }
@@ -1288,7 +1288,7 @@ class Installer
      */
     public function setInstall(bool $install): self
     {
-        $this->install = $install;
+        $this->install = (bool) $install;
 
         return $this;
     }
@@ -1300,7 +1300,7 @@ class Installer
      */
     public function setDevMode(bool $devMode = true): self
     {
-        $this->devMode = $devMode;
+        $this->devMode = (bool) $devMode;
 
         return $this;
     }
@@ -1314,7 +1314,7 @@ class Installer
      */
     public function setDumpAutoloader(bool $dumpAutoloader = true): self
     {
-        $this->dumpAutoloader = $dumpAutoloader;
+        $this->dumpAutoloader = (bool) $dumpAutoloader;
 
         return $this;
     }
@@ -1329,7 +1329,7 @@ class Installer
      */
     public function setRunScripts(bool $runScripts = true): self
     {
-        $this->runScripts = $runScripts;
+        $this->runScripts = (bool) $runScripts;
 
         return $this;
     }
@@ -1353,7 +1353,7 @@ class Installer
      */
     public function setVerbose(bool $verbose = true): self
     {
-        $this->verbose = $verbose;
+        $this->verbose = (bool) $verbose;
 
         return $this;
     }

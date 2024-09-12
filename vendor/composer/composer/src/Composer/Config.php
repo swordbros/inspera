@@ -125,7 +125,7 @@ class Config
         $this->config = static::$defaultConfig;
 
         $this->repositories = static::$defaultRepositories;
-        $this->useEnvironment = $useEnvironment;
+        $this->useEnvironment = (bool) $useEnvironment;
         $this->baseDir = is_string($baseDir) && '' !== $baseDir ? $baseDir : null;
 
         foreach ($this->config as $configKey => $configValue) {
@@ -529,6 +529,7 @@ class Config
         }
 
         return Preg::replaceCallback('#\{\$(.+)\}#', function ($match) use ($flags) {
+            assert(is_string($match[1]));
             return $this->get($match[1], $flags);
         }, $value);
     }

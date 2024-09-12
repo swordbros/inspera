@@ -4,7 +4,6 @@ use App;
 use Event;
 use Cache;
 use Config;
-use System;
 use Cms\Classes\Partial;
 use Cms\Classes\Snippet;
 use System\Classes\PluginManager;
@@ -254,39 +253,24 @@ class SnippetManager
     {
         $result = [];
 
-        // Load module snippets
-        foreach (System::listModules() as $module) {
-            if ($provider = App::getProvider($module . '\\ServiceProvider')) {
-                $result = $this->loadSnippetsFromArray($provider->registerPageSnippets(), $result);
+        $pluginManager = PluginManager::instance();
+        $plugins = $pluginManager->getPlugins();
+
+        foreach ($plugins as $id => $plugin) {
+            if (!method_exists($plugin, 'registerPageSnippets')) {
+                continue;
             }
-        }
 
-        // Load plugin components
-        foreach (PluginManager::instance()->getPlugins() as $plugin) {
-            $result = $this->loadSnippetsFromArray($plugin->registerPageSnippets(), $result);
-        }
+            $snippets = $plugin->registerPageSnippets();
+            if (!is_array($snippets)) {
+                continue;
+            }
 
-        // Load app items
-        if ($app = App::getProvider(\App\Provider::class)) {
-            $result = $this->loadSnippetsFromArray($app->registerPageSnippets(), $result);
-        }
-
-        return $result;
-    }
-
-    /**
-     * loadSnippetsFromArray helper
-     */
-    protected function loadSnippetsFromArray($snippets, array $result): array
-    {
-        if (!is_array($snippets)) {
-            return [];
-        }
-
-        foreach ($snippets as $componentClass => $componentCode) {
-            $snippet = new Snippet;
-            $snippet->initFromComponentInfo($componentClass, $componentCode);
-            $result[] = $snippet;
+            foreach ($snippets as $componentClass => $componentCode) {
+                $snippet = new Snippet;
+                $snippet->initFromComponentInfo($componentClass, $componentCode);
+                $result[] = $snippet;
+            }
         }
 
         return $result;

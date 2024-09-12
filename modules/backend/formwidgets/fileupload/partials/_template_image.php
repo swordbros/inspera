@@ -10,9 +10,7 @@
                     value=""
                 />
             </div>
-            <div class="drag-handle">
-                <i class="icon-list-reorder"></i>
-            </div>
+            <a href="javascript:;" class="drag-handle"><i class="icon-list-reorder"></i></a>
         <?php endif ?>
 
         <div class="file-data-container">

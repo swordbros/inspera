@@ -136,11 +136,6 @@ trait HasNestedRelations
                     $model = array_get($model, $segment);
                 }
 
-                // Prevents an empty collection resolving as true here
-                if ($model instanceof \Illuminate\Support\Collection && $model->isEmpty()) {
-                    return $default;
-                }
-
                 if (!$model) {
                     return $default;
                 }

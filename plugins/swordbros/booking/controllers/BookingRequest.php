@@ -80,4 +80,21 @@ class BookingRequest extends BaseController
             Flash::error('error');
         }
     }
+    public function onToExcel(){
+
+        $widget = $this->asExtension('ListController')->makeList();
+        $widget->recordsPerPage= 1000;
+        $widget->prepareVars();
+        dd($widget->vars['records']->items());
+        $model = $this->asExtension('ListController');
+
+        dd(get_class_methods($model));
+        // Verileri sorgula (örneğin, tüm kayıtları al)
+        $records = $model->newQuery()->get();
+
+        // Filtrelenmiş verileri almak için sorguyu başlat
+
+        dd($filters);
+
+    }
 }

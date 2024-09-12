@@ -65,12 +65,10 @@ The second argument will store the non-expire cookie for the user.
 Auth::login($user, true);
 ```
 
-You may look up a user by their email or login name using the `retrieveByCredentials` method via the provider class.
+You may look up a user by their login name using the `retrieveByCredentials` method.
 
 ```php
-$user = Auth::getProvider()->retrieveByCredentials([
-    'email' => 'some@email.tld'
-]);
+$user = Auth::retrieveByCredentials(['email' => 'some@email.tld']);
 ```
 
 ## Guest Users

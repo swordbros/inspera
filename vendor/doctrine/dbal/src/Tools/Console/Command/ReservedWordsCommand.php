@@ -9,7 +9,6 @@ use Doctrine\DBAL\Platforms\Keywords\KeywordList;
 use Doctrine\DBAL\Platforms\Keywords\MariaDb102Keywords;
 use Doctrine\DBAL\Platforms\Keywords\MySQL57Keywords;
 use Doctrine\DBAL\Platforms\Keywords\MySQL80Keywords;
-use Doctrine\DBAL\Platforms\Keywords\MySQL84Keywords;
 use Doctrine\DBAL\Platforms\Keywords\MySQLKeywords;
 use Doctrine\DBAL\Platforms\Keywords\OracleKeywords;
 use Doctrine\DBAL\Platforms\Keywords\PostgreSQL100Keywords;
@@ -60,7 +59,6 @@ class ReservedWordsCommand extends Command
             'mysql'      => new MySQLKeywords(),
             'mysql57'    => new MySQL57Keywords(),
             'mysql80'    => new MySQL80Keywords(),
-            'mysql84'    => new MySQL84Keywords(),
             'oracle'     => new OracleKeywords(),
             'pgsql'      => new PostgreSQL94Keywords(),
             'pgsql100'   => new PostgreSQL100Keywords(),
@@ -132,7 +130,6 @@ The following keyword lists are currently shipped with Doctrine:
     * mysql
     * mysql57
     * mysql80
-    * mysql84
     * oracle
     * pgsql
     * pgsql100

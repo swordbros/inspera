@@ -335,7 +335,7 @@ class VersionManager
         // Version compare check
         if ($position === false) {
             foreach (array_keys($versions) as $index => $fileVersion) {
-                if (version_compare((string) $version, (string) $fileVersion) !== -1) {
+                if (version_compare($version, $fileVersion) !== -1) {
                     $position = $index;
                 }
             }
@@ -370,7 +370,7 @@ class VersionManager
 
         // Sort result
         uksort($versionInfo, function ($a, $b) {
-            return version_compare((string) $a, (string) $b);
+            return version_compare($a, $b);
         });
 
         // Normalize result

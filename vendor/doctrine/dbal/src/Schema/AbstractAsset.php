@@ -20,8 +20,7 @@ use function substr;
  * The abstract asset allows to reset the name of all assets without publishing this to the public userland.
  *
  * This encapsulation hack is necessary to keep a consistent state of the database schema. Say we have a list of tables
- * array($tableName => Table($tableName)); if you want to rename the table, you have to make sure this does not get
- * recreated during schema migration.
+ * array($tableName => Table($tableName)); if you want to rename the table, you have to make sure
  */
 abstract class AbstractAsset
 {

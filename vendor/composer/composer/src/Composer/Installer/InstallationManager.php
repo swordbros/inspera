@@ -39,7 +39,7 @@ use Seld\Signal\SignalHandler;
  */
 class InstallationManager
 {
-    /** @var list<InstallerInterface> */
+    /** @var array<InstallerInterface> */
     private $installers = [];
     /** @var array<string, InstallerInterface> */
     private $cache = [];
@@ -180,7 +180,7 @@ class InstallationManager
      */
     public function execute(InstalledRepositoryInterface $repo, array $operations, bool $devMode = true, bool $runScripts = true, bool $downloadOnly = false): void
     {
-        /** @var array<callable(): ?PromiseInterface<void|null>> $cleanupPromises */
+        /** @var array<callable(): ?PromiseInterface<void|null>> */
         $cleanupPromises = [];
 
         $signalHandler = SignalHandler::create([SignalHandler::SIGINT, SignalHandler::SIGTERM, SignalHandler::SIGHUP], function (string $signal, SignalHandler $handler) use (&$cleanupPromises) {
@@ -197,28 +197,25 @@ class InstallationManager
             foreach ($operations as $index => $operation) {
                 if ($operation instanceof UpdateOperation || $operation instanceof InstallOperation) {
                     $package = $operation instanceof UpdateOperation ? $operation->getTargetPackage() : $operation->getPackage();
-                    if ($package->getType() === 'composer-plugin') {
-                        $extra = $package->getExtra();
-                        if (isset($extra['plugin-modifies-downloads']) && $extra['plugin-modifies-downloads'] === true) {
-                            if (count($batch) > 0) {
-                                $batches[] = $batch;
-                            }
-                            $batches[] = [$index => $operation];
-                            $batch = [];
-
-                            continue;
+                    if ($package->getType() === 'composer-plugin' && ($extra = $package->getExtra()) && isset($extra['plugin-modifies-downloads']) && $extra['plugin-modifies-downloads'] === true) {
+                        if ($batch) {
+                            $batches[] = $batch;
                         }
+                        $batches[] = [$index => $operation];
+                        $batch = [];
+
+                        continue;
                     }
                 }
                 $batch[$index] = $operation;
             }
 
-            if (count($batch) > 0) {
+            if ($batch) {
                 $batches[] = $batch;
             }
 
-            foreach ($batches as $batchToExecute) {
-                $this->downloadAndExecuteBatch($repo, $batchToExecute, $cleanupPromises, $devMode, $runScripts, $downloadOnly, $operations);
+            foreach ($batches as $batch) {
+                $this->downloadAndExecuteBatch($repo, $batch, $cleanupPromises, $devMode, $runScripts, $downloadOnly, $operations);
             }
         } catch (\Exception $e) {
             $this->runCleanup($cleanupPromises);
@@ -251,7 +248,7 @@ class InstallationManager
             $opType = $operation->getOperationType();
 
             // ignoring alias ops as they don't need to execute anything at this stage
-            if (!in_array($opType, ['update', 'install', 'uninstall'], true)) {
+            if (!in_array($opType, ['update', 'install', 'uninstall'])) {
                 continue;
             }
 
@@ -269,7 +266,7 @@ class InstallationManager
             $cleanupPromises[$index] = static function () use ($opType, $installer, $package, $initialPackage): ?PromiseInterface {
                 // avoid calling cleanup if the download was not even initialized for a package
                 // as without installation source configured nothing will work
-                if (null === $package->getInstallationSource()) {
+                if (!$package->getInstallationSource()) {
                     return \React\Promise\resolve(null);
                 }
 
@@ -285,7 +282,7 @@ class InstallationManager
         }
 
         // execute all downloads first
-        if (count($promises) > 0) {
+        if (count($promises)) {
             $this->waitOnPromises($promises);
         }
 
@@ -302,7 +299,7 @@ class InstallationManager
             if ($operation instanceof InstallOperation || $operation instanceof UpdateOperation) {
                 $package = $operation instanceof UpdateOperation ? $operation->getTargetPackage() : $operation->getPackage();
                 if ($package->getType() === 'composer-plugin' || $package->getType() === 'composer-installer') {
-                    if (count($batch) > 0) {
+                    if ($batch) {
                         $batches[] = $batch;
                     }
                     $batches[] = [$index => $operation];
@@ -314,12 +311,12 @@ class InstallationManager
             $batch[$index] = $operation;
         }
 
-        if (count($batch) > 0) {
+        if ($batch) {
             $batches[] = $batch;
         }
 
-        foreach ($batches as $batchToExecute) {
-            $this->executeBatch($repo, $batchToExecute, $cleanupPromises, $devMode, $runScripts, $allOperations);
+        foreach ($batches as $batch) {
+            $this->executeBatch($repo, $batch, $cleanupPromises, $devMode, $runScripts, $allOperations);
         }
     }
 
@@ -337,7 +334,7 @@ class InstallationManager
             $opType = $operation->getOperationType();
 
             // ignoring alias ops as they don't need to execute anything
-            if (!in_array($opType, ['update', 'install', 'uninstall'], true)) {
+            if (!in_array($opType, ['update', 'install', 'uninstall'])) {
                 // output alias ops in debug verbosity as they have no output otherwise
                 if ($this->io->isDebug()) {
                     $this->io->writeError('  - ' . $operation->show(false));
@@ -363,9 +360,9 @@ class InstallationManager
                 'install' => PackageEvents::PRE_PACKAGE_INSTALL,
                 'update' => PackageEvents::PRE_PACKAGE_UPDATE,
                 'uninstall' => PackageEvents::PRE_PACKAGE_UNINSTALL,
-            ][$opType];
+            ][$opType] ?? null;
 
-            if ($runScripts && $this->eventDispatcher !== null) {
+            if (null !== $eventName && $runScripts && $this->eventDispatcher) {
                 $this->eventDispatcher->dispatchPackageEvent($eventName, $devMode, $repo, $allOperations, $operation);
             }
 
@@ -392,9 +389,9 @@ class InstallationManager
                 'install' => PackageEvents::POST_PACKAGE_INSTALL,
                 'update' => PackageEvents::POST_PACKAGE_UPDATE,
                 'uninstall' => PackageEvents::POST_PACKAGE_UNINSTALL,
-            ][$opType];
+            ][$opType] ?? null;
 
-            if ($runScripts && $dispatcher !== null) {
+            if (null !== $eventName && $runScripts && $dispatcher) {
                 $postExecCallbacks[] = static function () use ($dispatcher, $eventName, $devMode, $repo, $allOperations, $operation): void {
                     $dispatcher->dispatchPackageEvent($eventName, $devMode, $repo, $allOperations, $operation);
                 };
@@ -404,7 +401,7 @@ class InstallationManager
         }
 
         // execute all prepare => installs/updates/removes => cleanup steps
-        if (count($promises) > 0) {
+        if (count($promises)) {
             $this->waitOnPromises($promises);
         }
 
@@ -424,14 +421,14 @@ class InstallationManager
         if (
             $this->outputProgress
             && $this->io instanceof ConsoleIO
-            && !((bool) Platform::getEnv('CI'))
+            && !Platform::getEnv('CI')
             && !$this->io->isDebug()
             && count($promises) > 1
         ) {
             $progress = $this->io->getProgressBar();
         }
         $this->loop->wait($promises, $progress);
-        if ($progress !== null) {
+        if ($progress) {
             $progress->clear();
             // ProgressBar in non-decorated output does not output a final line-break and clear() does nothing
             if (!$this->io->isDecorated()) {
@@ -576,7 +573,7 @@ class InstallationManager
         try {
             foreach ($this->notifiablePackages as $repoUrl => $packages) {
                 // non-batch API, deprecated
-                if (str_contains($repoUrl, '%package%')) {
+                if (strpos($repoUrl, '%package%')) {
                     foreach ($packages as $package) {
                         $url = str_replace('%package%', $package->getPrettyName(), $repoUrl);
 
@@ -638,7 +635,7 @@ class InstallationManager
 
     private function markForNotification(PackageInterface $package): void
     {
-        if ($package->getNotificationUrl() !== null) {
+        if ($package->getNotificationUrl()) {
             $this->notifiablePackages[$package->getNotificationUrl()][$package->getName()] = $package;
         }
     }
@@ -666,7 +663,7 @@ class InstallationManager
             });
         }
 
-        if (count($promises) > 0) {
+        if (!empty($promises)) {
             $this->loop->wait($promises);
         }
     }

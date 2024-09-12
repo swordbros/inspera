@@ -69,7 +69,6 @@ class Git
 
         $protocols = $this->config->get('github-protocols');
         // public github, autoswitch protocols
-        // @phpstan-ignore composerPcre.maybeUnsafeStrictGroups
         if (Preg::isMatchStrictGroups('{^(?:https?|git)://' . self::getGitHubDomainsRegex($this->config) . '/(.*)}', $url, $match)) {
             $messages = [];
             foreach ($protocols as $protocol) {
@@ -105,9 +104,7 @@ class Git
         if ($bypassSshForGitHub || 0 !== $this->process->execute($command, $commandOutput, $cwd)) {
             $errorMsg = $this->process->getErrorOutput();
             // private github repository without ssh key access, try https with auth
-            // @phpstan-ignore composerPcre.maybeUnsafeStrictGroups
             if (Preg::isMatchStrictGroups('{^git@' . self::getGitHubDomainsRegex($this->config) . ':(.+?)\.git$}i', $url, $match)
-                // @phpstan-ignore composerPcre.maybeUnsafeStrictGroups
                 || Preg::isMatchStrictGroups('{^https?://' . self::getGitHubDomainsRegex($this->config) . '/(.*?)(?:\.git)?$}i', $url, $match)
             ) {
                 if (!$this->io->hasAuthentication($match[1])) {
@@ -130,7 +127,6 @@ class Git
                     $credentials = [rawurlencode($auth['username']), rawurlencode($auth['password'])];
                     $errorMsg = $this->process->getErrorOutput();
                 }
-            // @phpstan-ignore composerPcre.maybeUnsafeStrictGroups
             } elseif (Preg::isMatchStrictGroups('{^https://(bitbucket\.org)/(.*?)(?:\.git)?$}i', $url, $match)) { //bitbucket oauth
                 $bitbucketUtil = new Bitbucket($this->io, $this->config, $this->process);
 
@@ -176,9 +172,7 @@ class Git
                     $errorMsg = $this->process->getErrorOutput();
                 }
             } elseif (
-                // @phpstan-ignore composerPcre.maybeUnsafeStrictGroups
                 Preg::isMatchStrictGroups('{^(git)@' . self::getGitLabDomainsRegex($this->config) . ':(.+?\.git)$}i', $url, $match)
-                // @phpstan-ignore composerPcre.maybeUnsafeStrictGroups
                 || Preg::isMatchStrictGroups('{^(https?)://' . self::getGitLabDomainsRegex($this->config) . '/(.*)}i', $url, $match)
             ) {
                 if ($match[1] === 'git') {
@@ -197,9 +191,9 @@ class Git
                 if ($this->io->hasAuthentication($match[2])) {
                     $auth = $this->io->getAuthentication($match[2]);
                     if ($auth['password'] === 'private-token' || $auth['password'] === 'oauth2' || $auth['password'] === 'gitlab-ci-token') {
-                        $authUrl = $match[1] . '://' . rawurlencode($auth['password']) . ':' . rawurlencode((string) $auth['username']) . '@' . $match[2] . '/' . $match[3]; // swap username and password
+                        $authUrl = $match[1] . '://' . rawurlencode($auth['password']) . ':' . rawurlencode($auth['username']) . '@' . $match[2] . '/' . $match[3]; // swap username and password
                     } else {
-                        $authUrl = $match[1] . '://' . rawurlencode((string) $auth['username']) . ':' . rawurlencode((string) $auth['password']) . '@' . $match[2] . '/' . $match[3];
+                        $authUrl = $match[1] . '://' . rawurlencode($auth['username']) . ':' . rawurlencode($auth['password']) . '@' . $match[2] . '/' . $match[3];
                     }
 
                     $command = $commandCallable($authUrl);
@@ -207,11 +201,11 @@ class Git
                         return;
                     }
 
-                    $credentials = [rawurlencode((string) $auth['username']), rawurlencode((string) $auth['password'])];
+                    $credentials = [rawurlencode($auth['username']), rawurlencode($auth['password'])];
                     $errorMsg = $this->process->getErrorOutput();
                 }
-            } elseif (null !== ($match = $this->getAuthenticationFailure($url))) { // private non-github/gitlab/bitbucket repo that failed to authenticate
-                if (str_contains($match[2], '@')) {
+            } elseif ($this->isAuthenticationFailure($url, $match)) { // private non-github/gitlab/bitbucket repo that failed to authenticate
+                if (strpos($match[2], '@')) {
                     [$authParts, $match[2]] = explode('@', $match[2], 2);
                 }
 
@@ -220,8 +214,8 @@ class Git
                     $auth = $this->io->getAuthentication($match[2]);
                 } elseif ($this->io->isInteractive()) {
                     $defaultUsername = null;
-                    if (isset($authParts) && $authParts !== '') {
-                        if (str_contains($authParts, ':')) {
+                    if (isset($authParts) && $authParts) {
+                        if (false !== strpos($authParts, ':')) {
                             [$defaultUsername, ] = explode(':', $authParts, 2);
                         } else {
                             $defaultUsername = $authParts;
@@ -238,7 +232,7 @@ class Git
                 }
 
                 if (null !== $auth) {
-                    $authUrl = $match[1] . rawurlencode((string) $auth['username']) . ':' . rawurlencode((string) $auth['password']) . '@' . $match[2] . $match[3];
+                    $authUrl = $match[1] . rawurlencode($auth['username']) . ':' . rawurlencode($auth['password']) . '@' . $match[2] . $match[3];
 
                     $command = $commandCallable($authUrl);
                     if (0 === $this->process->execute($command, $commandOutput, $cwd)) {
@@ -249,7 +243,7 @@ class Git
                         return;
                     }
 
-                    $credentials = [rawurlencode((string) $auth['username']), rawurlencode((string) $auth['password'])];
+                    $credentials = [rawurlencode($auth['username']), rawurlencode($auth['password'])];
                     $errorMsg = $this->process->getErrorOutput();
                 }
             }
@@ -268,7 +262,7 @@ class Git
 
     public function syncMirror(string $url, string $dir): bool
     {
-        if ((bool) Platform::getEnv('COMPOSER_DISABLE_NETWORK') && Platform::getEnv('COMPOSER_DISABLE_NETWORK') !== 'prime') {
+        if (Platform::getEnv('COMPOSER_DISABLE_NETWORK') && Platform::getEnv('COMPOSER_DISABLE_NETWORK') !== 'prime') {
             $this->io->writeError('<warning>Aborting git mirror sync of '.$url.' as network is disabled</warning>');
 
             return false;
@@ -363,12 +357,13 @@ class Git
     }
 
     /**
-     * @return array<int, string>|null
+     * @param array<mixed> $match
+     * @param-out array<int|string, string> $match
      */
-    private function getAuthenticationFailure(string $url): ?array
+    private function isAuthenticationFailure(string $url, array &$match): bool
     {
         if (!Preg::isMatchStrictGroups('{^(https?://)([^/]+)(.*)$}i', $url, $match)) {
-            return null;
+            return false;
         }
 
         $authFailures = [
@@ -382,11 +377,11 @@ class Git
         $errorOutput = $this->process->getErrorOutput();
         foreach ($authFailures as $authFailure) {
             if (strpos($errorOutput, $authFailure) !== false) {
-                return $match;
+                return true;
             }
         }
 
-        return null;
+        return false;
     }
 
     public function getMirrorDefaultBranch(string $url, string $dir, bool $isLocalPathRepository): ?string
@@ -410,7 +405,7 @@ class Git
 
             $lines = $this->process->splitLines($output);
             foreach ($lines as $line) {
-                if (Preg::isMatch('{^\s*HEAD branch:\s(.+)\s*$}m', $line, $matches)) {
+                if (Preg::match('{^\s*HEAD branch:\s(.+)\s*$}m', $line, $matches) > 0) {
                     return $matches[1];
                 }
             }

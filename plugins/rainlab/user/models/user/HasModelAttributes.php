@@ -40,9 +40,7 @@ trait HasModelAttributes
      */
     public function getAvatarUrlAttribute()
     {
-        return $this->relationLoaded('avatar')
-            ? $this->getAvatarThumb()
-            : null;
+        return $this->getAvatarThumb();
     }
 
     /**

@@ -97,7 +97,7 @@ trait ColumnProcessor
     {
         if ($userPreference) {
             $orderedDefinitions = [];
-            foreach ((array) $userPreference as $column) {
+            foreach ($userPreference as $column) {
                 if (isset($columns[$column])) {
                     $orderedDefinitions[$column] = $columns[$column];
                 }

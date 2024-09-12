@@ -67,7 +67,7 @@
                 $datepicker.val(defaultValue.format(self.getDateFormat()));
             }
 
-            $datepicker.pikaday(pikadayOptions);
+            $datepicker.pikaday(pikadayOptions)
         });
     }
 
@@ -88,26 +88,18 @@
     DateFilter.prototype.getDatePickerValue = function($datepicker) {
         var rawValue = $datepicker.val();
         if (rawValue !== '') {
-            rawValue = this.makeMoment(rawValue, this.getDateFormat());
+            rawValue = moment(rawValue, this.getDateFormat());
         }
 
         // Look at the locker for the default value
         if (!rawValue) {
             rawValue = this.getDataLocker($datepicker)
             if (rawValue !== '') {
-                rawValue = this.makeMoment(rawValue, this.dbDateFormat);
+                rawValue = moment(rawValue, this.dbDateFormat);
             }
         }
 
         return rawValue;
-    }
-
-    DateFilter.prototype.makeMoment = function(value, format) {
-        if (value === 'now') {
-            return moment();
-        }
-
-        return moment(value, format);
     }
 
     DateFilter.prototype.getDataLocker = function(picker) {

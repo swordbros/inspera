@@ -1,4 +1,5 @@
 list: $/swordbros/booking/models/bookingrequestmodel/columns.yaml
+filter: $/swordbros/booking/models/bookingrequestmodel/scopes.yaml
 modelClass: Swordbros\Booking\Models\BookingRequestModel
 title: BookingRequest
 noRecordsMessage: 'backend::lang.list.no_records'
@@ -10,3 +11,4 @@ toolbar:
     search:
         prompt: 'backend::lang.list.search_prompt'
 recordUrl: 'swordbros/booking/bookingrequest/update/:id'
+

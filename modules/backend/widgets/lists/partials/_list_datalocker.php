@@ -1,7 +1,6 @@
 <input
     type="hidden"
-    id="<?= $this->getId('checkedDataLocker') ?>"
-    name="checked-all"
-    value="<?= e($this->getCheckedRowsEncoded()) ?>"
     data-list-datalocker-checked
+    id="<?= $this->getId('checkedDataLocker') ?>"
+    value="<?= e($this->getCheckedRowsEncoded()) ?>"
 />

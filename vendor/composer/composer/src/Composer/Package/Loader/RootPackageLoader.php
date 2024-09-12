@@ -227,7 +227,6 @@ class RootPackageLoader extends ArrayLoader
      *
      * @param array<string, string> $requires
      * @param array<string, int>    $stabilityFlags
-     * @param key-of<BasePackage::STABILITIES> $minimumStability
      *
      * @return array<string, int>
      *
@@ -236,7 +235,8 @@ class RootPackageLoader extends ArrayLoader
      */
     public static function extractStabilityFlags(array $requires, string $minimumStability, array $stabilityFlags): array
     {
-        $stabilities = BasePackage::STABILITIES;
+        $stabilities = BasePackage::$stabilities;
+        /** @var int $minimumStability */
         $minimumStability = $stabilities[$minimumStability];
         foreach ($requires as $reqName => $reqVersion) {
             $constraints = [];

@@ -252,20 +252,8 @@ trait HasRevisions
      */
     protected function deleteAllRevisions(): void
     {
-        if (!Features::instance()->revisions) {
-            return;
-        }
-
-        if (!$this->origin_page_id) {
-            return;
-        }
-
         self::query()
-            ->where(function ($query) {
-                $query
-                    ->whereNotNull('origin_page_id')
-                    ->where('origin_page_id', $this->origin_page_id);
-            })
+            ->where('origin_page_id', $this->origin_page_id)
             ->get()
             ->each
             ->delete();

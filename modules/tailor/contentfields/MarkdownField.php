@@ -36,7 +36,6 @@ class MarkdownField extends FallbackField
     {
         $list->defineColumn($this->fieldName, $this->label)
             ->displayAs('summary')
-            ->searchable()
             ->shortLabel($this->shortLabel)
             ->useConfig($this->column ?: [])
         ;

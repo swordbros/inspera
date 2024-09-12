@@ -4,6 +4,8 @@
     "booking.scops.payment_method": "Ödeme Metodu",
     "booking.scops.booking_status": "Rezervasyon Durumu",
     "booking.scops.user": "Müşteri",
+    "booking.scops.site_id": "Dil",
+    "booking.scops.event_id": "Etkinlik",
     "booking.cols.note": "Açıklama",
     "booking.cols.phone": "Telefon",
     "booking.cols.email": "Email",

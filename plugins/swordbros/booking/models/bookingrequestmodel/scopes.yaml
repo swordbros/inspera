@@ -1,0 +1,15 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+
+scopes:
+    site_id:
+        label: booking.scops.site_id
+        modelClass: \System\Models\SiteDefinition
+        conditions: site_id in (:filtered)
+        nameFrom: name
+    event_id:
+        label: booking.scops.event_id
+        modelClass: \Swordbros\Event\Models\EventModel
+        nameFrom: title
+        conditions: event_id in (:filtered)

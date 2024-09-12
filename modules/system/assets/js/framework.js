@@ -3222,31 +3222,23 @@ var FormSerializer = /*#__PURE__*/function () {
   }, {
     key: "assignObjectInternal",
     value: function assignObjectInternal(obj, fieldName, fieldValue) {
-      this.assignObjectNested(obj, this.nameToArray(fieldName), fieldValue, fieldName.endsWith('[]'));
+      this.assignObjectNested(obj, this.nameToArray(fieldName), fieldValue);
     }
   }, {
     key: "assignObjectNested",
-    value: function assignObjectNested(obj, fieldArr, fieldValue, isArray) {
+    value: function assignObjectNested(obj, fieldArr, fieldValue) {
       var currentTarget = obj,
           lastIndex = fieldArr.length - 1;
       fieldArr.forEach(function (prop, index) {
-        if (isArray && index === lastIndex) {
-          if (!Array.isArray(currentTarget[prop])) {
-            currentTarget[prop] = [];
-          }
-
-          currentTarget[prop].push(fieldValue);
-        } else {
-          if (currentTarget[prop] === undefined || currentTarget[prop].constructor !== {}.constructor) {
-            currentTarget[prop] = {};
-          }
-
-          if (index === lastIndex) {
-            currentTarget[prop] = fieldValue;
-          }
-
-          currentTarget = currentTarget[prop];
+        if (currentTarget[prop] === undefined || currentTarget[prop].constructor !== {}.constructor) {
+          currentTarget[prop] = {};
         }
+
+        if (index === lastIndex) {
+          currentTarget[prop] = fieldValue;
+        }
+
+        currentTarget = currentTarget[prop];
       });
     }
   }, {

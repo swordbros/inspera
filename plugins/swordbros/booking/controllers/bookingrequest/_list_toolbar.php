@@ -15,4 +15,11 @@
         data-stripe-load-indicator>
         <?= e(trans('backend::lang.list.delete_selected')) ?>
     </button>
+    <button
+        class="btn btn-default oc-icon-file-excel"
+        onclick="$(this).closest('form').request('onToExcel')"
+        data-request-confirm="Excel"
+        data-stripe-load-indicator>
+        Excel
+    </button>
 </div>

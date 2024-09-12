@@ -116,18 +116,12 @@ class RecordExport extends ExportModel
         // Locate attribute and relation names
         $attrs = array_keys($item->attributes);
         $definitions = $item->getRelationDefinitions();
-        $usesTree = $item->isClassInstanceOf(\October\Contracts\Database\TreeInterface::class);
-
         foreach ($definitions as $type => $relations) {
             if (in_array($type, ['morphTo'])) {
                 continue;
             }
 
             foreach ($relations as $name => $options) {
-                if ($usesTree && in_array($name, ['parent', 'children'])) {
-                    continue;
-                }
-
                 $attrs[] = $name;
             }
         }

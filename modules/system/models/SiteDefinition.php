@@ -329,7 +329,7 @@ class SiteDefinition extends Model
     public function getThemeOptions(): array
     {
         $result = [
-            '' => '- '.__('Use Default').' -',
+            '' => '— '.__('Use Default').' —',
         ];
 
         foreach (Theme::all() as $theme) {
@@ -352,20 +352,11 @@ class SiteDefinition extends Model
      */
     public function getLocaleOptions()
     {
-        $result = [
-            '' => '- '.__('Use Default').' -',
+        return [
+            '' => '— '.__('Use Default').' —',
+        ] + PresetHelper::flags() + [
+            'custom' => '— '.__('Use Custom').' —'
         ];
-
-        foreach (PresetHelper::flags() as $code => $flag) {
-            $flag[0] = "{$code} - " . $flag[0];
-            $result[$code] = $flag;
-        }
-
-        $result += [
-            'custom' => '- '.__('Use Custom').' -'
-        ];
-
-        return $result;
     }
 
     /**
@@ -387,7 +378,7 @@ class SiteDefinition extends Model
     public function getTimezoneOptions()
     {
         return [
-            '' => '- '.__('Use Default').' -',
+            '' => '— '.__('Use Default').' —',
         ] + PresetHelper::timezones();
     }
 
