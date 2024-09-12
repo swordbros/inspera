@@ -44,6 +44,14 @@ trait HasActiveSite
             }
 
             App::setLocale($site->locale);
+
+            if ($site->fallback_locale) {
+                if (Config::get('app.original_fallback_locale') === null) {
+                    Config::set('app.original_fallback_locale', Config::get('app.fallback_locale'));
+                }
+
+                App::setFallbackLocale($site->fallback_locale);
+            }
         }
 
         if ($site->is_custom_url) {

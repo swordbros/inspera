@@ -297,34 +297,11 @@ class Repeater extends FormWidgetBase
      */
     protected function processItems()
     {
-        $currentValue = $this->useRelation
-            ? $this->getLoadValueFromRelation()
-            : $this->getLoadValue();
-
-        // Pad current value with minimum items and disable for groups,
-        // which cannot predict their item types
-        if (!$this->useGroups && $this->minItems > 0) {
-            if (!is_array($currentValue)) {
-                $currentValue = [];
-            }
-
-            $emptyItem = $this->useRelation ? $this->getRelationModel() : [];
-            if (count($currentValue) < $this->minItems) {
-                $currentValue = array_pad($currentValue, $this->minItems, $emptyItem);
-            }
+        if ($this->useRelation) {
+            $this->processItemsForRelation();
         }
-
-        if (!is_array($currentValue)) {
-            return;
-        }
-
-        // Load up the necessary form widgets
-        foreach ($currentValue as $index => $value) {
-            $groupType = $this->useRelation
-                ? $this->getGroupCodeFromRelation($value)
-                : $this->getGroupCodeFromJson($value);
-
-            $this->makeItemFormWidget($index, $groupType);
+        else {
+            $this->processItemsForJson();
         }
     }
 

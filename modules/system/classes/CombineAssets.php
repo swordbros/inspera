@@ -4,7 +4,6 @@ use App;
 use Url;
 use File;
 use Site;
-use Lang;
 use Event;
 use Cache;
 use Route;
@@ -253,7 +252,7 @@ class CombineAssets
         // Set 304 Not Modified header, if necessary
         $response = Response::make();
         $response->header('Content-Type', $mimeType);
-        $response->header('Cache-Control', 'private, max-age=604800');
+        $response->header('Cache-Control', 'private, max-age=15768000');
         $response->setLastModified(new DateTime($lastModifiedTime));
         $response->setEtag($cacheInfo['etag']);
         $response->setPublic();

@@ -92,9 +92,17 @@ trait HasRelationStore
     /**
      * createRelationAtIndex prepares an empty model and adds it to the index
      */
-    protected function createRelationAtIndex(int $index, string $groupCode = null)
+    protected function createRelationAtIndex(int $index, string $groupCode = null, array $attributes = null)
     {
         $model = $this->getRelationModel();
+
+        if ($attributes !== null) {
+            $model->forceFill($attributes);
+
+            if ($this->useGroups && $groupCode === null) {
+                $groupCode = $this->getGroupCodeFromRelation($model);
+            }
+        }
 
         if ($this->useGroups) {
             $this->setGroupCodeOnRelation($model, $groupCode);
@@ -105,6 +113,8 @@ trait HasRelationStore
         $this->getRelationObject()->add($model, $this->getSessionKey());
 
         $this->relatedRecords[$index] = $model;
+
+        return $model;
     }
 
     /**
@@ -136,6 +146,57 @@ trait HasRelationStore
         }
 
         $this->getRelationObject()->remove($model, $this->getSessionKey());
+    }
+
+    /**
+     * processItemsForRelation processes data and applies it to the form widgets
+     */
+    protected function processItemsForRelation()
+    {
+        $currentValue = $this->getLoadValueFromRelation();
+
+        // Apply default values on first load, under very specific conditions
+        if (
+            !$this->model->exists &&
+            !$this->isLoaded &&
+            !$currentValue &&
+            is_array($this->formField->defaults)
+        ) {
+            $currentValue = [];
+            foreach ($this->formField->defaults as $attributes) {
+                if (is_array($attributes)) {
+                    $currentValue[] = $attributes;
+                }
+            }
+        }
+
+        // Pad current value with minimum items and disable for groups,
+        // which cannot predict their item types
+        if (!$this->useGroups && $this->minItems > 0) {
+            if (!is_array($currentValue)) {
+                $currentValue = [];
+            }
+
+            if (count($currentValue) < $this->minItems) {
+                $currentValue = array_pad($currentValue, $this->minItems, []);
+            }
+        }
+
+        if (!is_array($currentValue)) {
+            return;
+        }
+
+        // Load up the necessary form widgets
+        foreach ($currentValue as $index => $value) {
+            if (is_array($value)) {
+                $value = $this->createRelationAtIndex($index, null, $value);
+            }
+
+            $this->makeItemFormWidget(
+                $index,
+                $this->getGroupCodeFromRelation($value)
+            );
+        }
     }
 
     /**

@@ -21,6 +21,7 @@ use ValidationException;
  * @property string $app_url
  * @property string $theme
  * @property string $locale
+ * @property string $fallback_locale
  * @property string $timezone
  * @property bool $is_host_restricted
  * @property array $allow_hosts
@@ -135,6 +136,25 @@ class SiteDefinition extends Model
         if ($this->is_host_restricted && !$this->isAllowHostsValid()) {
             throw new ValidationException(['allow_hosts' => __("Please specify a valid hostname")]);
         }
+
+        $this->fallback_locale = $this->getFallbackLocale($this->locale);
+    }
+
+    /**
+     * getFallbackLocale attempts to extract the fallback language from the locale.
+     * @return string
+     */
+    protected function getFallbackLocale($locale)
+    {
+        if ($position = strpos($locale, '-')) {
+            $target = substr($locale, 0, $position);
+            $available = $this->getLocaleOptions();
+            if (isset($available[$target])) {
+                return $target;
+            }
+        }
+
+        return '';
     }
 
     /**
@@ -329,7 +349,7 @@ class SiteDefinition extends Model
     public function getThemeOptions(): array
     {
         $result = [
-            '' => '— '.__('Use Default').' —',
+            '' => '- '.__('Use Default').' -',
         ];
 
         foreach (Theme::all() as $theme) {
@@ -353,9 +373,9 @@ class SiteDefinition extends Model
     public function getLocaleOptions()
     {
         return [
-            '' => '— '.__('Use Default').' —',
+            '' => '- '.__('Use Default').' -',
         ] + PresetHelper::flags() + [
-            'custom' => '— '.__('Use Custom').' —'
+            'custom' => '- '.__('Use Custom').' -'
         ];
     }
 
@@ -378,7 +398,7 @@ class SiteDefinition extends Model
     public function getTimezoneOptions()
     {
         return [
-            '' => '— '.__('Use Default').' —',
+            '' => '- '.__('Use Default').' -',
         ] + PresetHelper::timezones();
     }
 

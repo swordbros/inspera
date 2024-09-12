@@ -301,4 +301,25 @@ class SiteManager
     {
         return $this->listSiteIdsInGroup();
     }
+
+    /**
+     * isModelMultisite returns true if the model implements multisite. If an
+     * attribute it will check that the attribute is multisite enabled (not propagated)
+     */
+    public function isModelMultisite($model, $attribute = null): bool
+    {
+        if (
+            $model &&
+            $model->isClassInstanceOf(\October\Contracts\Database\MultisiteInterface::class) &&
+            $model->isMultisiteEnabled()
+        ) {
+            if ($attribute !== null && $model->isAttributePropagatable($attribute)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
 }
