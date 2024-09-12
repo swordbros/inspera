@@ -7,10 +7,11 @@ use Flash;
 use Redirect;
 use Swordbros\Base\Controllers\Amele;
 use Swordbros\Base\Controllers\BaseController;
+use Swordbros\Base\Controllers\Export;
 use Swordbros\Booking\Models\BookingModel;
 use Swordbros\Booking\models\BookingRequestModel;
 use Swordbros\Event\Models\EventModel;
-
+use Maatwebsite\Excel\Facades\Excel;
 class BookingRequest extends BaseController
 {
     public $implement = [
@@ -80,21 +81,10 @@ class BookingRequest extends BaseController
             Flash::error('error');
         }
     }
-    public function onToExcel(){
-
+    public function toExcel(){
         $widget = $this->asExtension('ListController')->makeList();
         $widget->recordsPerPage= 1000;
         $widget->prepareVars();
-        dd($widget->vars['records']->items());
-        $model = $this->asExtension('ListController');
-
-        dd(get_class_methods($model));
-        // Verileri sorgula (örneğin, tüm kayıtları al)
-        $records = $model->newQuery()->get();
-
-        // Filtrelenmiş verileri almak için sorguyu başlat
-
-        dd($filters);
-
+        return Excel::download( new Export($widget->vars['records']), 'booking-request-'.date('Y-m-d-H-i-s').'.xlsx');
     }
 }

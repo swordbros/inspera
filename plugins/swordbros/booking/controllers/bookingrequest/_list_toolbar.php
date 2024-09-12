@@ -15,11 +15,11 @@
         data-stripe-load-indicator>
         <?= e(trans('backend::lang.list.delete_selected')) ?>
     </button>
-    <button
+    <a
         class="btn btn-default oc-icon-file-excel"
-        onclick="$(this).closest('form').request('onToExcel')"
-        data-request-confirm="Excel"
-        data-stripe-load-indicator>
+        target="_blank"
+        href="<?= Backend::url('swordbros/booking/bookingrequest/toexcel') ?>"
+    >
         Excel
-    </button>
+    </a>
 </div>
