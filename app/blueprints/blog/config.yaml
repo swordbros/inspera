@@ -2,7 +2,7 @@ uuid: 3328c303-7989-462e-b866-27e7037ba275
 handle: Blog\Config
 type: global
 name: Blog Settings
-
+multisite: true
 customMessages:
     titleUpdateForm: Update Blog Settings
 
@@ -20,18 +20,18 @@ fields:
 
     about_this_blog:
         label: About This Blog
-        comment: Customize this section to tell your visitors a little bit about your publications, writers, content, or something else entirely. 
+        comment: Customize this section to tell your visitors a little bit about your publications, writers, content, or something else entirely.
         type: textarea
         size: small
         tab: General
-    
+
     blog_index_picture:
         tab: Background picture
         label: Blog intro picture
         type: mediafinder
         mode: image
         span: left
-    
+
     fonts_color:
         span: auto
         type: balloon-selector
@@ -40,7 +40,7 @@ fields:
         options:
             dark: Dark
             light: Light
-    
+
     background_overlay:
         tab: Background picture
         label: box.mixin_background.background_overlay.label

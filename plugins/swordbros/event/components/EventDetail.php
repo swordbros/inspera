@@ -3,6 +3,7 @@
 namespace Swordbros\Event\Components;
 
 use Auth;
+use Cms;
 use Flash;
 use Input;
 use Mail;
@@ -16,6 +17,7 @@ use Swordbros\Booking\Models\BookingRequestHistoryModel;
 use Swordbros\Booking\models\BookingRequestModel;
 use Swordbros\Event\Models\EventModel;
 use Cms\Classes\ComponentBase;
+use Swordbros\Event\Models\EventZoneModel;
 use Swordbros\Setting\Models\SwordbrosSettingModel;
 use ValidationException;
 use Validator;
@@ -85,6 +87,7 @@ class EventDetail extends ComponentBase
 
         $booking_request = Input::get('booking_request');
         if ($booking_request) {
+            $locale = session('locale', 'en'); // Varsayılan olarak 'en'
             $createuser = $this->getUseridBookingRequest($booking_request);
             if ($createuser['message']) {
                 Flash::warning($createuser['message']);
@@ -98,9 +101,19 @@ class EventDetail extends ComponentBase
             $bokingRequestModel->otp = md5(\Str::random(64));
             $bokingRequestModel->save();
             $data = $bokingRequestModel->toArray();
-
-            $data['subject'] = 'Subject';
-            $data['content'] = 'Content';
+            $event = EventModel::find($data['event_id']);
+            if($event){
+                $data['event'] = $event->toArray();
+                $data['event']['start'] = date('d.m.Y H:i', strtotime($data['event']['start']));
+                $zone = EventZoneModel::find($data['event']['event_zone_id']);
+                if ($zone) {
+                    $data['zone'] = $zone->toArray();
+                }
+            }
+            $data['subject'] = '';
+            $data['content'] = '';
+            $data['contact_url'] =  url('/'.$locale.'/contact');
+            $data['telephone'] =  SwordbrosSettingModel::swordbros_setting('telephone');
 
             $site_id = Site::getSiteIdFromContext();
             $data['send_email'] = $data['email'];
@@ -123,8 +136,6 @@ class EventDetail extends ComponentBase
             }
             Amele::addBookingRequestHistory($data['id'], $data['send_email'] . ' adresine email gönderildi. ');
             //Flash::success('Booking Created!');
-            $locale = session('locale', 'en'); // Varsayılan olarak 'en'
-
             return Redirect::to(url('/'.$locale.'/booking/thank-you', ['id' => $bokingRequestModel->id, 'otp' => $bokingRequestModel->otp]));
         } else {
             Flash::warning('booking_request not posted');

@@ -16,7 +16,7 @@
 <?php endif ?>
 
 <p>
-    <a href="<?= Backend::url('swordbros/event/category') ?>" class="btn btn-default oc-icon-chevron-left">
+    <a href="<?= Backend::url('swordbros/event/eventcategory') ?>" class="btn btn-default oc-icon-chevron-left">
         <?= e(trans('backend::lang.form.return_to_list')) ?>
     </a>
 </p>
