@@ -1,7 +1,7 @@
 name: Category
 form: $/swordbros/event/models/eventcategorymodel/fields.yaml
 modelClass: Swordbros\Event\Models\EventCategoryModel
-defaultRedirect: swordbros/event/category
+defaultRedirect: swordbros/event/eventcategory
 create:
     redirect: 'swordbros/event/eventcategory/update/:id'
     redirectClose: swordbros/event/eventcategory
