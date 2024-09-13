@@ -6,8 +6,11 @@ use BackendAuth;
 use Cms\Classes\Page;
 use Cms\Classes\Theme;
 use Exception;
+use RainLab\User\Models\User;
 use Site;
+use Swordbros\Event\Models\EventModel;
 use System;
+use System\Models\MailTemplate;
 use System\Models\SettingModel;
 
 /**
@@ -37,6 +40,13 @@ class SwordbrosSettingModel extends SettingModel
      * @var array propagatable fields
      */
     protected $propagatable = [];
+    public $belongsTo = [
+        'booking_email_created' => MailTemplate::class,
+        'booking_email_pending' => MailTemplate::class,
+        'booking_email_approved' => MailTemplate::class,
+        'booking_email_rejected' => MailTemplate::class,
+        'booking_email_canceled' => MailTemplate::class
+    ];
 
     /**
      * initSettingsData initializes the seed data for this model. This only executes when the

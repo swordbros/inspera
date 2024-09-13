@@ -1,6 +1,7 @@
 <?php namespace Swordbros\Booking\Models;
 
 
+use Mail;
 use Model;
 use RainLab\User\Models\User;
 use Swordbros\Base\Controllers\Amele;
@@ -8,6 +9,7 @@ use Swordbros\Event\Models\EventCategoryModel;
 use Swordbros\Event\Models\EventTypeModel;
 use Swordbros\Event\Models\EventZoneModel;
 use Swordbros\Event\Models\EventModel;
+use Swordbros\Setting\Models\SwordbrosSettingModel;
 
 /**
  * Model
@@ -42,10 +44,39 @@ class BookingModel extends Model
 
         static::updated(function ($row) {
             Amele::addBookingHistory($row->id, 'Rezervasyon Güncellendi');
+            BookingModel::sendEventStatusNotification($row);
         });
         static::created(function ($row) {
             Amele::save_localize_row($row);
         });
+    }
+    public static function sendEventStatusNotification($row){
+        if( $row->changes && isset($row->changes['booking_status'])){
+            $new_booking_status = $row->changes['booking_status'];
+            $booking_email_template = SwordbrosSettingModel::swordbros_setting('booking_email_'.$new_booking_status);
+            if($booking_email_template && $booking_email_template->code){
+                $locale = session('locale', 'en'); // Varsayılan olarak 'en'
+
+                $data = $row->toArray();
+                $event = EventModel::find($data['event_id']);
+                if($event){
+                    $data['event'] = $event->toArray();
+                    $data['event']['start'] = date('d.m.Y H:i', strtotime($data['event']['start']));
+                    $zone = EventZoneModel::find($data['event']['event_zone_id']);
+                    if ($zone) {
+                        $data['zone'] = $zone->toArray();
+                    }
+                }
+                $data['subject'] = '';
+                $data['content'] = '';
+                $data['contact_url'] =  url('/'.$locale.'/contact');
+                $data['telephone'] =  SwordbrosSettingModel::swordbros_setting('telephone');
+                $data['send_email'] = $data['email'];
+                Mail::send($booking_email_template->code, $data, function ($message) use ($data) {
+                    $message->to($data['send_email'], $data['first_name']);
+                });
+            }
+        }
     }
     public function getBookingRequestEventIdOptions(){
         $result = [];

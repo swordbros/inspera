@@ -231,7 +231,7 @@ class Amele extends Controller
         $items = [
             'pending'=>['code'=>'pending', 'color'=>'#86cb43', 'title'=>'Pending', 'icon'=>''],
             'approved'=>['code'=>'approved', 'color'=>'#e91e63', 'title'=>'Approved', 'icon'=>''],
-            'denied'=>['code'=>'denied', 'color'=>'#ff9800', 'title'=>'Denied', 'icon'=>''],
+            'rejected'=>['code'=>'rejected', 'color'=>'#ff9800', 'title'=>'Rejected', 'icon'=>''],
             'canceled'=>['code'=>'canceled', 'color'=>'#2196f3', 'title'=>'Canceled', 'icon'=>''],
         ];
 

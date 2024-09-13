@@ -26,8 +26,7 @@ class Booking extends BaseController
     public $formConfig = 'config_form.yaml';
     public $listConfig = 'config_list.yaml';
     public $form = null;
-    public function __construct()
-    {
+    public function __construct(){
         if(Backend\Classes\BackendController::$action=='email'){
             $this->formConfig = 'config_form_email.yaml';
         }
@@ -69,8 +68,7 @@ class Booking extends BaseController
               $query->where('event_id', $eventId);
         }
     }
-    public function email($recordId = null, $context = null)
-    {
+    public function email($recordId = null, $context = null){
         $this->asExtension('FormController')->update($recordId, 'update');
     }
     public function toExcel(){

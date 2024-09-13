@@ -67,6 +67,8 @@
     "event.tab.business_settings": "Business Settings",
     "event.tab.social": "Social Settings",
     "event.tab.event_description": "Description",
+    "event.tab.newsletter_thankyou": "Newsletter",
+    "event.tab.booking_emails": "Email Templates",
     "event.scops.tag": "Tags",
     "event.scops.site_id": "Language",
     "swordbross.settings.address": "Address",

@@ -165,6 +165,51 @@ tabs:
             type: codeeditor
             comment: Event Description
         newsletter_thankyou:
-            tab: Modals
+            tab: event.tab.newsletter_thankyou
             label: Thank you for subscription text
             type: textarea
+        booking_email_created:
+            tab: event.tab.booking_emails
+            label: Booking Created
+            emptyOption: 'Select One'
+            commentAbove: 'Select the template for this status'
+            type: recordfinder
+            maxItems: 1
+            list: $/swordbros/setting/models/swordbrossettingmodel/templatefinder.yaml
+            nameFrom: code
+        booking_email_pending:
+            tab: event.tab.booking_emails
+            label: Booking Pending
+            emptyOption: 'Select One'
+            commentAbove: 'Select the template for this status'
+            type: recordfinder
+            maxItems: 1
+            list: $/swordbros/setting/models/swordbrossettingmodel/templatefinder.yaml
+            nameFrom: code
+        booking_email_approved:
+            tab: event.tab.booking_emails
+            label: Booking Approved
+            emptyOption: 'Select One'
+            commentAbove: 'Select the template for this status'
+            type: recordfinder
+            maxItems: 1
+            list: $/swordbros/setting/models/swordbrossettingmodel/templatefinder.yaml
+            nameFrom: code
+        booking_email_rejected:
+            tab: event.tab.booking_emails
+            label: Booking Rejected
+            emptyOption: 'Select One'
+            commentAbove: 'Select the template for this status'
+            type: recordfinder
+            maxItems: 1
+            list: $/swordbros/setting/models/swordbrossettingmodel/templatefinder.yaml
+            nameFrom: code
+        booking_email_canceled:
+            tab: event.tab.booking_emails
+            label: Booking Canceled
+            emptyOption: 'Select One'
+            commentAbove: 'Select the template for this status'
+            type: recordfinder
+            maxItems: 1
+            list: $/swordbros/setting/models/swordbrossettingmodel/templatefinder.yaml
+            nameFrom: code
