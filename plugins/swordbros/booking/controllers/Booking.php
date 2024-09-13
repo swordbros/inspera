@@ -7,9 +7,11 @@ use Backend\Widgets\Form;
 use BackendMenu;
 use Backend\Classes\Controller;
 use Input;
+use Maatwebsite\Excel\Facades\Excel;
 use Mail;
 use Swordbros\Base\Controllers\Amele;
 use Swordbros\Base\Controllers\BaseController;
+use Swordbros\Base\Controllers\Export;
 use Swordbros\Booking\Models\BookingModel;
 use Swordbros\Event\Models\EventModel;
 use Yaml;
@@ -71,5 +73,10 @@ class Booking extends BaseController
     {
         $this->asExtension('FormController')->update($recordId, 'update');
     }
-
+    public function toExcel(){
+        $widget = $this->asExtension('ListController')->makeList();
+        $widget->recordsPerPage= 1000;
+        $widget->prepareVars();
+        return Excel::download( new Export($widget->vars['records'], ), 'booking-request-'.date('Y-m-d-H-i-s').'.xlsx');
+    }
 }

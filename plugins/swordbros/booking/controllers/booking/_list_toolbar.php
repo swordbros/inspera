@@ -13,4 +13,12 @@
         data-stripe-load-indicator>
         <?= e(trans('backend::lang.list.delete_selected')) ?>
     </button>
+    <a
+        class="btn btn-default oc-icon-file-excel"
+        target="_blank"
+        href="<?= Backend::url('swordbros/booking/booking/toexcel') ?>"
+    >
+        Excel
+    </a>
+
 </div>
