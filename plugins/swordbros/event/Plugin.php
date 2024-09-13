@@ -2,6 +2,7 @@
 
 namespace Swordbros\Event;
 
+use Backend;
 use Event;
 use Site;
 use Swordbros\Base\Controllers\Amele;
@@ -36,7 +37,17 @@ class Plugin extends PluginBase
                 if($page->fileName == 'booking/thank-you.htm') return  ['id'=>$parameters['id']];
             }
         });
+        Event::listen('backend.menu.extendItems', function($manager) {
 
+            $manager->addSideMenuItem('RainLab.User', 'user', 'tags',
+                [
+                    'label' => 'Excel',
+                    'icon'  => 'oc-icon-file-excel',
+                    'url'   => Backend::url('swordbros/booking/booking/userstoexcel')
+                ]
+            );
+            //print_r( get_class($manager));die();
+        });
     }
 
     /**

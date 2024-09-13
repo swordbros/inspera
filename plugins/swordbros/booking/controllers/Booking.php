@@ -79,4 +79,13 @@ class Booking extends BaseController
         $widget->prepareVars();
         return Excel::download( new Export($widget->vars['records'], ), 'booking-request-'.date('Y-m-d-H-i-s').'.xlsx');
     }
+    public function usersToExcel(){
+        $usercontroler = new \RainLab\User\Controllers\Users();
+        $widget = $usercontroler->asExtension('ListController')->makeList();
+        $widget->recordsPerPage= 1000;
+
+        $widget->model->select('id', 'username', 'email', 'created_at');
+        $widget->prepareVars();
+        return Excel::download( new Export($widget->vars['records'], ['id', 'first_name', 'last_name', 'email'] ), 'users-'.date('Y-m-d-H-i-s').'.xlsx');
+    }
 }
