@@ -48,15 +48,17 @@ class BookingModel extends Model
         });
         static::created(function ($row) {
             Amele::save_localize_row($row);
+            BookingModel::sendEventStatusNotification($row, 'created');
         });
     }
-    public static function sendEventStatusNotification($row){
-        if( $row->changes && isset($row->changes['booking_status'])){
-            $new_booking_status = $row->changes['booking_status'];
+    public static function sendEventStatusNotification($row, $new_booking_status = null){
+        if( $new_booking_status || ($row->changes && isset($row->changes['booking_status']))){
+            if(empty($new_booking_status)){
+                $new_booking_status = $row->changes['booking_status'];
+            }
             $booking_email_template = SwordbrosSettingModel::swordbros_setting('booking_email_'.$new_booking_status);
             if($booking_email_template && $booking_email_template->code){
                 $locale = session('locale', 'en'); // Varsayılan olarak 'en'
-
                 $data = $row->toArray();
                 $event = EventModel::find($data['event_id']);
                 if($event){
