@@ -6,7 +6,7 @@
 
   {#<div id="{{ __SELF__ }}_forms_flash" class="errors"></div>#}
     <div class="inner position-relative mb-3">
-        <select type="text" name="name" placeholder="{{ 'Select a Issue' |_ }}">
+        <select type="text" name="issue" placeholder="{{ 'Select a Issue' |_ }}">
             <option value=""> {{ 'Select a Issue' |_ }} </option>
             <option value="{{ 'General' |_ }}"> {{ 'General' |_ }} </option>
             <option value="{{ 'Booking' |_ }}"> {{ 'Booking' |_ }} </option>
@@ -14,7 +14,7 @@
             <option value="{{ 'Other' |_ }}"> {{ 'Other' |_ }} </option>
 
         </select>
-        <div data-validate-for="name"></div>
+        <div data-validate-for="issue"></div>
     </div>
 
   <div class="inner position-relative mb-3">
