@@ -10,10 +10,12 @@ components:
     properties:
       group: Contact
       rules:
+        issue: required
         name: required
         email: required|email
         consent: accepted
       rules_messages:
+        issue.required: A issue is required
         email.required: A valid email is required
         email.email: This should be an email
       messages_success: Thank you very much, I will get back to you soon
@@ -26,6 +28,7 @@ components:
       js_on_success: "new bootstrap.Modal(document.getElementById('contact-thankyou')).show();"
       js_on_error: "new bootstrap.Modal(document.getElementById('contact-thankyou')).show();"
       allowed_fields:
+        - issue
         - name
         - email
         - phone
@@ -38,7 +41,7 @@ components:
       recaptcha_type: image
       recaptcha_size: compact
       emails_date_format: Y-m-d
-      
+
 form:
   tabs:
     defaultTab: box.form.defaultTab
@@ -48,7 +51,7 @@ form:
         label: box.box_title.label
         comment: box.box_title.comment
         default: box.form.name
-      
+
       title-mixin:
         type: mixin
 
@@ -59,13 +62,13 @@ form:
 
       tinytext-mixin:
         type: mixin
-      
+
       infoitems-mixin:
         type: mixin
-        
+
       anchor-mixin:
         type: mixin
-      
+
       classes-mixin:
         type: mixin
 

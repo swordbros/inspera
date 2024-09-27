@@ -65,6 +65,7 @@ abstract class MagicForm extends ComponentBase
 
         // FILTER ALLOWED FIELDS
         $allow = $this->property('allowed_fields');
+
         if (is_array($allow) && !empty($allow)) {
             foreach ($allow as $field) {
                 $post[$field] = post($field);
