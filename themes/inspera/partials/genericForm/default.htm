@@ -1,10 +1,21 @@
-<form 
-  data-request="{{ __SELF__ }}::onFormSubmit"  
+<form
+  data-request="{{ __SELF__ }}::onFormSubmit"
   data-request-validate
 >
   {{ form_token() }}
 
   {#<div id="{{ __SELF__ }}_forms_flash" class="errors"></div>#}
+    <div class="inner position-relative mb-3">
+        <select type="text" name="name" placeholder="{{ 'Select a Issue' |_ }}">
+            <option value=""> {{ 'Select a Issue' |_ }} </option>
+            <option value="{{ 'General' |_ }}"> {{ 'General' |_ }} </option>
+            <option value="{{ 'Booking' |_ }}"> {{ 'Booking' |_ }} </option>
+            <option value="{{ 'Media' |_ }}"> {{ 'Media' |_ }} </option>
+            <option value="{{ 'Other' |_ }}"> {{ 'Other' |_ }} </option>
+
+        </select>
+        <div data-validate-for="name"></div>
+    </div>
 
   <div class="inner position-relative mb-3">
     <input type="text" name="name" placeholder="{{ 'Complete Name' |_ }}">
@@ -32,10 +43,10 @@
       <div data-validate-for="consent"></div>
       <input type="checkbox" name="consent">
       <small>
-        {{ 'I agree with the ' |_ }} 
+        {{ 'I agree with the ' |_ }}
         <a href="{{ 'privacy' | boxesPage }}" target="_blank">
           {{ 'Privacy Policy' |_ }}
-        </a>    
+        </a>
       </small>
     </label>
   </div>
@@ -59,6 +70,6 @@
       </div>
     </div>
   </div>
-  
+
 
 </form>
