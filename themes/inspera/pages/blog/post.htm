@@ -20,15 +20,17 @@ vars[activeNavLink] = 'blog'
 <?php
 function onEnd(){
   $post = $this->components['post']->getPrimaryRecord();
-  $postClass = get_class($post);
-  $this['previousPost'] = $postClass::inSection('Blog\Post')
-    ->where('published_at_date', '<=', $post->published_at_date)
-    ->orderBy('published_at_date', 'desc')
-    ->first();
-  $this['nextPost'] = $postClass::inSection('Blog\Post')
-    ->where('published_at_date', '>', $post->published_at_date)
-    ->orderBy('published_at_date', 'asc')
-    ->first();
+    if(!empty($post)){
+        $postClass = get_class($post);
+        $this['previousPost'] = $postClass::inSection('Blog\Post')
+        ->where('published_at_date', '<=', $post->published_at_date)
+        ->orderBy('published_at_date', 'desc')
+        ->first();
+        $this['nextPost'] = $postClass::inSection('Blog\Post')
+        ->where('published_at_date', '>', $post->published_at_date)
+        ->orderBy('published_at_date', 'asc')
+        ->first();
+    }
 }
 
 ?>
