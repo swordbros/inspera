@@ -12,7 +12,7 @@ form:
         label: box.box_title.label
         comment: box.box_title.comment
         default: box.title_header.name
-      
+
       fonts_color:
         span: auto
         type: balloon-selector
@@ -29,7 +29,7 @@ form:
       description:
         label: box.title.sub_title.label
         type: textarea
-      
+
       background_image:
         label: box.mixin_background.background_image.label
         type: mediafinder
@@ -78,10 +78,14 @@ form:
         type: number
         placeholder: 20
         comment: box.title_header.paralax_speed.comment
-      
+
+      parallax_show:
+        label: box.title_header.parallax_show.label
+        type: switch
+        comment: box.title_header.parallax_show.comment
+
       anchor-mixin:
         type: mixin
-      
-    
-      
-      
+
+
+
