@@ -1,0 +1,5 @@
+title = "robots.txt"
+url = "/robots.txt"
+==
+User-agent: *
+Disallow: /admin/
